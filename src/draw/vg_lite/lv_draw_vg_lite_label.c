@@ -63,6 +63,7 @@ static void draw_letter_bitmap(lv_draw_vg_lite_unit_t * u, const lv_draw_glyph_d
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vg_lite_label(lv_draw_unit_t * draw_unit, const lv_draw_label_dsc_t * dsc,
                            const lv_area_t * coords)
 {
@@ -84,6 +85,7 @@ void lv_draw_vg_lite_label(lv_draw_unit_t * draw_unit, const lv_draw_label_dsc_t
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void draw_letter_cb(lv_draw_unit_t * draw_unit, lv_draw_glyph_dsc_t * glyph_draw_dsc,
                            lv_draw_fill_dsc_t * fill_draw_dsc, const lv_area_t * fill_area)
 {
@@ -139,6 +141,7 @@ static void draw_letter_cb(lv_draw_unit_t * draw_unit, lv_draw_glyph_dsc_t * gly
     }
 }
 
+LV_FUNC_SECTION
 static void draw_letter_bitmap(lv_draw_vg_lite_unit_t * u, const lv_draw_glyph_dsc_t * dsc)
 {
     lv_area_t clip_area;
@@ -227,6 +230,7 @@ static void draw_letter_bitmap(lv_draw_vg_lite_unit_t * u, const lv_draw_glyph_d
 
 #if LV_USE_FREETYPE
 
+LV_FUNC_SECTION
 static void draw_letter_outline(lv_draw_vg_lite_unit_t * u, const lv_draw_glyph_dsc_t * dsc)
 {
     /* get clip area */
@@ -295,6 +299,7 @@ static void draw_letter_outline(lv_draw_vg_lite_unit_t * u, const lv_draw_glyph_
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 static void vg_lite_outline_push(const lv_freetype_outline_event_param_t * param)
 {
     LV_PROFILER_BEGIN;
@@ -334,6 +339,7 @@ static void vg_lite_outline_push(const lv_freetype_outline_event_param_t * param
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 static void freetype_outline_event_cb(lv_event_t * e)
 {
     LV_PROFILER_BEGIN;

@@ -110,6 +110,7 @@ static uint32_t tick_get_cb(void);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_linux_drm_create(void)
 {
     lv_tick_set_cb(tick_get_cb);
@@ -131,6 +132,7 @@ lv_display_t * lv_linux_drm_create(void)
     return disp;
 }
 
+LV_FUNC_SECTION
 void lv_linux_drm_set_file(lv_display_t * disp, const char * file, int64_t connector_id)
 {
     drm_dev_t * drm_dev = lv_display_get_driver_data(disp);
@@ -177,6 +179,7 @@ void lv_linux_drm_set_file(lv_display_t * disp, const char * file, int64_t conne
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static uint32_t get_plane_property_id(drm_dev_t * drm_dev, const char * name)
 {
     uint32_t i;
@@ -192,6 +195,7 @@ static uint32_t get_plane_property_id(drm_dev_t * drm_dev, const char * name)
     return 0;
 }
 
+LV_FUNC_SECTION
 static uint32_t get_crtc_property_id(drm_dev_t * drm_dev, const char * name)
 {
     uint32_t i;
@@ -207,6 +211,7 @@ static uint32_t get_crtc_property_id(drm_dev_t * drm_dev, const char * name)
     return 0;
 }
 
+LV_FUNC_SECTION
 static uint32_t get_conn_property_id(drm_dev_t * drm_dev, const char * name)
 {
     uint32_t i;
@@ -222,6 +227,7 @@ static uint32_t get_conn_property_id(drm_dev_t * drm_dev, const char * name)
     return 0;
 }
 
+LV_FUNC_SECTION
 static void page_flip_handler(int fd, unsigned int sequence, unsigned int tv_sec, unsigned int tv_usec,
                               void * user_data)
 {
@@ -237,6 +243,7 @@ static void page_flip_handler(int fd, unsigned int sequence, unsigned int tv_sec
     }
 }
 
+LV_FUNC_SECTION
 static int drm_get_plane_props(drm_dev_t * drm_dev)
 {
     uint32_t i;
@@ -258,6 +265,7 @@ static int drm_get_plane_props(drm_dev_t * drm_dev)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int drm_get_crtc_props(drm_dev_t * drm_dev)
 {
     uint32_t i;
@@ -279,6 +287,7 @@ static int drm_get_crtc_props(drm_dev_t * drm_dev)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int drm_get_conn_props(drm_dev_t * drm_dev)
 {
     uint32_t i;
@@ -300,6 +309,7 @@ static int drm_get_conn_props(drm_dev_t * drm_dev)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int drm_add_plane_property(drm_dev_t * drm_dev, const char * name, uint64_t value)
 {
     int ret;
@@ -319,6 +329,7 @@ static int drm_add_plane_property(drm_dev_t * drm_dev, const char * name, uint64
     return 0;
 }
 
+LV_FUNC_SECTION
 static int drm_add_crtc_property(drm_dev_t * drm_dev, const char * name, uint64_t value)
 {
     int ret;
@@ -338,6 +349,7 @@ static int drm_add_crtc_property(drm_dev_t * drm_dev, const char * name, uint64_
     return 0;
 }
 
+LV_FUNC_SECTION
 static int drm_add_conn_property(drm_dev_t * drm_dev, const char * name, uint64_t value)
 {
     int ret;
@@ -357,6 +369,7 @@ static int drm_add_conn_property(drm_dev_t * drm_dev, const char * name, uint64_
     return 0;
 }
 
+LV_FUNC_SECTION
 static int drm_dmabuf_set_plane(drm_dev_t * drm_dev, drm_buffer_t * buf)
 {
     int ret;
@@ -398,6 +411,7 @@ static int drm_dmabuf_set_plane(drm_dev_t * drm_dev, drm_buffer_t * buf)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int find_plane(drm_dev_t * drm_dev, unsigned int fourcc, uint32_t * plane_id, uint32_t crtc_id,
                       uint32_t crtc_idx)
 {
@@ -455,6 +469,7 @@ static int find_plane(drm_dev_t * drm_dev, unsigned int fourcc, uint32_t * plane
     return ret;
 }
 
+LV_FUNC_SECTION
 static int drm_find_connector(drm_dev_t * drm_dev, int64_t connector_id)
 {
     drmModeConnector * conn = NULL;
@@ -610,6 +625,7 @@ free_res:
     return -1;
 }
 
+LV_FUNC_SECTION
 static int drm_open(const char * path)
 {
     int fd, flags;
@@ -643,6 +659,7 @@ err:
     return -1;
 }
 
+LV_FUNC_SECTION
 static int drm_setup(drm_dev_t * drm_dev, const char * device_path, int64_t connector_id, unsigned int fourcc)
 {
     int ret;
@@ -723,6 +740,7 @@ err:
     return -1;
 }
 
+LV_FUNC_SECTION
 static int drm_allocate_dumb(drm_dev_t * drm_dev, drm_buffer_t * buf)
 {
     struct drm_mode_create_dumb creq;
@@ -781,6 +799,7 @@ static int drm_allocate_dumb(drm_dev_t * drm_dev, drm_buffer_t * buf)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int drm_setup_buffers(drm_dev_t * drm_dev)
 {
     int ret;
@@ -797,6 +816,7 @@ static int drm_setup_buffers(drm_dev_t * drm_dev)
     return 0;
 }
 
+__attribute__(( fptrgroup("lv_display_flush_wait_cb") ))
 static void drm_flush_wait(lv_display_t * disp)
 {
     drm_dev_t * drm_dev = lv_display_get_driver_data(disp);
@@ -820,6 +840,7 @@ static void drm_flush_wait(lv_display_t * disp)
     }
 }
 
+__attribute__(( fptrgroup("lv_display_flush_cb") ))
 static void drm_flush(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map)
 {
     if(!lv_display_flush_is_last(disp)) return;
@@ -841,6 +862,7 @@ static void drm_flush(lv_display_t * disp, const lv_area_t * area, uint8_t * px_
     }
 }
 
+LV_FUNC_SECTION
 static uint32_t tick_get_cb(void)
 {
     struct timespec t;

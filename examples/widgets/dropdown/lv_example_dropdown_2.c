@@ -4,6 +4,7 @@
 /**
  * Create a drop down, up, left and right menus
  */
+LV_FUNC_SECTION
 void lv_example_dropdown_2(void)
 {
     static const char * opts = "Apple\n"

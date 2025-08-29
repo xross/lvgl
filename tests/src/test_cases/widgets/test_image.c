@@ -7,17 +7,20 @@
 LV_IMAGE_DECLARE(test_img_lvgl_logo_png);
 LV_IMAGE_DECLARE(test_arc_bg);
 
+LV_FUNC_SECTION
 void setUp(void)
 {
 
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * img_create(void)
 {
     lv_obj_t * img = lv_image_create(lv_screen_active());
@@ -29,6 +32,7 @@ static lv_obj_t * img_create(void)
     return img;
 }
 
+LV_FUNC_SECTION
 void test_image_rotated_pivot_center(void)
 {
     lv_obj_t * img;
@@ -43,6 +47,7 @@ void test_image_rotated_pivot_center(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_rotate_pivot_center.png");
 }
 
+LV_FUNC_SECTION
 void test_image_rotated_pivot_top_left(void)
 {
     lv_obj_t * img;
@@ -57,6 +62,7 @@ void test_image_rotated_pivot_top_left(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_rotate_pivot_top_left.png");
 }
 
+LV_FUNC_SECTION
 void test_image_scale_pivot_center(void)
 {
     lv_obj_t * img;
@@ -71,6 +77,7 @@ void test_image_scale_pivot_center(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_scale_pivot_center.png");
 }
 
+LV_FUNC_SECTION
 void test_image_scale_pivot_top_left(void)
 {
     lv_obj_t * img;
@@ -85,6 +92,7 @@ void test_image_scale_pivot_top_left(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_scale_pivot_top_left.png");
 }
 
+LV_FUNC_SECTION
 void test_image_scale_x_pivot_center(void)
 {
     lv_obj_t * img;
@@ -99,6 +107,7 @@ void test_image_scale_x_pivot_center(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_scale_x_pivot_center.png");
 }
 
+LV_FUNC_SECTION
 void test_image_scale_x_pivot_top_left(void)
 {
     lv_obj_t * img;
@@ -113,6 +122,7 @@ void test_image_scale_x_pivot_top_left(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_scale_x_pivot_top_left.png");
 }
 
+LV_FUNC_SECTION
 void test_image_scale_y_pivot_center(void)
 {
     lv_obj_t * img;
@@ -127,6 +137,7 @@ void test_image_scale_y_pivot_center(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_scale_y_pivot_center.png");
 }
 
+LV_FUNC_SECTION
 void test_image_scale_y_pivot_top_left(void)
 {
     lv_obj_t * img;
@@ -141,6 +152,7 @@ void test_image_scale_y_pivot_top_left(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_scale_y_pivot_top_left.png");
 }
 
+LV_FUNC_SECTION
 void test_image_rotate_and_scale_pivot_center(void)
 {
     lv_obj_t * img;
@@ -157,6 +169,7 @@ void test_image_rotate_and_scale_pivot_center(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_rotate_and_scale_pivot_center.png");
 }
 
+LV_FUNC_SECTION
 void test_image_rotate_and_scale_pivot_top_left(void)
 {
     lv_obj_t * img;
@@ -173,6 +186,7 @@ void test_image_rotate_and_scale_pivot_top_left(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_rotate_and_scale_pivot_top_left.png");
 }
 
+LV_FUNC_SECTION
 void test_image_normal_align(void)
 {
     lv_obj_t * img;
@@ -193,6 +207,7 @@ void test_image_normal_align(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_normal_align.png");
 }
 
+LV_FUNC_SECTION
 void test_image_normal_align_offset(void)
 {
     lv_obj_t * img;
@@ -215,6 +230,7 @@ void test_image_normal_align_offset(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_normal_align_offset.png");
 }
 
+LV_FUNC_SECTION
 void test_image_transform_align(void)
 {
     lv_obj_t * img;
@@ -238,6 +254,7 @@ void test_image_transform_align(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_transform_align.png");
 }
 
+LV_FUNC_SECTION
 void test_image_transform_align_offset(void)
 {
     lv_obj_t * img;
@@ -263,6 +280,7 @@ void test_image_transform_align_offset(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_transform_align_offset.png");
 }
 
+LV_FUNC_SECTION
 void test_image_stretch(void)
 {
     lv_obj_t * img;
@@ -284,6 +302,7 @@ void test_image_stretch(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_stretch.png");
 }
 
+LV_FUNC_SECTION
 void test_image_tile(void)
 {
     lv_obj_t * img;
@@ -320,6 +339,7 @@ void test_image_tile(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_tile.png");
 }
 
+LV_FUNC_SECTION
 void test_image_ignore_transformation_settings_when_stretched(void)
 {
     lv_obj_t * img = img_create();
@@ -343,6 +363,7 @@ void test_image_ignore_transformation_settings_when_stretched(void)
     TEST_ASSERT_EQUAL_INT(scale_y_original, lv_image_get_scale_y(img));
 }
 
+LV_FUNC_SECTION
 void test_image_ignore_transformation_settings_when_tiled(void)
 {
     lv_obj_t * img = img_create();
@@ -363,6 +384,7 @@ void test_image_ignore_transformation_settings_when_tiled(void)
     TEST_ASSERT_EQUAL_INT(LV_SCALE_NONE, lv_image_get_scale_y(img));
 }
 
+LV_FUNC_SECTION
 void test_image_clip_radius(void)
 {
     lv_obj_t * par = lv_obj_create(lv_screen_active());
@@ -387,6 +409,7 @@ void test_image_clip_radius(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/image_clip_radius_circle_scaled_rotated.png");
 }
 
+LV_FUNC_SECTION
 void test_image_properties(void)
 {
 #if LV_USE_OBJ_PROPERTY

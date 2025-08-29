@@ -52,16 +52,19 @@ static lv_fs_res_t lv_fs_seek_cached(lv_fs_file_t * file_p, uint32_t pos, lv_fs_
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_fs_init(void)
 {
     lv_ll_init(fsdrv_ll_p, sizeof(lv_fs_drv_t *));
 }
 
+LV_FUNC_SECTION
 void lv_fs_deinit(void)
 {
     lv_ll_clear(fsdrv_ll_p);
 }
 
+LV_FUNC_SECTION
 bool lv_fs_is_ready(char letter)
 {
     lv_fs_drv_t * drv = lv_fs_get_drv(letter);
@@ -73,6 +76,7 @@ bool lv_fs_is_ready(char letter)
     return drv->ready_cb(drv);
 }
 
+LV_FUNC_SECTION
 lv_fs_res_t lv_fs_open(lv_fs_file_t * file_p, const char * path, lv_fs_mode_t mode)
 {
     if(path == NULL) {
@@ -142,6 +146,7 @@ lv_fs_res_t lv_fs_open(lv_fs_file_t * file_p, const char * path, lv_fs_mode_t mo
     return LV_FS_RES_OK;
 }
 
+LV_FUNC_SECTION
 void lv_fs_make_path_from_buffer(lv_fs_path_ex_t * path, char letter, const void * buf, uint32_t size)
 {
     path->path[0] = letter;
@@ -151,6 +156,7 @@ void lv_fs_make_path_from_buffer(lv_fs_path_ex_t * path, char letter, const void
     path->size = size;
 }
 
+LV_FUNC_SECTION
 lv_fs_res_t lv_fs_close(lv_fs_file_t * file_p)
 {
     if(file_p->drv == NULL) {
@@ -183,6 +189,7 @@ lv_fs_res_t lv_fs_close(lv_fs_file_t * file_p)
     return res;
 }
 
+LV_FUNC_SECTION
 lv_fs_res_t lv_fs_read(lv_fs_file_t * file_p, void * buf, uint32_t btr, uint32_t * br)
 {
     if(br != NULL) *br = 0;
@@ -214,6 +221,7 @@ lv_fs_res_t lv_fs_read(lv_fs_file_t * file_p, void * buf, uint32_t btr, uint32_t
     return res;
 }
 
+LV_FUNC_SECTION
 lv_fs_res_t lv_fs_write(lv_fs_file_t * file_p, const void * buf, uint32_t btw, uint32_t * bw)
 {
     if(bw != NULL) *bw = 0;
@@ -246,6 +254,7 @@ lv_fs_res_t lv_fs_write(lv_fs_file_t * file_p, const void * buf, uint32_t btw, u
     return res;
 }
 
+LV_FUNC_SECTION
 lv_fs_res_t lv_fs_seek(lv_fs_file_t * file_p, uint32_t pos, lv_fs_whence_t whence)
 {
     if(file_p->drv == NULL) {
@@ -274,6 +283,7 @@ lv_fs_res_t lv_fs_seek(lv_fs_file_t * file_p, uint32_t pos, lv_fs_whence_t whenc
     return res;
 }
 
+LV_FUNC_SECTION
 lv_fs_res_t lv_fs_tell(lv_fs_file_t * file_p, uint32_t * pos)
 {
     if(file_p->drv == NULL) {
@@ -302,6 +312,7 @@ lv_fs_res_t lv_fs_tell(lv_fs_file_t * file_p, uint32_t * pos)
     return res;
 }
 
+LV_FUNC_SECTION
 lv_fs_res_t lv_fs_dir_open(lv_fs_dir_t * rddir_p, const char * path)
 {
     if(path == NULL) return LV_FS_RES_INV_PARAM;
@@ -341,6 +352,7 @@ lv_fs_res_t lv_fs_dir_open(lv_fs_dir_t * rddir_p, const char * path)
     return LV_FS_RES_OK;
 }
 
+LV_FUNC_SECTION
 lv_fs_res_t lv_fs_dir_read(lv_fs_dir_t * rddir_p, char * fn, uint32_t fn_len)
 {
     if(fn_len == 0) {
@@ -366,6 +378,7 @@ lv_fs_res_t lv_fs_dir_read(lv_fs_dir_t * rddir_p, char * fn, uint32_t fn_len)
     return res;
 }
 
+LV_FUNC_SECTION
 lv_fs_res_t lv_fs_dir_close(lv_fs_dir_t * rddir_p)
 {
     if(rddir_p->drv == NULL || rddir_p->dir_d == NULL) {
@@ -388,11 +401,13 @@ lv_fs_res_t lv_fs_dir_close(lv_fs_dir_t * rddir_p)
     return res;
 }
 
+LV_FUNC_SECTION
 void lv_fs_drv_init(lv_fs_drv_t * drv)
 {
     lv_memzero(drv, sizeof(lv_fs_drv_t));
 }
 
+LV_FUNC_SECTION
 void lv_fs_drv_register(lv_fs_drv_t * drv_p)
 {
     /*Save the new driver*/
@@ -404,6 +419,7 @@ void lv_fs_drv_register(lv_fs_drv_t * drv_p)
     *new_drv = drv_p;
 }
 
+LV_FUNC_SECTION
 lv_fs_drv_t * lv_fs_get_drv(char letter)
 {
     lv_fs_drv_t ** drv;
@@ -417,6 +433,7 @@ lv_fs_drv_t * lv_fs_get_drv(char letter)
     return NULL;
 }
 
+LV_FUNC_SECTION
 char * lv_fs_get_letters(char * buf)
 {
     lv_fs_drv_t ** drv;
@@ -432,6 +449,7 @@ char * lv_fs_get_letters(char * buf)
     return buf;
 }
 
+LV_FUNC_SECTION
 const char * lv_fs_get_ext(const char * fn)
 {
     size_t i;
@@ -447,6 +465,7 @@ const char * lv_fs_get_ext(const char * fn)
     return ""; /*Empty string if no '.' in the file name.*/
 }
 
+LV_FUNC_SECTION
 char * lv_fs_up(char * path)
 {
     size_t len = lv_strlen(path);
@@ -473,6 +492,7 @@ char * lv_fs_up(char * path)
     return path;
 }
 
+LV_FUNC_SECTION
 const char * lv_fs_get_last(const char * path)
 {
     size_t len = lv_strlen(path);
@@ -506,6 +526,7 @@ const char * lv_fs_get_last(const char * path)
  * Extract the drive letter and the real path from LVGL's "abstracted file system" path string
  * @param path path string (E.g. S:/folder/file.txt)
  */
+LV_FUNC_SECTION
 static resolved_path_t lv_fs_resolve_path(const char * path)
 {
     resolved_path_t resolved;
@@ -535,6 +556,7 @@ static resolved_path_t lv_fs_resolve_path(const char * path)
     return resolved;
 }
 
+LV_FUNC_SECTION
 static lv_fs_res_t lv_fs_read_cached(lv_fs_file_t * file_p, void * buf, uint32_t btr, uint32_t * br)
 {
     lv_fs_res_t res = LV_FS_RES_OK;
@@ -620,6 +642,7 @@ static lv_fs_res_t lv_fs_read_cached(lv_fs_file_t * file_p, void * buf, uint32_t
     return res;
 }
 
+LV_FUNC_SECTION
 static lv_fs_res_t lv_fs_write_cached(lv_fs_file_t * file_p, const void * buf, uint32_t btw, uint32_t * bw)
 {
     lv_fs_res_t res = LV_FS_RES_OK;
@@ -664,6 +687,7 @@ static lv_fs_res_t lv_fs_write_cached(lv_fs_file_t * file_p, const void * buf, u
     return res;
 }
 
+LV_FUNC_SECTION
 static lv_fs_res_t lv_fs_seek_cached(lv_fs_file_t * file_p, uint32_t pos, lv_fs_whence_t whence)
 {
     lv_fs_res_t res = LV_FS_RES_OK;

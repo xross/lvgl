@@ -58,6 +58,7 @@ static int property_name_compare(const void * ref, const void * element);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_result_t lv_obj_set_property(lv_obj_t * obj, const lv_property_t * value)
 {
     LV_ASSERT(obj && value);
@@ -76,6 +77,7 @@ lv_result_t lv_obj_set_property(lv_obj_t * obj, const lv_property_t * value)
     return obj_property(obj, value->id, (lv_property_t *)value, true);
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_obj_set_properties(lv_obj_t * obj, const lv_property_t * value, uint32_t count)
 {
     for(uint32_t i = 0; i < count; i++) {
@@ -88,6 +90,7 @@ lv_result_t lv_obj_set_properties(lv_obj_t * obj, const lv_property_t * value, u
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_property_t lv_obj_get_property(lv_obj_t * obj, lv_prop_id_t id)
 {
     lv_result_t result;
@@ -115,6 +118,7 @@ lv_property_t lv_obj_get_property(lv_obj_t * obj, lv_prop_id_t id)
     return value;
 }
 
+LV_FUNC_SECTION
 lv_property_t lv_obj_get_style_property(lv_obj_t * obj, lv_prop_id_t id, uint32_t selector)
 {
     lv_property_t value;
@@ -133,6 +137,7 @@ lv_property_t lv_obj_get_style_property(lv_obj_t * obj, lv_prop_id_t id, uint32_
     return value;
 }
 
+LV_FUNC_SECTION
 lv_prop_id_t lv_style_property_get_id(const char * name)
 {
 #if LV_USE_OBJ_PROPERTY_NAME
@@ -147,6 +152,7 @@ lv_prop_id_t lv_style_property_get_id(const char * name)
     return LV_PROPERTY_ID_INVALID;
 }
 
+LV_FUNC_SECTION
 lv_prop_id_t lv_obj_class_property_get_id(const lv_obj_class_t * clz, const char * name)
 {
 #if LV_USE_OBJ_PROPERTY_NAME
@@ -169,6 +175,7 @@ lv_prop_id_t lv_obj_class_property_get_id(const lv_obj_class_t * clz, const char
     return LV_PROPERTY_ID_INVALID;
 }
 
+LV_FUNC_SECTION
 lv_prop_id_t lv_obj_property_get_id(const lv_obj_t * obj, const char * name)
 {
 #if LV_USE_OBJ_PROPERTY_NAME
@@ -195,6 +202,7 @@ lv_prop_id_t lv_obj_property_get_id(const lv_obj_t * obj, const char * name)
  *  STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_result_t obj_property(lv_obj_t * obj, lv_prop_id_t id, lv_property_t * value, bool set)
 {
     const lv_property_ops_t * properties;
@@ -293,6 +301,7 @@ static lv_result_t obj_property(lv_obj_t * obj, lv_prop_id_t id, lv_property_t *
     return LV_RESULT_INVALID;
 }
 
+__attribute__(( fptrgroup("lv_utils_cmp") ))
 static int property_name_compare(const void * ref, const void * element)
 {
     const lv_property_name_t * prop = element;

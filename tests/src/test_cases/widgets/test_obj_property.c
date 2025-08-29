@@ -4,6 +4,7 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void test_obj_property_fail_on_invalid_id(void)
 {
 #if LV_USE_OBJ_PROPERTY
@@ -28,6 +29,7 @@ void test_obj_property_fail_on_invalid_id(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_obj_property_set_get_should_match(void)
 {
 #if LV_USE_OBJ_PROPERTY
@@ -95,6 +97,7 @@ void test_obj_property_set_get_should_match(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_obj_property_style_selector(void)
 {
 #if LV_USE_OBJ_PROPERTY
@@ -119,6 +122,7 @@ void test_obj_property_style_selector(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_obj_property_flag(void)
 {
 #if LV_USE_OBJ_PROPERTY
@@ -185,6 +189,7 @@ void test_obj_property_flag(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_obj_property_state(void)
 {
 #if LV_USE_OBJ_PROPERTY
@@ -233,6 +238,7 @@ void test_obj_property_state(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_obj_property_type_point(void)
 {
 #if LV_USE_OBJ_PROPERTY
@@ -250,6 +256,7 @@ void test_obj_property_type_point(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_obj_property_name(void)
 {
 #if LV_USE_OBJ_PROPERTY && LV_USE_OBJ_PROPERTY_NAME
@@ -272,6 +279,7 @@ void test_obj_property_name(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_obj_class_property(void)
 {
 #if LV_USE_OBJ_PROPERTY && LV_USE_OBJ_PROPERTY_NAME
@@ -289,6 +297,7 @@ void test_obj_class_property(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_label_properties(void)
 {
 #if LV_USE_OBJ_PROPERTY

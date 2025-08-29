@@ -113,6 +113,7 @@ const lv_obj_class_t lv_roller_label_class  = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_roller_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -125,6 +126,7 @@ lv_obj_t * lv_roller_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_roller_set_options(lv_obj_t * obj, const char * options, lv_roller_mode_t mode)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -186,6 +188,7 @@ void lv_roller_set_options(lv_obj_t * obj, const char * options, lv_roller_mode_
     lv_obj_refresh_ext_draw_size(label);
 }
 
+LV_FUNC_SECTION
 void lv_roller_set_selected(lv_obj_t * obj, uint32_t sel_opt, lv_anim_enable_t anim)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -220,6 +223,7 @@ void lv_roller_set_selected(lv_obj_t * obj, uint32_t sel_opt, lv_anim_enable_t a
     refr_position(obj, anim);
 }
 
+LV_FUNC_SECTION
 void lv_roller_set_visible_row_count(lv_obj_t * obj, uint32_t row_cnt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -234,6 +238,7 @@ void lv_roller_set_visible_row_count(lv_obj_t * obj, uint32_t row_cnt)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 uint32_t lv_roller_get_selected(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -248,6 +253,7 @@ uint32_t lv_roller_get_selected(const lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 void lv_roller_get_selected_str(const lv_obj_t * obj, char * buf, uint32_t buf_size)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -280,6 +286,7 @@ void lv_roller_get_selected_str(const lv_obj_t * obj, char * buf, uint32_t buf_s
  * @param roller pointer to roller object
  * @return the options separated by '\n'-s (E.g. "Option1\nOption2\nOption3")
  */
+LV_FUNC_SECTION
 const char * lv_roller_get_options(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -287,6 +294,7 @@ const char * lv_roller_get_options(const lv_obj_t * obj)
     return lv_label_get_text(get_label(obj));
 }
 
+LV_FUNC_SECTION
 uint32_t lv_roller_get_option_count(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -304,6 +312,7 @@ uint32_t lv_roller_get_option_count(const lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_roller_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -326,6 +335,7 @@ static void lv_roller_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj
     LV_LOG_TRACE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_roller_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -450,6 +460,7 @@ static void lv_roller_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void lv_roller_label_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -481,6 +492,7 @@ static void lv_roller_label_event(const lv_obj_class_t * class_p, lv_event_t * e
     }
 }
 
+LV_FUNC_SECTION
 static void draw_main(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -560,6 +572,7 @@ static void draw_main(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_label(lv_event_t * e)
 {
     /* Split the drawing of the label into  an upper (above the selected area)
@@ -610,6 +623,7 @@ static void draw_label(lv_event_t * e)
     layer->_clip_area = clip_area_ori;
 }
 
+LV_FUNC_SECTION
 static void get_sel_area(lv_obj_t * obj, lv_area_t * sel_area)
 {
 
@@ -634,6 +648,7 @@ static void get_sel_area(lv_obj_t * obj, lv_area_t * sel_area)
  * @param roller pointer to a roller object
  * @param anim_en LV_ANIM_ON: refresh with animation; LV_ANIM_OFF: without animation
  */
+LV_FUNC_SECTION
 static void refr_position(lv_obj_t * obj, lv_anim_enable_t anim_en)
 {
     lv_obj_t * label = get_label(obj);
@@ -694,6 +709,7 @@ static void refr_position(lv_obj_t * obj, lv_anim_enable_t anim_en)
     }
 }
 
+LV_FUNC_SECTION
 static lv_result_t release_handler(lv_obj_t * obj)
 {
     lv_obj_t * label = get_label(obj);
@@ -783,6 +799,7 @@ static lv_result_t release_handler(lv_obj_t * obj)
  * Set the middle page for the roller if infinite is enabled
  * @param roller pointer to a roller object
  */
+LV_FUNC_SECTION
 static void inf_normalize(lv_obj_t * obj)
 {
     lv_roller_t * roller = (lv_roller_t *)obj;
@@ -810,11 +827,13 @@ static void inf_normalize(lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * get_label(const lv_obj_t * obj)
 {
     return lv_obj_get_child(obj, 0);
 }
 
+LV_FUNC_SECTION
 static int32_t get_selected_label_width(const lv_obj_t * obj)
 {
     lv_obj_t * label = get_label(obj);
@@ -828,17 +847,20 @@ static int32_t get_selected_label_width(const lv_obj_t * obj)
     return size.x;
 }
 
+__attribute__(( fptrgroup("lv_anim_completed_cb") ))
 static void scroll_anim_completed_cb(lv_anim_t * a)
 {
     lv_obj_t * obj = lv_obj_get_parent(a->var); /*The label is animated*/
     inf_normalize(obj);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void set_y_anim(void * obj, int32_t v)
 {
     lv_obj_set_y(obj, v);
 }
 
+LV_FUNC_SECTION
 static void transform_vect_recursive(lv_obj_t * roller, lv_point_t * vect)
 {
     int16_t angle = 0;

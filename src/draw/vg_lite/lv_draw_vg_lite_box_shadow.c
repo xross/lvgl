@@ -38,6 +38,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vg_lite_box_shadow(lv_draw_unit_t * draw_unit, const lv_draw_box_shadow_dsc_t * dsc,
                                 const lv_area_t * coords)
 {

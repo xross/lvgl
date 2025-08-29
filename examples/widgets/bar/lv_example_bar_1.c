@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_BAR && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_bar_1(void)
 {
     lv_obj_t * bar1 = lv_bar_create(lv_screen_active());

@@ -115,6 +115,7 @@ static const uint8_t Clip8[1024] = {
 
 #else   /* JD_TBLCLIP */
 
+LV_FUNC_SECTION
 static uint8_t BYTECLIP(int val)
 {
     if(val < 0) return 0;
@@ -130,6 +131,7 @@ static uint8_t BYTECLIP(int val)
 /* Allocate a memory block from memory pool                              */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 static void * alloc_pool(   /* Pointer to allocated memory block (NULL:no memory available) */
     JDEC * jd,              /* Pointer to the decompressor object */
     size_t ndata            /* Number of bytes to allocate */
@@ -156,6 +158,7 @@ static void * alloc_pool(   /* Pointer to allocated memory block (NULL:no memory
 /* Create de-quantization and prescaling tables with a DQT segment       */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 static JRESULT create_qt_tbl(   /* 0:OK, !0:Failed */
     JDEC * jd,              /* Pointer to the decompressor object */
     const uint8_t * data,   /* Pointer to the quantizer tables */
@@ -192,6 +195,7 @@ static JRESULT create_qt_tbl(   /* 0:OK, !0:Failed */
 /* Create huffman code tables with a DHT segment                         */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 static JRESULT create_huffman_tbl(  /* 0:OK, !0:Failed */
     JDEC * jd,                  /* Pointer to the decompressor object */
     const uint8_t * data,       /* Pointer to the packed huffman tables */
@@ -283,6 +287,7 @@ static JRESULT create_huffman_tbl(  /* 0:OK, !0:Failed */
 /* Extract a huffman decoded data from input stream                      */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 static int huffext(     /* >=0: decoded data, <0: error code */
     JDEC * jd,          /* Pointer to the decompressor object */
     unsigned int id,    /* Table ID (0:Y, 1:C) */
@@ -436,6 +441,7 @@ static int huffext(     /* >=0: decoded data, <0: error code */
 /* Extract N bits from input stream                                      */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 static int bitext(  /* >=0: extracted data, <0: error code */
     JDEC * jd,          /* Pointer to the decompressor object */
     unsigned int nbit   /* Number of bits to extract (1 to 16) */
@@ -532,6 +538,7 @@ static int bitext(  /* >=0: extracted data, <0: error code */
 /* Process restart interval                                              */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 JRESULT jd_restart(
     JDEC * jd,      /* Pointer to the decompressor object */
     uint16_t rstn   /* Expected restart sequence number */
@@ -608,6 +615,7 @@ JRESULT jd_restart(
 /* Apply Inverse-DCT in Arai Algorithm (see also aa_idct.png)            */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 static void block_idct(
     int32_t * src,  /* Input block data (de-quantized and pre-scaled for Arai Algorithm) */
     jd_yuv_t * dst  /* Pointer to the destination to store the block as byte array */
@@ -733,6 +741,7 @@ static void block_idct(
 /* Load all blocks in an MCU into working buffer                         */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 JRESULT jd_mcu_load(
     JDEC * jd       /* Pointer to the decompressor object */
 )
@@ -824,6 +833,7 @@ JRESULT jd_mcu_load(
 /* Output an MCU: Convert YCrCb to RGB and output it in RGB form         */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 JRESULT jd_mcu_output(
     JDEC * jd,          /* Pointer to the decompressor object */
     int (*outfunc)(JDEC *, void *, JRECT *), /* RGB output function */
@@ -938,6 +948,7 @@ JRESULT jd_mcu_output(
 #define LDB_WORD(ptr)       (uint16_t)(((uint16_t)*((uint8_t*)(ptr))<<8)|(uint16_t)*(uint8_t*)((ptr)+1))
 
 
+LV_FUNC_SECTION
 JRESULT jd_prepare(
     JDEC * jd,              /* Blank decompressor object */
     size_t (*infunc)(JDEC *, uint8_t *, size_t), /* JPEG stream input function */
@@ -1099,6 +1110,7 @@ JRESULT jd_prepare(
 /* Start to decompress the JPEG picture                                  */
 /*-----------------------------------------------------------------------*/
 
+LV_FUNC_SECTION
 JRESULT jd_decomp(
     JDEC * jd,                              /* Initialized decompression object */
     int (*outfunc)(JDEC *, void *, JRECT *), /* RGB output function */

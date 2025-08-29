@@ -3,6 +3,7 @@
 
 #include "../../../src/lvgl_private.h" //To expose the fields of lv_draw_task_t
 
+LV_FUNC_SECTION
 static void draw_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -49,6 +50,7 @@ static void draw_event_cb(lv_event_t * e)
 /**
  * Customizing scale major tick label color with `LV_EVENT_DRAW_TASK_ADDED` event
  */
+LV_FUNC_SECTION
 void lv_example_scale_7(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());

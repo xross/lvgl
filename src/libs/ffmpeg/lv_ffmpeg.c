@@ -111,6 +111,7 @@ const lv_obj_class_t lv_ffmpeg_player_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_ffmpeg_init(void)
 {
     lv_image_decoder_t * dec = lv_image_decoder_create();
@@ -125,6 +126,7 @@ void lv_ffmpeg_init(void)
 #endif
 }
 
+LV_FUNC_SECTION
 int lv_ffmpeg_get_frame_num(const char * path)
 {
     int ret = -1;
@@ -138,6 +140,7 @@ int lv_ffmpeg_get_frame_num(const char * path)
     return ret;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_ffmpeg_player_create(lv_obj_t * parent)
 {
     lv_obj_t * obj = lv_obj_class_create_obj(MY_CLASS, parent);
@@ -145,6 +148,7 @@ lv_obj_t * lv_ffmpeg_player_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_ffmpeg_player_set_src(lv_obj_t * obj, const char * path)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -209,6 +213,7 @@ failed:
     return res;
 }
 
+LV_FUNC_SECTION
 void lv_ffmpeg_player_set_cmd(lv_obj_t * obj, lv_ffmpeg_player_cmd_t cmd)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -248,6 +253,7 @@ void lv_ffmpeg_player_set_cmd(lv_obj_t * obj, lv_ffmpeg_player_cmd_t cmd)
     }
 }
 
+LV_FUNC_SECTION
 void lv_ffmpeg_player_set_auto_restart(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -258,7 +264,7 @@ void lv_ffmpeg_player_set_auto_restart(lv_obj_t * obj, bool en)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_image_deocder_info_cb") ))
 static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc, lv_image_header_t * header)
 {
     LV_UNUSED(decoder);
@@ -288,6 +294,7 @@ static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_d
  * @param dsc     pointer to the decoder descriptor
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't open the image
  */
+__attribute__(( fptrgroup("lv_image_deocder_open_cb") ))
 static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -333,6 +340,7 @@ static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_d
     return LV_RESULT_INVALID;
 }
 
+__attribute__(( fptrgroup("lv_image_deocder_close_cb") ))
 static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -340,6 +348,7 @@ static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t *
     ffmpeg_close(ffmpeg_ctx);
 }
 
+LV_FUNC_SECTION
 static uint8_t * ffmpeg_get_image_data(struct ffmpeg_context_s * ffmpeg_ctx)
 {
     uint8_t * img_data = ffmpeg_ctx->video_dst_data[0];
@@ -351,6 +360,7 @@ static uint8_t * ffmpeg_get_image_data(struct ffmpeg_context_s * ffmpeg_ctx)
     return img_data;
 }
 
+LV_FUNC_SECTION
 static bool ffmpeg_pix_fmt_has_alpha(enum AVPixelFormat pix_fmt)
 {
     const AVPixFmtDescriptor * desc = av_pix_fmt_desc_get(pix_fmt);
@@ -366,6 +376,7 @@ static bool ffmpeg_pix_fmt_has_alpha(enum AVPixelFormat pix_fmt)
     return desc->flags & AV_PIX_FMT_FLAG_ALPHA;
 }
 
+LV_FUNC_SECTION
 static bool ffmpeg_pix_fmt_is_yuv(enum AVPixelFormat pix_fmt)
 {
     const AVPixFmtDescriptor * desc = av_pix_fmt_desc_get(pix_fmt);
@@ -377,6 +388,7 @@ static bool ffmpeg_pix_fmt_is_yuv(enum AVPixelFormat pix_fmt)
     return !(desc->flags & AV_PIX_FMT_FLAG_RGB) && desc->nb_components >= 2;
 }
 
+LV_FUNC_SECTION
 static int ffmpeg_output_video_frame(struct ffmpeg_context_s * ffmpeg_ctx)
 {
     int ret = -1;
@@ -466,6 +478,7 @@ failed:
     return ret;
 }
 
+LV_FUNC_SECTION
 static int ffmpeg_decode_packet(AVCodecContext * dec, const AVPacket * pkt,
                                 struct ffmpeg_context_s * ffmpeg_ctx)
 {
@@ -511,6 +524,7 @@ static int ffmpeg_decode_packet(AVCodecContext * dec, const AVPacket * pkt,
     return 0;
 }
 
+LV_FUNC_SECTION
 static int ffmpeg_open_codec_context(int * stream_idx,
                                      AVCodecContext ** dec_ctx, AVFormatContext * fmt_ctx,
                                      enum AVMediaType type)
@@ -568,6 +582,7 @@ static int ffmpeg_open_codec_context(int * stream_idx,
     return 0;
 }
 
+LV_FUNC_SECTION
 static int ffmpeg_get_image_header(const char * filepath,
                                    lv_image_header_t * header)
 {
@@ -610,6 +625,7 @@ failed:
     return ret;
 }
 
+LV_FUNC_SECTION
 static int ffmpeg_get_frame_refr_period(struct ffmpeg_context_s * ffmpeg_ctx)
 {
     int avg_frame_rate_num = ffmpeg_ctx->video_stream->avg_frame_rate.num;
@@ -622,6 +638,7 @@ static int ffmpeg_get_frame_refr_period(struct ffmpeg_context_s * ffmpeg_ctx)
     return -1;
 }
 
+LV_FUNC_SECTION
 static int ffmpeg_update_next_frame(struct ffmpeg_context_s * ffmpeg_ctx)
 {
     int ret = 0;
@@ -662,6 +679,7 @@ static int ffmpeg_update_next_frame(struct ffmpeg_context_s * ffmpeg_ctx)
     return ret;
 }
 
+LV_FUNC_SECTION
 struct ffmpeg_context_s * ffmpeg_open_file(const char * path)
 {
     if(path == NULL || lv_strlen(path) == 0) {
@@ -719,6 +737,7 @@ failed:
     return NULL;
 }
 
+LV_FUNC_SECTION
 static int ffmpeg_image_allocate(struct ffmpeg_context_s * ffmpeg_ctx)
 {
     int ret;
@@ -774,6 +793,7 @@ static int ffmpeg_image_allocate(struct ffmpeg_context_s * ffmpeg_ctx)
     return 0;
 }
 
+LV_FUNC_SECTION
 static void ffmpeg_close_src_ctx(struct ffmpeg_context_s * ffmpeg_ctx)
 {
     avcodec_free_context(&(ffmpeg_ctx->video_dec_ctx));
@@ -786,6 +806,7 @@ static void ffmpeg_close_src_ctx(struct ffmpeg_context_s * ffmpeg_ctx)
     }
 }
 
+LV_FUNC_SECTION
 static void ffmpeg_close_dst_ctx(struct ffmpeg_context_s * ffmpeg_ctx)
 {
     if(ffmpeg_ctx->video_dst_data[0] != NULL) {
@@ -794,6 +815,7 @@ static void ffmpeg_close_dst_ctx(struct ffmpeg_context_s * ffmpeg_ctx)
     }
 }
 
+LV_FUNC_SECTION
 static void ffmpeg_close(struct ffmpeg_context_s * ffmpeg_ctx)
 {
     if(ffmpeg_ctx == NULL) {
@@ -809,6 +831,7 @@ static void ffmpeg_close(struct ffmpeg_context_s * ffmpeg_ctx)
     LV_LOG_INFO("ffmpeg_ctx closed");
 }
 
+LV_FUNC_SECTION
 static void lv_ffmpeg_player_frame_update_cb(lv_timer_t * timer)
 {
     lv_obj_t * obj = (lv_obj_t *)lv_timer_get_user_data(timer);
@@ -830,6 +853,7 @@ static void lv_ffmpeg_player_frame_update_cb(lv_timer_t * timer)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 static void lv_ffmpeg_player_constructor(const lv_obj_class_t * class_p,
                                          lv_obj_t * obj)
 {
@@ -848,6 +872,7 @@ static void lv_ffmpeg_player_constructor(const lv_obj_class_t * class_p,
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_ffmpeg_player_destructor(const lv_obj_class_t * class_p,
                                         lv_obj_t * obj)
 {

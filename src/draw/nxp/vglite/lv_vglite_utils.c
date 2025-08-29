@@ -48,6 +48,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 const char * vglite_error_to_string(vg_lite_error_t error)
 {
     switch(error) {
@@ -71,12 +72,14 @@ const char * vglite_error_to_string(vg_lite_error_t error)
 }
 
 #if LV_USE_VGLITE_DRAW_ASYNC
+LV_FUNC_SECTION
 bool vglite_cmd_buf_is_flushed(void)
 {
     return _cmd_buf_flushed;
 }
 #endif
 
+LV_FUNC_SECTION
 void vglite_run(void)
 {
 #if LV_USE_VGLITE_DRAW_ASYNC
@@ -105,12 +108,14 @@ void vglite_run(void)
 }
 
 #if LV_USE_VGLITE_DRAW_ASYNC
+LV_FUNC_SECTION
 void vglite_wait_for_finish(void)
 {
     VGLITE_CHECK_ERROR(vg_lite_finish());
 }
 #endif
 
+LV_FUNC_SECTION
 vg_lite_color_t vglite_get_color(lv_color32_t lv_col32, bool gradient)
 {
     vg_lite_color_t vg_col32;
@@ -132,6 +137,7 @@ vg_lite_color_t vglite_get_color(lv_color32_t lv_col32, bool gradient)
     return vg_col32;
 }
 
+LV_FUNC_SECTION
 vg_lite_blend_t vglite_get_blend_mode(lv_blend_mode_t lv_blend_mode)
 {
     vg_lite_blend_t vg_blend_mode = VG_LITE_BLEND_NONE;
@@ -178,6 +184,7 @@ vg_lite_blend_t vglite_get_blend_mode(lv_blend_mode_t lv_blend_mode)
     return vg_blend_mode;
 }
 
+LV_FUNC_SECTION
 vg_lite_buffer_format_t vglite_get_buf_format(lv_color_format_t cf)
 {
     vg_lite_buffer_format_t vg_buffer_format = VG_LITE_BGR565;
@@ -225,6 +232,7 @@ vg_lite_buffer_format_t vglite_get_buf_format(lv_color_format_t cf)
     return vg_buffer_format;
 }
 
+LV_FUNC_SECTION
 uint8_t vglite_get_stride_alignment(lv_color_format_t cf)
 {
     uint8_t align_bytes = LV_COLOR_DEPTH / 8 * 16; /*16 pixels*/
@@ -260,6 +268,7 @@ uint8_t vglite_get_stride_alignment(lv_color_format_t cf)
     return align_bytes;
 }
 
+LV_FUNC_SECTION
 bool vglite_src_buf_aligned(const void * buf, uint32_t stride, lv_color_format_t cf)
 {
     /* No alignment requirement for destination buffer when using mode VG_LITE_LINEAR */

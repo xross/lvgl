@@ -43,6 +43,7 @@ static int32_t elastic_diff(lv_obj_t * scroll_obj, int32_t diff, int32_t scroll_
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_indev_scroll_handler(lv_indev_t * indev)
 {
     if(indev->pointer.vect.x == 0 && indev->pointer.vect.y == 0) {
@@ -112,6 +113,7 @@ void lv_indev_scroll_handler(lv_indev_t * indev)
     indev->pointer.scroll_sum.y += diff_y;
 }
 
+LV_FUNC_SECTION
 void lv_indev_scroll_throw_handler(lv_indev_t * indev)
 {
     lv_obj_t * scroll_obj = indev->pointer.scroll_obj;
@@ -224,6 +226,7 @@ void lv_indev_scroll_throw_handler(lv_indev_t * indev)
     }
 }
 
+LV_FUNC_SECTION
 int32_t lv_indev_scroll_throw_predict(lv_indev_t * indev, lv_dir_t dir)
 {
     if(indev == NULL) return 0;
@@ -249,12 +252,14 @@ int32_t lv_indev_scroll_throw_predict(lv_indev_t * indev, lv_dir_t dir)
     return sum;
 }
 
+LV_FUNC_SECTION
 void lv_indev_scroll_get_snap_dist(lv_obj_t * obj, lv_point_t * p)
 {
     p->x = find_snap_point_x(obj, obj->coords.x1, obj->coords.x2, 0);
     p->y = find_snap_point_y(obj, obj->coords.y1, obj->coords.y2, 0);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_indev_find_scroll_obj(lv_indev_t * indev)
 {
     lv_obj_t * obj_candidate = NULL;
@@ -437,6 +442,7 @@ lv_obj_t * lv_indev_find_scroll_obj(lv_indev_t * indev)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void init_scroll_limits(lv_indev_t * indev)
 {
     lv_obj_t * obj = indev->pointer.scroll_obj;
@@ -511,6 +517,7 @@ static void init_scroll_limits(lv_indev_t * indev)
  * @return the absolute x coordinate of the nearest snap point
  *         or `LV_COORD_MAX` if there is no snap point in the min..max range
  */
+LV_FUNC_SECTION
 static int32_t find_snap_point_x(const lv_obj_t * obj, int32_t min, int32_t max, int32_t ofs)
 {
     lv_scroll_snap_t align = lv_obj_get_scroll_snap_x(obj);
@@ -567,6 +574,7 @@ static int32_t find_snap_point_x(const lv_obj_t * obj, int32_t min, int32_t max,
  * @return the absolute y coordinate of the nearest snap point
  *         or `LV_COORD_MAX` if there is no snap point in the min..max range
  */
+LV_FUNC_SECTION
 static int32_t find_snap_point_y(const lv_obj_t * obj, int32_t min, int32_t max, int32_t ofs)
 {
     lv_scroll_snap_t align = lv_obj_get_scroll_snap_y(obj);
@@ -613,6 +621,7 @@ static int32_t find_snap_point_y(const lv_obj_t * obj, int32_t min, int32_t max,
     return dist == LV_COORD_MAX ? LV_COORD_MAX : -dist;
 }
 
+LV_FUNC_SECTION
 static void scroll_limit_diff(lv_indev_t * indev, int32_t * diff_x, int32_t * diff_y)
 {
     if(diff_y) {
@@ -636,6 +645,7 @@ static void scroll_limit_diff(lv_indev_t * indev, int32_t * diff_x, int32_t * di
     }
 }
 
+LV_FUNC_SECTION
 static int32_t elastic_diff(lv_obj_t * scroll_obj, int32_t diff, int32_t scroll_start, int32_t scroll_end,
                             lv_dir_t dir)
 {

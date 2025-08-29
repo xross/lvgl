@@ -177,6 +177,7 @@ struct code128_state {
     size_t maxlength;
 };
 
+LV_FUNC_SECTION
 size_t code128_estimate_len(const char * s)
 {
     return CODE128_QUIET_ZONE_LEN
@@ -187,6 +188,7 @@ size_t code128_estimate_len(const char * s)
            + CODE128_QUIET_ZONE_LEN;
 }
 
+LV_FUNC_SECTION
 static void code128_append_pattern(int pattern, int pattern_length, char * out)
 {
     // All patterns have their first bit set by design
@@ -199,6 +201,7 @@ static void code128_append_pattern(int pattern, int pattern_length, char * out)
     }
 }
 
+LV_FUNC_SECTION
 static int code128_append_code(int code, char * out)
 {
     CODE128_ASSERT(code >= 0 && code < (int)(sizeof(code128_pattern) / sizeof(code128_pattern[0])));
@@ -206,12 +209,14 @@ static int code128_append_code(int code, char * out)
     return CODE128_CHAR_LEN;
 }
 
+LV_FUNC_SECTION
 static int code128_append_stop_code(char * out)
 {
     code128_append_pattern(code128_stop_pattern, CODE128_STOP_CODE_LEN, out);
     return CODE128_STOP_CODE_LEN;
 }
 
+LV_FUNC_SECTION
 static signed char code128_switch_code(char from_mode, char to_mode)
 {
     switch(from_mode) {
@@ -249,6 +254,7 @@ static signed char code128_switch_code(char from_mode, char to_mode)
     return -1;
 }
 
+LV_FUNC_SECTION
 static signed char code128a_ascii_to_code(signed char value)
 {
     if(value >= ' ' && value <= '_')
@@ -267,6 +273,7 @@ static signed char code128a_ascii_to_code(signed char value)
         return -1;
 }
 
+LV_FUNC_SECTION
 static signed char code128b_ascii_to_code(signed char value)
 {
     if(value >= ' ')  // value <= 127 is implied
@@ -283,6 +290,7 @@ static signed char code128b_ascii_to_code(signed char value)
         return -1;
 }
 
+LV_FUNC_SECTION
 static signed char code128c_ascii_to_code(const char * values)
 {
     if(values[0] == CODE128_FNC1)
@@ -297,6 +305,7 @@ static signed char code128c_ascii_to_code(const char * values)
     return -1;
 }
 
+LV_FUNC_SECTION
 static int code128_do_a_step(struct code128_step * base, int prev_ix, int ix)
 {
     struct code128_step * previous_step = &base[prev_ix];
@@ -321,6 +330,7 @@ static int code128_do_a_step(struct code128_step * base, int prev_ix, int ix)
     return 1;
 }
 
+LV_FUNC_SECTION
 static int code128_do_b_step(struct code128_step * base, int prev_ix, int ix)
 {
     struct code128_step * previous_step = &base[prev_ix];
@@ -345,6 +355,7 @@ static int code128_do_b_step(struct code128_step * base, int prev_ix, int ix)
     return 1;
 }
 
+LV_FUNC_SECTION
 static int code128_do_c_step(struct code128_step * base, int prev_ix, int ix)
 {
     struct code128_step * previous_step = &base[prev_ix];
@@ -374,6 +385,7 @@ static int code128_do_c_step(struct code128_step * base, int prev_ix, int ix)
     return 1;
 }
 
+LV_FUNC_SECTION
 static struct code128_step * code128_alloc_step(struct code128_state * state)
 {
     if(state->todo_ix >= state->allocated_steps) {
@@ -388,6 +400,7 @@ static struct code128_step * code128_alloc_step(struct code128_state * state)
     return step;
 }
 
+LV_FUNC_SECTION
 static void code128_do_step(struct code128_state * state)
 {
     struct code128_step * step = &state->steps[state->current_ix];
@@ -449,6 +462,7 @@ static void code128_do_step(struct code128_state * state)
     }
 }
 
+LV_FUNC_SECTION
 size_t code128_encode_raw(const char * s, char * out, size_t maxlength)
 {
     struct code128_state state;
@@ -551,6 +565,7 @@ size_t code128_encode_raw(const char * s, char * out, size_t maxlength)
  *
  * @return the length of barcode data in bytes
  */
+LV_FUNC_SECTION
 size_t code128_encode_gs1(const char * s, char * out, size_t maxlength)
 {
     size_t raw_size = CODE128_STRLEN(s) + 1;

@@ -50,6 +50,7 @@ static lv_draw_buf_t * decode_png(lv_image_decoder_dsc_t * dsc);
 /**
  * Register the PNG decoder functions in LVGL
  */
+LV_FUNC_SECTION
 void lv_libpng_init(void)
 {
     lv_image_decoder_t * dec = lv_image_decoder_create();
@@ -60,6 +61,7 @@ void lv_libpng_init(void)
     dec->name = DECODER_NAME;
 }
 
+LV_FUNC_SECTION
 void lv_libpng_deinit(void)
 {
     lv_image_decoder_t * dec = NULL;
@@ -81,6 +83,7 @@ void lv_libpng_deinit(void)
  * @param header store the info here
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't get the info
  */
+__attribute__(( fptrgroup("lv_image_deocder_info_cb") ))
 static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc, lv_image_header_t * header)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -135,6 +138,7 @@ static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_d
  * @param dsc     pointer to the decoder descriptor
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't open the image
  */
+__attribute__(( fptrgroup("lv_image_deocder_open_cb") ))
 static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -184,6 +188,7 @@ static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_d
 /**
  * Free the allocated resources
  */
+__attribute__(( fptrgroup("lv_image_deocder_close_cb") ))
 static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -192,6 +197,7 @@ static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t *
        !lv_image_cache_is_enabled()) lv_draw_buf_destroy_user(image_cache_draw_buf_handlers, (lv_draw_buf_t *)dsc->decoded);
 }
 
+LV_FUNC_SECTION
 static uint8_t * alloc_file(const char * filename, uint32_t * size)
 {
     uint8_t * data = NULL;
@@ -247,6 +253,7 @@ failed:
     return data;
 }
 
+LV_FUNC_SECTION
 static lv_draw_buf_t * decode_png(lv_image_decoder_dsc_t * dsc)
 {
     int ret;

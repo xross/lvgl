@@ -43,17 +43,20 @@ static vg_lite_matrix_t _vgmatrix;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 vg_lite_matrix_t * vglite_get_matrix(void)
 {
     return &_vgmatrix;
 }
 
+LV_FUNC_SECTION
 void vglite_set_translation_matrix(const lv_area_t * dest_area)
 {
     vg_lite_identity(&_vgmatrix);
     vg_lite_translate((vg_lite_float_t)dest_area->x1, (vg_lite_float_t)dest_area->y1, &_vgmatrix);
 }
 
+LV_FUNC_SECTION
 void vglite_set_transformation_matrix(const lv_area_t * dest_area, const lv_draw_image_dsc_t * dsc)
 {
     vglite_set_translation_matrix(dest_area);

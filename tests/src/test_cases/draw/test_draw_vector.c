@@ -5,16 +5,19 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 static void draw_shapes(lv_layer_t * layer)
 {
     lv_vector_dsc_t * ctx = lv_vector_dsc_create(layer);
@@ -133,6 +136,7 @@ static void draw_shapes(lv_layer_t * layer)
     lv_vector_dsc_delete(ctx);
 }
 
+LV_FUNC_SECTION
 static void draw_lines(lv_layer_t * layer)
 {
     lv_vector_dsc_t * ctx = lv_vector_dsc_create(layer);
@@ -235,6 +239,7 @@ static void draw_lines(lv_layer_t * layer)
     lv_vector_dsc_delete(ctx);
 }
 
+LV_FUNC_SECTION
 static void canvas_draw(const char * name, void (*draw_cb)(lv_layer_t *))
 {
     LV_UNUSED(name);
@@ -268,6 +273,7 @@ static void canvas_draw(const char * name, void (*draw_cb)(lv_layer_t *))
     lv_obj_delete(canvas);
 }
 
+LV_FUNC_SECTION
 void test_transform(void)
 {
     lv_matrix_t matrix;
@@ -297,16 +303,19 @@ void test_transform(void)
     lv_vector_path_delete(path);
 }
 
+LV_FUNC_SECTION
 void test_draw_lines(void)
 {
     canvas_draw("draw_lines", draw_lines);
 }
 
+LV_FUNC_SECTION
 void test_draw_shapes(void)
 {
     canvas_draw("draw_shapes", draw_shapes);
 }
 
+LV_FUNC_SECTION
 static void event_cb(lv_event_t * e)
 {
     lv_layer_t * layer = lv_event_get_layer(e);
@@ -330,6 +339,7 @@ static void event_cb(lv_event_t * e)
     lv_vector_dsc_delete(dsc);
 }
 
+LV_FUNC_SECTION
 void test_draw_during_rendering(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());

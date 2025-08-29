@@ -4,6 +4,7 @@
 /**
  * Open a PNG image from a file and a variable
  */
+LV_FUNC_SECTION
 void lv_example_lodepng_1(void)
 {
     LV_IMAGE_DECLARE(img_wink_png);

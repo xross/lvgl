@@ -32,6 +32,7 @@
  **********************/
 static bool is_independent(lv_layer_t * layer, lv_draw_task_t * t_check);
 
+LV_FUNC_SECTION
 static inline uint32_t get_layer_size_kb(uint32_t size_byte)
 {
     return size_byte < 1024 ? 1 : size_byte >> 10;
@@ -52,6 +53,7 @@ static inline uint32_t get_layer_size_kb(uint32_t size_byte)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_init(void)
 {
 #if LV_USE_OS
@@ -59,6 +61,7 @@ void lv_draw_init(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_draw_deinit(void)
 {
 #if LV_USE_OS
@@ -76,6 +79,7 @@ void lv_draw_deinit(void)
     _draw_info.unit_head = NULL;
 }
 
+LV_FUNC_SECTION
 void * lv_draw_create_unit(size_t size)
 {
     lv_draw_unit_t * new_unit = lv_malloc_zeroed(size);
@@ -87,6 +91,7 @@ void * lv_draw_create_unit(size_t size)
     return new_unit;
 }
 
+LV_FUNC_SECTION
 lv_draw_task_t * lv_draw_add_task(lv_layer_t * layer, const lv_area_t * coords)
 {
     LV_PROFILER_BEGIN;
@@ -115,6 +120,7 @@ lv_draw_task_t * lv_draw_add_task(lv_layer_t * layer, const lv_area_t * coords)
     return new_task;
 }
 
+LV_FUNC_SECTION
 void lv_draw_finalize_task_creation(lv_layer_t * layer, lv_draw_task_t * t)
 {
     LV_PROFILER_BEGIN;
@@ -159,6 +165,7 @@ void lv_draw_finalize_task_creation(lv_layer_t * layer, lv_draw_task_t * t)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 void lv_draw_wait_for_finish(void)
 {
 #if LV_USE_OS
@@ -171,6 +178,7 @@ void lv_draw_wait_for_finish(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_draw_dispatch(void)
 {
     LV_PROFILER_BEGIN;
@@ -192,6 +200,7 @@ void lv_draw_dispatch(void)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 bool lv_draw_dispatch_layer(lv_display_t * disp, lv_layer_t * layer)
 {
     LV_PROFILER_BEGIN;
@@ -283,6 +292,7 @@ bool lv_draw_dispatch_layer(lv_display_t * disp, lv_layer_t * layer)
     return task_dispatched;
 }
 
+LV_FUNC_SECTION
 void lv_draw_dispatch_wait_for_request(void)
 {
 #if LV_USE_OS
@@ -293,6 +303,7 @@ void lv_draw_dispatch_wait_for_request(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_draw_dispatch_request(void)
 {
 #if LV_USE_OS
@@ -302,11 +313,13 @@ void lv_draw_dispatch_request(void)
 #endif
 }
 
+LV_FUNC_SECTION
 uint32_t lv_draw_get_unit_count(void)
 {
     return _draw_info.unit_cnt;
 }
 
+LV_FUNC_SECTION
 lv_draw_task_t * lv_draw_get_next_available_task(lv_layer_t * layer, lv_draw_task_t * t_prev, uint8_t draw_unit_id)
 {
     LV_PROFILER_BEGIN;
@@ -374,6 +387,7 @@ lv_draw_task_t * lv_draw_get_next_available_task(lv_layer_t * layer, lv_draw_tas
     return NULL;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_draw_get_dependent_count(lv_draw_task_t * t_check)
 {
     if(t_check == NULL) return 0;
@@ -395,6 +409,7 @@ uint32_t lv_draw_get_dependent_count(lv_draw_task_t * t_check)
     return cnt;
 }
 
+LV_FUNC_SECTION
 lv_layer_t * lv_draw_layer_create(lv_layer_t * parent_layer, lv_color_format_t color_format, const lv_area_t * area)
 {
     lv_display_t * disp = lv_refr_get_disp_refreshing();
@@ -424,6 +439,7 @@ lv_layer_t * lv_draw_layer_create(lv_layer_t * parent_layer, lv_color_format_t c
     return new_layer;
 }
 
+LV_FUNC_SECTION
 void * lv_draw_layer_alloc_buf(lv_layer_t * layer)
 {
     /*If the buffer of the layer is already allocated return it*/
@@ -453,21 +469,25 @@ void * lv_draw_layer_alloc_buf(lv_layer_t * layer)
     return layer->draw_buf->data;
 }
 
+LV_FUNC_SECTION
 void * lv_draw_layer_go_to_xy(lv_layer_t * layer, int32_t x, int32_t y)
 {
     return lv_draw_buf_goto_xy(layer->draw_buf, x, y);
 }
 
+LV_FUNC_SECTION
 lv_draw_task_type_t lv_draw_task_get_type(const lv_draw_task_t * t)
 {
     return t->type;
 }
 
+LV_FUNC_SECTION
 void * lv_draw_task_get_draw_dsc(const lv_draw_task_t * t)
 {
     return t->draw_dsc;
 }
 
+LV_FUNC_SECTION
 void lv_draw_task_get_area(const lv_draw_task_t * t, lv_area_t * area)
 {
     *area = t->area;
@@ -483,6 +503,7 @@ void lv_draw_task_get_area(const lv_draw_task_t * t, lv_area_t * area)
  * @param t_check       check this task if it overlaps with the older ones
  * @return              true: `t_check` is not overlapping with older tasks so it's independent
  */
+LV_FUNC_SECTION
 static bool is_independent(lv_layer_t * layer, lv_draw_task_t * t_check)
 {
     LV_PROFILER_BEGIN;

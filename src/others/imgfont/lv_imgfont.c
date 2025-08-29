@@ -45,6 +45,7 @@ static bool imgfont_get_glyph_dsc(const lv_font_t * font, lv_font_glyph_dsc_t * 
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 lv_font_t * lv_imgfont_create(uint16_t height, lv_imgfont_get_path_cb_t path_cb, void * user_data)
 {
     imgfont_dsc_t * dsc = lv_malloc_zeroed(sizeof(imgfont_dsc_t));
@@ -67,6 +68,7 @@ lv_font_t * lv_imgfont_create(uint16_t height, lv_imgfont_get_path_cb_t path_cb,
     return font;
 }
 
+LV_FUNC_SECTION
 void lv_imgfont_destroy(lv_font_t * font)
 {
     LV_ASSERT_NULL(font);
@@ -79,6 +81,7 @@ void lv_imgfont_destroy(lv_font_t * font)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static const void * imgfont_get_glyph_bitmap(lv_font_glyph_dsc_t * g_dsc, lv_draw_buf_t * draw_buf)
 {
     LV_UNUSED(draw_buf);
@@ -87,6 +90,7 @@ static const void * imgfont_get_glyph_bitmap(lv_font_glyph_dsc_t * g_dsc, lv_dra
     return img_src;
 }
 
+LV_FUNC_SECTION
 static bool imgfont_get_glyph_dsc(const lv_font_t * font, lv_font_glyph_dsc_t * dsc_out,
                                   uint32_t unicode, uint32_t unicode_next)
 {

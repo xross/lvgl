@@ -59,6 +59,7 @@ static lv_indev_t * touchscreen_init(int fd);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_indev_t * lv_nuttx_touchscreen_create(const char * dev_path)
 {
     lv_indev_t * indev;
@@ -87,6 +88,7 @@ lv_indev_t * lv_nuttx_touchscreen_create(const char * dev_path)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void conv_touch_sample(lv_indev_t * drv,
                               lv_indev_data_t * data,
                               struct touch_sample_s * sample)
@@ -108,12 +110,14 @@ static void conv_touch_sample(lv_indev_t * drv,
     }
 }
 
+LV_FUNC_SECTION
 static bool touchscreen_read_sample(int fd, struct touch_sample_s * sample)
 {
     int nbytes = read(fd, sample, sizeof(struct touch_sample_s));
     return nbytes == sizeof(struct touch_sample_s);
 }
 
+LV_FUNC_SECTION
 static void touchscreen_read(lv_indev_t * drv, lv_indev_data_t * data)
 {
     lv_nuttx_touchscreen_t * touchscreen = drv->driver_data;
@@ -156,6 +160,7 @@ static void touchscreen_read(lv_indev_t * drv, lv_indev_data_t * data)
     data->state = touchscreen->last_state;
 }
 
+LV_FUNC_SECTION
 static void touchscreen_delete_cb(lv_event_t * e)
 {
     lv_indev_t * indev = (lv_indev_t *) lv_event_get_user_data(e);
@@ -173,6 +178,7 @@ static void touchscreen_delete_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static lv_indev_t * touchscreen_init(int fd)
 {
     lv_nuttx_touchscreen_t * touchscreen;

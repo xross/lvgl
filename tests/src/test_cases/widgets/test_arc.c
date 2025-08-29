@@ -25,17 +25,20 @@ static uint32_t event_cnt2;
 static void dummy_event_cb(lv_event_t * e);
 static void dummy_event_cb2(lv_event_t * e);
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
     lv_obj_set_style_layout(active_screen, LV_LAYOUT_NONE, 0);
 }
 
+LV_FUNC_SECTION
 void test_arc_creation_successful(void)
 {
     arc = lv_arc_create(active_screen);
@@ -43,6 +46,7 @@ void test_arc_creation_successful(void)
     TEST_ASSERT_NOT_NULL(arc);
 }
 
+LV_FUNC_SECTION
 void test_arc_basic_render(void)
 {
     arc = lv_arc_create(active_screen);
@@ -53,6 +57,7 @@ void test_arc_basic_render(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/arc_1.png");
 }
 
+LV_FUNC_SECTION
 void test_arc_rgb565a8_image(void)
 {
 #if LV_BIN_DECODER_RAM_LOAD
@@ -71,6 +76,7 @@ void test_arc_rgb565a8_image(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_arc_should_truncate_to_max_range_when_new_value_exceeds_it(void)
 {
     /* Default max range is 100 */
@@ -83,6 +89,7 @@ void test_arc_should_truncate_to_max_range_when_new_value_exceeds_it(void)
     TEST_ASSERT_EQUAL_INT16(value_after_truncation, lv_arc_get_value(arc));
 }
 
+LV_FUNC_SECTION
 void test_arc_should_truncate_to_min_range_when_new_value_is_inferior(void)
 {
     /* Default min range is 100 */
@@ -95,6 +102,7 @@ void test_arc_should_truncate_to_min_range_when_new_value_is_inferior(void)
     TEST_ASSERT_EQUAL_INT16(value_after_truncation, lv_arc_get_value(arc));
 }
 
+LV_FUNC_SECTION
 void test_arc_should_update_value_after_updating_range(void)
 {
     int16_t value_after_updating_max_range = 50;
@@ -113,6 +121,7 @@ void test_arc_should_update_value_after_updating_range(void)
     TEST_ASSERT_EQUAL_INT16(value_after_updating_min_range, lv_arc_get_value(arc));
 }
 
+LV_FUNC_SECTION
 void test_arc_should_update_angles_when_changing_to_symmetrical_mode(void)
 {
     int16_t expected_angle_start = 135;
@@ -126,6 +135,7 @@ void test_arc_should_update_angles_when_changing_to_symmetrical_mode(void)
     TEST_ASSERT_EQUAL_INT16(expected_angle_end, lv_arc_get_angle_end(arc));
 }
 
+LV_FUNC_SECTION
 void test_arc_should_update_angles_when_changing_to_symmetrical_mode_value_more_than_middle_range(void)
 {
     int16_t expected_angle_start = 270;
@@ -141,6 +151,7 @@ void test_arc_should_update_angles_when_changing_to_symmetrical_mode_value_more_
 }
 
 /* See #2522 for more information */
+LV_FUNC_SECTION
 void test_arc_angles_when_reversed(void)
 {
     uint16_t expected_start_angle = 54;
@@ -161,6 +172,7 @@ void test_arc_angles_when_reversed(void)
     TEST_ASSERT_EQUAL_INT16(expected_value, lv_arc_get_value(arcBlack));
 }
 
+LV_FUNC_SECTION
 void test_arc_click_area_with_adv_hittest(void)
 {
     arc = lv_arc_create(lv_screen_active());
@@ -197,6 +209,7 @@ void test_arc_click_area_with_adv_hittest(void)
 }
 
 /* Check value doesn't go to max when clicking on the other side of the arc */
+LV_FUNC_SECTION
 void test_arc_click_sustained_from_start_to_end_does_not_set_value_to_max(void)
 {
     arc = lv_arc_create(lv_screen_active());
@@ -239,6 +252,7 @@ void test_arc_click_sustained_from_start_to_end_does_not_set_value_to_max(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/arc_3.png");
 }
 
+LV_FUNC_SECTION
 void test_two_overlapping_arcs_can_be_interacted_independently(void)
 {
     arc = lv_arc_create(lv_screen_active());
@@ -298,12 +312,14 @@ void test_two_overlapping_arcs_can_be_interacted_independently(void)
 }
 
 
+LV_FUNC_SECTION
 static void dummy_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
     event_cnt++;
 }
 
+LV_FUNC_SECTION
 static void dummy_event_cb2(lv_event_t * e)
 {
     LV_UNUSED(e);

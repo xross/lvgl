@@ -4,6 +4,7 @@
 /**
  * Create a Barcode
  */
+LV_FUNC_SECTION
 void lv_example_barcode_1(void)
 {
     lv_color_t bg_color = lv_palette_lighten(LV_PALETTE_LIGHT_BLUE, 5);

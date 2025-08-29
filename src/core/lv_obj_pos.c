@@ -46,6 +46,7 @@ static void transform_point_array(const lv_obj_t * obj, lv_point_t * p, size_t p
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_obj_set_pos(lv_obj_t * obj, int32_t x, int32_t y)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -54,6 +55,7 @@ void lv_obj_set_pos(lv_obj_t * obj, int32_t x, int32_t y)
     lv_obj_set_y(obj, y);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 void lv_obj_set_x(lv_obj_t * obj, int32_t x)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -68,6 +70,7 @@ void lv_obj_set_x(lv_obj_t * obj, int32_t x)
     }
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 void lv_obj_set_y(lv_obj_t * obj, int32_t y)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -82,6 +85,7 @@ void lv_obj_set_y(lv_obj_t * obj, int32_t y)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_obj_refr_size(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -208,6 +212,7 @@ bool lv_obj_refr_size(lv_obj_t * obj)
     return true;
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_size(lv_obj_t * obj, int32_t w, int32_t h)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -216,6 +221,7 @@ void lv_obj_set_size(lv_obj_t * obj, int32_t w, int32_t h)
     lv_obj_set_height(obj, h);
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_width(lv_obj_t * obj, int32_t w)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -229,6 +235,7 @@ void lv_obj_set_width(lv_obj_t * obj, int32_t w)
     }
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_height(lv_obj_t * obj, int32_t h)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -242,6 +249,7 @@ void lv_obj_set_height(lv_obj_t * obj, int32_t h)
     }
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_content_width(lv_obj_t * obj, int32_t w)
 {
     int32_t left = lv_obj_get_style_space_left(obj, LV_PART_MAIN);
@@ -249,6 +257,7 @@ void lv_obj_set_content_width(lv_obj_t * obj, int32_t w)
     lv_obj_set_width(obj, w + left + right);
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_content_height(lv_obj_t * obj, int32_t h)
 {
     int32_t top = lv_obj_get_style_space_top(obj, LV_PART_MAIN);
@@ -256,6 +265,7 @@ void lv_obj_set_content_height(lv_obj_t * obj, int32_t h)
     lv_obj_set_height(obj, h + top + bottom);
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_layout(lv_obj_t * obj, uint32_t layout)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -265,6 +275,7 @@ void lv_obj_set_layout(lv_obj_t * obj, uint32_t layout)
     lv_obj_mark_layout_as_dirty(obj);
 }
 
+LV_FUNC_SECTION
 bool lv_obj_is_layout_positioned(const lv_obj_t * obj)
 {
     if(lv_obj_has_flag_any(obj, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_IGNORE_LAYOUT | LV_OBJ_FLAG_FLOATING)) return false;
@@ -277,6 +288,7 @@ bool lv_obj_is_layout_positioned(const lv_obj_t * obj)
     else return false;
 }
 
+LV_FUNC_SECTION
 void lv_obj_mark_layout_as_dirty(lv_obj_t * obj)
 {
     obj->layout_inv = 1;
@@ -290,6 +302,7 @@ void lv_obj_mark_layout_as_dirty(lv_obj_t * obj)
     lv_display_send_event(disp, LV_EVENT_REFR_REQUEST, NULL);
 }
 
+LV_FUNC_SECTION
 void lv_obj_update_layout(const lv_obj_t * obj)
 {
     if(update_layout_mutex) {
@@ -312,17 +325,20 @@ void lv_obj_update_layout(const lv_obj_t * obj)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_align(lv_obj_t * obj, lv_align_t align)
 {
     lv_obj_set_style_align(obj, align, 0);
 }
 
+LV_FUNC_SECTION
 void lv_obj_align(lv_obj_t * obj, lv_align_t align, int32_t x_ofs, int32_t y_ofs)
 {
     lv_obj_set_style_align(obj, align, 0);
     lv_obj_set_pos(obj, x_ofs, y_ofs);
 }
 
+LV_FUNC_SECTION
 void lv_obj_align_to(lv_obj_t * obj, const lv_obj_t * base, lv_align_t align, int32_t x_ofs, int32_t y_ofs)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -473,6 +489,7 @@ void lv_obj_align_to(lv_obj_t * obj, const lv_obj_t * base, lv_align_t align, in
 
 }
 
+LV_FUNC_SECTION
 void lv_obj_get_coords(const lv_obj_t * obj, lv_area_t * coords)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -480,6 +497,7 @@ void lv_obj_get_coords(const lv_obj_t * obj, lv_area_t * coords)
     lv_area_copy(coords, &obj->coords);
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_x(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -497,6 +515,7 @@ int32_t lv_obj_get_x(const lv_obj_t * obj)
     return rel_x;
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_x2(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -504,6 +523,7 @@ int32_t lv_obj_get_x2(const lv_obj_t * obj)
     return lv_obj_get_x(obj) + lv_obj_get_width(obj);
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_y(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -521,6 +541,7 @@ int32_t lv_obj_get_y(const lv_obj_t * obj)
     return rel_y;
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_y2(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -528,16 +549,19 @@ int32_t lv_obj_get_y2(const lv_obj_t * obj)
     return lv_obj_get_y(obj) + lv_obj_get_height(obj);
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_x_aligned(const lv_obj_t * obj)
 {
     return lv_obj_get_style_x(obj, LV_PART_MAIN);
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_y_aligned(const lv_obj_t * obj)
 {
     return lv_obj_get_style_y(obj, LV_PART_MAIN);
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_width(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -545,6 +569,7 @@ int32_t lv_obj_get_width(const lv_obj_t * obj)
     return lv_area_get_width(&obj->coords);
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_height(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -552,6 +577,7 @@ int32_t lv_obj_get_height(const lv_obj_t * obj)
     return lv_area_get_height(&obj->coords);
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_content_width(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -562,6 +588,7 @@ int32_t lv_obj_get_content_width(const lv_obj_t * obj)
     return lv_obj_get_width(obj) - left - right;
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_content_height(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -572,6 +599,7 @@ int32_t lv_obj_get_content_height(const lv_obj_t * obj)
     return lv_obj_get_height(obj) - top - bottom;
 }
 
+LV_FUNC_SECTION
 void lv_obj_get_content_coords(const lv_obj_t * obj, lv_area_t * area)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -584,6 +612,7 @@ void lv_obj_get_content_coords(const lv_obj_t * obj, lv_area_t * area)
 
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_self_width(const lv_obj_t * obj)
 {
     lv_point_t p = {0, LV_COORD_MIN};
@@ -591,6 +620,7 @@ int32_t lv_obj_get_self_width(const lv_obj_t * obj)
     return p.x;
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_self_height(const lv_obj_t * obj)
 {
     lv_point_t p = {LV_COORD_MIN, 0};
@@ -598,6 +628,7 @@ int32_t lv_obj_get_self_height(const lv_obj_t * obj)
     return p.y;
 }
 
+LV_FUNC_SECTION
 bool lv_obj_refresh_self_size(lv_obj_t * obj)
 {
     int32_t w_set = lv_obj_get_style_width(obj, LV_PART_MAIN);
@@ -608,6 +639,7 @@ bool lv_obj_refresh_self_size(lv_obj_t * obj)
     return true;
 }
 
+LV_FUNC_SECTION
 void lv_obj_refr_pos(lv_obj_t * obj)
 {
     if(lv_obj_is_layout_positioned(obj)) return;
@@ -684,6 +716,7 @@ void lv_obj_refr_pos(lv_obj_t * obj)
     lv_obj_move_to(obj, x, y);
 }
 
+LV_FUNC_SECTION
 void lv_obj_move_to(lv_obj_t * obj, int32_t x, int32_t y)
 {
     /*Convert x and y to absolute coordinates*/
@@ -753,6 +786,8 @@ void lv_obj_move_to(lv_obj_t * obj, int32_t x, int32_t y)
     }
 }
 
+#pragma stackfunction 2048
+LV_FUNC_SECTION
 void lv_obj_move_children_by(lv_obj_t * obj, int32_t x_diff, int32_t y_diff, bool ignore_floating)
 {
     uint32_t i;
@@ -769,11 +804,14 @@ void lv_obj_move_children_by(lv_obj_t * obj, int32_t x_diff, int32_t y_diff, boo
     }
 }
 
+LV_FUNC_SECTION
 void lv_obj_transform_point(const lv_obj_t * obj, lv_point_t * p, lv_obj_point_transform_flag_t flags)
 {
     lv_obj_transform_point_array(obj, p, 1, flags);
 }
 
+#pragma stackfunction 1024
+LV_FUNC_SECTION
 void lv_obj_transform_point_array(const lv_obj_t * obj, lv_point_t points[], size_t count,
                                   lv_obj_point_transform_flag_t flags)
 {
@@ -793,6 +831,7 @@ void lv_obj_transform_point_array(const lv_obj_t * obj, lv_point_t points[], siz
     }
 }
 
+LV_FUNC_SECTION
 void lv_obj_get_transformed_area(const lv_obj_t * obj, lv_area_t * area, lv_obj_point_transform_flag_t flags)
 {
     lv_point_t p[4] = {
@@ -810,6 +849,7 @@ void lv_obj_get_transformed_area(const lv_obj_t * obj, lv_area_t * area, lv_obj_
     area->y2 = LV_MAX4(p[0].y, p[1].y, p[2].y, p[3].y);
 }
 
+LV_FUNC_SECTION
 void lv_obj_invalidate_area(const lv_obj_t * obj, const lv_area_t * area)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -838,6 +878,7 @@ void lv_obj_invalidate_area(const lv_obj_t * obj, const lv_area_t * area)
     lv_inv_area(lv_obj_get_display(obj),  &area_tmp);
 }
 
+LV_FUNC_SECTION
 void lv_obj_invalidate(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -854,6 +895,7 @@ void lv_obj_invalidate(const lv_obj_t * obj)
     lv_obj_invalidate_area(obj, &obj_coords);
 }
 
+LV_FUNC_SECTION
 bool lv_obj_area_is_visible(const lv_obj_t * obj, lv_area_t * area)
 {
     if(lv_obj_has_flag(obj, LV_OBJ_FLAG_HIDDEN)) return false;
@@ -902,6 +944,7 @@ bool lv_obj_area_is_visible(const lv_obj_t * obj, lv_area_t * area)
     return true;
 }
 
+LV_FUNC_SECTION
 bool lv_obj_is_visible(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -917,6 +960,7 @@ bool lv_obj_is_visible(const lv_obj_t * obj)
     return lv_obj_area_is_visible(obj, &obj_coords);
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_ext_click_area(lv_obj_t * obj, int32_t size)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -925,6 +969,7 @@ void lv_obj_set_ext_click_area(lv_obj_t * obj, int32_t size)
     obj->spec_attr->ext_click_pad = size;
 }
 
+LV_FUNC_SECTION
 void lv_obj_get_click_area(const lv_obj_t * obj, lv_area_t * area)
 {
     lv_area_copy(area, &obj->coords);
@@ -933,6 +978,7 @@ void lv_obj_get_click_area(const lv_obj_t * obj, lv_area_t * area)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_obj_hit_test(lv_obj_t * obj, const lv_point_t * point)
 {
     if(!lv_obj_has_flag(obj, LV_OBJ_FLAG_CLICKABLE)) return false;
@@ -953,6 +999,7 @@ bool lv_obj_hit_test(lv_obj_t * obj, const lv_point_t * point)
     return res;
 }
 
+LV_FUNC_SECTION
 int32_t lv_clamp_width(int32_t width, int32_t min_width, int32_t max_width, int32_t ref_width)
 {
     if(LV_COORD_IS_PCT(min_width)) min_width = (ref_width * LV_COORD_GET_PCT(min_width)) / 100;
@@ -960,6 +1007,7 @@ int32_t lv_clamp_width(int32_t width, int32_t min_width, int32_t max_width, int3
     return LV_CLAMP(min_width, width, max_width);
 }
 
+LV_FUNC_SECTION
 int32_t lv_clamp_height(int32_t height, int32_t min_height, int32_t max_height, int32_t ref_height)
 {
     if(LV_COORD_IS_PCT(min_height)) min_height = (ref_height * LV_COORD_GET_PCT(min_height)) / 100;
@@ -967,6 +1015,7 @@ int32_t lv_clamp_height(int32_t height, int32_t min_height, int32_t max_height, 
     return LV_CLAMP(min_height, height, max_height);
 }
 
+LV_FUNC_SECTION
 void lv_obj_center(lv_obj_t * obj)
 {
     lv_obj_align(obj, LV_ALIGN_CENTER, 0, 0);
@@ -976,6 +1025,7 @@ void lv_obj_center(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static int32_t calc_content_width(lv_obj_t * obj)
 {
     int32_t scroll_x_tmp = lv_obj_get_scroll_x(obj);
@@ -1071,6 +1121,7 @@ static int32_t calc_content_width(lv_obj_t * obj)
     return LV_MAX(child_res, self_w);
 }
 
+LV_FUNC_SECTION
 static int32_t calc_content_height(lv_obj_t * obj)
 {
     int32_t scroll_y_tmp = lv_obj_get_scroll_y(obj);
@@ -1123,6 +1174,8 @@ static int32_t calc_content_height(lv_obj_t * obj)
     return LV_MAX(self_h, child_res + space_bottom);
 }
 
+#pragma stackfunction 2048
+LV_FUNC_SECTION
 static void layout_update_core(lv_obj_t * obj)
 {
     uint32_t i;
@@ -1148,6 +1201,7 @@ static void layout_update_core(lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 static void transform_point_array(const lv_obj_t * obj, lv_point_t * p, size_t p_count, bool inv)
 {
     int32_t angle = lv_obj_get_style_transform_rotation(obj, 0);

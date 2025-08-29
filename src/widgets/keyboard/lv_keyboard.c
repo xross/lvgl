@@ -213,6 +213,7 @@ static const lv_buttonmatrix_ctrl_t * kb_ctrl[10] = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_keyboard_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -225,6 +226,7 @@ lv_obj_t * lv_keyboard_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_keyboard_set_textarea(lv_obj_t * obj, lv_obj_t * ta)
 {
     if(ta) {
@@ -247,6 +249,7 @@ void lv_keyboard_set_textarea(lv_obj_t * obj, lv_obj_t * ta)
     }
 }
 
+LV_FUNC_SECTION
 void lv_keyboard_set_mode(lv_obj_t * obj, lv_keyboard_mode_t mode)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -257,6 +260,7 @@ void lv_keyboard_set_mode(lv_obj_t * obj, lv_keyboard_mode_t mode)
     lv_keyboard_update_map(obj);
 }
 
+LV_FUNC_SECTION
 void lv_keyboard_set_popovers(lv_obj_t * obj, bool en)
 {
     lv_keyboard_t * keyboard = (lv_keyboard_t *)obj;
@@ -269,6 +273,7 @@ void lv_keyboard_set_popovers(lv_obj_t * obj, bool en)
     lv_keyboard_update_ctrl_map(obj);
 }
 
+LV_FUNC_SECTION
 void lv_keyboard_set_map(lv_obj_t * obj, lv_keyboard_mode_t mode, const char * const map[],
                          const lv_buttonmatrix_ctrl_t ctrl_map[])
 {
@@ -282,6 +287,7 @@ void lv_keyboard_set_map(lv_obj_t * obj, lv_keyboard_mode_t mode, const char * c
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_keyboard_get_textarea(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -289,6 +295,7 @@ lv_obj_t * lv_keyboard_get_textarea(const lv_obj_t * obj)
     return keyboard->ta;
 }
 
+LV_FUNC_SECTION
 lv_keyboard_mode_t lv_keyboard_get_mode(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -296,6 +303,7 @@ lv_keyboard_mode_t lv_keyboard_get_mode(const lv_obj_t * obj)
     return keyboard->mode;
 }
 
+LV_FUNC_SECTION
 bool lv_keyboard_get_popovers(const lv_obj_t * obj)
 {
     lv_keyboard_t * keyboard = (lv_keyboard_t *)obj;
@@ -305,7 +313,7 @@ bool lv_keyboard_get_popovers(const lv_obj_t * obj)
 /*=====================
  * Other functions
  *====================*/
-
+__attribute__(( fptrgroup("lv_event_cb") ))
 void lv_keyboard_def_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -410,16 +418,19 @@ void lv_keyboard_def_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 const char * const * lv_keyboard_get_map_array(const lv_obj_t * kb)
 {
     return lv_buttonmatrix_get_map(kb);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_keyboard_get_selected_button(const lv_obj_t * obj)
 {
     return lv_buttonmatrix_get_selected_button(obj);
 }
 
+LV_FUNC_SECTION
 const char * lv_keyboard_get_button_text(const lv_obj_t * obj, uint32_t btn_id)
 {
     return lv_buttonmatrix_get_button_text(obj, btn_id);
@@ -429,6 +440,7 @@ const char * lv_keyboard_get_button_text(const lv_obj_t * obj, uint32_t btn_id)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_keyboard_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -450,6 +462,7 @@ static void lv_keyboard_constructor(const lv_obj_class_t * class_p, lv_obj_t * o
  * Update the key and control map for the current mode
  * @param obj pointer to a keyboard object
  */
+LV_FUNC_SECTION
 static void lv_keyboard_update_map(lv_obj_t * obj)
 {
     lv_keyboard_t * keyboard = (lv_keyboard_t *)obj;
@@ -461,6 +474,7 @@ static void lv_keyboard_update_map(lv_obj_t * obj)
  * Update the control map for the current mode
  * @param obj pointer to a keyboard object
  */
+LV_FUNC_SECTION
 static void lv_keyboard_update_ctrl_map(lv_obj_t * obj)
 {
     lv_keyboard_t * keyboard = (lv_keyboard_t *)obj;

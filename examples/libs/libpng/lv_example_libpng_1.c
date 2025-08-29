@@ -6,6 +6,7 @@
 /**
  * Open a PNG image from a file
  */
+LV_FUNC_SECTION
 void lv_example_libpng_1(void)
 {
     LV_IMAGE_DECLARE(img_png_demo);
@@ -24,6 +25,7 @@ void lv_example_libpng_1(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_libpng_1(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());

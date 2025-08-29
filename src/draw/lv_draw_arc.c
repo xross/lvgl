@@ -36,6 +36,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_arc_dsc_init(lv_draw_arc_dsc_t * dsc)
 {
     lv_memzero(dsc, sizeof(lv_draw_arc_dsc_t));
@@ -45,11 +46,13 @@ void lv_draw_arc_dsc_init(lv_draw_arc_dsc_t * dsc)
     dsc->base.dsc_size = sizeof(lv_draw_arc_dsc_t);
 }
 
+LV_FUNC_SECTION
 lv_draw_arc_dsc_t * lv_draw_task_get_arc_dsc(lv_draw_task_t * task)
 {
     return task->type == LV_DRAW_TASK_TYPE_ARC ? (lv_draw_arc_dsc_t *)task->draw_dsc : NULL;
 }
 
+LV_FUNC_SECTION
 void lv_draw_arc(lv_layer_t * layer, const lv_draw_arc_dsc_t * dsc)
 {
     if(dsc->opa <= LV_OPA_MIN) return;
@@ -73,6 +76,7 @@ void lv_draw_arc(lv_layer_t * layer, const lv_draw_arc_dsc_t * dsc)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 void lv_draw_arc_get_area(int32_t x, int32_t y, uint16_t radius,  lv_value_precise_t start_angle,
                           lv_value_precise_t end_angle,
                           int32_t w, bool rounded, lv_area_t * area)

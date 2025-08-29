@@ -6,16 +6,19 @@
 
 static lv_obj_t * active_screen = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 static void simple_style(lv_obj_t * obj)
 {
     lv_obj_set_style_radius(obj, 0, LV_PART_MAIN);
@@ -27,6 +30,7 @@ static void simple_style(lv_obj_t * obj)
     lv_obj_set_style_outline_width(obj, 0, LV_PART_MAIN);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_row(lv_flex_align_t main_place, int n_children)
 {
     lv_obj_t * row = lv_obj_create(lv_screen_active());
@@ -43,6 +47,7 @@ static lv_obj_t * create_row(lv_flex_align_t main_place, int n_children)
     return row;
 }
 
+LV_FUNC_SECTION
 void test_align(void)
 {
     create_row(LV_FLEX_ALIGN_CENTER, 1);

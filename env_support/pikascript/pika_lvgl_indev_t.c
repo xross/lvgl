@@ -8,6 +8,7 @@
 
 #include "pika_lvgl_indev_t.h"
 
+LV_FUNC_SECTION
 void pika_lvgl_indev_t_get_vect(PikaObj* self, PikaObj* point) {
     lv_indev_t* lv_indev = obj_getPtr(self, "lv_indev");
     lv_point_t* lv_point = obj_getPtr(point, "lv_point");

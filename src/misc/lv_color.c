@@ -40,6 +40,7 @@ const lv_color_filter_dsc_t lv_color_filter_shade = {.filter_cb = lv_color_filte
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 uint8_t lv_color_format_get_bpp(lv_color_format_t cf)
 {
     switch(cf) {
@@ -75,6 +76,7 @@ uint8_t lv_color_format_get_bpp(lv_color_format_t cf)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_color_format_has_alpha(lv_color_format_t cf)
 {
     switch(cf) {
@@ -96,6 +98,7 @@ bool lv_color_format_has_alpha(lv_color_format_t cf)
     }
 }
 
+LV_FUNC_SECTION
 lv_color32_t lv_color_to_32(lv_color_t color, lv_opa_t opa)
 {
     lv_color32_t c32;
@@ -106,27 +109,32 @@ lv_color32_t lv_color_to_32(lv_color_t color, lv_opa_t opa)
     return c32;
 }
 
+LV_FUNC_SECTION
 uint16_t lv_color_to_u16(lv_color_t color)
 {
     return ((color.red & 0xF8) << 8) + ((color.green & 0xFC) << 3) + ((color.blue & 0xF8) >> 3);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_color_to_u32(lv_color_t color)
 {
     return (uint32_t)((uint32_t)0xff << 24) + (color.red << 16) + (color.green << 8) + (color.blue);
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_color_lighten(lv_color_t c, lv_opa_t lvl)
 {
 
     return lv_color_mix(lv_color_white(), c, lvl);
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_color_darken(lv_color_t c, lv_opa_t lvl)
 {
     return lv_color_mix(lv_color_black(), c, lvl);
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_color_hsv_to_rgb(uint16_t h, uint8_t s, uint8_t v)
 {
     h = (uint32_t)((uint32_t)h * 255) / 360;
@@ -185,6 +193,7 @@ lv_color_t lv_color_hsv_to_rgb(uint16_t h, uint8_t s, uint8_t v)
     return result;
 }
 
+LV_FUNC_SECTION
 lv_color_hsv_t lv_color_rgb_to_hsv(uint8_t r8, uint8_t g8, uint8_t b8)
 {
     uint16_t r = ((uint32_t)r8 << 10) / 255;
@@ -236,32 +245,38 @@ lv_color_hsv_t lv_color_rgb_to_hsv(uint8_t r8, uint8_t g8, uint8_t b8)
  * @param color color
  * @return the given color in HSV
  */
+LV_FUNC_SECTION
 lv_color_hsv_t lv_color_to_hsv(lv_color_t c)
 {
     return lv_color_rgb_to_hsv(c.red, c.green, c.blue);
 }
 
+LV_FUNC_SECTION
 uint8_t lv_color_format_get_size(lv_color_format_t cf)
 {
     return (lv_color_format_get_bpp(cf) + 7) >> 3;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_color_to_int(lv_color_t c)
 {
     uint8_t * tmp = (uint8_t *) &c;
     return tmp[0] + (tmp[1] << 8) + (tmp[2] << 16);
 }
 
+LV_FUNC_SECTION
 bool lv_color_eq(lv_color_t c1, lv_color_t c2)
 {
     return lv_color_to_int(c1) == lv_color_to_int(c2);
 }
 
+LV_FUNC_SECTION
 bool lv_color32_eq(lv_color32_t c1, lv_color32_t c2)
 {
     return *((uint32_t *)&c1) == *((uint32_t *)&c2);
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_color_hex(uint32_t c)
 {
     lv_color_t ret;
@@ -271,6 +286,7 @@ lv_color_t lv_color_hex(uint32_t c)
     return ret;
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_color_make(uint8_t r, uint8_t g, uint8_t b)
 {
     lv_color_t ret;
@@ -280,6 +296,7 @@ lv_color_t lv_color_make(uint8_t r, uint8_t g, uint8_t b)
     return ret;
 }
 
+LV_FUNC_SECTION
 lv_color32_t lv_color32_make(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
     lv_color32_t ret;
@@ -290,6 +307,7 @@ lv_color32_t lv_color32_make(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
     return ret;
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_color_hex3(uint32_t c)
 {
     return lv_color_make((uint8_t)(((c >> 4) & 0xF0) | ((c >> 8) & 0xF)), (uint8_t)((c & 0xF0) | ((c & 0xF0) >> 4)),
@@ -316,16 +334,19 @@ uint16_t LV_ATTRIBUTE_FAST_MEM lv_color_16_16_mix(uint16_t c1, uint16_t c2, uint
     return ret;
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_color_white(void)
 {
     return lv_color_make(0xff, 0xff, 0xff);
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_color_black(void)
 {
     return lv_color_make(0x00, 0x00, 0x00);
 }
 
+LV_FUNC_SECTION
 void lv_color_premultiply(lv_color32_t * c)
 {
     if(c->alpha == LV_OPA_COVER) {
@@ -342,6 +363,7 @@ void lv_color_premultiply(lv_color32_t * c)
     c->blue = LV_OPA_MIX2(c->blue, c->alpha);
 }
 
+LV_FUNC_SECTION
 void lv_color16_premultiply(lv_color16_t * c, lv_opa_t a)
 {
     if(a == LV_OPA_COVER) {
@@ -358,21 +380,25 @@ void lv_color16_premultiply(lv_color16_t * c, lv_opa_t a)
     c->blue = LV_OPA_MIX2(c->blue, a);
 }
 
+LV_FUNC_SECTION
 uint8_t lv_color_luminance(lv_color_t c)
 {
     return (uint8_t)((uint16_t)(77u * c.red + 151u * c.green + 28u * c.blue) >> 8);
 }
 
+LV_FUNC_SECTION
 uint8_t lv_color16_luminance(const lv_color16_t c)
 {
     return (uint8_t)((uint16_t)(635u * c.red + 613u * c.green + 231u * c.blue) >> 8);
 }
 
+LV_FUNC_SECTION
 uint8_t lv_color24_luminance(const uint8_t * c)
 {
     return (uint8_t)((uint16_t)(77u * c[2] + 151u * c[1] + 28u * c[0]) >> 8);
 }
 
+LV_FUNC_SECTION
 uint8_t lv_color32_luminance(lv_color32_t c)
 {
     return (uint8_t)((uint16_t)(77u * c.red + 151u * c.green + 28u * c.blue) >> 8);
@@ -394,6 +420,7 @@ uint8_t lv_color32_luminance(lv_color32_t c)
  *                      - LV_OPA_100:   fully white
  * @return          the modified color
  */
+LV_FUNC_SECTION
 static lv_color_t lv_color_filter_shade_cb(const lv_color_filter_dsc_t * dsc, lv_color_t c, lv_opa_t opa)
 {
     LV_UNUSED(dsc);

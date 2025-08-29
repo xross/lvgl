@@ -25,11 +25,17 @@ extern "C" {
  **********************/
 
 struct lv_draw_buf_handlers_t {
+    __attribute__(( fptrgroup("lv_draw_buf_malloc_cb") ))
     lv_draw_buf_malloc_cb buf_malloc_cb;
+    __attribute__(( fptrgroup("lv_draw_buf_free_cb") ))
     lv_draw_buf_free_cb buf_free_cb;
+    __attribute__(( fptrgroup("lv_draw_align_pointer_cb") ))
     lv_draw_buf_align_cb align_pointer_cb;
+    __attribute__(( fptrgroup("lv_draw_invalidate_cache_cb") ))
     lv_draw_buf_cache_operation_cb invalidate_cache_cb;
+    __attribute__(( fptrgroup("lv_draw_flush_cache_cb") ))
     lv_draw_buf_cache_operation_cb flush_cache_cb;
+    __attribute__(( fptrgroup("lv_draw_width_to_stride_cb") ))
     lv_draw_buf_width_to_stride_cb width_to_stride_cb;
 };
 

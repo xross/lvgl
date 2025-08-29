@@ -34,6 +34,7 @@ static void anim_x_cb(void * var, int32_t v);
 /**
  * create an animation
  */
+LV_FUNC_SECTION
 void lv_example_anim_3(void)
 {
     static int32_t col_dsc[] = {LV_GRID_FR(1), 200, LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
@@ -62,6 +63,7 @@ void lv_example_anim_3(void)
     refer_chart_cubic_bezier();
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 static int32_t anim_path_bezier3_cb(const lv_anim_t * a)
 {
     uint32_t t = lv_map(a->act_time, 0, a->duration, 0, 1024);
@@ -73,6 +75,7 @@ static int32_t anim_path_bezier3_cb(const lv_anim_t * a)
     return new_value;
 }
 
+LV_FUNC_SECTION
 static void refer_chart_cubic_bezier(void)
 {
     for(uint16_t i = 0; i <= CHART_POINTS_NUM; i ++) {
@@ -83,11 +86,13 @@ static void refer_chart_cubic_bezier(void)
     lv_chart_refresh(ginfo.chart);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void anim_x_cb(void * var, int32_t v)
 {
     lv_obj_set_style_translate_x(var, v, LV_PART_MAIN);
 }
 
+LV_FUNC_SECTION
 static void run_button_event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -96,6 +101,7 @@ static void run_button_event_handler(lv_event_t * e)
     }
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void slider_event_cb(lv_event_t * e)
 {
     char buf[16];
@@ -117,6 +123,7 @@ static void slider_event_cb(lv_event_t * e)
     refer_chart_cubic_bezier();
 }
 
+LV_FUNC_SECTION
 static void page_obj_init(lv_obj_t * par)
 {
     ginfo.anim_obj = lv_obj_create(par);

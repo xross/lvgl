@@ -44,6 +44,7 @@ static uint32_t get_instance_size(const lv_obj_class_t * class_p);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_obj_class_create_obj(const lv_obj_class_t * class_p, lv_obj_t * parent)
 {
     LV_TRACE_OBJ_CREATE("Creating object with %p class on %p parent", (void *)class_p, (void *)parent);
@@ -101,6 +102,7 @@ lv_obj_t * lv_obj_class_create_obj(const lv_obj_class_t * class_p, lv_obj_t * pa
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_obj_class_init_obj(lv_obj_t * obj)
 {
     if(obj == NULL) return;
@@ -133,6 +135,8 @@ void lv_obj_class_init_obj(lv_obj_t * obj)
     }
 }
 
+#pragma stackfunction 1024
+LV_FUNC_SECTION
 void lv_obj_destruct(lv_obj_t * obj)
 {
     if(obj->class_p->destructor_cb) obj->class_p->destructor_cb(obj->class_p, obj);
@@ -146,6 +150,7 @@ void lv_obj_destruct(lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_obj_is_editable(lv_obj_t * obj)
 {
     const lv_obj_class_t * class_p = obj->class_p;
@@ -158,6 +163,7 @@ bool lv_obj_is_editable(lv_obj_t * obj)
     return class_p->editable == LV_OBJ_CLASS_EDITABLE_TRUE;
 }
 
+LV_FUNC_SECTION
 bool lv_obj_is_group_def(lv_obj_t * obj)
 {
     const lv_obj_class_t * class_p = obj->class_p;
@@ -173,7 +179,8 @@ bool lv_obj_is_group_def(lv_obj_t * obj)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+#pragma stackfunction 1024
+LV_FUNC_SECTION
 static void lv_obj_construct(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     if(obj->class_p->base_class) {
@@ -192,6 +199,7 @@ static void lv_obj_construct(const lv_obj_class_t * class_p, lv_obj_t * obj)
     if(obj->class_p->constructor_cb) obj->class_p->constructor_cb(class_p, obj);
 }
 
+LV_FUNC_SECTION
 static uint32_t get_instance_size(const lv_obj_class_t * class_p)
 {
     /*Find a base in which instance size is set*/

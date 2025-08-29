@@ -93,6 +93,7 @@
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 static inline void lv_global_init(lv_global_t * global)
 {
     LV_ASSERT_NULL(global);
@@ -125,6 +126,7 @@ static inline void lv_global_init(lv_global_t * global)
 #endif
 }
 
+LV_FUNC_SECTION
 static inline void lv_cleanup_devices(lv_global_t * global)
 {
     LV_ASSERT_NULL(global);
@@ -136,6 +138,7 @@ static inline void lv_cleanup_devices(lv_global_t * global)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_is_initialized(void)
 {
 #if LV_ENABLE_GLOBAL_CUSTOM
@@ -146,6 +149,7 @@ bool lv_is_initialized(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_init(void)
 {
     /*First initialize Garbage Collection if needed*/
@@ -339,6 +343,7 @@ void lv_init(void)
     LV_LOG_TRACE("finished");
 }
 
+LV_FUNC_SECTION
 void lv_deinit(void)
 {
     /*Do nothing if already deinit*/

@@ -3,6 +3,7 @@
 
 #include "../../../misc/lv_area_private.h"
 
+LV_FUNC_SECTION
 void lv_draw_dave2d_line(lv_draw_dave2d_unit_t * u, const lv_draw_line_dsc_t * dsc)
 {
 

@@ -9,17 +9,20 @@ static lv_obj_t * textarea = NULL;
 
 static const char * textarea_default_text = "";
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
     textarea = lv_textarea_create(active_screen);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_textarea_should_have_valid_documented_default_values(void)
 {
     TEST_ASSERT(lv_textarea_get_cursor_click_pos(textarea));
@@ -31,6 +34,7 @@ void test_textarea_should_have_valid_documented_default_values(void)
 
 /* When in password mode the lv_textarea_get_text function returns
  * the actual text, not the bullet characters. */
+LV_FUNC_SECTION
 void test_textarea_should_return_actual_text_when_password_mode_is_enabled(void)
 {
     const char * text = "Hello LVGL!";
@@ -42,6 +46,7 @@ void test_textarea_should_return_actual_text_when_password_mode_is_enabled(void)
     TEST_ASSERT_EQUAL_STRING(text, lv_textarea_get_text(textarea));
 }
 
+LV_FUNC_SECTION
 void test_textarea_should_update_label_style_with_one_line_enabled(void)
 {
     lv_textarea_t * txt_ptr = (lv_textarea_t *) textarea;
@@ -59,6 +64,7 @@ void test_textarea_should_update_label_style_with_one_line_enabled(void)
     TEST_ASSERT_EQUAL_UINT16(lv_pct(100), lv_obj_get_style_min_width(txt_ptr->label, LV_PART_MAIN));
 }
 
+LV_FUNC_SECTION
 void test_textarea_cursor_click_pos_field_update(void)
 {
     lv_textarea_set_cursor_click_pos(textarea, false);
@@ -66,6 +72,7 @@ void test_textarea_cursor_click_pos_field_update(void)
     TEST_ASSERT_FALSE(lv_textarea_get_cursor_click_pos(textarea));
 }
 
+LV_FUNC_SECTION
 void test_textarea_should_update_placeholder_text(void)
 {
     const char * new_placeholder = "LVGL Rocks!!!!!";
@@ -84,6 +91,7 @@ void test_textarea_should_update_placeholder_text(void)
     TEST_ASSERT_EQUAL_STRING("", lv_textarea_get_placeholder_text(textarea));
 }
 
+LV_FUNC_SECTION
 void test_textarea_should_keep_only_accepted_chars(void)
 {
     const char * accepted_list = "abcd";
@@ -94,6 +102,7 @@ void test_textarea_should_keep_only_accepted_chars(void)
     TEST_ASSERT_EQUAL_STRING(accepted_list, lv_textarea_get_text(textarea));
 }
 
+LV_FUNC_SECTION
 void test_textarea_in_one_line_mode_should_ignore_line_break_characters(void)
 {
     lv_textarea_set_one_line(textarea, true);
@@ -105,6 +114,7 @@ void test_textarea_in_one_line_mode_should_ignore_line_break_characters(void)
     TEST_ASSERT_EQUAL_STRING(textarea_default_text, lv_textarea_get_text(textarea));
 }
 
+LV_FUNC_SECTION
 void test_textarea_should_hide_password_characters(void)
 {
     lv_textarea_set_password_mode(textarea, true);
@@ -134,6 +144,7 @@ void test_textarea_should_hide_password_characters(void)
     TEST_ASSERT_EQUAL_STRING("OO", lv_label_get_text(lv_textarea_get_label(textarea)));
 }
 
+LV_FUNC_SECTION
 void test_textarea_properties(void)
 {
 #if LV_USE_OBJ_PROPERTY

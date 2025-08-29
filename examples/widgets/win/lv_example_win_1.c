@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_WIN && LV_BUILD_EXAMPLES
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_handler(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -8,6 +9,7 @@ static void event_handler(lv_event_t * e)
     LV_LOG_USER("Button %d clicked", (int)lv_obj_get_index(obj));
 }
 
+LV_FUNC_SECTION
 void lv_example_win_1(void)
 {
     lv_obj_t * win = lv_win_create(lv_screen_active());

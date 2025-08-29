@@ -61,6 +61,7 @@ static LRESULT CALLBACK lv_windows_window_message_callback(
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_windows_platform_init(void)
 {
     lv_tick_set_cb(lv_windows_tick_count_callback);
@@ -100,6 +101,7 @@ void lv_windows_platform_init(void)
     LV_ASSERT(RegisterClassExW(&window_class));
 }
 
+LV_FUNC_SECTION
 lv_windows_window_context_t * lv_windows_get_window_context(
     HWND window_handle)
 {
@@ -111,6 +113,7 @@ lv_windows_window_context_t * lv_windows_get_window_context(
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static uint32_t lv_windows_tick_count_callback(void)
 {
     LARGE_INTEGER Frequency;
@@ -124,6 +127,7 @@ static uint32_t lv_windows_tick_count_callback(void)
     return (uint32_t)GetTickCount64();
 }
 
+LV_FUNC_SECTION
 static void lv_windows_delay_callback(uint32_t ms)
 {
     HANDLE timer_handle = CreateWaitableTimerExW(
@@ -142,6 +146,7 @@ static void lv_windows_delay_callback(uint32_t ms)
     }
 }
 
+LV_FUNC_SECTION
 static void lv_windows_check_display_existence_timer_callback(
     lv_timer_t * timer)
 {
@@ -153,6 +158,7 @@ static void lv_windows_check_display_existence_timer_callback(
     }
 }
 
+LV_FUNC_SECTION
 static HDC lv_windows_create_frame_buffer(
     HWND window_handle,
     LONG width,
@@ -226,6 +232,7 @@ static HDC lv_windows_create_frame_buffer(
     return frame_buffer_dc_handle;
 }
 
+LV_FUNC_SECTION
 static void lv_windows_display_timer_callback(lv_timer_t * timer)
 {
     lv_windows_window_context_t * context = lv_timer_get_user_data(timer);
@@ -277,6 +284,7 @@ static void lv_windows_display_timer_callback(lv_timer_t * timer)
     context->requested_display_resolution.y = 0;
 }
 
+LV_FUNC_SECTION
 static void lv_windows_display_driver_flush_callback(
     lv_display_t * display,
     const lv_area_t * area,
@@ -344,6 +352,7 @@ static void lv_windows_display_driver_flush_callback(
     lv_display_flush_ready(display);
 }
 
+LV_FUNC_SECTION
 static UINT lv_windows_get_dpi_for_window(HWND window_handle)
 {
     UINT result = (UINT)(-1);
@@ -396,6 +405,7 @@ static UINT lv_windows_get_dpi_for_window(HWND window_handle)
     return result;
 }
 
+LV_FUNC_SECTION
 static BOOL lv_windows_register_touch_window(
     HWND window_handle,
     ULONG flags)
@@ -416,6 +426,7 @@ static BOOL lv_windows_register_touch_window(
     return function(window_handle, flags);
 }
 
+LV_FUNC_SECTION
 static BOOL lv_windows_enable_child_window_dpi_message(
     HWND WindowHandle)
 {
@@ -459,6 +470,7 @@ static BOOL lv_windows_enable_child_window_dpi_message(
     return function(WindowHandle, TRUE);
 }
 
+LV_FUNC_SECTION
 static bool lv_windows_window_message_callback_nolock(
     HWND hWnd,
     UINT uMsg,
@@ -696,6 +708,7 @@ static bool lv_windows_window_message_callback_nolock(
     return true;
 }
 
+LV_FUNC_SECTION
 static LRESULT CALLBACK lv_windows_window_message_callback(
     HWND hWnd,
     UINT uMsg,

@@ -46,6 +46,7 @@ static void flush_cb(const char * buf);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_nuttx_profiler_init(void)
 {
     cpu_freq = (uint32_t)up_perf_getfreq() / 1000000;
@@ -67,6 +68,7 @@ void lv_nuttx_profiler_init(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static uint32_t tick_get_cb(void)
 {
     static uint32_t prev_tick = 0;
@@ -88,6 +90,7 @@ static uint32_t tick_get_cb(void)
     return cur_tick_us;
 }
 
+LV_FUNC_SECTION
 static void flush_cb(const char * buf)
 {
     printf("%s", buf);

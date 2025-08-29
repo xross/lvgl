@@ -75,6 +75,7 @@ static vg_lite_gradient_spreadmode_t lv_spread_to_vg(lv_vector_gradient_spread_t
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_vg_lite_grad_init(struct lv_draw_vg_lite_unit_t * u, uint32_t cache_cnt)
 {
     LV_ASSERT_NULL(u);
@@ -91,6 +92,7 @@ void lv_vg_lite_grad_init(struct lv_draw_vg_lite_unit_t * u, uint32_t cache_cnt)
     lv_vg_lite_pending_set_free_cb(u->grad_pending, grad_cache_release_cb, u->grad_cache);
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_grad_deinit(struct lv_draw_vg_lite_unit_t * u)
 {
     LV_ASSERT_NULL(u);
@@ -101,6 +103,7 @@ void lv_vg_lite_grad_deinit(struct lv_draw_vg_lite_unit_t * u)
     u->grad_cache = NULL;
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_draw_grad(
     struct lv_draw_vg_lite_unit_t * u,
     vg_lite_buffer_t * buffer,
@@ -224,6 +227,7 @@ bool lv_vg_lite_draw_grad(
     return true;
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_draw_grad_helper(
     struct lv_draw_vg_lite_unit_t * u,
     vg_lite_buffer_t * buffer,
@@ -322,6 +326,7 @@ bool lv_vg_lite_draw_grad_helper(
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static grad_item_t * grad_get(struct lv_draw_vg_lite_unit_t * u, const lv_vector_gradient_t * grad)
 {
     LV_ASSERT_NULL(u);
@@ -354,6 +359,7 @@ static grad_item_t * grad_get(struct lv_draw_vg_lite_unit_t * u, const lv_vector
     return lv_cache_entry_get_data(cache_node_entry);
 }
 
+LV_FUNC_SECTION
 static void grad_cache_release_cb(void * entry, void * user_data)
 {
     lv_cache_entry_t ** entry_p = entry;
@@ -361,6 +367,7 @@ static void grad_cache_release_cb(void * entry, void * user_data)
     lv_cache_release(cache, * entry_p, NULL);
 }
 
+LV_FUNC_SECTION
 static vg_lite_color_ramp_t * grad_create_color_ramp(const lv_vector_gradient_t * grad)
 {
     LV_ASSERT_NULL(grad);
@@ -385,6 +392,7 @@ static vg_lite_color_ramp_t * grad_create_color_ramp(const lv_vector_gradient_t 
     return color_ramp;
 }
 
+LV_FUNC_SECTION
 static bool linear_grad_create(grad_item_t * item)
 {
     LV_PROFILER_BEGIN;
@@ -425,6 +433,7 @@ static bool linear_grad_create(grad_item_t * item)
     return true;
 }
 
+LV_FUNC_SECTION
 static bool linear_ext_grad_create(grad_item_t * item)
 {
     LV_PROFILER_BEGIN;
@@ -477,6 +486,7 @@ static bool linear_ext_grad_create(grad_item_t * item)
     return err == VG_LITE_SUCCESS;
 }
 
+LV_FUNC_SECTION
 static bool radial_grad_create(grad_item_t * item)
 {
     LV_PROFILER_BEGIN;
@@ -530,6 +540,7 @@ static bool radial_grad_create(grad_item_t * item)
     return err == VG_LITE_SUCCESS;
 }
 
+LV_FUNC_SECTION
 static grad_type_t lv_grad_style_to_type(lv_vector_gradient_style_t style)
 {
     if(style == LV_VECTOR_GRADIENT_STYLE_LINEAR) {
@@ -544,6 +555,7 @@ static grad_type_t lv_grad_style_to_type(lv_vector_gradient_style_t style)
     return GRAD_TYPE_UNKNOWN;
 }
 
+LV_FUNC_SECTION
 static void grad_point_to_matrix(vg_lite_matrix_t * grad_matrix, float x1, float y1, float x2, float y2)
 {
     vg_lite_translate(x1, y1, grad_matrix);
@@ -554,6 +566,7 @@ static void grad_point_to_matrix(vg_lite_matrix_t * grad_matrix, float x1, float
     vg_lite_scale(length / 256.0f, 1, grad_matrix);
 }
 
+LV_FUNC_SECTION
 static vg_lite_gradient_spreadmode_t lv_spread_to_vg(lv_vector_gradient_spread_t spread)
 {
     switch(spread) {
@@ -571,6 +584,7 @@ static vg_lite_gradient_spreadmode_t lv_spread_to_vg(lv_vector_gradient_spread_t
     return VG_LITE_GRADIENT_SPREAD_FILL;
 }
 
+__attribute__(( fptrgroup("lv_cache_create_cb") ))
 static bool grad_create_cb(grad_item_t * item, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -593,6 +607,7 @@ static bool grad_create_cb(grad_item_t * item, void * user_data)
     return false;
 }
 
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void grad_free_cb(grad_item_t * item, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -615,6 +630,7 @@ static void grad_free_cb(grad_item_t * item, void * user_data)
     }
 }
 
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t grad_compare_cb(const grad_item_t * lhs, const grad_item_t * rhs)
 {
     /* compare type first */

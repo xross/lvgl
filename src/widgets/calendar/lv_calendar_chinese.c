@@ -112,6 +112,7 @@ static const lv_calendar_festival_t festivals_base_gregorian[] = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_calendar_set_chinese_mode(lv_obj_t * obj, bool en)
 {
     lv_calendar_t * calendar = (lv_calendar_t *)obj;
@@ -119,6 +120,7 @@ void lv_calendar_set_chinese_mode(lv_obj_t * obj, bool en)
     lv_calendar_set_showed_date(obj, calendar->today.year, calendar->today.month);
 }
 
+LV_FUNC_SECTION
 const char * lv_calendar_get_day_name(lv_calendar_date_t * gregorian)
 {
     uint16_t i, len;
@@ -169,6 +171,7 @@ const char * lv_calendar_get_day_name(lv_calendar_date_t * gregorian)
     return (char *)chinese_calendar_day_name[chinese_calendar.today.day - 1];
 }
 
+LV_FUNC_SECTION
 void lv_calendar_gregorian_to_chinese(lv_calendar_date_t * gregorian_time, lv_calendar_chinese_t * chinese_time)
 {
     uint16_t year = gregorian_time->year;

@@ -1,6 +1,7 @@
 #include "../lv_examples.h"
 #if LV_BUILD_EXAMPLES && LV_USE_FLEX
 
+LV_FUNC_SECTION
 static void scroll_event_cb(lv_event_t * e)
 {
     lv_obj_t * cont = lv_event_get_target(e);
@@ -48,6 +49,7 @@ static void scroll_event_cb(lv_event_t * e)
 /**
  * Translate the object as they scroll
  */
+LV_FUNC_SECTION
 void lv_example_scroll_6(void)
 {
     lv_obj_t * cont = lv_obj_create(lv_screen_active());

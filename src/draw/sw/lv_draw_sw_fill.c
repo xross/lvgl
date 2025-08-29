@@ -45,6 +45,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_sw_fill(lv_draw_unit_t * draw_unit, lv_draw_fill_dsc_t * dsc, const lv_area_t * coords)
 {
     if(dsc->opa <= LV_OPA_MIN) return;

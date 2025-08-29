@@ -1,4 +1,4 @@
-const uint16_t spectrum_2[][4] = {
+LV_ATTRIBUTE_LARGE_CONST const uint16_t spectrum_2[][4] = {
 { 0, 0, 0, 0, },
 { 0, 8, 28, 14, },
 { 1, 35, 63, 31, },

@@ -4,6 +4,7 @@
 /**
  * An scale with section and custom styling
  */
+LV_FUNC_SECTION
 void lv_example_scale_5(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());

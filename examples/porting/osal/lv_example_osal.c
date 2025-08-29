@@ -38,6 +38,7 @@ static lv_thread_t increment_thread;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_example_osal(void)
 {
     lv_obj_t * counter_button;
@@ -59,6 +60,7 @@ void lv_example_osal(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void counter_button_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
@@ -67,6 +69,7 @@ static void counter_button_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void increment_thread_entry(void * user_data)
 {
     LV_UNUSED(user_data);

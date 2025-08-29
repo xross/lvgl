@@ -9,6 +9,7 @@ static lv_obj_t * btnm;
 static bool event_triggered = false;
 lv_event_code_t exp_evt_code;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
@@ -18,11 +19,13 @@ void setUp(void)
     exp_evt_code = 0;
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_creation(void)
 {
     const char * const * map;
@@ -37,6 +40,7 @@ void test_button_matrix_creation(void)
     TEST_ASSERT_EQUAL_STRING(map[5], "Btn5");
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_set_map_works(void)
 {
     const char * const * ret_map;
@@ -55,6 +59,7 @@ void test_button_matrix_set_map_works(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/btnm_1.png");
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_render_2(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -127,6 +132,7 @@ void test_button_matrix_render_2(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/btnm_2.png");
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_set_ctrl_map_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -153,6 +159,7 @@ void test_button_matrix_set_ctrl_map_works(void)
     TEST_ASSERT_FALSE(lv_buttonmatrix_has_button_ctrl(btnm, 4, LV_BUTTONMATRIX_CTRL_HIDDEN));
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_set_button_ctrl_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -178,6 +185,7 @@ void test_button_matrix_set_button_ctrl_works(void)
     TEST_ASSERT_FALSE(lv_buttonmatrix_has_button_ctrl(btnm, 4, LV_BUTTONMATRIX_CTRL_HIDDEN));
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_clear_button_ctrl_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -199,6 +207,7 @@ void test_button_matrix_clear_button_ctrl_works(void)
     TEST_ASSERT_FALSE(lv_buttonmatrix_has_button_ctrl(btnm, 3, LV_BUTTONMATRIX_CTRL_CHECKABLE));
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_set_selected_button_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -217,6 +226,7 @@ void test_button_matrix_set_selected_button_works(void)
     TEST_ASSERT_EQUAL_UINT16(1, lv_buttonmatrix_get_selected_button(btnm));
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_set_button_ctrl_all_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -230,6 +240,7 @@ void test_button_matrix_set_button_ctrl_all_works(void)
     TEST_ASSERT_TRUE(lv_buttonmatrix_has_button_ctrl(btnm, 3, LV_BUTTONMATRIX_CTRL_HIDDEN));
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_clear_button_ctrl_all_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -244,6 +255,7 @@ void test_button_matrix_clear_button_ctrl_all_works(void)
     TEST_ASSERT_FALSE(lv_buttonmatrix_has_button_ctrl(btnm, 3, LV_BUTTONMATRIX_CTRL_HIDDEN));
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_set_button_width_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -256,6 +268,7 @@ void test_button_matrix_set_button_width_works(void)
     TEST_ASSERT_TRUE(lv_buttonmatrix_has_button_ctrl(btnm, 2, 2));
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_set_one_checked_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -277,6 +290,7 @@ void test_button_matrix_set_one_checked_works(void)
     TEST_ASSERT_TRUE(lv_buttonmatrix_has_button_ctrl(btnm, 3, LV_BUTTONMATRIX_CTRL_CHECKED));
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_get_button_text_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -289,6 +303,7 @@ void test_button_matrix_get_button_text_works(void)
 }
 
 /* Common event handler for all the consecutive test cases. */
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -297,6 +312,7 @@ static void event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_pressed_event_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -309,6 +325,7 @@ void test_button_matrix_pressed_event_works(void)
     TEST_ASSERT_TRUE(event_triggered);
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_release_event_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -330,6 +347,7 @@ void test_button_matrix_release_event_works(void)
     TEST_ASSERT_TRUE(event_triggered);
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_key_event_works(void)
 {
     uint32_t keyCode;
@@ -380,6 +398,7 @@ void test_button_matrix_key_event_works(void)
     event_triggered = false;
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_pressing_event_works(void)
 {
     lv_buttonmatrix_t * btnmObj = (lv_buttonmatrix_t *)btnm;
@@ -397,6 +416,7 @@ void test_button_matrix_pressing_event_works(void)
     TEST_ASSERT_TRUE(event_triggered);
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_long_press_repeat_event_works(void)
 {
     lv_buttonmatrix_t * btnmObj = (lv_buttonmatrix_t *)btnm;
@@ -414,6 +434,7 @@ void test_button_matrix_long_press_repeat_event_works(void)
     TEST_ASSERT_TRUE(event_triggered);
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_press_lost_event_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};
@@ -427,6 +448,7 @@ void test_button_matrix_press_lost_event_works(void)
     TEST_ASSERT_TRUE(event_triggered);
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_defocused_event_works(void)
 {
     lv_buttonmatrix_t * btnmObj = (lv_buttonmatrix_t *)btnm;
@@ -444,6 +466,7 @@ void test_button_matrix_defocused_event_works(void)
     TEST_ASSERT_TRUE(event_triggered);
 }
 
+LV_FUNC_SECTION
 void test_button_matrix_focused_event_works(void)
 {
     static const char * btn_map[] = {"A", "B", "\n", "C", "D", ""};

@@ -84,6 +84,7 @@ static lv_result_t send_event(lv_event_code_t code, void * param);
 static void indev_scroll_throw_anim_start(lv_indev_t * indev);
 static void indev_scroll_throw_anim_cb(void * var, int32_t v);
 static void indev_scroll_throw_anim_completed_cb(lv_anim_t * anim);
+LV_FUNC_SECTION
 static inline void indev_scroll_throw_anim_reset(lv_indev_t * indev)
 {
     if(indev) {
@@ -110,6 +111,7 @@ static inline void indev_scroll_throw_anim_reset(lv_indev_t * indev)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_indev_t * lv_indev_create(void)
 {
     lv_display_t * disp = lv_display_get_default();
@@ -142,6 +144,7 @@ lv_indev_t * lv_indev_create(void)
     return indev;
 }
 
+__attribute__(( fptrgroup("lv_ll_cleanup") ))
 void lv_indev_delete(lv_indev_t * indev)
 {
     LV_ASSERT_NULL(indev);
@@ -158,6 +161,7 @@ void lv_indev_delete(lv_indev_t * indev)
     lv_free(indev);
 }
 
+LV_FUNC_SECTION
 lv_indev_t * lv_indev_get_next(lv_indev_t * indev)
 {
     if(indev == NULL)
@@ -166,6 +170,7 @@ lv_indev_t * lv_indev_get_next(lv_indev_t * indev)
         return lv_ll_get_next(indev_ll_head, indev);
 }
 
+LV_FUNC_SECTION
 void indev_read_core(lv_indev_t * indev, lv_indev_data_t * data)
 {
     LV_PROFILER_BEGIN;
@@ -196,11 +201,13 @@ void indev_read_core(lv_indev_t * indev, lv_indev_data_t * data)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 void lv_indev_read_timer_cb(lv_timer_t * timer)
 {
     lv_indev_read(timer->user_data);
 }
 
+LV_FUNC_SECTION
 void lv_indev_read(lv_indev_t * indev)
 {
     if(indev == NULL) return;
@@ -269,6 +276,7 @@ void lv_indev_read(lv_indev_t * indev)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 void lv_indev_enable(lv_indev_t * indev, bool enable)
 {
     if(indev) {
@@ -283,11 +291,13 @@ void lv_indev_enable(lv_indev_t * indev, bool enable)
     }
 }
 
+LV_FUNC_SECTION
 lv_indev_t * lv_indev_active(void)
 {
     return indev_act;
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_type(lv_indev_t * indev, lv_indev_type_t indev_type)
 {
     if(indev == NULL) return;
@@ -296,6 +306,7 @@ void lv_indev_set_type(lv_indev_t * indev, lv_indev_type_t indev_type)
     indev->reset_query = 1;
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_read_cb(lv_indev_t * indev, lv_indev_read_cb_t read_cb)
 {
     if(indev == NULL) return;
@@ -303,18 +314,21 @@ void lv_indev_set_read_cb(lv_indev_t * indev, lv_indev_read_cb_t read_cb)
     indev->read_cb = read_cb;
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_user_data(lv_indev_t * indev, void * user_data)
 {
     if(indev == NULL) return;
     indev->user_data = user_data;
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_driver_data(lv_indev_t * indev, void * driver_data)
 {
     if(indev == NULL) return;
     indev->driver_data = driver_data;
 }
 
+LV_FUNC_SECTION
 lv_indev_read_cb_t lv_indev_get_read_cb(lv_indev_t * indev)
 {
     if(indev == NULL) {
@@ -325,6 +339,7 @@ lv_indev_read_cb_t lv_indev_get_read_cb(lv_indev_t * indev)
     return indev->read_cb;
 }
 
+LV_FUNC_SECTION
 lv_indev_type_t lv_indev_get_type(const lv_indev_t * indev)
 {
     if(indev == NULL) return LV_INDEV_TYPE_NONE;
@@ -332,6 +347,7 @@ lv_indev_type_t lv_indev_get_type(const lv_indev_t * indev)
     return indev->type;
 }
 
+LV_FUNC_SECTION
 lv_indev_state_t lv_indev_get_state(const lv_indev_t * indev)
 {
     if(indev == NULL) return LV_INDEV_STATE_RELEASED;
@@ -339,6 +355,7 @@ lv_indev_state_t lv_indev_get_state(const lv_indev_t * indev)
     return indev->state;
 }
 
+LV_FUNC_SECTION
 lv_group_t * lv_indev_get_group(const lv_indev_t * indev)
 {
     if(indev == NULL) return NULL;
@@ -346,6 +363,7 @@ lv_group_t * lv_indev_get_group(const lv_indev_t * indev)
     return indev->group;
 }
 
+LV_FUNC_SECTION
 lv_display_t * lv_indev_get_display(const lv_indev_t * indev)
 {
     if(indev == NULL) return NULL;
@@ -353,6 +371,7 @@ lv_display_t * lv_indev_get_display(const lv_indev_t * indev)
     return indev->disp;
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_display(lv_indev_t * indev, lv_display_t * disp)
 {
     if(indev == NULL) return;
@@ -360,6 +379,7 @@ void lv_indev_set_display(lv_indev_t * indev, lv_display_t * disp)
     indev->disp = disp;
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_long_press_time(lv_indev_t * indev, uint16_t long_press_time)
 {
     if(indev == NULL) return;
@@ -367,6 +387,7 @@ void lv_indev_set_long_press_time(lv_indev_t * indev, uint16_t long_press_time)
     indev->long_press_time = long_press_time;
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_scroll_limit(lv_indev_t * indev, uint8_t scroll_limit)
 {
     if(indev == NULL) return;
@@ -374,6 +395,7 @@ void lv_indev_set_scroll_limit(lv_indev_t * indev, uint8_t scroll_limit)
     indev->scroll_limit = scroll_limit;
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_scroll_throw(lv_indev_t * indev, uint8_t scroll_throw)
 {
     if(indev == NULL) return;
@@ -381,12 +403,14 @@ void lv_indev_set_scroll_throw(lv_indev_t * indev, uint8_t scroll_throw)
     indev->scroll_throw = scroll_throw;
 }
 
+LV_FUNC_SECTION
 void * lv_indev_get_user_data(const lv_indev_t * indev)
 {
     if(indev == NULL) return NULL;
     return indev->user_data;
 }
 
+LV_FUNC_SECTION
 void * lv_indev_get_driver_data(const lv_indev_t * indev)
 {
     if(indev == NULL) return NULL;
@@ -394,6 +418,7 @@ void * lv_indev_get_driver_data(const lv_indev_t * indev)
     return indev->driver_data;
 }
 
+LV_FUNC_SECTION
 bool lv_indev_get_press_moved(const lv_indev_t * indev)
 {
     if(indev == NULL) return false;
@@ -401,6 +426,7 @@ bool lv_indev_get_press_moved(const lv_indev_t * indev)
     return indev->pointer.press_moved;
 }
 
+LV_FUNC_SECTION
 void lv_indev_reset(lv_indev_t * indev, lv_obj_t * obj)
 {
     if(indev) {
@@ -416,12 +442,14 @@ void lv_indev_reset(lv_indev_t * indev, lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 void lv_indev_stop_processing(lv_indev_t * indev)
 {
     if(indev == NULL) return;
     indev->stop_processing_query = 1;
 }
 
+LV_FUNC_SECTION
 void lv_indev_reset_long_press(lv_indev_t * indev)
 {
     indev->long_pr_sent         = 0;
@@ -429,6 +457,7 @@ void lv_indev_reset_long_press(lv_indev_t * indev)
     indev->pr_timestamp         = lv_tick_get();
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_cursor(lv_indev_t * indev, lv_obj_t * cur_obj)
 {
     if(indev->type != LV_INDEV_TYPE_POINTER) return;
@@ -440,6 +469,7 @@ void lv_indev_set_cursor(lv_indev_t * indev, lv_obj_t * cur_obj)
     lv_obj_add_flag(indev->cursor, LV_OBJ_FLAG_IGNORE_LAYOUT | LV_OBJ_FLAG_FLOATING);
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_group(lv_indev_t * indev, lv_group_t * group)
 {
     if(indev && (indev->type == LV_INDEV_TYPE_KEYPAD || indev->type == LV_INDEV_TYPE_ENCODER)) {
@@ -447,6 +477,7 @@ void lv_indev_set_group(lv_indev_t * indev, lv_group_t * group)
     }
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_button_points(lv_indev_t * indev, const lv_point_t points[])
 {
     if(indev && indev->type == LV_INDEV_TYPE_BUTTON) {
@@ -454,6 +485,7 @@ void lv_indev_set_button_points(lv_indev_t * indev, const lv_point_t points[])
     }
 }
 
+LV_FUNC_SECTION
 void lv_indev_get_point(const lv_indev_t * indev, lv_point_t * point)
 {
     if(indev == NULL) {
@@ -470,11 +502,13 @@ void lv_indev_get_point(const lv_indev_t * indev, lv_point_t * point)
     }
 }
 
+LV_FUNC_SECTION
 lv_dir_t lv_indev_get_gesture_dir(const lv_indev_t * indev)
 {
     return indev->pointer.gesture_dir;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_indev_get_key(const lv_indev_t * indev)
 {
     uint32_t key = 0;
@@ -485,6 +519,7 @@ uint32_t lv_indev_get_key(const lv_indev_t * indev)
     return key;
 }
 
+LV_FUNC_SECTION
 lv_dir_t lv_indev_get_scroll_dir(const lv_indev_t * indev)
 {
     if(indev == NULL) return false;
@@ -492,6 +527,7 @@ lv_dir_t lv_indev_get_scroll_dir(const lv_indev_t * indev)
     return indev->pointer.scroll_dir;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_indev_get_scroll_obj(const lv_indev_t * indev)
 {
     if(indev == NULL) return NULL;
@@ -499,6 +535,7 @@ lv_obj_t * lv_indev_get_scroll_obj(const lv_indev_t * indev)
     return indev->pointer.scroll_obj;
 }
 
+LV_FUNC_SECTION
 void lv_indev_get_vect(const lv_indev_t * indev, lv_point_t * point)
 {
     point->x = 0;
@@ -512,17 +549,20 @@ void lv_indev_get_vect(const lv_indev_t * indev, lv_point_t * point)
     }
 }
 
+LV_FUNC_SECTION
 void lv_indev_wait_release(lv_indev_t * indev)
 {
     if(indev == NULL)return;
     indev->wait_until_release = 1;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_indev_get_active_obj(void)
 {
     return indev_obj_act;
 }
 
+LV_FUNC_SECTION
 lv_timer_t * lv_indev_get_read_timer(lv_indev_t * indev)
 {
     if(indev == NULL) {
@@ -533,12 +573,14 @@ lv_timer_t * lv_indev_get_read_timer(lv_indev_t * indev)
     return indev->read_timer;
 }
 
+LV_FUNC_SECTION
 lv_indev_mode_t lv_indev_get_mode(lv_indev_t * indev)
 {
     if(indev) return indev->mode;
     return LV_INDEV_MODE_NONE;
 }
 
+LV_FUNC_SECTION
 void lv_indev_set_mode(lv_indev_t * indev, lv_indev_mode_t mode)
 {
     if(indev == NULL || indev->mode == mode)
@@ -557,6 +599,7 @@ void lv_indev_set_mode(lv_indev_t * indev, lv_indev_mode_t mode)
     }
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_indev_search_obj(lv_obj_t * obj, lv_point_t * point)
 {
     lv_obj_t * found_p = NULL;
@@ -593,6 +636,7 @@ lv_obj_t * lv_indev_search_obj(lv_obj_t * obj, lv_point_t * point)
     else return NULL;
 }
 
+LV_FUNC_SECTION
 void lv_indev_add_event_cb(lv_indev_t * indev, lv_event_cb_t event_cb, lv_event_code_t filter, void * user_data)
 {
     LV_ASSERT_NULL(indev);
@@ -600,12 +644,14 @@ void lv_indev_add_event_cb(lv_indev_t * indev, lv_event_cb_t event_cb, lv_event_
     lv_event_add(&indev->event_list, event_cb, filter, user_data);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_indev_get_event_count(lv_indev_t * indev)
 {
     LV_ASSERT_NULL(indev);
     return lv_event_get_count(&indev->event_list);
 }
 
+LV_FUNC_SECTION
 lv_event_dsc_t * lv_indev_get_event_dsc(lv_indev_t * indev, uint32_t index)
 {
     LV_ASSERT_NULL(indev);
@@ -613,6 +659,7 @@ lv_event_dsc_t * lv_indev_get_event_dsc(lv_indev_t * indev, uint32_t index)
 
 }
 
+LV_FUNC_SECTION
 bool lv_indev_remove_event(lv_indev_t * indev, uint32_t index)
 {
     LV_ASSERT_NULL(indev);
@@ -620,6 +667,7 @@ bool lv_indev_remove_event(lv_indev_t * indev, uint32_t index)
     return lv_event_remove(&indev->event_list, index);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_indev_remove_event_cb_with_user_data(lv_indev_t * indev, lv_event_cb_t event_cb, void * user_data)
 {
     LV_ASSERT_NULL(indev);
@@ -639,6 +687,7 @@ uint32_t lv_indev_remove_event_cb_with_user_data(lv_indev_t * indev, lv_event_cb
     return removed_count;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_indev_send_event(lv_indev_t * indev, lv_event_code_t code, void * param)
 {
 
@@ -667,6 +716,7 @@ lv_result_t lv_indev_send_event(lv_indev_t * indev, lv_event_code_t code, void *
  * @param i pointer to an input device
  * @param data pointer to the data read from the input device
  */
+LV_FUNC_SECTION
 static void indev_pointer_proc(lv_indev_t * i, lv_indev_data_t * data)
 {
     lv_display_t * disp = i->disp;
@@ -727,6 +777,7 @@ static void indev_pointer_proc(lv_indev_t * i, lv_indev_data_t * data)
  * @param i pointer to an input device
  * @param data pointer to the data read from the input device
  */
+LV_FUNC_SECTION
 static void indev_keypad_proc(lv_indev_t * i, lv_indev_data_t * data)
 {
     if(data->state == LV_INDEV_STATE_PRESSED && i->wait_until_release) return;
@@ -869,6 +920,7 @@ static void indev_keypad_proc(lv_indev_t * i, lv_indev_data_t * data)
  * @param i pointer to an input device
  * @param data pointer to the data read from the input device
  */
+LV_FUNC_SECTION
 static void indev_encoder_proc(lv_indev_t * i, lv_indev_data_t * data)
 {
     if(data->state == LV_INDEV_STATE_PRESSED && i->wait_until_release) return;
@@ -1098,6 +1150,7 @@ static void indev_encoder_proc(lv_indev_t * i, lv_indev_data_t * data)
  * @param x x coordinate of the next point
  * @param y y coordinate of the next point
  */
+LV_FUNC_SECTION
 static void indev_button_proc(lv_indev_t * i, lv_indev_data_t * data)
 {
     /*Die gracefully if i->btn_points is NULL*/
@@ -1145,6 +1198,7 @@ static void indev_button_proc(lv_indev_t * i, lv_indev_data_t * data)
  * Process the pressed state of LV_INDEV_TYPE_POINTER input devices
  * @param indev pointer to an input device 'proc'
  */
+LV_FUNC_SECTION
 static void indev_proc_press(lv_indev_t * indev)
 {
     LV_LOG_INFO("pressed at x:%d y:%d", (int)indev->pointer.act_point.x,
@@ -1303,6 +1357,7 @@ static void indev_proc_press(lv_indev_t * indev)
  * Process the released state of LV_INDEV_TYPE_POINTER input devices
  * @param proc pointer to an input device 'proc'
  */
+LV_FUNC_SECTION
 static void indev_proc_release(lv_indev_t * indev)
 {
     if(indev->wait_until_release || /*Hover the new widget even if the coordinates didn't changed*/
@@ -1401,6 +1456,7 @@ static void indev_proc_release(lv_indev_t * indev)
     }
 }
 
+LV_FUNC_SECTION
 static void indev_proc_pointer_diff(lv_indev_t * indev)
 {
     lv_obj_t * obj = indev->pointer.last_pressed;
@@ -1435,6 +1491,7 @@ static void indev_proc_pointer_diff(lv_indev_t * indev)
 
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * pointer_search_obj(lv_display_t * disp, lv_point_t * p)
 {
     indev_obj_act = lv_indev_search_obj(lv_display_get_layer_sys(disp), p);
@@ -1458,6 +1515,7 @@ static lv_obj_t * pointer_search_obj(lv_display_t * disp, lv_point_t * p)
  * Reset input device if a reset query has been sent to it
  * @param indev pointer to an input device
  */
+LV_FUNC_SECTION
 static void indev_proc_reset_query_handler(lv_indev_t * indev)
 {
     if(indev->reset_query) {
@@ -1486,6 +1544,7 @@ static void indev_proc_reset_query_handler(lv_indev_t * indev)
  * Handle focus/defocus on click for POINTER input devices
  * @param proc pointer to the state of the indev
  */
+LV_FUNC_SECTION
 static void indev_click_focus(lv_indev_t * indev)
 {
     /*Handle click focus*/
@@ -1554,6 +1613,7 @@ static void indev_click_focus(lv_indev_t * indev)
 * Handle the gesture of indev_proc_p->pointer.act_obj
 * @param indev pointer to an input device state
 */
+LV_FUNC_SECTION
 void indev_gesture(lv_indev_t * indev)
 {
     if(indev->pointer.scroll_obj) return;
@@ -1609,6 +1669,7 @@ void indev_gesture(lv_indev_t * indev)
  * @param proc pointer to an input device 'proc'
  * @return true if indev query should be immediately truncated.
  */
+LV_FUNC_SECTION
 static bool indev_reset_check(lv_indev_t * indev)
 {
     if(indev->reset_query) {
@@ -1623,6 +1684,7 @@ static bool indev_reset_check(lv_indev_t * indev)
  * @param indev pointer to an input device
  * @return true if indev should stop processing the event.
  */
+LV_FUNC_SECTION
 static bool indev_stop_processing_check(lv_indev_t * indev)
 {
     return indev->stop_processing_query;
@@ -1633,6 +1695,7 @@ static bool indev_stop_processing_check(lv_indev_t * indev)
  * @param indev pointer to an input device
  * @param obj pointer to obj
 */
+LV_FUNC_SECTION
 static void indev_reset_core(lv_indev_t * indev, lv_obj_t * obj)
 {
     lv_obj_t * act_obj = NULL;
@@ -1673,6 +1736,7 @@ static void indev_reset_core(lv_indev_t * indev, lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 static lv_result_t send_event(lv_event_code_t code, void * param)
 {
     lv_indev_t * indev = indev_act;
@@ -1700,6 +1764,7 @@ static lv_result_t send_event(lv_event_code_t code, void * param)
     return LV_RESULT_OK;
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void indev_scroll_throw_anim_cb(void * var, int32_t v)
 {
     LV_ASSERT_NULL(var);
@@ -1716,6 +1781,7 @@ static void indev_scroll_throw_anim_cb(void * var, int32_t v)
     }
 }
 
+__attribute__(( fptrgroup("lv_anim_completed_cb"), fptrgroup("lv_anim_deleted_cb") ))
 static void indev_scroll_throw_anim_completed_cb(lv_anim_t * anim)
 {
     if(anim) {
@@ -1723,6 +1789,7 @@ static void indev_scroll_throw_anim_completed_cb(lv_anim_t * anim)
     }
 }
 
+LV_FUNC_SECTION
 static void indev_scroll_throw_anim_start(lv_indev_t * indev)
 {
     LV_ASSERT_NULL(indev);

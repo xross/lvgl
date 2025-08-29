@@ -74,6 +74,7 @@ static const char * custom_neutrals = NULL;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_bidi_process(const char * str_in, char * str_out, lv_base_dir_t base_dir)
 {
     if(base_dir == LV_BASE_DIR_AUTO) base_dir = lv_bidi_detect_base_dir(str_in);
@@ -105,6 +106,7 @@ void lv_bidi_process(const char * str_in, char * str_out, lv_base_dir_t base_dir
  * @param txt the text to process
  * @return `LV_BASE_DIR_LTR` or `LV_BASE_DIR_RTL`
  */
+LV_FUNC_SECTION
 lv_base_dir_t lv_bidi_detect_base_dir(const char * txt)
 {
     uint32_t i = 0;
@@ -122,6 +124,7 @@ lv_base_dir_t lv_bidi_detect_base_dir(const char * txt)
     else return LV_BIDI_BASE_DIR_DEF;
 }
 
+LV_FUNC_SECTION
 uint16_t lv_bidi_get_logical_pos(const char * str_in, char ** bidi_txt, uint32_t len, lv_base_dir_t base_dir,
                                  uint32_t visual_pos, bool * is_rtl)
 {
@@ -147,6 +150,7 @@ uint16_t lv_bidi_get_logical_pos(const char * str_in, char ** bidi_txt, uint32_t
     return res;
 }
 
+LV_FUNC_SECTION
 uint16_t lv_bidi_get_visual_pos(const char * str_in, char ** bidi_txt, uint16_t len, lv_base_dir_t base_dir,
                                 uint32_t logical_pos, bool * is_rtl)
 {
@@ -179,6 +183,7 @@ uint16_t lv_bidi_get_visual_pos(const char * str_in, char ** bidi_txt, uint16_t 
     return (uint16_t) -1;
 }
 
+LV_FUNC_SECTION
 void lv_bidi_process_paragraph(const char * str_in, char * str_out, uint32_t len, lv_base_dir_t base_dir,
                                uint16_t * pos_conv_out, uint16_t pos_conv_len)
 {
@@ -272,6 +277,7 @@ void lv_bidi_process_paragraph(const char * str_in, char * str_out, uint32_t len
     }
 }
 
+LV_FUNC_SECTION
 void lv_bidi_calculate_align(lv_text_align_t * align, lv_base_dir_t * base_dir, const char * txt)
 {
     if(*base_dir == LV_BASE_DIR_AUTO) *base_dir = lv_bidi_detect_base_dir(txt);
@@ -282,6 +288,7 @@ void lv_bidi_calculate_align(lv_text_align_t * align, lv_base_dir_t * base_dir, 
     }
 }
 
+LV_FUNC_SECTION
 void lv_bidi_set_custom_neutrals_static(const char * neutrals)
 {
     custom_neutrals = neutrals;
@@ -296,6 +303,7 @@ void lv_bidi_set_custom_neutrals_static(const char * neutrals)
  * @param txt the text to process
  * @return the length of the current paragraph in byte count
  */
+LV_FUNC_SECTION
 static uint32_t lv_bidi_get_next_paragraph(const char * txt)
 {
     uint32_t i = 0;
@@ -314,6 +322,7 @@ static uint32_t lv_bidi_get_next_paragraph(const char * txt)
  * @param letter a Unicode character
  * @return `LV_BASE_DIR_RTL/LTR/WEAK/NEUTRAL`
  */
+LV_FUNC_SECTION
 static lv_base_dir_t lv_bidi_get_letter_dir(uint32_t letter)
 {
     if(lv_bidi_letter_is_rtl(letter)) return LV_BASE_DIR_RTL;
@@ -327,6 +336,7 @@ static lv_base_dir_t lv_bidi_get_letter_dir(uint32_t letter)
  * @param letter a Unicode character
  * @return true/false
  */
+LV_FUNC_SECTION
 static bool lv_bidi_letter_is_weak(uint32_t letter)
 {
     uint32_t i = 0;
@@ -346,6 +356,7 @@ static bool lv_bidi_letter_is_weak(uint32_t letter)
  * @param letter a Unicode character
  * @return true/false
  */
+LV_FUNC_SECTION
 static bool lv_bidi_letter_is_rtl(uint32_t letter)
 {
     if(letter == 0x202E) return true;               /*Unicode of LV_BIDI_RLO*/
@@ -367,6 +378,7 @@ static bool lv_bidi_letter_is_rtl(uint32_t letter)
  * @param letter a Unicode character
  * @return true/false
  */
+LV_FUNC_SECTION
 static bool lv_bidi_letter_is_neutral(uint32_t letter)
 {
     uint16_t i;
@@ -382,6 +394,7 @@ static bool lv_bidi_letter_is_neutral(uint32_t letter)
     return false;
 }
 
+LV_FUNC_SECTION
 static uint32_t get_txt_len(const char * txt, uint32_t max_len)
 {
     uint32_t len = 0;
@@ -395,6 +408,7 @@ static uint32_t get_txt_len(const char * txt, uint32_t max_len)
     return len;
 }
 
+LV_FUNC_SECTION
 static void fill_pos_conv(uint16_t * out, uint16_t len, uint16_t index)
 {
     uint16_t i;
@@ -404,6 +418,7 @@ static void fill_pos_conv(uint16_t * out, uint16_t len, uint16_t index)
     }
 }
 
+LV_FUNC_SECTION
 static lv_base_dir_t get_next_run(lv_bidi_ctx_t * ctx, const char * txt, lv_base_dir_t base_dir, uint32_t max_len,
                                   uint32_t * len,
                                   uint16_t  * pos_conv_len)
@@ -498,6 +513,7 @@ static lv_base_dir_t get_next_run(lv_bidi_ctx_t * ctx, const char * txt, lv_base
     return run_dir;
 }
 
+LV_FUNC_SECTION
 static void rtl_reverse(char * dest, const char * src, uint32_t len, uint16_t * pos_conv_out, uint16_t pos_conv_rd_base,
                         uint16_t pos_conv_len)
 {
@@ -566,6 +582,7 @@ static void rtl_reverse(char * dest, const char * src, uint32_t len, uint16_t * 
     }
 }
 
+LV_FUNC_SECTION
 static uint32_t char_change_to_pair(uint32_t letter)
 {
 
@@ -581,6 +598,7 @@ static uint32_t char_change_to_pair(uint32_t letter)
     return letter;
 }
 
+LV_FUNC_SECTION
 static lv_base_dir_t bracket_process(lv_bidi_ctx_t * ctx, const char * txt, uint32_t next_pos, uint32_t len,
                                      uint32_t letter,
                                      lv_base_dir_t base_dir)

@@ -10,6 +10,7 @@
 
 PikaEventListener* g_pika_lv_timer_event_listener;
 
+LV_FUNC_SECTION
 void __pika_timer_cb(lv_timer_t* timer) {
     PikaObj* eventHandleObj = pks_eventListener_getEventHandleObj(
         g_pika_lv_timer_event_listener, (uint32_t)timer);
@@ -18,11 +19,13 @@ void __pika_timer_cb(lv_timer_t* timer) {
     obj_run(eventHandleObj, "eventCallBack(timer)");
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_timer_t_set_period(PikaObj* self, int period) {
     lv_timer_t* lv_timer = obj_getPtr(self, "lv_timer");
     lv_timer_set_period(lv_timer, period);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_timer_t_set_cb(PikaObj* self, Arg* cb) {
     lv_timer_t* lv_timer = obj_getPtr(self, "lv_timer");
     lv_timer_set_cb(lv_timer, __pika_timer_cb);
@@ -37,6 +40,7 @@ void pika_lvgl_lv_timer_t_set_cb(PikaObj* self, Arg* cb) {
 
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_timer_t__delete(PikaObj* self) {
     lv_timer_t* lv_timer = obj_getPtr(self, "lv_timer");
     lv_timer_delete(lv_timer);

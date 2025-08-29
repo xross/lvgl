@@ -47,6 +47,7 @@ static void _pxp_fill(uint8_t * dest_buf, const lv_area_t * dest_area, int32_t d
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_pxp_fill(lv_draw_unit_t * draw_unit, const lv_draw_fill_dsc_t * dsc,
                       const lv_area_t * coords)
 {
@@ -75,6 +76,7 @@ void lv_draw_pxp_fill(lv_draw_unit_t * draw_unit, const lv_draw_fill_dsc_t * dsc
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _pxp_fill(uint8_t * dest_buf, const lv_area_t * dest_area, int32_t dest_stride,
                       lv_color_format_t dest_cf, const lv_draw_fill_dsc_t * dsc)
 {

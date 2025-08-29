@@ -46,16 +46,19 @@ struct lv_cache_entry_t {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_cache_entry_reset_ref(lv_cache_entry_t * entry)
 {
     LV_ASSERT_NULL(entry);
     entry->ref_cnt = 0;
 }
+LV_FUNC_SECTION
 void lv_cache_entry_inc_ref(lv_cache_entry_t * entry)
 {
     LV_ASSERT_NULL(entry);
     entry->ref_cnt++;
 }
+LV_FUNC_SECTION
 void lv_cache_entry_dec_ref(lv_cache_entry_t * entry)
 {
     LV_ASSERT_NULL(entry);
@@ -65,35 +68,42 @@ void lv_cache_entry_dec_ref(lv_cache_entry_t * entry)
         entry->ref_cnt = 0;
     }
 }
+LV_FUNC_SECTION
 int32_t lv_cache_entry_get_ref(lv_cache_entry_t * entry)
 {
     LV_ASSERT_NULL(entry);
     return entry->ref_cnt;
 }
+LV_FUNC_SECTION
 uint32_t lv_cache_entry_get_node_size(lv_cache_entry_t * entry)
 {
     return entry->node_size;
 }
+LV_FUNC_SECTION
 void lv_cache_entry_set_node_size(lv_cache_entry_t * entry, uint32_t node_size)
 {
     LV_ASSERT_NULL(entry);
     entry->node_size = node_size;
 }
+LV_FUNC_SECTION
 void lv_cache_entry_set_invalid(lv_cache_entry_t * entry, bool is_invalid)
 {
     LV_ASSERT_NULL(entry);
     entry->is_invalid = is_invalid;
 }
+LV_FUNC_SECTION
 bool lv_cache_entry_is_invalid(lv_cache_entry_t * entry)
 {
     LV_ASSERT_NULL(entry);
     return entry->is_invalid;
 }
+LV_FUNC_SECTION
 void * lv_cache_entry_get_data(lv_cache_entry_t * entry)
 {
     LV_ASSERT_NULL(entry);
     return (uint8_t *)entry - entry->node_size;
 }
+LV_FUNC_SECTION
 void * lv_cache_entry_acquire_data(lv_cache_entry_t * entry)
 {
     LV_ASSERT_NULL(entry);
@@ -101,6 +111,7 @@ void * lv_cache_entry_acquire_data(lv_cache_entry_t * entry)
     lv_cache_entry_inc_ref(entry);
     return lv_cache_entry_get_data(entry);
 }
+LV_FUNC_SECTION
 void lv_cache_entry_release_data(lv_cache_entry_t * entry, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -113,26 +124,31 @@ void lv_cache_entry_release_data(lv_cache_entry_t * entry, void * user_data)
 
     lv_cache_entry_dec_ref(entry);
 }
+LV_FUNC_SECTION
 lv_cache_entry_t * lv_cache_entry_get_entry(void * data, const uint32_t node_size)
 {
     LV_ASSERT_NULL(data);
     return (lv_cache_entry_t *)((uint8_t *)data + node_size);
 }
+LV_FUNC_SECTION
 void lv_cache_entry_set_cache(lv_cache_entry_t * entry, const lv_cache_t * cache)
 {
     LV_ASSERT_NULL(entry);
     entry->cache = cache;
 }
+LV_FUNC_SECTION
 const lv_cache_t * lv_cache_entry_get_cache(const lv_cache_entry_t * entry)
 {
     LV_ASSERT_NULL(entry);
     return entry->cache;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_cache_entry_get_size(const uint32_t node_size)
 {
     return node_size + sizeof(lv_cache_entry_t);
 }
+LV_FUNC_SECTION
 lv_cache_entry_t * lv_cache_entry_alloc(const uint32_t node_size, const lv_cache_t * cache)
 {
     void * res = lv_malloc_zeroed(lv_cache_entry_get_size(node_size));
@@ -145,6 +161,7 @@ lv_cache_entry_t * lv_cache_entry_alloc(const uint32_t node_size, const lv_cache
     lv_cache_entry_init(entry, cache, node_size);
     return (lv_cache_entry_t *)((uint8_t *)entry + node_size);
 }
+LV_FUNC_SECTION
 void lv_cache_entry_init(lv_cache_entry_t * entry, const lv_cache_t * cache, const uint32_t node_size)
 {
     LV_ASSERT_NULL(entry);
@@ -155,6 +172,7 @@ void lv_cache_entry_init(lv_cache_entry_t * entry, const lv_cache_t * cache, con
     entry->ref_cnt = 0;
     entry->is_invalid = false;
 }
+LV_FUNC_SECTION
 void lv_cache_entry_delete(lv_cache_entry_t * entry)
 {
     LV_ASSERT_NULL(entry);

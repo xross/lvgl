@@ -127,6 +127,7 @@ static const int PENALTY_N4 = 10;
 /*---- High-level QR Code encoding functions ----*/
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 bool qrcodegen_encodeText(const char * text, uint8_t tempBuffer[], uint8_t qrcode[],
                           enum qrcodegen_Ecc ecl, int minVersion, int maxVersion, enum qrcodegen_Mask mask, bool boostEcl)
 {
@@ -168,6 +169,7 @@ fail:
 
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 bool qrcodegen_encodeBinary(uint8_t dataAndTemp[], size_t dataLen, uint8_t qrcode[],
                             enum qrcodegen_Ecc ecl, int minVersion, int maxVersion, enum qrcodegen_Mask mask, bool boostEcl)
 {
@@ -187,6 +189,7 @@ bool qrcodegen_encodeBinary(uint8_t dataAndTemp[], size_t dataLen, uint8_t qrcod
 
 // Appends the given number of low-order bits of the given value to the given byte-based
 // bit buffer, increasing the bit length. Requires 0 <= numBits <= 16 and val < 2^numBits.
+LV_FUNC_SECTION
 testable void appendBitsToBuffer(unsigned int val, int numBits, uint8_t buffer[], int * bitLen)
 {
     LV_ASSERT(0 <= numBits && numBits <= 16 && (unsigned long)val >> numBits == 0);
@@ -199,6 +202,7 @@ testable void appendBitsToBuffer(unsigned int val, int numBits, uint8_t buffer[]
 /*---- Low-level QR Code encoding functions ----*/
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 bool qrcodegen_encodeSegments(const struct qrcodegen_Segment segs[], size_t len,
                               enum qrcodegen_Ecc ecl, uint8_t tempBuffer[], uint8_t qrcode[])
 {
@@ -208,6 +212,7 @@ bool qrcodegen_encodeSegments(const struct qrcodegen_Segment segs[], size_t len,
 
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 bool qrcodegen_encodeSegmentsAdvanced(const struct qrcodegen_Segment segs[], size_t len, enum qrcodegen_Ecc ecl,
                                       int minVersion, int maxVersion, int mask, bool boostEcl, uint8_t tempBuffer[], uint8_t qrcode[])
 {
@@ -297,6 +302,7 @@ bool qrcodegen_encodeSegmentsAdvanced(const struct qrcodegen_Segment segs[], siz
 // bytes from the blocks and stores them in the result array. data[0 : dataLen] contains
 // the input data. data[dataLen : rawCodewords] is used as a temporary work area and will
 // be clobbered by this function. The final answer is stored in result[0 : rawCodewords].
+LV_FUNC_SECTION
 testable void addEccAndInterleave(uint8_t data[], int version, enum qrcodegen_Ecc ecl, uint8_t result[])
 {
     // Calculate parameter numbers
@@ -331,6 +337,7 @@ testable void addEccAndInterleave(uint8_t data[], int version, enum qrcodegen_Ec
 
 // Returns the number of 8-bit codewords that can be used for storing data (not ECC),
 // for the given version number and error correction level. The result is in the range [9, 2956].
+LV_FUNC_SECTION
 testable int getNumDataCodewords(int version, enum qrcodegen_Ecc ecl)
 {
     int v = version, e = (int)ecl;
@@ -344,6 +351,7 @@ testable int getNumDataCodewords(int version, enum qrcodegen_Ecc ecl)
 // Returns the number of data bits that can be stored in a QR Code of the given version number, after
 // all function modules are excluded. This includes remainder bits, so it might not be a multiple of 8.
 // The result is in the range [208, 29648]. This could be implemented as a 40-entry lookup table.
+LV_FUNC_SECTION
 testable int getNumRawDataModules(int ver)
 {
     LV_ASSERT(qrcodegen_VERSION_MIN <= ver && ver <= qrcodegen_VERSION_MAX);
@@ -362,6 +370,7 @@ testable int getNumRawDataModules(int ver)
 /*---- Reed-Solomon ECC generator functions ----*/
 
 // Calculates the Reed-Solomon generator polynomial of the given degree, storing in result[0 : degree].
+LV_FUNC_SECTION
 testable void calcReedSolomonGenerator(int degree, uint8_t result[])
 {
     // Start with the monomial x^0
@@ -387,6 +396,7 @@ testable void calcReedSolomonGenerator(int degree, uint8_t result[])
 
 // Calculates the remainder of the polynomial data[0 : dataLen] when divided by the generator[0 : degree], where all
 // polynomials are in big endian and the generator has an implicit leading 1 term, storing the result in result[0 : degree].
+LV_FUNC_SECTION
 testable void calcReedSolomonRemainder(const uint8_t data[], int dataLen,
                                        const uint8_t generator[], int degree, uint8_t result[])
 {
@@ -408,6 +418,7 @@ testable void calcReedSolomonRemainder(const uint8_t data[], int dataLen,
 
 // Returns the product of the two given field elements modulo GF(2^8/0x11D).
 // All inputs are valid. This could be implemented as a 256*256 lookup table.
+LV_FUNC_SECTION
 testable uint8_t finiteFieldMultiply(uint8_t x, uint8_t y)
 {
     // Russian peasant multiplication
@@ -425,6 +436,7 @@ testable uint8_t finiteFieldMultiply(uint8_t x, uint8_t y)
 
 // Clears the given QR Code grid with white modules for the given
 // version's size, then marks every function module as black.
+LV_FUNC_SECTION
 testable void initializeFunctionModules(int version, uint8_t qrcode[])
 {
     // Initialize QR Code
@@ -463,6 +475,7 @@ testable void initializeFunctionModules(int version, uint8_t qrcode[])
 // Draws white function modules and possibly some black modules onto the given QR Code, without changing
 // non-function modules. This does not draw the format bits. This requires all function modules to be previously
 // marked black (namely by initializeFunctionModules()), because this may skip redrawing black function modules.
+LV_FUNC_SECTION
 static void drawWhiteFunctionModules(uint8_t qrcode[], int version)
 {
     // Draw horizontal and vertical timing patterns
@@ -525,6 +538,7 @@ static void drawWhiteFunctionModules(uint8_t qrcode[], int version)
 // Draws two copies of the format bits (with its own error correction code) based
 // on the given mask and error correction level. This always draws all modules of
 // the format bits, unlike drawWhiteFunctionModules() which might skip black modules.
+LV_FUNC_SECTION
 static void drawFormatBits(enum qrcodegen_Ecc ecl, enum qrcodegen_Mask mask, uint8_t qrcode[])
 {
     // Calculate error correction code and pack bits
@@ -560,6 +574,7 @@ static void drawFormatBits(enum qrcodegen_Ecc ecl, enum qrcodegen_Mask mask, uin
 // for this version number, returning the length of the list (in the range [0,7]).
 // Each position is in the range [0,177), and are used on both the x and y axes.
 // This could be implemented as lookup table of 40 variable-length lists of unsigned bytes.
+LV_FUNC_SECTION
 testable int getAlignmentPatternPositions(int version, uint8_t result[7])
 {
     if(version == 1)
@@ -575,6 +590,7 @@ testable int getAlignmentPatternPositions(int version, uint8_t result[7])
 
 
 // Sets every pixel in the range [left : left + width] * [top : top + height] to black.
+LV_FUNC_SECTION
 static void fillRectangle(int left, int top, int width, int height, uint8_t qrcode[])
 {
     for(int dy = 0; dy < height; dy++) {
@@ -589,6 +605,7 @@ static void fillRectangle(int left, int top, int width, int height, uint8_t qrco
 
 // Draws the raw codewords (including data and ECC) onto the given QR Code. This requires the initial state of
 // the QR Code to be black at function modules and white at codeword modules (including unused remainder bits).
+LV_FUNC_SECTION
 static void drawCodewords(const uint8_t data[], int dataLen, uint8_t qrcode[])
 {
     int qrsize = qrcodegen_getSize(qrcode);
@@ -621,6 +638,7 @@ static void drawCodewords(const uint8_t data[], int dataLen, uint8_t qrcode[])
 // before masking. Due to the arithmetic of XOR, calling applyMask() with
 // the same mask value a second time will undo the mask. A final well-formed
 // QR Code needs exactly one (not zero, two, etc.) mask applied.
+LV_FUNC_SECTION
 static void applyMask(const uint8_t functionModules[], uint8_t qrcode[], enum qrcodegen_Mask mask)
 {
     LV_ASSERT(0 <= (int)mask && (int)mask <= 7);  // Disallows qrcodegen_Mask_AUTO
@@ -668,6 +686,7 @@ static void applyMask(const uint8_t functionModules[], uint8_t qrcode[], enum qr
 
 // Calculates and returns the penalty score based on state of the given QR Code's current modules.
 // This is used by the automatic mask choice algorithm to find the mask pattern that yields the lowest score.
+LV_FUNC_SECTION
 static long getPenaltyScore(const uint8_t qrcode[])
 {
     int qrsize = qrcodegen_getSize(qrcode);
@@ -757,6 +776,7 @@ static long getPenaltyScore(const uint8_t qrcode[])
 
 // Inserts the given value to the front of the given array, which shifts over the
 // existing values and deletes the last value. A helper function for getPenaltyScore().
+LV_FUNC_SECTION
 static void addRunToHistory(unsigned char run, unsigned char history[7])
 {
     memmove(&history[1], &history[0], 6 * sizeof(history[0]));
@@ -767,6 +787,7 @@ static void addRunToHistory(unsigned char run, unsigned char history[7])
 // Tests whether the given run history has the pattern of ratio 1:1:3:1:1 in the middle, and
 // surrounded by at least 4 on either or both ends. A helper function for getPenaltyScore().
 // Must only be called immediately after a run of white modules has ended.
+LV_FUNC_SECTION
 static bool hasFinderLikePattern(const unsigned char runHistory[7])
 {
     unsigned char n = runHistory[1];
@@ -781,6 +802,7 @@ static bool hasFinderLikePattern(const unsigned char runHistory[7])
 /*---- Basic QR Code information ----*/
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 int qrcodegen_getSize(const uint8_t qrcode[])
 {
     LV_ASSERT(qrcode != NULL);
@@ -792,6 +814,7 @@ int qrcodegen_getSize(const uint8_t qrcode[])
 
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 bool qrcodegen_getModule(const uint8_t qrcode[], int x, int y)
 {
     LV_ASSERT(qrcode != NULL);
@@ -801,6 +824,7 @@ bool qrcodegen_getModule(const uint8_t qrcode[], int x, int y)
 
 
 // Gets the module at the given coordinates, which must be in bounds.
+LV_FUNC_SECTION
 testable bool getModule(const uint8_t qrcode[], int x, int y)
 {
     int qrsize = qrcode[0];
@@ -811,6 +835,7 @@ testable bool getModule(const uint8_t qrcode[], int x, int y)
 
 
 // Sets the module at the given coordinates, which must be in bounds.
+LV_FUNC_SECTION
 testable void setModule(uint8_t qrcode[], int x, int y, bool isBlack)
 {
     int qrsize = qrcode[0];
@@ -826,6 +851,7 @@ testable void setModule(uint8_t qrcode[], int x, int y, bool isBlack)
 
 
 // Sets the module at the given coordinates, doing nothing if out of bounds.
+LV_FUNC_SECTION
 testable void setModuleBounded(uint8_t qrcode[], int x, int y, bool isBlack)
 {
     int qrsize = qrcode[0];
@@ -835,6 +861,7 @@ testable void setModuleBounded(uint8_t qrcode[], int x, int y, bool isBlack)
 
 
 // Returns true iff the i'th bit of x is set to 1. Requires x >= 0 and 0 <= i <= 14.
+LV_FUNC_SECTION
 static bool getBit(int x, int i)
 {
     return ((x >> i) & 1) != 0;
@@ -845,6 +872,7 @@ static bool getBit(int x, int i)
 /*---- Segment handling ----*/
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 bool qrcodegen_isAlphanumeric(const char * text)
 {
     LV_ASSERT(text != NULL);
@@ -857,6 +885,7 @@ bool qrcodegen_isAlphanumeric(const char * text)
 
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 bool qrcodegen_isNumeric(const char * text)
 {
     LV_ASSERT(text != NULL);
@@ -869,6 +898,7 @@ bool qrcodegen_isNumeric(const char * text)
 
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 size_t qrcodegen_calcSegmentBufferSize(enum qrcodegen_Mode mode, size_t numChars)
 {
     int temp = calcSegmentBitLength(mode, numChars);
@@ -887,6 +917,7 @@ size_t qrcodegen_calcSegmentBufferSize(enum qrcodegen_Mode mode, size_t numChars
 // - For byte mode, numChars measures the number of bytes, not Unicode code points.
 // - For ECI mode, numChars must be 0, and the worst-case number of bits is returned.
 //   An actual ECI segment can have shorter data. For non-ECI modes, the result is exact.
+LV_FUNC_SECTION
 testable int calcSegmentBitLength(enum qrcodegen_Mode mode, size_t numChars)
 {
     // All calculations are designed to avoid overflow on all platforms
@@ -915,6 +946,7 @@ testable int calcSegmentBitLength(enum qrcodegen_Mode mode, size_t numChars)
 
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 struct qrcodegen_Segment qrcodegen_makeBytes(const uint8_t data[], size_t len, uint8_t buf[])
 {
     LV_ASSERT(data != NULL || len == 0);
@@ -931,6 +963,7 @@ struct qrcodegen_Segment qrcodegen_makeBytes(const uint8_t data[], size_t len, u
 
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 struct qrcodegen_Segment qrcodegen_makeNumeric(const char * digits, uint8_t buf[])
 {
     LV_ASSERT(digits != NULL);
@@ -966,6 +999,7 @@ struct qrcodegen_Segment qrcodegen_makeNumeric(const char * digits, uint8_t buf[
 
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 struct qrcodegen_Segment qrcodegen_makeAlphanumeric(const char * text, uint8_t buf[])
 {
     LV_ASSERT(text != NULL);
@@ -1001,6 +1035,7 @@ struct qrcodegen_Segment qrcodegen_makeAlphanumeric(const char * text, uint8_t b
 
 
 // Public function - see documentation comment in header file.
+LV_FUNC_SECTION
 struct qrcodegen_Segment qrcodegen_makeEci(long assignVal, uint8_t buf[])
 {
     struct qrcodegen_Segment result;
@@ -1036,6 +1071,7 @@ struct qrcodegen_Segment qrcodegen_makeEci(long assignVal, uint8_t buf[])
 // Calculates the number of bits needed to encode the given segments at the given version.
 // Returns a non-negative number if successful. Otherwise returns -1 if a segment has too
 // many characters to fit its length field, or the total bits exceeds INT16_MAX.
+LV_FUNC_SECTION
 testable int getTotalBits(const struct qrcodegen_Segment segs[], size_t len, int version)
 {
     LV_ASSERT(segs != NULL || len == 0);
@@ -1060,6 +1096,7 @@ testable int getTotalBits(const struct qrcodegen_Segment segs[], size_t len, int
 
 // Returns the bit width of the character count field for a segment in the given mode
 // in a QR Code at the given version number. The result is in the range [0, 16].
+LV_FUNC_SECTION
 static int numCharCountBits(enum qrcodegen_Mode mode, int version)
 {
     LV_ASSERT(qrcodegen_VERSION_MIN <= version && version <= qrcodegen_VERSION_MAX);
@@ -1089,6 +1126,7 @@ static int numCharCountBits(enum qrcodegen_Mode mode, int version)
     }
 }
 
+LV_FUNC_SECTION
 int qrcodegen_getMinFitVersion(enum qrcodegen_Ecc ecl, size_t dataLen)
 {
     struct qrcodegen_Segment seg;
@@ -1105,6 +1143,7 @@ int qrcodegen_getMinFitVersion(enum qrcodegen_Ecc ecl, size_t dataLen)
     return -1;
 }
 
+LV_FUNC_SECTION
 int qrcodegen_version2size(int version)
 {
     if(version < qrcodegen_VERSION_MIN || version > qrcodegen_VERSION_MAX) {

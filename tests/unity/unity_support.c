@@ -81,6 +81,7 @@ static void create_folders_if_needed(const char * path) ;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 bool lv_test_assert_image_eq(const char * fn_ref)
 {
     bool pass;
@@ -141,6 +142,7 @@ static uint8_t screen_buf_xrgb8888[800 * 480 * 4];
  * @param mode          arbitrary string to tell more about the compare
  * @return  true: test passed; false: test failed
  */
+LV_FUNC_SECTION
 static bool screenshot_compare(const char * fn_ref, const char * mode, uint8_t tolerance)
 {
 
@@ -219,6 +221,7 @@ static bool screenshot_compare(const char * fn_ref, const char * mode, uint8_t t
 
 }
 
+LV_FUNC_SECTION
 static int read_png_file(png_image_t * p, const char * file_name)
 {
     char header[8];    // 8 is the maximum size that can be checked
@@ -283,6 +286,7 @@ static int read_png_file(png_image_t * p, const char * file_name)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int write_png_file(void * raw_img, uint32_t width, uint32_t height, char * file_name)
 {
     png_structp png_ptr;
@@ -367,6 +371,7 @@ static int write_png_file(void * raw_img, uint32_t width, uint32_t height, char 
     return 0;
 }
 
+LV_FUNC_SECTION
 static void png_release(png_image_t * p)
 {
     int y;
@@ -377,6 +382,7 @@ static void png_release(png_image_t * p)
     png_destroy_read_struct(&p->png_ptr, &p->info_ptr, NULL);
 }
 
+LV_FUNC_SECTION
 static void buf_to_xrgb8888(const lv_draw_buf_t * draw_buf, uint8_t * buf_out)
 {
     uint32_t stride = draw_buf->header.stride;
@@ -482,6 +488,7 @@ static void buf_to_xrgb8888(const lv_draw_buf_t * draw_buf, uint8_t * buf_out)
     }
 }
 
+LV_FUNC_SECTION
 static void create_folders_if_needed(const char * path)
 {
     char * ptr;

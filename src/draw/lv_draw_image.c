@@ -46,6 +46,7 @@ static void img_decode_and_draw(lv_draw_unit_t * draw_unit, const lv_draw_image_
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_image_dsc_init(lv_draw_image_dsc_t * dsc)
 {
     lv_memzero(dsc, sizeof(lv_draw_image_dsc_t));
@@ -58,11 +59,13 @@ void lv_draw_image_dsc_init(lv_draw_image_dsc_t * dsc)
     dsc->base.dsc_size = sizeof(lv_draw_image_dsc_t);
 }
 
+LV_FUNC_SECTION
 lv_draw_image_dsc_t * lv_draw_task_get_image_dsc(lv_draw_task_t * task)
 {
     return task->type == LV_DRAW_TASK_TYPE_IMAGE ? (lv_draw_image_dsc_t *)task->draw_dsc : NULL;
 }
 
+LV_FUNC_SECTION
 void lv_draw_layer(lv_layer_t * layer, const lv_draw_image_dsc_t * dsc, const lv_area_t * coords)
 {
     if(dsc->scale_x <= 0 || dsc->scale_y <= 0) {
@@ -87,6 +90,7 @@ void lv_draw_layer(lv_layer_t * layer, const lv_draw_image_dsc_t * dsc, const lv
     lv_draw_finalize_task_creation(layer, t);
 }
 
+LV_FUNC_SECTION
 void lv_draw_image(lv_layer_t * layer, const lv_draw_image_dsc_t * dsc, const lv_area_t * coords)
 {
     if(dsc->src == NULL) {
@@ -123,6 +127,7 @@ void lv_draw_image(lv_layer_t * layer, const lv_draw_image_dsc_t * dsc, const lv
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 lv_image_src_t lv_image_src_get_type(const void * src)
 {
     if(src == NULL) return LV_IMAGE_SRC_UNKNOWN;
@@ -140,6 +145,7 @@ lv_image_src_t lv_image_src_get_type(const void * src)
     }
 }
 
+LV_FUNC_SECTION
 void lv_draw_image_normal_helper(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * draw_dsc,
                                  const lv_area_t * coords, lv_draw_image_core_cb draw_core_cb)
 {
@@ -180,6 +186,7 @@ void lv_draw_image_normal_helper(lv_draw_unit_t * draw_unit, const lv_draw_image
     lv_image_decoder_close(&decoder_dsc);
 }
 
+LV_FUNC_SECTION
 void lv_draw_image_tiled_helper(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * draw_dsc,
                                 const lv_area_t * coords, lv_draw_image_core_cb draw_core_cb)
 {
@@ -239,6 +246,7 @@ void lv_draw_image_tiled_helper(lv_draw_unit_t * draw_unit, const lv_draw_image_
     lv_image_decoder_close(&decoder_dsc);
 }
 
+LV_FUNC_SECTION
 void lv_image_buf_get_transformed_area(lv_area_t * res, int32_t w, int32_t h, int32_t angle,
                                        uint16_t scale_x, uint16_t scale_y, const lv_point_t * pivot)
 {
@@ -270,6 +278,7 @@ void lv_image_buf_get_transformed_area(lv_area_t * res, int32_t w, int32_t h, in
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void img_decode_and_draw(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * draw_dsc,
                                 lv_image_decoder_dsc_t * decoder_dsc, lv_area_t * relative_decoded_area,
                                 const lv_area_t * img_area, const lv_area_t * clipped_img_area,

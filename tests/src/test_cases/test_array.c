@@ -6,16 +6,19 @@
 
 static lv_array_t array;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     lv_array_init(&array, LV_ARRAY_DEFAULT_CAPACITY, sizeof(int32_t));
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_array_deinit(&array);
 }
 
+LV_FUNC_SECTION
 void test_array_append_values(void)
 {
     const int32_t new_size = LV_ARRAY_DEFAULT_CAPACITY + 2;
@@ -27,6 +30,7 @@ void test_array_append_values(void)
     TEST_ASSERT_EQUAL_UINT32(new_size, lv_array_size(&array));
 }
 
+LV_FUNC_SECTION
 void test_array_set_get(void)
 {
     int32_t v = 100;
@@ -35,6 +39,7 @@ void test_array_set_get(void)
     TEST_ASSERT_EQUAL_UINT32(100, *r);
 }
 
+LV_FUNC_SECTION
 void test_array_size(void)
 {
     for(int32_t i = 0; i < 10; i++) {
@@ -47,6 +52,7 @@ void test_array_size(void)
     TEST_ASSERT_EQUAL_UINT32(0, lv_array_size(&array));
 }
 
+LV_FUNC_SECTION
 void test_array_resize(void)
 {
     for(int32_t i = 0; i < LV_ARRAY_DEFAULT_CAPACITY; i++) {
@@ -62,6 +68,7 @@ void test_array_resize(void)
     TEST_ASSERT_EQUAL_UINT32(6, lv_array_capacity(&array));
 }
 
+LV_FUNC_SECTION
 void test_array_copy(void)
 {
     for(int32_t i = 0; i < LV_ARRAY_DEFAULT_CAPACITY; i++) {
@@ -78,6 +85,7 @@ void test_array_copy(void)
     lv_array_deinit(&array2);
 }
 
+LV_FUNC_SECTION
 void test_array_concat(void)
 {
     lv_array_t a, b;

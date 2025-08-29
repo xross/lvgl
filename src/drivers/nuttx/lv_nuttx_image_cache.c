@@ -60,6 +60,7 @@ static void free_cb(void * draw_buf);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_nuttx_image_cache_init(void)
 {
     lv_draw_buf_handlers_t * handlers = image_cache_draw_buf_handlers;
@@ -72,6 +73,7 @@ void lv_nuttx_image_cache_init(void)
     ctx->initialized = false;
 }
 
+LV_FUNC_SECTION
 void lv_nuttx_image_cache_deinit(void)
 {
     if(ctx->initialized == false) goto FREE_CONTEXT;
@@ -89,6 +91,7 @@ FREE_CONTEXT:
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static bool defer_init(void)
 {
     if(ctx->mem != NULL && ctx->heap != NULL) {
@@ -136,6 +139,7 @@ static bool defer_init(void)
     return true;
 }
 
+__attribute__(( fptrgroup("lv_draw_buf_malloc_cb") ))
 static void * malloc_cb(size_t size_bytes, lv_color_format_t color_format)
 {
     LV_UNUSED(color_format);
@@ -168,6 +172,7 @@ static void * malloc_cb(size_t size_bytes, lv_color_format_t color_format)
     }
 }
 
+LV_FUNC_SECTION
 static void free_cb(void * draw_buf)
 {
     mm_free(ctx->heap, draw_buf);

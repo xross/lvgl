@@ -88,12 +88,14 @@ static uint32_t partial_buffer_size = 0;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_renesas_glcdc_direct_create(void)
 {
     return glcdc_create(&fb_background[0][0], &fb_background[1][0], sizeof(fb_background[0]),
                         LV_DISPLAY_RENDER_MODE_DIRECT);
 }
 
+LV_FUNC_SECTION
 lv_display_t * lv_renesas_glcdc_partial_create(void * buf1, void * buf2, size_t buf_size)
 {
     partial_buffer_size = buf_size;
@@ -102,6 +104,7 @@ lv_display_t * lv_renesas_glcdc_partial_create(void * buf1, void * buf2, size_t 
 
 /*This function is declared in and being used by FSP generated code modules*/
 #ifdef _RENESAS_RA_
+LV_FUNC_SECTION
 void glcdc_callback(display_callback_args_t * p_args)
 {
     if(DISPLAY_EVENT_LINE_DETECTION == p_args->event) {
@@ -118,6 +121,7 @@ void glcdc_callback(display_callback_args_t * p_args)
     }
 }
 #else /* RX */
+LV_FUNC_SECTION
 void glcdc_callback(glcdc_callback_args_t * p_args)
 {
     if(GLCDC_EVENT_LINE_DETECTION == p_args->event) {
@@ -139,6 +143,7 @@ void glcdc_callback(glcdc_callback_args_t * p_args)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_display_t * glcdc_create(void * buf1, void * buf2, uint32_t buf_size, lv_display_render_mode_t render_mode)
 {
 #ifdef _RENESAS_RA_
@@ -170,6 +175,7 @@ static lv_display_t * glcdc_create(void * buf1, void * buf2, uint32_t buf_size, 
     return display;
 }
 
+LV_FUNC_SECTION
 static void give_vsync_sem_and_yield(void)
 {
 #if USE_FREE_RTOS
@@ -184,6 +190,7 @@ static void give_vsync_sem_and_yield(void)
 #endif /*USE_FREE_RTOS*/
 }
 
+LV_FUNC_SECTION
 static void glcdc_init(void)
 {
     /* Fill the Frame buffer with black colour (0x0000 in RGB565), for a clean start after previous runs */
@@ -238,6 +245,7 @@ static void glcdc_init(void)
 #endif /*_RENESAS_RA_*/
 }
 
+__attribute__(( fptrgroup("lv_display_flush_cb") ))
 static void flush_direct(lv_display_t * display, const lv_area_t * area, uint8_t * px_map)
 {
     FSP_PARAMETER_NOT_USED(area);
@@ -265,6 +273,7 @@ static void flush_direct(lv_display_t * display, const lv_area_t * area, uint8_t
 #endif /*_RENESAS_RA_*/
 }
 
+__attribute__(( fptrgroup("lv_display_flush_wait_cb") ))
 static void flush_wait_direct(lv_display_t * display)
 {
     if(!lv_display_flush_is_last(display)) return;
@@ -280,6 +289,7 @@ static void flush_wait_direct(lv_display_t * display)
 
 }
 
+__attribute__(( fptrgroup("lv_display_flush_cb") ))
 static void flush_partial(lv_display_t * display, const lv_area_t * area, uint8_t * px_map)
 {
     uint16_t * img = (uint16_t *)px_map;
@@ -332,6 +342,7 @@ static void flush_partial(lv_display_t * display, const lv_area_t * area, uint8_
     }
 }
 
+__attribute__(( fptrgroup("lv_display_flush_wait_cb") ))
 static void flush_wait_partial(lv_display_t * display)
 {
     LV_UNUSED(display);
@@ -342,6 +353,7 @@ static void flush_wait_partial(lv_display_t * display)
 #ifdef _RENESAS_RX_
 extern void drw_int_isr(void);
 
+LV_FUNC_SECTION
 static void enable_dave2d_drw_interrupt(void)
 {
     bsp_int_ctrl_t grpal1;

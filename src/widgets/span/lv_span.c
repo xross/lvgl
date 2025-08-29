@@ -91,6 +91,7 @@ const lv_obj_class_t lv_spangroup_class  = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 void lv_span_stack_init(void)
 {
     struct _snippet_stack * stack = snippet_stack = lv_malloc(sizeof(struct _snippet_stack));
@@ -100,11 +101,13 @@ void lv_span_stack_init(void)
     }
 }
 
+LV_FUNC_SECTION
 void lv_span_stack_deinit(void)
 {
     lv_free(snippet_stack);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_spangroup_create(lv_obj_t * par)
 {
     lv_obj_t * obj = lv_obj_class_create_obj(&lv_spangroup_class, par);
@@ -112,6 +115,7 @@ lv_obj_t * lv_spangroup_create(lv_obj_t * par)
     return obj;
 }
 
+LV_FUNC_SECTION
 lv_span_t * lv_spangroup_new_span(lv_obj_t * obj)
 {
     if(obj == NULL) {
@@ -133,6 +137,7 @@ lv_span_t * lv_spangroup_new_span(lv_obj_t * obj)
     return span;
 }
 
+LV_FUNC_SECTION
 void lv_spangroup_delete_span(lv_obj_t * obj, lv_span_t * span)
 {
     if(obj == NULL || span == NULL) {
@@ -163,6 +168,7 @@ void lv_spangroup_delete_span(lv_obj_t * obj, lv_span_t * span)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_span_set_text(lv_span_t * span, const char * text)
 {
     if(span == NULL || text == NULL) {
@@ -188,6 +194,7 @@ void lv_span_set_text(lv_span_t * span, const char * text)
     refresh_self_size(span->spangroup);
 }
 
+LV_FUNC_SECTION
 void lv_span_set_text_static(lv_span_t * span, const char * text)
 {
     if(span == NULL || text == NULL) {
@@ -204,11 +211,13 @@ void lv_span_set_text_static(lv_span_t * span, const char * text)
     refresh_self_size(span->spangroup);
 }
 
+LV_FUNC_SECTION
 void lv_spangroup_set_align(lv_obj_t * obj, lv_text_align_t align)
 {
     lv_obj_set_style_text_align(obj, align, LV_PART_MAIN);
 }
 
+LV_FUNC_SECTION
 void lv_spangroup_set_overflow(lv_obj_t * obj, lv_span_overflow_t overflow)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -219,6 +228,7 @@ void lv_spangroup_set_overflow(lv_obj_t * obj, lv_span_overflow_t overflow)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_spangroup_set_indent(lv_obj_t * obj, int32_t indent)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -230,6 +240,7 @@ void lv_spangroup_set_indent(lv_obj_t * obj, int32_t indent)
     refresh_self_size(obj);
 }
 
+LV_FUNC_SECTION
 void lv_spangroup_set_mode(lv_obj_t * obj, lv_span_mode_t mode)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -241,6 +252,7 @@ void lv_spangroup_set_mode(lv_obj_t * obj, lv_span_mode_t mode)
     lv_spangroup_refr_mode(obj);
 }
 
+LV_FUNC_SECTION
 void lv_spangroup_set_max_lines(lv_obj_t * obj, int32_t lines)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -253,11 +265,13 @@ void lv_spangroup_set_max_lines(lv_obj_t * obj, int32_t lines)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 lv_style_t * lv_span_get_style(lv_span_t * span)
 {
     return &span->style;
 }
 
+LV_FUNC_SECTION
 lv_span_t * lv_spangroup_get_child(const lv_obj_t * obj, int32_t id)
 {
     if(obj == NULL) {
@@ -295,6 +309,7 @@ lv_span_t * lv_spangroup_get_child(const lv_obj_t * obj, int32_t id)
     return NULL;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_spangroup_get_span_count(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -308,11 +323,13 @@ uint32_t lv_spangroup_get_span_count(const lv_obj_t * obj)
     return lv_ll_get_len(&(spans->child_ll));
 }
 
+LV_FUNC_SECTION
 lv_text_align_t lv_spangroup_get_align(lv_obj_t * obj)
 {
     return lv_obj_get_style_text_align(obj, LV_PART_MAIN);
 }
 
+LV_FUNC_SECTION
 lv_span_overflow_t lv_spangroup_get_overflow(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -320,6 +337,7 @@ lv_span_overflow_t lv_spangroup_get_overflow(lv_obj_t * obj)
     return spans->overflow;
 }
 
+LV_FUNC_SECTION
 int32_t lv_spangroup_get_indent(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -327,6 +345,7 @@ int32_t lv_spangroup_get_indent(lv_obj_t * obj)
     return spans->indent;
 }
 
+LV_FUNC_SECTION
 lv_span_mode_t lv_spangroup_get_mode(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -334,6 +353,7 @@ lv_span_mode_t lv_spangroup_get_mode(lv_obj_t * obj)
     return spans->mode;
 }
 
+LV_FUNC_SECTION
 int32_t lv_spangroup_get_max_lines(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -341,6 +361,7 @@ int32_t lv_spangroup_get_max_lines(lv_obj_t * obj)
     return spans->lines;
 }
 
+LV_FUNC_SECTION
 void lv_spangroup_refr_mode(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -375,6 +396,7 @@ void lv_spangroup_refr_mode(lv_obj_t * obj)
     refresh_self_size(obj);
 }
 
+LV_FUNC_SECTION
 int32_t lv_spangroup_get_max_line_height(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -393,6 +415,7 @@ int32_t lv_spangroup_get_max_line_height(lv_obj_t * obj)
     return max_line_h;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_spangroup_get_expand_width(lv_obj_t * obj, uint32_t max_width)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -425,6 +448,7 @@ uint32_t lv_spangroup_get_expand_width(lv_obj_t * obj, uint32_t max_width)
     return width - letter_space;
 }
 
+LV_FUNC_SECTION
 int32_t lv_spangroup_get_expand_height(lv_obj_t * obj, int32_t width)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -538,6 +562,7 @@ int32_t lv_spangroup_get_expand_height(lv_obj_t * obj, int32_t width)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_spangroup_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -552,6 +577,7 @@ static void lv_spangroup_constructor(const lv_obj_class_t * class_p, lv_obj_t * 
     spans->refresh = 1;
 }
 
+LV_FUNC_SECTION
 static void lv_spangroup_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -569,6 +595,7 @@ static void lv_spangroup_destructor(const lv_obj_class_t * class_p, lv_obj_t * o
     }
 }
 
+LV_FUNC_SECTION
 static void lv_spangroup_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -626,6 +653,7 @@ static void lv_spangroup_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_main(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -637,6 +665,7 @@ static void draw_main(lv_event_t * e)
 /**
  * @return true for txt fill the max_width.
  */
+LV_FUNC_SECTION
 static bool lv_text_get_snippet(const char * txt, const lv_font_t * font,
                                 int32_t letter_space, int32_t max_width, lv_text_flag_t flag,
                                 int32_t * use_width, uint32_t * end_ofs)
@@ -665,6 +694,7 @@ static bool lv_text_get_snippet(const char * txt, const lv_font_t * font,
     }
 }
 
+LV_FUNC_SECTION
 static void lv_snippet_push(lv_snippet_t * item)
 {
     struct _snippet_stack * stack_p = snippet_stack;
@@ -677,21 +707,25 @@ static void lv_snippet_push(lv_snippet_t * item)
     }
 }
 
+LV_FUNC_SECTION
 static uint32_t lv_get_snippet_count(void)
 {
     return snippet_stack->index;
 }
 
+LV_FUNC_SECTION
 static lv_snippet_t * lv_get_snippet(uint32_t index)
 {
     return &snippet_stack->stack[index];
 }
 
+LV_FUNC_SECTION
 static void lv_snippet_clear(void)
 {
     snippet_stack->index = 0;
 }
 
+LV_FUNC_SECTION
 static const lv_font_t * lv_span_get_style_text_font(lv_obj_t * par, lv_span_t * span)
 {
     const lv_font_t * font;
@@ -706,6 +740,7 @@ static const lv_font_t * lv_span_get_style_text_font(lv_obj_t * par, lv_span_t *
     return font;
 }
 
+LV_FUNC_SECTION
 static int32_t lv_span_get_style_text_letter_space(lv_obj_t * par, lv_span_t * span)
 {
     int32_t letter_space;
@@ -720,6 +755,7 @@ static int32_t lv_span_get_style_text_letter_space(lv_obj_t * par, lv_span_t * s
     return letter_space;
 }
 
+LV_FUNC_SECTION
 static lv_color_t lv_span_get_style_text_color(lv_obj_t * par, lv_span_t * span)
 {
     lv_style_value_t value;
@@ -730,6 +766,7 @@ static lv_color_t lv_span_get_style_text_color(lv_obj_t * par, lv_span_t * span)
     return value.color;
 }
 
+LV_FUNC_SECTION
 static lv_opa_t lv_span_get_style_text_opa(lv_obj_t * par, lv_span_t * span)
 {
     lv_opa_t opa;
@@ -744,6 +781,7 @@ static lv_opa_t lv_span_get_style_text_opa(lv_obj_t * par, lv_span_t * span)
     return opa;
 }
 
+LV_FUNC_SECTION
 static lv_blend_mode_t lv_span_get_style_text_blend_mode(lv_obj_t * par, lv_span_t * span)
 {
     lv_blend_mode_t mode;
@@ -758,6 +796,7 @@ static lv_blend_mode_t lv_span_get_style_text_blend_mode(lv_obj_t * par, lv_span
     return mode;
 }
 
+LV_FUNC_SECTION
 static int32_t lv_span_get_style_text_decor(lv_obj_t * par, lv_span_t * span)
 {
     int32_t decor;
@@ -772,6 +811,7 @@ static int32_t lv_span_get_style_text_decor(lv_obj_t * par, lv_span_t * span)
     return decor;
 }
 
+LV_FUNC_SECTION
 static inline void span_text_check(const char ** text)
 {
     if(*text == NULL) {
@@ -780,6 +820,7 @@ static inline void span_text_check(const char ** text)
     }
 }
 
+LV_FUNC_SECTION
 static int32_t convert_indent_pct(lv_obj_t * obj, int32_t width)
 {
     lv_spangroup_t * spans = (lv_spangroup_t *)obj;
@@ -803,6 +844,7 @@ static int32_t convert_indent_pct(lv_obj_t * obj, int32_t width)
  * @param coords coordinates of the label
  * @param mask the label will be drawn only in this area
  */
+LV_FUNC_SECTION
 static void lv_draw_span(lv_obj_t * obj, lv_layer_t * layer)
 {
 
@@ -1078,6 +1120,7 @@ Next_line_init:
     layer->_clip_area = clip_area_ori;
 }
 
+LV_FUNC_SECTION
 static void refresh_self_size(lv_obj_t * obj)
 {
     lv_spangroup_t * spans = (lv_spangroup_t *)obj;

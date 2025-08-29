@@ -7,6 +7,7 @@ static lv_obj_t * slider_label;
 /**
  * Slider with opposite direction
  */
+LV_FUNC_SECTION
 void lv_example_slider_4(void)
 {
     /*Create a slider in the center of the display*/
@@ -22,6 +23,7 @@ void lv_example_slider_4(void)
     lv_obj_align_to(slider_label, slider, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 }
 
+LV_FUNC_SECTION
 static void slider_event_cb(lv_event_t * e)
 {
     lv_obj_t * slider = lv_event_get_target(e);

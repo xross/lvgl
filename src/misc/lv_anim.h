@@ -123,14 +123,21 @@ typedef struct {
 /** Describes an animation*/
 struct lv_anim_t {
     void * var;                               /**< Variable to animate*/
+    __attribute__(( fptrgroup("lv_anim_exec_cb") ))
     lv_anim_exec_xcb_t exec_cb;               /**< Function to execute to animate*/
+    __attribute__(( fptrgroup("lv_anim_custom_exec_cb") ))
     lv_anim_custom_exec_cb_t custom_exec_cb;  /**< Function to execute to animate,
                                                * same purpose as exec_cb but different parameters*/
+    __attribute__(( fptrgroup("lv_anim_start_cb") ))
     lv_anim_start_cb_t start_cb;              /**< Call it when the animation is starts (considering `delay`)*/
+    __attribute__(( fptrgroup("lv_anim_completed_cb") ))
     lv_anim_completed_cb_t completed_cb;      /**< Call it when the animation is fully completed*/
+    __attribute__(( fptrgroup("lv_anim_deleted_cb") ))
     lv_anim_deleted_cb_t deleted_cb;          /**< Call it when the animation is deleted*/
+    __attribute__(( fptrgroup("lv_anim_get_value_cb") ))
     lv_anim_get_value_cb_t get_value_cb;      /**< Get the current value in relative mode*/
     void * user_data;                         /**< Custom user data*/
+    __attribute__(( fptrgroup("lv_anim_path_cb") ))
     lv_anim_path_cb_t path_cb;                /**< Describe the path (curve) of animations*/
     int32_t start_value;                      /**< Start value*/
     int32_t current_value;                    /**< Current value*/

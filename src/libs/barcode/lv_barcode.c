@@ -52,6 +52,7 @@ const lv_obj_class_t lv_barcode_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_barcode_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -60,6 +61,7 @@ lv_obj_t * lv_barcode_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_barcode_set_dark_color(lv_obj_t * obj, lv_color_t color)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -68,6 +70,7 @@ void lv_barcode_set_dark_color(lv_obj_t * obj, lv_color_t color)
     barcode->dark_color = color;
 }
 
+LV_FUNC_SECTION
 void lv_barcode_set_light_color(lv_obj_t * obj, lv_color_t color)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -76,6 +79,7 @@ void lv_barcode_set_light_color(lv_obj_t * obj, lv_color_t color)
     barcode->light_color = color;
 }
 
+LV_FUNC_SECTION
 void lv_barcode_set_scale(lv_obj_t * obj, uint16_t scale)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -88,6 +92,7 @@ void lv_barcode_set_scale(lv_obj_t * obj, uint16_t scale)
     barcode->scale = scale;
 }
 
+LV_FUNC_SECTION
 void lv_barcode_set_direction(lv_obj_t * obj, lv_dir_t direction)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -96,6 +101,7 @@ void lv_barcode_set_direction(lv_obj_t * obj, lv_dir_t direction)
     barcode->direction = direction;
 }
 
+LV_FUNC_SECTION
 void lv_barcode_set_tiled(lv_obj_t * obj, bool tiled)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -105,6 +111,7 @@ void lv_barcode_set_tiled(lv_obj_t * obj, bool tiled)
     lv_image_set_inner_align(obj, tiled ? LV_IMAGE_ALIGN_TILE : LV_IMAGE_ALIGN_DEFAULT);
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_barcode_update(lv_obj_t * obj, const char * data)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -211,6 +218,7 @@ lv_result_t lv_barcode_update(lv_obj_t * obj, const char * data)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_barcode_get_dark_color(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -219,6 +227,7 @@ lv_color_t lv_barcode_get_dark_color(lv_obj_t * obj)
     return barcode->dark_color;
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_barcode_get_light_color(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -227,6 +236,7 @@ lv_color_t lv_barcode_get_light_color(lv_obj_t * obj)
     return barcode->light_color;
 }
 
+LV_FUNC_SECTION
 uint16_t lv_barcode_get_scale(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -239,6 +249,7 @@ uint16_t lv_barcode_get_scale(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_barcode_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -251,6 +262,7 @@ static void lv_barcode_constructor(const lv_obj_class_t * class_p, lv_obj_t * ob
     lv_image_set_inner_align(obj, LV_IMAGE_ALIGN_DEFAULT);
 }
 
+LV_FUNC_SECTION
 static void lv_barcode_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -263,6 +275,7 @@ static void lv_barcode_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj
     lv_draw_buf_destroy(draw_buf);
 }
 
+LV_FUNC_SECTION
 static bool lv_barcode_change_buf_size(lv_obj_t * obj, int32_t w, int32_t h)
 {
     LV_ASSERT_NULL(obj);
@@ -285,6 +298,7 @@ static bool lv_barcode_change_buf_size(lv_obj_t * obj, int32_t w, int32_t h)
     return true;
 }
 
+LV_FUNC_SECTION
 static void lv_barcode_clear(lv_obj_t * obj)
 {
     lv_draw_buf_t * draw_buf = lv_canvas_get_draw_buf(obj);

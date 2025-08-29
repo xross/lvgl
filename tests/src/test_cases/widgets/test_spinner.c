@@ -7,6 +7,7 @@
 static lv_obj_t * active_screen = NULL;
 static lv_obj_t * spinner = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
@@ -15,11 +16,13 @@ void setUp(void)
     lv_obj_center(spinner);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_spinner_spinning(void)
 {
     for(int i = 0; i < 10; ++i) {

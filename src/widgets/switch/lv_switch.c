@@ -72,6 +72,7 @@ const lv_obj_class_t lv_switch_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_switch_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -84,6 +85,7 @@ lv_obj_t * lv_switch_create(lv_obj_t * parent)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_switch_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -100,6 +102,7 @@ static void lv_switch_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_switch_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -108,6 +111,7 @@ static void lv_switch_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     lv_anim_delete(sw, NULL);
 }
 
+LV_FUNC_SECTION
 static void lv_switch_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -145,6 +149,7 @@ static void lv_switch_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_main(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -204,6 +209,7 @@ static void draw_main(lv_event_t * e)
     lv_draw_rect(layer, &knob_rect_dsc, &knob_area);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void lv_switch_anim_exec_cb(void * var, int32_t value)
 {
     lv_switch_t * sw = var;
@@ -214,6 +220,7 @@ static void lv_switch_anim_exec_cb(void * var, int32_t value)
 /**
  * Resets the switch's animation state to "no animation in progress".
  */
+__attribute__(( fptrgroup("lv_anim_completed_cb") ))
 static void lv_switch_anim_completed(lv_anim_t * a)
 {
     lv_switch_t * sw = a->var;
@@ -225,6 +232,7 @@ static void lv_switch_anim_completed(lv_anim_t * a)
  * Starts an animation for the switch knob. if the anim_time style property is greater than 0
  * @param obj the switch to animate
  */
+LV_FUNC_SECTION
 static void lv_switch_trigger_anim(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

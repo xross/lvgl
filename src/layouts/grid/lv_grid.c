@@ -64,57 +64,70 @@ static int32_t grid_align(int32_t cont_size, bool auto_size, lv_grid_align_t ali
                           int32_t * size_array, int32_t * pos_array, bool reverse);
 static uint32_t count_tracks(const int32_t * templ);
 
+LV_FUNC_SECTION
 static inline const int32_t * get_col_dsc(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_column_dsc_array(obj, 0);
 }
+LV_FUNC_SECTION
 static inline const int32_t * get_row_dsc(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_row_dsc_array(obj, 0);
 }
+LV_FUNC_SECTION
 static inline int32_t get_col_pos(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_cell_column_pos(obj, 0);
 }
+LV_FUNC_SECTION
 static inline int32_t get_row_pos(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_cell_row_pos(obj, 0);
 }
+LV_FUNC_SECTION
 static inline int32_t get_col_span(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_cell_column_span(obj, 0);
 }
+LV_FUNC_SECTION
 static inline int32_t get_row_span(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_cell_row_span(obj, 0);
 }
+LV_FUNC_SECTION
 static inline lv_grid_align_t get_cell_col_align(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_cell_x_align(obj, 0);
 }
+LV_FUNC_SECTION
 static inline lv_grid_align_t get_cell_row_align(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_cell_y_align(obj, 0);
 }
+LV_FUNC_SECTION
 static inline lv_grid_align_t get_grid_col_align(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_column_align(obj, 0);
 }
+LV_FUNC_SECTION
 static inline lv_grid_align_t get_grid_row_align(lv_obj_t * obj)
 {
     return lv_obj_get_style_grid_row_align(obj, 0);
 }
+LV_FUNC_SECTION
 static inline int32_t get_margin_hor(lv_obj_t * obj)
 {
     return lv_obj_get_style_margin_left(obj, LV_PART_MAIN)
            + lv_obj_get_style_margin_right(obj, LV_PART_MAIN);
 }
+LV_FUNC_SECTION
 static inline int32_t get_margin_ver(lv_obj_t * obj)
 {
     return lv_obj_get_style_margin_top(obj, LV_PART_MAIN)
            + lv_obj_get_style_margin_bottom(obj, LV_PART_MAIN);
 }
 
+LV_FUNC_SECTION
 static inline int32_t div_round_closest(int32_t dividend, int32_t divisor)
 {
     return (dividend + divisor / 2) / divisor;
@@ -141,12 +154,14 @@ static inline int32_t div_round_closest(int32_t dividend, int32_t divisor)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_grid_init(void)
 {
     layout_list_def[LV_LAYOUT_GRID].cb = grid_update;
     layout_list_def[LV_LAYOUT_GRID].user_data = NULL;
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_grid_dsc_array(lv_obj_t * obj, const int32_t col_dsc[], const int32_t row_dsc[])
 {
     lv_obj_set_style_grid_column_dsc_array(obj, col_dsc, 0);
@@ -154,6 +169,7 @@ void lv_obj_set_grid_dsc_array(lv_obj_t * obj, const int32_t col_dsc[], const in
     lv_obj_set_style_layout(obj, LV_LAYOUT_GRID, 0);
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_grid_align(lv_obj_t * obj, lv_grid_align_t column_align, lv_grid_align_t row_align)
 {
     lv_obj_set_style_grid_column_align(obj, column_align, 0);
@@ -161,6 +177,7 @@ void lv_obj_set_grid_align(lv_obj_t * obj, lv_grid_align_t column_align, lv_grid
 
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_grid_cell(lv_obj_t * obj, lv_grid_align_t x_align, int32_t col_pos, int32_t col_span,
                           lv_grid_align_t y_align, int32_t row_pos, int32_t row_span)
 
@@ -175,6 +192,7 @@ void lv_obj_set_grid_cell(lv_obj_t * obj, lv_grid_align_t x_align, int32_t col_p
     lv_obj_mark_layout_as_dirty(lv_obj_get_parent(obj));
 }
 
+LV_FUNC_SECTION
 int32_t lv_grid_fr(uint8_t x)
 {
     return LV_GRID_FR(x);
@@ -183,7 +201,7 @@ int32_t lv_grid_fr(uint8_t x)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_layout_dsc_cb") ))
 static void grid_update(lv_obj_t * cont, void * user_data)
 {
     LV_LOG_INFO("update %p container", (void *)cont);
@@ -230,6 +248,7 @@ static void grid_update(lv_obj_t * cont, void * user_data)
  * @param calc store the calculated cells sizes here
  * @note `lv_grid_calc_free(calc_out)` needs to be called when `calc_out` is not needed anymore
  */
+LV_FUNC_SECTION
 static void calc(lv_obj_t * cont, lv_grid_calc_t * calc_out)
 {
     if(lv_obj_get_child(cont, 0) == NULL) {
@@ -264,6 +283,7 @@ static void calc(lv_obj_t * cont, lv_grid_calc_t * calc_out)
  * Free the a grid calculation's data
  * @param calc pointer to the calculated grid cell coordinates
  */
+LV_FUNC_SECTION
 static void calc_free(lv_grid_calc_t * calc)
 {
     lv_free(calc->x);
@@ -272,6 +292,7 @@ static void calc_free(lv_grid_calc_t * calc)
     lv_free(calc->h);
 }
 
+LV_FUNC_SECTION
 static void calc_cols(lv_obj_t * cont, lv_grid_calc_t * c)
 {
 
@@ -365,6 +386,7 @@ static void calc_cols(lv_obj_t * cont, lv_grid_calc_t * c)
     }
 }
 
+LV_FUNC_SECTION
 static void calc_rows(lv_obj_t * cont, lv_grid_calc_t * c)
 {
     const int32_t * row_templ;
@@ -461,6 +483,7 @@ static void calc_rows(lv_obj_t * cont, lv_grid_calc_t * c)
  * @param child_id_ext helper value if the ID of the child is know (order from the oldest) else -1
  * @param grid_abs helper value, the absolute position of the grid, NULL if unknown
  */
+LV_FUNC_SECTION
 static void item_repos(lv_obj_t * item, lv_grid_calc_t * c, item_repos_hint_t * hint)
 {
     if(lv_obj_has_flag_any(item, LV_OBJ_FLAG_IGNORE_LAYOUT | LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_FLOATING)) return;
@@ -585,6 +608,7 @@ static void item_repos(lv_obj_t * item, lv_grid_calc_t * c, item_repos_hint_t * 
  * @param pos_array write the positions of the tracks here
  * @return the total size of the grid
  */
+LV_FUNC_SECTION
 static int32_t grid_align(int32_t cont_size,  bool auto_size, lv_grid_align_t align, int32_t gap,
                           uint32_t track_num,
                           int32_t * size_array, int32_t * pos_array, bool reverse)
@@ -654,6 +678,7 @@ static int32_t grid_align(int32_t cont_size,  bool auto_size, lv_grid_align_t al
     return total_gird_size;
 }
 
+LV_FUNC_SECTION
 static uint32_t count_tracks(const int32_t * templ)
 {
     uint32_t i;

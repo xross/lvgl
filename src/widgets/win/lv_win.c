@@ -43,6 +43,7 @@ const lv_obj_class_t lv_win_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_win_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -51,6 +52,7 @@ lv_obj_t * lv_win_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_win_add_title(lv_obj_t * win, const char * txt)
 {
     lv_obj_t * header = lv_win_get_header(win);
@@ -61,6 +63,7 @@ lv_obj_t * lv_win_add_title(lv_obj_t * win, const char * txt)
     return title;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_win_add_button(lv_obj_t * win, const void * icon, int32_t btn_w)
 {
     lv_obj_t * header = lv_win_get_header(win);
@@ -76,11 +79,13 @@ lv_obj_t * lv_win_add_button(lv_obj_t * win, const void * icon, int32_t btn_w)
     return btn;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_win_get_header(lv_obj_t * win)
 {
     return lv_obj_get_child(win, 0);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_win_get_content(lv_obj_t * win)
 {
     return lv_obj_get_child(win, 1);
@@ -90,6 +95,7 @@ lv_obj_t * lv_win_get_content(lv_obj_t * win)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_win_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);

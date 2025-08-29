@@ -10,6 +10,7 @@ static void slider_event_cb(lv_event_t * e);
  * Show the current value when the slider is pressed by extending the drawer
  *
  */
+LV_FUNC_SECTION
 void lv_example_slider_3(void)
 {
     /*Create a slider in the center of the display*/
@@ -26,6 +27,7 @@ void lv_example_slider_3(void)
     lv_obj_refresh_ext_draw_size(slider);
 }
 
+LV_FUNC_SECTION
 static void slider_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);

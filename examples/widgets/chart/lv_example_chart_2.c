@@ -4,6 +4,7 @@
 /**
  * Use lv_scale to add ticks to a scrollable chart
  */
+LV_FUNC_SECTION
 void lv_example_chart_2(void)
 {
     /*Create a container*/

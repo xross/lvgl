@@ -71,6 +71,7 @@ lv_ll_t  _ll_Dave2D_Tasks;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_dave2d_init(void)
 {
     d2_s32 result = D2_OK;
@@ -107,6 +108,7 @@ void lv_draw_dave2d_init(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_draw_buf_dave2d_init_handlers(void)
 {
 
@@ -120,6 +122,7 @@ static void lv_draw_buf_dave2d_init_handlers(void)
 
 #if defined(RENESAS_CORTEX_M85)
 #if (BSP_CFG_DCACHE_ENABLED)
+LV_FUNC_SECTION
 static void _dave2d_buf_invalidate_cache_cb(const lv_draw_buf_t * draw_buf, const lv_area_t * area)
 {
     const lv_image_header_t * header = &draw_buf->header;
@@ -211,6 +214,7 @@ static void _dave2d_buf_copy(void * dest_buf, uint32_t dest_w, uint32_t dest_h, 
 
 #define USE_D2 (1)
 
+LV_FUNC_SECTION
 static int32_t _dave2d_evaluate(lv_draw_unit_t * u, lv_draw_task_t * t)
 {
     LV_UNUSED(u);
@@ -334,6 +338,7 @@ static int32_t _dave2d_evaluate(lv_draw_unit_t * u, lv_draw_task_t * t)
 
 #define DAVE2D_REFERRING_WATERMARK  10
 
+LV_FUNC_SECTION
 static int32_t lv_draw_dave2d_dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
 {
     lv_draw_dave2d_unit_t * draw_dave2d_unit = (lv_draw_dave2d_unit_t *) draw_unit;
@@ -402,6 +407,7 @@ static int32_t lv_draw_dave2d_dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * 
 }
 
 #if LV_USE_OS
+LV_FUNC_SECTION
 static void _dave2d_render_thread_cb(void * ptr)
 {
     lv_draw_dave2d_unit_t * u = ptr;
@@ -427,6 +433,7 @@ static void _dave2d_render_thread_cb(void * ptr)
 }
 #endif
 
+LV_FUNC_SECTION
 static void execute_drawing(lv_draw_dave2d_unit_t * u)
 {
     /*Render the draw task*/
@@ -493,6 +500,7 @@ static void execute_drawing(lv_draw_dave2d_unit_t * u)
 
 }
 
+LV_FUNC_SECTION
 static d2_s32 lv_dave2d_init(void)
 {
     d2_s32 result = D2_OK;
@@ -557,6 +565,7 @@ static d2_s32 lv_dave2d_init(void)
     return result;
 }
 
+LV_FUNC_SECTION
 void dave2d_execute_dlist_and_flush(void)
 {
 #if LV_USE_OS

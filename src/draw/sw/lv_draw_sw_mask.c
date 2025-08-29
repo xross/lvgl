@@ -78,11 +78,13 @@ static inline lv_opa_t /* LV_ATTRIBUTE_FAST_MEM */ mask_mix(lv_opa_t mask_act, l
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_init(void)
 {
     lv_mutex_init(&circle_cache_mutex);
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_deinit(void)
 {
     lv_mutex_delete(&circle_cache_mutex);
@@ -107,6 +109,7 @@ lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_sw_mask_apply(void * masks[]
     return changed ? LV_DRAW_SW_MASK_RES_CHANGED : LV_DRAW_SW_MASK_RES_FULL_COVER;
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_free_param(void * p)
 {
     lv_mutex_lock(&circle_cache_mutex);
@@ -127,6 +130,7 @@ void lv_draw_sw_mask_free_param(void * p)
     lv_mutex_unlock(&circle_cache_mutex);
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_cleanup(void)
 {
     uint8_t i;
@@ -138,6 +142,7 @@ void lv_draw_sw_mask_cleanup(void)
     }
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_line_points_init(lv_draw_sw_mask_line_param_t * param, int32_t p1x, int32_t p1y,
                                       int32_t p2x,
                                       int32_t p2y, lv_draw_sw_mask_line_side_t side)
@@ -220,6 +225,7 @@ void lv_draw_sw_mask_line_points_init(lv_draw_sw_mask_line_param_t * param, int3
     if(param->steep < 0) param->spx = -param->spx;
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_line_angle_init(lv_draw_sw_mask_line_param_t * param, int32_t p1x, int32_t py, int16_t angle,
                                      lv_draw_sw_mask_line_side_t side)
 {
@@ -238,6 +244,7 @@ void lv_draw_sw_mask_line_angle_init(lv_draw_sw_mask_line_param_t * param, int32
     lv_draw_sw_mask_line_points_init(param, p1x, py, p2x, p2y, side);
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_angle_init(lv_draw_sw_mask_angle_param_t * param, int32_t vertex_x, int32_t vertex_y,
                                 int32_t start_angle, int32_t end_angle)
 {
@@ -291,6 +298,7 @@ void lv_draw_sw_mask_angle_init(lv_draw_sw_mask_angle_param_t * param, int32_t v
     lv_draw_sw_mask_line_angle_init(&param->end_line, vertex_x, vertex_y, end_angle, end_side);
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_radius_init(lv_draw_sw_mask_radius_param_t * param, const lv_area_t * rect, int32_t radius,
                                  bool inv)
 {
@@ -354,6 +362,7 @@ void lv_draw_sw_mask_radius_init(lv_draw_sw_mask_radius_param_t * param, const l
 
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_fade_init(lv_draw_sw_mask_fade_param_t * param, const lv_area_t * coords, lv_opa_t opa_top,
                                int32_t y_top,
                                lv_opa_t opa_bottom, int32_t y_bottom)
@@ -367,6 +376,7 @@ void lv_draw_sw_mask_fade_init(lv_draw_sw_mask_fade_param_t * param, const lv_ar
     param->dsc.type = LV_DRAW_SW_MASK_TYPE_FADE;
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_map_init(lv_draw_sw_mask_map_param_t * param, const lv_area_t * coords, const lv_opa_t * map)
 {
     lv_area_copy(&param->cfg.coords, coords);
@@ -378,7 +388,7 @@ void lv_draw_sw_mask_map_init(lv_draw_sw_mask_map_param_t * param, const lv_area
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_draw_sw_mask_cb") ))
 static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_mask_line(lv_opa_t * mask_buf, int32_t abs_x,
                                                                      int32_t abs_y, int32_t len,
                                                                      lv_draw_sw_mask_line_param_t * p)
@@ -699,6 +709,7 @@ static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM line_mask_steep(lv_opa_t * ma
     return LV_DRAW_SW_MASK_RES_CHANGED;
 }
 
+__attribute__(( fptrgroup("lv_draw_sw_mask_cb") ))
 static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_mask_angle(lv_opa_t * mask_buf, int32_t abs_x,
                                                                       int32_t abs_y, int32_t len,
                                                                       lv_draw_sw_mask_angle_param_t * p)
@@ -837,6 +848,7 @@ static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_mask_angle(lv_opa_t *
     }
 }
 
+__attribute__(( fptrgroup("lv_draw_sw_mask_cb") ))
 static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_mask_radius(lv_opa_t * mask_buf, int32_t abs_x,
                                                                        int32_t abs_y, int32_t len,
                                                                        lv_draw_sw_mask_radius_param_t * p)
@@ -947,6 +959,7 @@ static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_mask_radius(lv_opa_t 
     return LV_DRAW_SW_MASK_RES_CHANGED;
 }
 
+__attribute__(( fptrgroup("lv_draw_sw_mask_cb") ))
 static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_mask_fade(lv_opa_t * mask_buf, int32_t abs_x,
                                                                      int32_t abs_y, int32_t len,
                                                                      lv_draw_sw_mask_fade_param_t * p)
@@ -993,6 +1006,7 @@ static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_mask_fade(lv_opa_t * 
     }
 }
 
+__attribute__(( fptrgroup("lv_draw_sw_mask_cb") ))
 static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_mask_map(lv_opa_t * mask_buf, int32_t abs_x,
                                                                     int32_t abs_y, int32_t len,
                                                                     lv_draw_sw_mask_map_param_t * p)
@@ -1033,6 +1047,7 @@ static lv_draw_sw_mask_res_t LV_ATTRIBUTE_FAST_MEM lv_draw_mask_map(lv_opa_t * m
  * @param tmp point to a variable. It will store temporary data
  * @param radius radius of the circle
  */
+LV_FUNC_SECTION
 static void circ_init(lv_point_t * c, int32_t * tmp, int32_t radius)
 {
     c->x = radius;
@@ -1045,6 +1060,7 @@ static void circ_init(lv_point_t * c, int32_t * tmp, int32_t radius)
  * @param c same as in circ_init
  * @return true if the circle is not ready yet
  */
+LV_FUNC_SECTION
 static bool circ_cont(lv_point_t * c)
 {
     return c->y <= c->x;
@@ -1055,6 +1071,7 @@ static bool circ_cont(lv_point_t * c)
  * @param c same as in circ_init. The next point stored here.
  * @param tmp same as in circ_init.
  */
+LV_FUNC_SECTION
 static void circ_next(lv_point_t * c, int32_t * tmp)
 {
 
@@ -1068,6 +1085,7 @@ static void circ_next(lv_point_t * c, int32_t * tmp)
     c->y++;
 }
 
+LV_FUNC_SECTION
 static void circ_calc_aa4(lv_draw_sw_mask_radius_circle_dsc_t * c, int32_t radius)
 {
     if(radius == 0) return;
@@ -1217,6 +1235,7 @@ static void circ_calc_aa4(lv_draw_sw_mask_radius_circle_dsc_t * c, int32_t radiu
     lv_free(cir_x);
 }
 
+LV_FUNC_SECTION
 static lv_opa_t * get_next_line(lv_draw_sw_mask_radius_circle_dsc_t * c, int32_t y, int32_t * len,
                                 int32_t * x_start)
 {

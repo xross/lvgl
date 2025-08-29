@@ -16,6 +16,7 @@ lv_indev_t * lv_test_mouse_indev;
 lv_indev_t * lv_test_keypad_indev;
 lv_indev_t * lv_test_encoder_indev;
 
+LV_FUNC_SECTION
 void lv_test_init(void)
 {
     lv_init();
@@ -30,11 +31,13 @@ void lv_test_init(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_test_deinit(void)
 {
     lv_mem_deinit();
 }
 
+LV_FUNC_SECTION
 static void color_format_changled_event_cb(lv_event_t * e)
 {
     lv_display_t * disp = lv_event_get_target(e);
@@ -46,6 +49,7 @@ static void color_format_changled_event_cb(lv_event_t * e)
 
 }
 
+LV_FUNC_SECTION
 static void hal_init(void)
 {
 
@@ -68,6 +72,7 @@ static void hal_init(void)
     lv_indev_set_read_cb(lv_test_encoder_indev,  lv_test_encoder_read_cb);
 }
 
+LV_FUNC_SECTION
 static void dummy_flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * color_p)
 {
     LV_UNUSED(area);
@@ -76,6 +81,7 @@ static void dummy_flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t 
     lv_display_flush_ready(disp);
 }
 
+LV_FUNC_SECTION
 void lv_test_assert_fail(void)
 {
     /*Handle error on test*/

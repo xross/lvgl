@@ -5,16 +5,19 @@
 #include "unity/unity.h"
 #include "lv_test_helpers.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 void test_memmove(void)
 {
 #if LV_USE_STDLIB_STRING == LV_STDLIB_BUILTIN

@@ -16,16 +16,19 @@ extern const size_t test_lottie_approve_size;
     #define TEST_ASSERT_EQUAL_SCREENSHOT(path) (void) path
 #endif
 
+LV_FUNC_SECTION
 void setUp(void)
 {
 
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 void test_lottie_simple(void)
 {
     lv_obj_t * lottie = lv_lottie_create(lv_screen_active());
@@ -51,6 +54,7 @@ void test_lottie_simple(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/lottie_2.png");
 }
 
+LV_FUNC_SECTION
 void test_lottie_load_from_file(void)
 {
     lv_obj_t * lottie = lv_lottie_create(lv_screen_active());
@@ -75,6 +79,7 @@ void test_lottie_load_from_file(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/lottie_2.png");
 }
 
+LV_FUNC_SECTION
 void test_lottie_missing_settings(void)
 {
     uint32_t tmp_buf[CANVAS_WIDTH_TO_STRIDE(100, 4) * 100 + LV_DRAW_BUF_ALIGN];
@@ -99,6 +104,7 @@ void test_lottie_missing_settings(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/lottie_3.png");
 }
 
+LV_FUNC_SECTION
 void test_lottie_rescale(void)
 {
     lv_obj_t * lottie = lv_lottie_create(lv_screen_active());
@@ -119,6 +125,7 @@ void test_lottie_rescale(void)
 }
 
 
+LV_FUNC_SECTION
 void test_lottie_non_uniform_shape(void)
 {
     lv_obj_t * lottie = lv_lottie_create(lv_screen_active());
@@ -130,6 +137,7 @@ void test_lottie_non_uniform_shape(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/lottie_4.png");
 }
 
+LV_FUNC_SECTION
 void test_lottie_memory_leak(void)
 {
     size_t mem_before = lv_test_get_free_mem();
@@ -147,6 +155,7 @@ void test_lottie_memory_leak(void)
     TEST_ASSERT_MEM_LEAK_LESS_THAN(mem_before, 16);
 }
 
+LV_FUNC_SECTION
 void test_lottie_no_jump_when_visible_again(void)
 {
     lv_obj_t * lottie = lv_lottie_create(lv_screen_active());

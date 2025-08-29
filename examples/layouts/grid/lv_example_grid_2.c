@@ -4,6 +4,7 @@
 /**
  * Demonstrate cell placement and span
  */
+LV_FUNC_SECTION
 void lv_example_grid_2(void)
 {
     static int32_t col_dsc[] = {70, 70, 70, LV_GRID_TEMPLATE_LAST};

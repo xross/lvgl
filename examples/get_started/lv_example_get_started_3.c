@@ -5,12 +5,14 @@ static lv_style_t style_btn;
 static lv_style_t style_button_pressed;
 static lv_style_t style_button_red;
 
+LV_FUNC_SECTION
 static lv_color_t darken(const lv_color_filter_dsc_t * dsc, lv_color_t color, lv_opa_t opa)
 {
     LV_UNUSED(dsc);
     return lv_color_darken(color, opa);
 }
 
+LV_FUNC_SECTION
 static void style_init(void)
 {
     /*Create a simple button style*/
@@ -44,6 +46,7 @@ static void style_init(void)
 /**
  * Create styles from scratch for buttons.
  */
+LV_FUNC_SECTION
 void lv_example_get_started_3(void)
 {
     /*Initialize the style*/

@@ -4,6 +4,7 @@
 /**
  * Demonstrate track placement
  */
+LV_FUNC_SECTION
 void lv_example_grid_4(void)
 {
     static int32_t col_dsc[] = {60, 60, 60, LV_GRID_TEMPLATE_LAST};

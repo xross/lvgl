@@ -6,6 +6,7 @@ static lv_style_t style_radio_chk;
 static uint32_t active_index_1 = 0;
 static uint32_t active_index_2 = 0;
 
+LV_FUNC_SECTION
 static void radio_event_handler(lv_event_t * e)
 {
     uint32_t * active_id = lv_event_get_user_data(e);
@@ -24,6 +25,7 @@ static void radio_event_handler(lv_event_t * e)
     LV_LOG_USER("Selected radio buttons: %d, %d", (int)active_index_1, (int)active_index_2);
 }
 
+LV_FUNC_SECTION
 static void radiobutton_create(lv_obj_t * parent, const char * txt)
 {
     lv_obj_t * obj = lv_checkbox_create(parent);
@@ -36,6 +38,7 @@ static void radiobutton_create(lv_obj_t * parent, const char * txt)
 /**
  * Checkboxes as radio buttons
  */
+LV_FUNC_SECTION
 void lv_example_checkbox_2(void)
 {
     /* The idea is to enable `LV_OBJ_FLAG_EVENT_BUBBLE` on checkboxes and process the

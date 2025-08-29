@@ -61,6 +61,7 @@ const lv_obj_class_t lv_lottie_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_lottie_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -69,6 +70,7 @@ lv_obj_t * lv_lottie_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_lottie_set_buffer(lv_obj_t * obj, int32_t w, int32_t h, void * buf)
 {
     lv_lottie_t * lottie = (lv_lottie_t *)obj;
@@ -90,6 +92,7 @@ void lv_lottie_set_buffer(lv_obj_t * obj, int32_t w, int32_t h, void * buf)
     anim_exec_cb(obj, (int32_t) f_current);
 }
 
+LV_FUNC_SECTION
 void lv_lottie_set_draw_buf(lv_obj_t * obj, lv_draw_buf_t * draw_buf)
 {
     if(draw_buf->header.cf != LV_COLOR_FORMAT_ARGB8888) {
@@ -113,6 +116,7 @@ void lv_lottie_set_draw_buf(lv_obj_t * obj, lv_draw_buf_t * draw_buf)
     anim_exec_cb(obj, (int32_t) f_current);
 }
 
+LV_FUNC_SECTION
 void lv_lottie_set_src_data(lv_obj_t * obj, const void * src, size_t src_size)
 {
     lv_lottie_t * lottie = (lv_lottie_t *)obj;
@@ -131,6 +135,7 @@ void lv_lottie_set_src_data(lv_obj_t * obj, const void * src, size_t src_size)
     lottie_update(lottie, 0);   /*Render immediately*/
 }
 
+LV_FUNC_SECTION
 void lv_lottie_set_src_file(lv_obj_t * obj, const char * src)
 {
     lv_lottie_t * lottie = (lv_lottie_t *)obj;
@@ -150,6 +155,7 @@ void lv_lottie_set_src_file(lv_obj_t * obj, const char * src)
 }
 
 
+LV_FUNC_SECTION
 lv_anim_t * lv_lottie_get_anim(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -161,6 +167,7 @@ lv_anim_t * lv_lottie_get_anim(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_lottie_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -185,6 +192,7 @@ static void lv_lottie_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_lottie_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -194,6 +202,7 @@ static void lv_lottie_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     tvg_canvas_destroy(lottie->tvg_canvas);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void anim_exec_cb(void * var, int32_t v)
 {
     lv_lottie_t * lottie = var;
@@ -214,6 +223,7 @@ static void anim_exec_cb(void * var, int32_t v)
     }
 }
 
+LV_FUNC_SECTION
 static void lottie_update(lv_lottie_t * lottie, int32_t v)
 {
     lv_obj_t * obj = (lv_obj_t *) lottie;

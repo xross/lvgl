@@ -72,14 +72,17 @@ static void wait_for_flushing(lv_display_t * disp);
 /**
  * Initialize the screen refresh subsystem
  */
+LV_FUNC_SECTION
 void lv_refr_init(void)
 {
 }
 
+LV_FUNC_SECTION
 void lv_refr_deinit(void)
 {
 }
 
+LV_FUNC_SECTION
 void lv_refr_now(lv_display_t * disp)
 {
     lv_anim_refr_now();
@@ -97,6 +100,7 @@ void lv_refr_now(lv_display_t * disp)
     }
 }
 
+LV_FUNC_SECTION
 void lv_obj_redraw(lv_layer_t * layer, lv_obj_t * obj)
 {
     lv_area_t clip_area_ori = layer->_clip_area;
@@ -254,6 +258,7 @@ void lv_obj_redraw(lv_layer_t * layer, lv_obj_t * obj)
     layer->_clip_area = clip_area_ori;
 }
 
+LV_FUNC_SECTION
 void lv_inv_area(lv_display_t * disp, const lv_area_t * area_p)
 {
     if(!disp) disp = lv_display_get_default();
@@ -331,6 +336,7 @@ void lv_inv_area(lv_display_t * disp, const lv_area_t * area_p)
  * Get the display which is being refreshed
  * @return the display being refreshed
  */
+LV_FUNC_SECTION
 lv_display_t * lv_refr_get_disp_refreshing(void)
 {
     return disp_refr;
@@ -340,11 +346,13 @@ lv_display_t * lv_refr_get_disp_refreshing(void)
  * Get the display which is being refreshed
  * @return the display being refreshed
  */
+LV_FUNC_SECTION
 void lv_refr_set_disp_refreshing(lv_display_t * disp)
 {
     disp_refr = disp;
 }
 
+LV_FUNC_SECTION
 void lv_display_refr_timer(lv_timer_t * tmr)
 {
     LV_PROFILER_BEGIN;
@@ -438,6 +446,7 @@ refr_finish:
 /**
  * Join the areas which has got common parts
  */
+LV_FUNC_SECTION
 static void lv_refr_join_area(void)
 {
     LV_PROFILER_BEGIN;
@@ -477,6 +486,7 @@ static void lv_refr_join_area(void)
 /**
  * Refresh the sync areas
  */
+LV_FUNC_SECTION
 static void refr_sync_areas(void)
 {
     /*Do not sync if not direct or double buffered*/
@@ -555,6 +565,7 @@ static void refr_sync_areas(void)
 /**
  * Refresh the joined areas
  */
+LV_FUNC_SECTION
 static void refr_invalid_areas(void)
 {
     if(disp_refr->inv_p == 0) return;
@@ -595,6 +606,7 @@ static void refr_invalid_areas(void)
  * Reshape the draw buffer if required
  * @param layer  pointer to a layer which will be drawn
  */
+LV_FUNC_SECTION
 static void layer_reshape_draw_buf(lv_layer_t * layer, uint32_t stride)
 {
     lv_draw_buf_t * ret = lv_draw_buf_reshape(
@@ -611,6 +623,7 @@ static void layer_reshape_draw_buf(lv_layer_t * layer, uint32_t stride)
  * Refresh an area if there is Virtual Display Buffer
  * @param area_p  pointer to an area to refresh
  */
+LV_FUNC_SECTION
 static void refr_area(const lv_area_t * area_p)
 {
     LV_PROFILER_BEGIN;
@@ -697,6 +710,7 @@ static void refr_area(const lv_area_t * area_p)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 static void refr_area_part(lv_layer_t * layer)
 {
     LV_PROFILER_BEGIN;
@@ -767,6 +781,7 @@ static void refr_area_part(lv_layer_t * layer)
  * @param obj the first object to start the searching (typically a screen)
  * @return
  */
+LV_FUNC_SECTION
 static lv_obj_t * lv_refr_get_top_obj(const lv_area_t * area_p, lv_obj_t * obj)
 {
     lv_obj_t * found_p = NULL;
@@ -807,6 +822,7 @@ static lv_obj_t * lv_refr_get_top_obj(const lv_area_t * area_p, lv_obj_t * obj)
  * @param top_p pointer to an objects. Start the drawing from it.
  * @param mask_p pointer to an area, the objects will be drawn only here
  */
+LV_FUNC_SECTION
 static void refr_obj_and_children(lv_layer_t * layer, lv_obj_t * top_obj)
 {
     /*Normally always will be a top_obj (at least the screen)
@@ -855,6 +871,7 @@ static void refr_obj_and_children(lv_layer_t * layer, lv_obj_t * top_obj)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 static lv_result_t layer_get_area(lv_layer_t * layer, lv_obj_t * obj, lv_layer_type_t layer_type,
                                   lv_area_t * layer_area_out, lv_area_t * obj_draw_size_out)
 {
@@ -899,6 +916,7 @@ static lv_result_t layer_get_area(lv_layer_t * layer, lv_obj_t * obj, lv_layer_t
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 static bool alpha_test_area_on_obj(lv_obj_t * obj, const lv_area_t * area)
 {
     /*Test for alpha by assuming there is no alpha. If it fails, fall back to rendering with alpha*/
@@ -915,6 +933,7 @@ static bool alpha_test_area_on_obj(lv_obj_t * obj, const lv_area_t * area)
 
 #if LV_DRAW_TRANSFORM_USE_MATRIX
 
+LV_FUNC_SECTION
 static void refr_obj_matrix(lv_layer_t * layer, lv_obj_t * obj)
 {
     lv_matrix_t ori_matrix = layer->matrix;
@@ -987,6 +1006,7 @@ static void refr_obj_matrix(lv_layer_t * layer, lv_obj_t * obj)
     layer->_clip_area = clip_area_ori;
 }
 
+LV_FUNC_SECTION
 static bool refr_check_obj_clip_overflow(lv_layer_t * layer, lv_obj_t * obj)
 {
     if(lv_obj_get_style_transform_rotation(obj, 0) == 0) {
@@ -1012,6 +1032,7 @@ static bool refr_check_obj_clip_overflow(lv_layer_t * layer, lv_obj_t * obj)
 
 #endif /* LV_DRAW_TRANSFORM_USE_MATRIX */
 
+LV_FUNC_SECTION
 static void refr_obj(lv_layer_t * layer, lv_obj_t * obj)
 {
     if(lv_obj_has_flag(obj, LV_OBJ_FLAG_HIDDEN)) return;
@@ -1106,6 +1127,7 @@ static void refr_obj(lv_layer_t * layer, lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 static uint32_t get_max_row(lv_display_t * disp, int32_t area_w, int32_t area_h)
 {
     lv_color_format_t cf = disp->color_format;
@@ -1149,6 +1171,7 @@ static uint32_t get_max_row(lv_display_t * disp, int32_t area_w, int32_t area_h)
 /**
  * Flush the content of the draw buffer
  */
+LV_FUNC_SECTION
 static void draw_buf_flush(lv_display_t * disp)
 {
     /*Flush the rendered content to the display*/
@@ -1188,6 +1211,7 @@ static void draw_buf_flush(lv_display_t * disp)
     }
 }
 
+LV_FUNC_SECTION
 static void call_flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map)
 {
     LV_PROFILER_BEGIN;
@@ -1214,6 +1238,7 @@ static void call_flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t *
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 static void wait_for_flushing(lv_display_t * disp)
 {
     LV_PROFILER_BEGIN;

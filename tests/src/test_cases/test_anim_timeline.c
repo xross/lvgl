@@ -13,12 +13,14 @@ static uint32_t anim2_start_called;
 static uint32_t anim1_completed_called;
 static uint32_t anim2_completed_called;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
     anim_timeline = NULL;
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
@@ -26,6 +28,7 @@ void tearDown(void)
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 void test_anim_timeline_progress_1(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -86,6 +89,7 @@ void test_anim_timeline_progress_1(void)
 
 }
 
+LV_FUNC_SECTION
 void test_anim_timeline_progress_2(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -150,6 +154,7 @@ void test_anim_timeline_progress_2(void)
     TEST_ASSERT_EQUAL(300, lv_obj_get_y(obj));
 }
 
+LV_FUNC_SECTION
 void test_anim_timeline_start(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -241,6 +246,7 @@ void test_anim_timeline_start(void)
     TEST_ASSERT_EQUAL(20, lv_obj_get_x(obj));
 }
 
+LV_FUNC_SECTION
 void test_anim_timeline_reverse(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -327,6 +333,7 @@ void test_anim_timeline_reverse(void)
     TEST_ASSERT_EQUAL(20, lv_obj_get_x(obj));
 }
 
+LV_FUNC_SECTION
 void test_anim_timeline_repeat(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -383,6 +390,7 @@ void test_anim_timeline_repeat(void)
 }
 
 
+LV_FUNC_SECTION
 void test_anim_timeline_delay(void)
 {
 
@@ -439,38 +447,45 @@ void test_anim_timeline_delay(void)
 
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 void anim1_exec_cb(void * var, int32_t v)
 {
     LV_UNUSED(var);
     LV_UNUSED(v);
 }
+LV_FUNC_SECTION
 void anim1_start(lv_anim_t * a)
 {
     LV_UNUSED(a);
     anim1_start_called++;
 }
+LV_FUNC_SECTION
 void anim1_completed(lv_anim_t * a)
 {
     LV_UNUSED(a);
     anim1_completed_called++;
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 void anim2_exec_cb(void * var, int32_t v)
 {
     LV_UNUSED(var);
     LV_UNUSED(v);
 }
+LV_FUNC_SECTION
 void anim2_start(lv_anim_t * a)
 {
     LV_UNUSED(a);
     anim2_start_called++;
 }
+LV_FUNC_SECTION
 void anim2_completed(lv_anim_t * a)
 {
     LV_UNUSED(a);
     anim2_completed_called++;
 }
 
+LV_FUNC_SECTION
 void test_anim_timeline_with_anim_start_cb_and_completed_cb(void)
 {
     lv_anim_t anim1;

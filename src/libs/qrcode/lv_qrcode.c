@@ -48,6 +48,7 @@ const lv_obj_class_t lv_qrcode_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_qrcode_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -56,6 +57,7 @@ lv_obj_t * lv_qrcode_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_qrcode_set_size(lv_obj_t * obj, int32_t size)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -76,6 +78,7 @@ void lv_qrcode_set_size(lv_obj_t * obj, int32_t size)
     if(old_buf != NULL) lv_draw_buf_destroy(old_buf);
 }
 
+LV_FUNC_SECTION
 void lv_qrcode_set_dark_color(lv_obj_t * obj, lv_color_t color)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -83,6 +86,7 @@ void lv_qrcode_set_dark_color(lv_obj_t * obj, lv_color_t color)
     qrcode->dark_color = color;
 }
 
+LV_FUNC_SECTION
 void lv_qrcode_set_light_color(lv_obj_t * obj, lv_color_t color)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -90,6 +94,7 @@ void lv_qrcode_set_light_color(lv_obj_t * obj, lv_color_t color)
     qrcode->light_color = color;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_qrcode_update(lv_obj_t * obj, const void * data, uint32_t data_len)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -215,6 +220,7 @@ lv_result_t lv_qrcode_update(lv_obj_t * obj, const void * data, uint32_t data_le
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_qrcode_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -227,6 +233,7 @@ static void lv_qrcode_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj
     lv_qrcode_set_light_color(obj, lv_color_white());
 }
 
+LV_FUNC_SECTION
 static void lv_qrcode_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);

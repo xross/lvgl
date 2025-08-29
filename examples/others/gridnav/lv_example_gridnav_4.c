@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_GRIDNAV && LV_USE_FLEX && LV_BUILD_EXAMPLES
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_handler(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -12,6 +13,7 @@ static void event_handler(lv_event_t * e)
 /**
  * Simple navigation on a list widget
  */
+LV_FUNC_SECTION
 void lv_example_gridnav_4(void)
 {
     /*It's assumed that the default group is set and

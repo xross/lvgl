@@ -1008,6 +1008,7 @@ static inline lv_color32_t LV_ATTRIBUTE_FAST_MEM lv_color_32_32_mix(lv_color32_t
     }
 }
 
+LV_FUNC_SECTION
 void lv_color_mix_with_alpha_cache_init(lv_color_mix_alpha_cache_t * cache)
 {
     lv_memzero(&cache->fg_saved, sizeof(lv_color32_t));

@@ -5,6 +5,7 @@
 #include "unity/unity.h"
 #include <string.h>
 
+LV_FUNC_SECTION
 void test_obj_id_should_match_class_name(void)
 {
     char buf[128];
@@ -18,6 +19,7 @@ void test_obj_id_should_match_class_name(void)
     TEST_ASSERT_TRUE(strncmp("image", buf, strlen("image")) == 0);
 }
 
+LV_FUNC_SECTION
 void test_obj_id_should_grow_by_one(void)
 {
     uint32_t id1, id2;
@@ -28,6 +30,7 @@ void test_obj_id_should_grow_by_one(void)
     TEST_ASSERT_EQUAL(id1 + 1, id2);
 }
 
+LV_FUNC_SECTION
 void test_obj_id_get_child(void)
 {
     lv_obj_t * parent = lv_obj_create(lv_screen_active());

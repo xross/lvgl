@@ -4,6 +4,7 @@
 /**
  * Grid navigation on a list
  */
+LV_FUNC_SECTION
 void lv_example_gridnav_2(void)
 {
     /*It's assumed that the default group is set and

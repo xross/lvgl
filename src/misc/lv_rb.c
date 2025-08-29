@@ -44,6 +44,7 @@ static void rb_delete_color(lv_rb_t * tree, lv_rb_node_t * node1, lv_rb_node_t *
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 bool lv_rb_init(lv_rb_t * tree, lv_rb_compare_t compare, size_t node_size)
 {
     LV_ASSERT_NULL(tree);
@@ -63,6 +64,7 @@ bool lv_rb_init(lv_rb_t * tree, lv_rb_compare_t compare, size_t node_size)
     return true;
 }
 
+LV_FUNC_SECTION
 lv_rb_node_t * lv_rb_insert(lv_rb_t * tree, void * key)
 {
     LV_ASSERT_NULL(tree);
@@ -100,6 +102,7 @@ lv_rb_node_t * lv_rb_insert(lv_rb_t * tree, void * key)
     return node;
 }
 
+LV_FUNC_SECTION
 lv_rb_node_t * lv_rb_find(lv_rb_t * tree, const void * key)
 {
     LV_ASSERT_NULL(tree);
@@ -126,6 +129,7 @@ lv_rb_node_t * lv_rb_find(lv_rb_t * tree, const void * key)
     return NULL;
 }
 
+LV_FUNC_SECTION
 void * lv_rb_remove_node(lv_rb_t * tree, lv_rb_node_t * node)
 {
     lv_rb_node_t * child = NULL;
@@ -207,6 +211,7 @@ void * lv_rb_remove_node(lv_rb_t * tree, lv_rb_node_t * node)
     return data;
 }
 
+LV_FUNC_SECTION
 void * lv_rb_remove(lv_rb_t * tree, const void * key)
 {
     LV_ASSERT_NULL(tree);
@@ -224,6 +229,7 @@ void * lv_rb_remove(lv_rb_t * tree, const void * key)
     return lv_rb_remove_node(tree, node);
 }
 
+LV_FUNC_SECTION
 bool lv_rb_drop_node(lv_rb_t * tree, lv_rb_node_t * node)
 {
     LV_ASSERT_NULL(tree);
@@ -239,6 +245,7 @@ bool lv_rb_drop_node(lv_rb_t * tree, lv_rb_node_t * node)
     return false;
 }
 
+LV_FUNC_SECTION
 bool lv_rb_drop(lv_rb_t * tree, const void * key)
 {
     LV_ASSERT_NULL(tree);
@@ -254,6 +261,7 @@ bool lv_rb_drop(lv_rb_t * tree, const void * key)
     return false;
 }
 
+LV_FUNC_SECTION
 void lv_rb_destroy(lv_rb_t * tree)
 {
     LV_ASSERT_NULL(tree);
@@ -290,6 +298,7 @@ void lv_rb_destroy(lv_rb_t * tree)
     tree->root = NULL;
 }
 
+LV_FUNC_SECTION
 lv_rb_node_t * lv_rb_minimum(lv_rb_t * tree)
 {
     LV_ASSERT_NULL(tree);
@@ -299,6 +308,7 @@ lv_rb_node_t * lv_rb_minimum(lv_rb_t * tree)
     return lv_rb_minimum_from(tree->root);
 }
 
+LV_FUNC_SECTION
 lv_rb_node_t * lv_rb_maximum(lv_rb_t * tree)
 {
     LV_ASSERT_NULL(tree);
@@ -308,6 +318,7 @@ lv_rb_node_t * lv_rb_maximum(lv_rb_t * tree)
     return lv_rb_maximum_from(tree->root);
 }
 
+LV_FUNC_SECTION
 lv_rb_node_t * lv_rb_minimum_from(lv_rb_node_t * node)
 {
     while(node->left != NULL) {
@@ -317,6 +328,7 @@ lv_rb_node_t * lv_rb_minimum_from(lv_rb_node_t * node)
     return node;
 }
 
+LV_FUNC_SECTION
 lv_rb_node_t * lv_rb_maximum_from(lv_rb_node_t * node)
 {
     while(node->right != NULL) {
@@ -330,6 +342,7 @@ lv_rb_node_t * lv_rb_maximum_from(lv_rb_node_t * node)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_rb_node_t * rb_create_node(lv_rb_t * tree)
 {
     lv_rb_node_t * node = lv_malloc_zeroed(sizeof(lv_rb_node_t));
@@ -352,6 +365,7 @@ static lv_rb_node_t * rb_create_node(lv_rb_t * tree)
     return node;
 }
 
+LV_FUNC_SECTION
 static lv_rb_node_t * rb_find_leaf_parent(lv_rb_t * tree, lv_rb_node_t * node)
 {
     lv_rb_node_t * current = tree->root;
@@ -371,6 +385,7 @@ static lv_rb_node_t * rb_find_leaf_parent(lv_rb_t * tree, lv_rb_node_t * node)
     return parent;
 }
 
+LV_FUNC_SECTION
 static void rb_right_rotate(lv_rb_t * tree, lv_rb_node_t * node)
 {
     lv_rb_node_t * left = node->left;
@@ -396,6 +411,7 @@ static void rb_right_rotate(lv_rb_t * tree, lv_rb_node_t * node)
     node->parent = left;
 }
 
+LV_FUNC_SECTION
 static void rb_left_rotate(lv_rb_t * tree, lv_rb_node_t * node)
 {
     lv_rb_node_t * right = node->right;
@@ -421,6 +437,7 @@ static void rb_left_rotate(lv_rb_t * tree, lv_rb_node_t * node)
     node->parent = right;
 }
 
+LV_FUNC_SECTION
 static void rb_insert_color(lv_rb_t * tree, lv_rb_node_t * node)
 {
     lv_rb_node_t * parent = NULL;
@@ -482,6 +499,7 @@ static void rb_insert_color(lv_rb_t * tree, lv_rb_node_t * node)
     tree->root->color = LV_RB_COLOR_BLACK;
 }
 
+LV_FUNC_SECTION
 static void rb_delete_color(lv_rb_t * tree, lv_rb_node_t * node1, lv_rb_node_t * node2)
 {
     LV_ASSERT_NULL(tree);

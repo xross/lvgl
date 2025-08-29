@@ -5,6 +5,7 @@
 #include "unity/unity.h"
 #include "lv_test_indev.h"
 
+LV_FUNC_SECTION
 static void event_object_deletion_cb(const lv_obj_class_t * cls, lv_event_t * e)
 {
     LV_UNUSED(cls);
@@ -19,6 +20,7 @@ static const lv_obj_class_t event_object_deletion_class = {
 };
 
 /* Checks for memory leaks/invalid memory accesses on deleted objects */
+LV_FUNC_SECTION
 void test_event_object_deletion(void)
 {
     lv_obj_t * obj = lv_obj_class_create_obj(&event_object_deletion_class, lv_screen_active());
@@ -26,6 +28,7 @@ void test_event_object_deletion(void)
 }
 
 /* Add and then remove event should not memory leak */
+LV_FUNC_SECTION
 void test_event_should_not_memory_lean(void)
 {
     lv_mem_monitor_t monitor;
@@ -51,24 +54,28 @@ static uint32_t post_cnt_2;
 static bool pre_stop_1;
 static bool post_stop_1;
 
+LV_FUNC_SECTION
 static void event_pre_1_cb(lv_event_t * e)
 {
     pre_cnt_1++;
     if(pre_stop_1) lv_event_stop_processing(e);
 }
 
+LV_FUNC_SECTION
 static void event_pre_2_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
     pre_cnt_2++;
 }
 
+LV_FUNC_SECTION
 static void event_post_1_cb(lv_event_t * e)
 {
     post_cnt_1++;
     if(post_stop_1) lv_event_stop_processing(e);
 }
 
+LV_FUNC_SECTION
 static void event_post_2_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
@@ -76,6 +83,7 @@ static void event_post_2_cb(lv_event_t * e)
 }
 
 /* Add and then remove event should not memory leak */
+LV_FUNC_SECTION
 void test_event_stop_processing(void)
 {
     lv_obj_t * btn = lv_button_create(lv_screen_active());

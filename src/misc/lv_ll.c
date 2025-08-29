@@ -39,6 +39,7 @@ static void node_set_next(lv_ll_t * ll_p, lv_ll_node_t * act, lv_ll_node_t * nex
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_ll_init(lv_ll_t * ll_p, uint32_t node_size)
 {
     ll_p->head = NULL;
@@ -54,6 +55,7 @@ void lv_ll_init(lv_ll_t * ll_p, uint32_t node_size)
     ll_p->n_size = node_size;
 }
 
+LV_FUNC_SECTION
 void * lv_ll_ins_head(lv_ll_t * ll_p)
 {
     lv_ll_node_t * n_new;
@@ -77,6 +79,7 @@ void * lv_ll_ins_head(lv_ll_t * ll_p)
     return n_new;
 }
 
+LV_FUNC_SECTION
 void * lv_ll_ins_prev(lv_ll_t * ll_p, void * n_act)
 {
     lv_ll_node_t * n_new;
@@ -102,6 +105,7 @@ void * lv_ll_ins_prev(lv_ll_t * ll_p, void * n_act)
     return n_new;
 }
 
+LV_FUNC_SECTION
 void * lv_ll_ins_tail(lv_ll_t * ll_p)
 {
     lv_ll_node_t * n_new;
@@ -124,6 +128,7 @@ void * lv_ll_ins_tail(lv_ll_t * ll_p)
     return n_new;
 }
 
+LV_FUNC_SECTION
 void lv_ll_remove(lv_ll_t * ll_p, void * node_p)
 {
     if(ll_p == NULL) return;
@@ -157,7 +162,7 @@ void lv_ll_remove(lv_ll_t * ll_p, void * node_p)
     }
 }
 
-void lv_ll_clear_custom(lv_ll_t * ll_p, void(*cleanup)(void *))
+void lv_ll_clear_custom(lv_ll_t * ll_p, __attribute__(( fptrgroup("lv_ll_cleanup") )) void(*cleanup)(void *))
 {
     void * i;
     void * i_next;
@@ -178,6 +183,7 @@ void lv_ll_clear_custom(lv_ll_t * ll_p, void(*cleanup)(void *))
     }
 }
 
+LV_FUNC_SECTION
 void lv_ll_chg_list(lv_ll_t * ll_ori_p, lv_ll_t * ll_new_p, void * node, bool head)
 {
     lv_ll_remove(ll_ori_p, node);
@@ -212,18 +218,21 @@ void lv_ll_chg_list(lv_ll_t * ll_ori_p, lv_ll_t * ll_new_p, void * node, bool he
     }
 }
 
+__attribute__(( fptrgroup("lv_ll_get") ))
 void * lv_ll_get_head(const lv_ll_t * ll_p)
 {
     if(ll_p == NULL) return NULL;
     return ll_p->head;
 }
 
+__attribute__(( fptrgroup("lv_ll_get") ))
 void * lv_ll_get_tail(const lv_ll_t * ll_p)
 {
     if(ll_p == NULL) return NULL;
     return ll_p->tail;
 }
 
+__attribute__(( fptrgroup("lv_ll_get") ))
 void * lv_ll_get_next(const lv_ll_t * ll_p, const void * n_act)
 {
     /*Pointer to the next node is stored in the end of this node.
@@ -233,6 +242,7 @@ void * lv_ll_get_next(const lv_ll_t * ll_p, const void * n_act)
     return *((lv_ll_node_t **)n_act_d);
 }
 
+__attribute__(( fptrgroup("lv_ll_get") ))
 void * lv_ll_get_prev(const lv_ll_t * ll_p, const void * n_act)
 {
     /*Pointer to the prev. node is stored in the end of this node.
@@ -242,6 +252,7 @@ void * lv_ll_get_prev(const lv_ll_t * ll_p, const void * n_act)
     return *((lv_ll_node_t **)n_act_d);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_ll_get_len(const lv_ll_t * ll_p)
 {
     uint32_t len = 0;
@@ -254,6 +265,7 @@ uint32_t lv_ll_get_len(const lv_ll_t * ll_p)
     return len;
 }
 
+LV_FUNC_SECTION
 void lv_ll_move_before(lv_ll_t * ll_p, void * n_act, void * n_after)
 {
     if(n_act == n_after) return; /*Can't move before itself*/
@@ -282,6 +294,7 @@ void lv_ll_move_before(lv_ll_t * ll_p, void * n_act, void * n_after)
     if(n_before == NULL) ll_p->head = n_act;
 }
 
+LV_FUNC_SECTION
 bool lv_ll_is_empty(lv_ll_t * ll_p)
 {
     if(ll_p == NULL) return true;
@@ -291,6 +304,7 @@ bool lv_ll_is_empty(lv_ll_t * ll_p)
     return false;
 }
 
+LV_FUNC_SECTION
 void lv_ll_clear(lv_ll_t * ll_p)
 {
     lv_ll_clear_custom(ll_p, NULL);
@@ -306,6 +320,7 @@ void lv_ll_clear(lv_ll_t * ll_p)
  * @param act pointer to a node which prev. node pointer should be set
  * @param prev pointer to a node which should be the previous node before 'act'
  */
+LV_FUNC_SECTION
 static void node_set_prev(lv_ll_t * ll_p, lv_ll_node_t * act, lv_ll_node_t * prev)
 {
     if(act == NULL) return; /*Can't set the prev node of `NULL`*/
@@ -326,6 +341,7 @@ static void node_set_prev(lv_ll_t * ll_p, lv_ll_node_t * act, lv_ll_node_t * pre
  * @param act pointer to a node which next node pointer should be set
  * @param next pointer to a node which should be the next node before 'act'
  */
+LV_FUNC_SECTION
 static void node_set_next(lv_ll_t * ll_p, lv_ll_node_t * act, lv_ll_node_t * next)
 {
     if(act == NULL) return; /*Can't set the next node of `NULL`*/

@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_DROPDOWN && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void event_cb(lv_event_t * e)
 {
     lv_obj_t * dropdown = lv_event_get_target(e);
@@ -12,6 +13,7 @@ static void event_cb(lv_event_t * e)
 /**
  * Create a menu from a drop-down list and show some drop-down list features and styling
  */
+LV_FUNC_SECTION
 void lv_example_dropdown_3(void)
 {
     /*Create a drop down list*/

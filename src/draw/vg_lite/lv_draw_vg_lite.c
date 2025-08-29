@@ -52,6 +52,7 @@ static int32_t draw_delete(lv_draw_unit_t * draw_unit);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vg_lite_init(void)
 {
 #if LV_VG_LITE_USE_GPU_INIT
@@ -81,6 +82,7 @@ void lv_draw_vg_lite_init(void)
     lv_vg_lite_decoder_init();
 }
 
+LV_FUNC_SECTION
 void lv_draw_vg_lite_deinit(void)
 {
 }
@@ -89,6 +91,7 @@ void lv_draw_vg_lite_deinit(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static bool check_image_is_supported(const lv_draw_image_dsc_t * dsc)
 {
     lv_image_header_t header;
@@ -101,6 +104,7 @@ static bool check_image_is_supported(const lv_draw_image_dsc_t * dsc)
     return lv_vg_lite_is_src_cf_supported(header.cf);
 }
 
+LV_FUNC_SECTION
 static void draw_execute(lv_draw_vg_lite_unit_t * u)
 {
     lv_draw_task_t * t = u->task_act;
@@ -174,6 +178,7 @@ static void draw_execute(lv_draw_vg_lite_unit_t * u)
     lv_vg_lite_flush(u);
 }
 
+LV_FUNC_SECTION
 static int32_t draw_dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
 {
     lv_draw_vg_lite_unit_t * u = (lv_draw_vg_lite_unit_t *)draw_unit;
@@ -218,6 +223,7 @@ static int32_t draw_dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
     return 1;
 }
 
+LV_FUNC_SECTION
 static int32_t draw_evaluate(lv_draw_unit_t * draw_unit, lv_draw_task_t * task)
 {
     LV_UNUSED(draw_unit);
@@ -264,6 +270,7 @@ static int32_t draw_evaluate(lv_draw_unit_t * draw_unit, lv_draw_task_t * task)
     return 1;
 }
 
+LV_FUNC_SECTION
 static int32_t draw_delete(lv_draw_unit_t * draw_unit)
 {
     lv_draw_vg_lite_unit_t * unit = (lv_draw_vg_lite_unit_t *)draw_unit;

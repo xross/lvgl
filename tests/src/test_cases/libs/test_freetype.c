@@ -391,16 +391,19 @@ static void vegravis_generate_vector_ops_string(lv_freetype_outline_event_param_
                                                 uint32_t buf_len);
 #endif
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 void test_freetype_bitmap_rendering_test(void)
 {
     /*Create a font*/
@@ -459,6 +462,7 @@ void test_freetype_bitmap_rendering_test(void)
     TEST_FREETYPE_ASSERT_EQUAL_SCREENSHOT("1");
 }
 
+LV_FUNC_SECTION
 void test_freetype_outline_rendering_test(void)
 {
     /*Create a font*/
@@ -511,6 +515,7 @@ void test_freetype_outline_rendering_test(void)
     lv_freetype_font_delete(font_italic);
 }
 
+LV_FUNC_SECTION
 static void freetype_outline_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -536,6 +541,7 @@ static void freetype_outline_event_cb(lv_event_t * e)
 }
 
 #if OPTION_GENERATE_VECTOR_OPS_STRING
+LV_FUNC_SECTION
 static void vegravis_generate_vector_ops_string(lv_freetype_outline_event_param_t * param, char * buf, uint32_t buf_len)
 {
     float x, y, p1x, p1y, p2x, p2y;
@@ -571,18 +577,22 @@ static void vegravis_generate_vector_ops_string(lv_freetype_outline_event_param_
 
 #else
 
+LV_FUNC_SECTION
 void setUp(void)
 {
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
 }
 
+LV_FUNC_SECTION
 void test_freetype_bitmap_rendering_test(void)
 {
 }
 
+LV_FUNC_SECTION
 void test_freetype_outline_rendering_test(void)
 {
 }

@@ -6,16 +6,19 @@
 
 static lv_obj_t * active_screen = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 static const void * get_imgfont_path(const lv_font_t * font, uint32_t unicode, uint32_t unicode_next,
                                      int32_t * offset_y, void * user_data)
 {
@@ -36,6 +39,7 @@ static const void * get_imgfont_path(const lv_font_t * font, uint32_t unicode, u
     return NULL;
 }
 
+LV_FUNC_SECTION
 void test_imgfont_creation(void)
 {
     lv_font_t * imgfont = lv_imgfont_create(80, get_imgfont_path, NULL);

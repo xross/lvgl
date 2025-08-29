@@ -38,6 +38,7 @@ static bool lv_point_within_circle(const lv_area_t * area, const lv_point_t * p)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_area_set(lv_area_t * area_p, int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
     area_p->x1 = x1;
@@ -46,16 +47,19 @@ void lv_area_set(lv_area_t * area_p, int32_t x1, int32_t y1, int32_t x2, int32_t
     area_p->y2 = y2;
 }
 
+LV_FUNC_SECTION
 void lv_area_set_width(lv_area_t * area_p, int32_t w)
 {
     area_p->x2 = area_p->x1 + w - 1;
 }
 
+LV_FUNC_SECTION
 void lv_area_set_height(lv_area_t * area_p, int32_t h)
 {
     area_p->y2 = area_p->y1 + h - 1;
 }
 
+LV_FUNC_SECTION
 void lv_area_set_pos(lv_area_t * area_p, int32_t x, int32_t y)
 {
     int32_t w = lv_area_get_width(area_p);
@@ -66,6 +70,7 @@ void lv_area_set_pos(lv_area_t * area_p, int32_t x, int32_t y)
     lv_area_set_height(area_p, h);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_area_get_size(const lv_area_t * area_p)
 {
     uint32_t size;
@@ -75,6 +80,7 @@ uint32_t lv_area_get_size(const lv_area_t * area_p)
     return size;
 }
 
+LV_FUNC_SECTION
 void lv_area_increase(lv_area_t * area, int32_t w_extra, int32_t h_extra)
 {
     area->x1 -= w_extra;
@@ -83,6 +89,7 @@ void lv_area_increase(lv_area_t * area, int32_t w_extra, int32_t h_extra)
     area->y2 += h_extra;
 }
 
+LV_FUNC_SECTION
 void lv_area_move(lv_area_t * area, int32_t x_ofs, int32_t y_ofs)
 {
     area->x1 += x_ofs;
@@ -91,6 +98,7 @@ void lv_area_move(lv_area_t * area, int32_t x_ofs, int32_t y_ofs)
     area->y2 += y_ofs;
 }
 
+LV_FUNC_SECTION
 bool lv_area_intersect(lv_area_t * res_p, const lv_area_t * a1_p, const lv_area_t * a2_p)
 {
     /*Get the smaller area from 'a1_p' and 'a2_p'*/
@@ -108,6 +116,7 @@ bool lv_area_intersect(lv_area_t * res_p, const lv_area_t * a1_p, const lv_area_
     return union_ok;
 }
 
+LV_FUNC_SECTION
 int8_t lv_area_diff(lv_area_t res_p[], const lv_area_t * a1_p, const lv_area_t * a2_p)
 {
     /*Areas have no common parts*/
@@ -173,6 +182,7 @@ int8_t lv_area_diff(lv_area_t res_p[], const lv_area_t * a1_p, const lv_area_t *
     return res_c;
 }
 
+LV_FUNC_SECTION
 void lv_area_join(lv_area_t * a_res_p, const lv_area_t * a1_p, const lv_area_t * a2_p)
 {
     a_res_p->x1 = LV_MIN(a1_p->x1, a2_p->x1);
@@ -181,6 +191,8 @@ void lv_area_join(lv_area_t * a_res_p, const lv_area_t * a1_p, const lv_area_t *
     a_res_p->y2 = LV_MAX(a1_p->y2, a2_p->y2);
 }
 
+#pragma stackfunction 2048
+LV_FUNC_SECTION
 bool lv_area_is_point_on(const lv_area_t * a_p, const lv_point_t * p_p, int32_t radius)
 {
     /*First check the basic area*/
@@ -241,6 +253,7 @@ bool lv_area_is_point_on(const lv_area_t * a_p, const lv_point_t * p_p, int32_t 
     return true;
 }
 
+LV_FUNC_SECTION
 bool lv_area_is_on(const lv_area_t * a1_p, const lv_area_t * a2_p)
 {
     if((a1_p->x1 <= a2_p->x2) && (a1_p->x2 >= a2_p->x1) && (a1_p->y1 <= a2_p->y2) && (a1_p->y2 >= a2_p->y1)) {
@@ -251,6 +264,7 @@ bool lv_area_is_on(const lv_area_t * a1_p, const lv_area_t * a2_p)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_area_is_in(const lv_area_t * ain_p, const lv_area_t * aholder_p, int32_t radius)
 {
     bool is_in = false;
@@ -281,6 +295,7 @@ bool lv_area_is_in(const lv_area_t * ain_p, const lv_area_t * aholder_p, int32_t
     return true;
 }
 
+LV_FUNC_SECTION
 bool lv_area_is_out(const lv_area_t * aout_p, const lv_area_t * aholder_p, int32_t radius)
 {
     if(aout_p->x2 < aholder_p->x1 || aout_p->y2 < aholder_p->y1 || aout_p->x1 > aholder_p->x2 ||
@@ -308,11 +323,13 @@ bool lv_area_is_out(const lv_area_t * aout_p, const lv_area_t * aholder_p, int32
     return true;
 }
 
+LV_FUNC_SECTION
 bool lv_area_is_equal(const lv_area_t * a, const lv_area_t * b)
 {
     return a->x1 == b->x1 && a->x2 == b->x2 && a->y1 == b->y1 && a->y2 == b->y2;
 }
 
+LV_FUNC_SECTION
 void lv_area_align(const lv_area_t * base, lv_area_t * to_align, lv_align_t align, int32_t ofs_x, int32_t ofs_y)
 {
 
@@ -440,12 +457,14 @@ void lv_area_align(const lv_area_t * base, lv_area_t * to_align, lv_align_t alig
 
 #define LV_TRANSFORM_TRIGO_SHIFT 10
 
+LV_FUNC_SECTION
 void lv_point_transform(lv_point_t * point, int32_t angle, int32_t scale_x, int32_t scale_y, const lv_point_t * pivot,
                         bool zoom_first)
 {
     lv_point_array_transform(point, 1, angle, scale_x, scale_y, pivot, zoom_first);
 }
 
+LV_FUNC_SECTION
 void lv_point_array_transform(lv_point_t * points, size_t count, int32_t angle, int32_t scale_x, int32_t scale_y,
                               const lv_point_t * pivot,
                               bool zoom_first)
@@ -509,16 +528,19 @@ void lv_point_array_transform(lv_point_t * points, size_t count, int32_t angle, 
     }
 }
 
+LV_FUNC_SECTION
 int32_t lv_area_get_width(const lv_area_t * area_p)
 {
     return (int32_t)(area_p->x2 - area_p->x1 + 1);
 }
 
+LV_FUNC_SECTION
 int32_t lv_area_get_height(const lv_area_t * area_p)
 {
     return (int32_t)(area_p->y2 - area_p->y1 + 1);
 }
 
+LV_FUNC_SECTION
 lv_point_t lv_point_from_precise(const lv_point_precise_t * p)
 {
     lv_point_t point = {
@@ -528,6 +550,7 @@ lv_point_t lv_point_from_precise(const lv_point_precise_t * p)
     return point;
 }
 
+LV_FUNC_SECTION
 lv_point_precise_t lv_point_to_precise(const lv_point_t * p)
 {
     lv_point_precise_t point = {
@@ -537,18 +560,21 @@ lv_point_precise_t lv_point_to_precise(const lv_point_t * p)
     return point;
 }
 
+LV_FUNC_SECTION
 void lv_point_set(lv_point_t * p, int32_t x, int32_t y)
 {
     p->x = x;
     p->y = y;
 }
 
+LV_FUNC_SECTION
 void lv_point_precise_set(lv_point_precise_t * p, lv_value_precise_t x, lv_value_precise_t y)
 {
     p->x = x;
     p->y = y;
 }
 
+LV_FUNC_SECTION
 void lv_point_swap(lv_point_t * p1, lv_point_t * p2)
 {
     lv_point_t tmp = *p1;
@@ -556,6 +582,7 @@ void lv_point_swap(lv_point_t * p1, lv_point_t * p2)
     *p2 = tmp;
 }
 
+LV_FUNC_SECTION
 void lv_point_precise_swap(lv_point_precise_t * p1, lv_point_precise_t * p2)
 {
     lv_point_precise_t tmp = *p1;
@@ -563,11 +590,13 @@ void lv_point_precise_swap(lv_point_precise_t * p1, lv_point_precise_t * p2)
     *p2 = tmp;
 }
 
+LV_FUNC_SECTION
 int32_t lv_pct(int32_t x)
 {
     return LV_PCT(x);
 }
 
+LV_FUNC_SECTION
 int32_t lv_pct_to_px(int32_t v, int32_t base)
 {
     if(LV_COORD_IS_PCT(v)) {
@@ -581,6 +610,7 @@ int32_t lv_pct_to_px(int32_t v, int32_t base)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static bool lv_point_within_circle(const lv_area_t * area, const lv_point_t * p)
 {
     int32_t r = (area->x2 - area->x1) / 2;

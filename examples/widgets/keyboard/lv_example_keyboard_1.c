@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_KEYBOARD && LV_BUILD_EXAMPLES
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void ta_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -17,6 +18,7 @@ static void ta_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_example_keyboard_1(void)
 {
     /*Create a keyboard to use it with an of the text areas*/

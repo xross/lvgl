@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_TABVIEW && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_tabview_1(void)
 {
     /*Create a Tab view object*/

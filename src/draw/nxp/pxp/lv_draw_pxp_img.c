@@ -61,6 +61,7 @@ static void _pxp_blit(uint8_t * dest_buf, const lv_area_t * dest_area, int32_t d
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_pxp_img(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * dsc,
                      const lv_area_t * coords)
 {
@@ -116,6 +117,7 @@ void lv_draw_pxp_img(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * dsc
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _pxp_blit_recolor(uint8_t * dest_buf, const lv_area_t * dest_area, int32_t dest_stride,
                               lv_color_format_t dest_cf, const uint8_t * src_buf, const lv_area_t * src_area,
                               int32_t src_stride, lv_color_format_t src_cf, const lv_draw_image_dsc_t * dsc)
@@ -182,6 +184,7 @@ static void _pxp_blit_recolor(uint8_t * dest_buf, const lv_area_t * dest_area, i
     lv_pxp_run();
 }
 
+LV_FUNC_SECTION
 static void _pxp_blit_transform(uint8_t * dest_buf, const lv_area_t * dest_area, int32_t dest_stride,
                                 lv_color_format_t dest_cf, const uint8_t * src_buf, const lv_area_t * src_area,
                                 int32_t src_stride, lv_color_format_t src_cf, const lv_draw_image_dsc_t * dsc)
@@ -290,6 +293,7 @@ static void _pxp_blit_transform(uint8_t * dest_buf, const lv_area_t * dest_area,
     lv_pxp_run();
 }
 
+LV_FUNC_SECTION
 static void _pxp_blit(uint8_t * dest_buf, const lv_area_t * dest_area, int32_t dest_stride,
                       lv_color_format_t dest_cf, const uint8_t * src_buf, const lv_area_t * src_area,
                       int32_t src_stride, lv_color_format_t src_cf, lv_opa_t opa)

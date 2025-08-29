@@ -33,6 +33,7 @@ typedef struct {
  *  STATIC PROTOTYPES
  **********************/
 
+ __attribute__(( fptrgroup("lv_display_flush_cb") ))
 static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map);
 static void release_disp_cb(lv_event_t * e);
 
@@ -48,6 +49,7 @@ static void release_disp_cb(lv_event_t * e);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_opengles_texture_create(int32_t w, int32_t h)
 {
     lv_display_t * disp = lv_display_create(w, h);
@@ -85,6 +87,7 @@ lv_display_t * lv_opengles_texture_create(int32_t w, int32_t h)
     return disp;
 }
 
+LV_FUNC_SECTION
 unsigned int lv_opengles_texture_get_texture_id(lv_display_t * disp)
 {
     if(disp->flush_cb != flush_cb) {
@@ -94,6 +97,7 @@ unsigned int lv_opengles_texture_get_texture_id(lv_display_t * disp)
     return dsc->texture_id;
 }
 
+LV_FUNC_SECTION
 lv_display_t * lv_opengles_texture_get_from_texture_id(unsigned int texture_id)
 {
     lv_display_t * disp = NULL;
@@ -110,6 +114,7 @@ lv_display_t * lv_opengles_texture_get_from_texture_id(unsigned int texture_id)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map)
 {
     LV_UNUSED(area);
@@ -140,6 +145,7 @@ static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_m
     lv_display_flush_ready(disp);
 }
 
+LV_FUNC_SECTION
 static void release_disp_cb(lv_event_t * e)
 {
     lv_display_t * disp = lv_event_get_user_data(e);

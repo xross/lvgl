@@ -22,6 +22,7 @@ typedef struct _test_data {
     void * data; // malloced data
 } test_data;
 
+LV_FUNC_SECTION
 static lv_cache_compare_res_t compare_cb(const test_data * lhs, const test_data * rhs)
 {
     if(lhs->key1 != rhs->key1) {
@@ -33,12 +34,14 @@ static lv_cache_compare_res_t compare_cb(const test_data * lhs, const test_data 
     return 0;
 }
 
+LV_FUNC_SECTION
 static void free_cb(test_data * node, void * user_data)
 {
     LV_UNUSED(user_data);
     lv_free(node->data);
 }
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
@@ -52,6 +55,7 @@ void setUp(void)
     cache = lv_cache_create(&lv_cache_class_lru_rb_size, sizeof(test_data), CACHE_SIZE_BYTES, ops);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
@@ -61,6 +65,7 @@ void tearDown(void)
     TEST_ASSERT_MEM_LEAK_LESS_THAN(MEM_SIZE, 32);
 }
 
+LV_FUNC_SECTION
 void test_cache_1(void)
 {
 

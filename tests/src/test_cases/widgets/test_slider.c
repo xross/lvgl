@@ -12,6 +12,7 @@ static lv_obj_t * sliderNormalMode = NULL;
 static lv_obj_t * sliderSymmetricalMode = NULL;
 static lv_group_t * g = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
@@ -28,11 +29,13 @@ void setUp(void)
     lv_indev_set_group(lv_test_encoder_indev, g);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_textarea_should_have_valid_documented_default_values(void)
 {
     int32_t objw = lv_obj_get_width(slider);
@@ -44,6 +47,7 @@ void test_textarea_should_have_valid_documented_default_values(void)
     TEST_ASSERT_FALSE(lv_obj_has_flag(slider, LV_OBJ_FLAG_SCROLLABLE));
 }
 
+LV_FUNC_SECTION
 void test_slider_event_keys_right_and_up_increment_value_by_one(void)
 {
     uint32_t key = LV_KEY_RIGHT;
@@ -60,6 +64,7 @@ void test_slider_event_keys_right_and_up_increment_value_by_one(void)
     TEST_ASSERT_EQUAL_INT32(new_value + 1, lv_slider_get_value(slider));
 }
 
+LV_FUNC_SECTION
 void test_slider_event_keys_left_and_down_decrement_value_by_one(void)
 {
     uint32_t key = LV_KEY_LEFT;
@@ -76,6 +81,7 @@ void test_slider_event_keys_left_and_down_decrement_value_by_one(void)
     TEST_ASSERT_EQUAL_INT32(new_value - 1, lv_slider_get_value(slider));
 }
 
+LV_FUNC_SECTION
 void test_slider_event_invalid_key_should_not_change_values(void)
 {
     uint32_t key = LV_KEY_ENTER;
@@ -87,6 +93,7 @@ void test_slider_event_invalid_key_should_not_change_values(void)
     TEST_ASSERT_EQUAL_INT32(value, lv_slider_get_value(slider));
 }
 
+LV_FUNC_SECTION
 void test_slider_range_mode_should_leave_edit_mode_if_released(void)
 {
     lv_slider_t * ptr = (lv_slider_t *) sliderRangeMode;
@@ -107,6 +114,7 @@ void test_slider_range_mode_should_leave_edit_mode_if_released(void)
     TEST_ASSERT_FALSE(lv_group_get_editing(g));
 }
 
+LV_FUNC_SECTION
 void test_slider_range_mode_should_not_leave_edit_mode_if_released_with_no_left_knob_focus(void)
 {
     lv_slider_t * ptr = (lv_slider_t *) sliderRangeMode;
@@ -126,6 +134,7 @@ void test_slider_range_mode_should_not_leave_edit_mode_if_released_with_no_left_
     TEST_ASSERT(lv_group_get_editing(g));
 }
 
+LV_FUNC_SECTION
 void test_slider_normal_mode_should_leave_edit_mode_if_released(void)
 {
     lv_slider_t * ptr = (lv_slider_t *) sliderNormalMode;
@@ -147,6 +156,7 @@ void test_slider_normal_mode_should_leave_edit_mode_if_released(void)
     TEST_ASSERT_FALSE(lv_group_get_editing(g));
 }
 
+LV_FUNC_SECTION
 void test_ranged_mode_adjust_with_encoder(void)
 {
     lv_slider_set_value(sliderRangeMode, 90, LV_ANIM_OFF);
@@ -174,6 +184,7 @@ void test_ranged_mode_adjust_with_encoder(void)
 
 }
 
+LV_FUNC_SECTION
 void test_normal_mode_slider_hit_test(void)
 {
     /* Validate if point 0,0 can click in the slider */
@@ -194,6 +205,7 @@ void test_normal_mode_slider_hit_test(void)
     TEST_ASSERT(info.res);
 }
 
+LV_FUNC_SECTION
 void test_slider_range_event_hit_test(void)
 {
     /* Validate if point 0,0 can click in the slider */

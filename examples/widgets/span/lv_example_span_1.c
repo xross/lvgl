@@ -4,6 +4,7 @@
 /**
  * Create span.
  */
+LV_FUNC_SECTION
 void lv_example_span_1(void)
 {
     static lv_style_t style;

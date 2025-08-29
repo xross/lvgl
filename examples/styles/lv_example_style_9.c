@@ -4,6 +4,7 @@
 /**
  * Using the line style properties
  */
+LV_FUNC_SECTION
 void lv_example_style_9(void)
 {
     static lv_style_t style;

@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_TABLE && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void draw_event_cb(lv_event_t * e)
 {
     lv_draw_task_t * draw_task = lv_event_get_draw_task(e);
@@ -41,6 +42,7 @@ static void draw_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_example_table_1(void)
 {
     lv_obj_t * table = lv_table_create(lv_screen_active());

@@ -73,12 +73,14 @@ typedef struct {
 
 #if   LV_COLOR_DEPTH == 32
 typedef lv_color32_t color_t;
+LV_FUNC_SECTION
 static inline lv_color32_t get_px(color_t p)
 {
     return (lv_color32_t)p;
 }
 #elif LV_COLOR_DEPTH == 24
 typedef lv_color_t color_t;
+LV_FUNC_SECTION
 static inline lv_color32_t get_px(color_t p)
 {
     lv_color32_t out = { .red = p.red, .green = p.green, .blue = p.blue };
@@ -86,6 +88,7 @@ static inline lv_color32_t get_px(color_t p)
 }
 #elif LV_COLOR_DEPTH == 16
 typedef lv_color16_t color_t;
+LV_FUNC_SECTION
 static inline lv_color32_t get_px(color_t p)
 {
     lv_color32_t out = { .red = p.red << 3, .green = p.green << 2, .blue = p.blue << 3 };
@@ -93,6 +96,7 @@ static inline lv_color32_t get_px(color_t p)
 }
 #elif LV_COLOR_DEPTH == 8
 typedef uint8_t color_t;
+LV_FUNC_SECTION
 static inline lv_color32_t get_px(color_t p)
 {
     lv_color32_t out = { .red = p, .green = p, .blue = p };
@@ -110,6 +114,7 @@ static inline lv_color32_t get_px(color_t p)
  * @param[in] px_map  contains the rendered image as raw pixel map and it should be copied to `area` on the display.
  * @note              @ref lv_display_flush_ready has to be called when it's finished.
  */
+__attribute__(( fptrgroup("lv_display_flush_cb") ))
 static void x11_flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map)
 {
     x11_disp_data_t * xd = lv_display_get_driver_data(disp);
@@ -163,6 +168,7 @@ static void x11_flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * 
  * event called by lvgl display if resolution has been changed (@ref lv_display_set_resolution has been called)
  * @param[in] e  event data, containing lv_display_t object
  */
+LV_FUNC_SECTION
 static void x11_resolution_evt_cb(lv_event_t * e)
 {
     lv_display_t * disp = lv_event_get_user_data(e);
@@ -192,6 +198,7 @@ static void x11_resolution_evt_cb(lv_event_t * e)
  * event called by lvgl display if display has been closed (@ref lv_display_delete has been called)
  * @param[in] e  event data, containing lv_display_t object
  */
+LV_FUNC_SECTION
 static void x11_disp_delete_evt_cb(lv_event_t * e)
 {
     lv_display_t * disp = lv_event_get_user_data(e);
@@ -218,6 +225,7 @@ static void x11_disp_delete_evt_cb(lv_event_t * e)
 #endif
 }
 
+LV_FUNC_SECTION
 static void x11_hide_cursor(lv_display_t * disp)
 {
     x11_disp_data_t * xd = lv_display_get_driver_data(disp);
@@ -237,6 +245,7 @@ static void x11_hide_cursor(lv_display_t * disp)
  * X11 input event handler, predicated to fetch and handle only display related events
  * (Window changes)
  */
+LV_FUNC_SECTION
 static int is_disp_event(Display * disp, XEvent * event, XPointer arg)
 {
     LV_UNUSED(disp);
@@ -245,6 +254,7 @@ static int is_disp_event(Display * disp, XEvent * event, XPointer arg)
             || (event->type >= DestroyNotify && event->type <= CirculateNotify) /* events from StructureNotifyMask */
             ||  event->type == ClientMessage);
 }
+LV_FUNC_SECTION
 static void x11_event_handler(lv_timer_t * t)
 {
     lv_display_t * disp = lv_timer_get_user_data(t);
@@ -286,6 +296,7 @@ static void x11_event_handler(lv_timer_t * t)
     }
 }
 
+LV_FUNC_SECTION
 static void * x11_tick_thread(void * data)
 {
     x11_disp_data_t * xd = data;
@@ -298,6 +309,7 @@ static void * x11_tick_thread(void * data)
     return NULL;
 }
 
+LV_FUNC_SECTION
 static void x11_window_create(lv_display_t * disp, char const * title)
 {
     x11_disp_data_t * xd = lv_display_get_driver_data(disp);
@@ -356,6 +368,7 @@ static void x11_window_create(lv_display_t * disp, char const * title)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_x11_window_create(char const * title, int32_t hor_res, int32_t ver_res)
 {
     x11_disp_data_t * xd = lv_malloc_zeroed(sizeof(x11_disp_data_t));

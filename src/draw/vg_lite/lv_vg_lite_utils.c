@@ -62,6 +62,7 @@ static void image_dsc_free_cb(void * dsc, void * user_data);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_vg_lite_dump_info(void)
 {
     char name[64];
@@ -95,6 +96,7 @@ void lv_vg_lite_dump_info(void)
     LV_LOG_USER("Memory Available: %" LV_PRId32 " Bytes", (uint32_t)mem_avail);
 }
 
+LV_FUNC_SECTION
 const char * lv_vg_lite_error_string(vg_lite_error_t error)
 {
     switch(error) {
@@ -116,6 +118,7 @@ const char * lv_vg_lite_error_string(vg_lite_error_t error)
     return "UNKNOW_ERROR";
 }
 
+LV_FUNC_SECTION
 const char * lv_vg_lite_feature_string(vg_lite_feature_t feature)
 {
     switch(feature) {
@@ -171,6 +174,7 @@ const char * lv_vg_lite_feature_string(vg_lite_feature_t feature)
     return "UNKNOW_FEATURE";
 }
 
+LV_FUNC_SECTION
 const char * lv_vg_lite_buffer_format_string(vg_lite_buffer_format_t format)
 {
     switch(format) {
@@ -229,6 +233,7 @@ const char * lv_vg_lite_buffer_format_string(vg_lite_buffer_format_t format)
     return "UNKNOW_BUFFER_FORMAT";
 }
 
+LV_FUNC_SECTION
 const char * lv_vg_lite_vlc_op_string(uint8_t vlc_op)
 {
     switch(vlc_op) {
@@ -257,6 +262,7 @@ const char * lv_vg_lite_vlc_op_string(uint8_t vlc_op)
     return "UNKNOW_VLC_OP";
 }
 
+LV_FUNC_SECTION
 static void path_data_print_cb(void * user_data, uint8_t op_code, const float * data, uint32_t len)
 {
     LV_UNUSED(user_data);
@@ -268,6 +274,7 @@ static void path_data_print_cb(void * user_data, uint8_t op_code, const float * 
     LV_LOG("\n");
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_path_dump_info(const vg_lite_path_t * path)
 {
     LV_ASSERT(path != NULL);
@@ -299,6 +306,7 @@ void lv_vg_lite_path_dump_info(const vg_lite_path_t * path)
     }
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_stroke_dump_info(const vg_lite_stroke_t * stroke)
 {
     LV_ASSERT(stroke != NULL);
@@ -375,6 +383,7 @@ void lv_vg_lite_stroke_dump_info(const vg_lite_stroke_t * stroke)
     LV_LOG_USER("closed: %d", (int)stroke->closed);
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_buffer_dump_info(const vg_lite_buffer_t * buffer)
 {
     LV_LOG_USER("memory: %p", (buffer)->memory);
@@ -387,6 +396,7 @@ void lv_vg_lite_buffer_dump_info(const vg_lite_buffer_t * buffer)
     LV_LOG_USER("tiled: %d", (int)((buffer)->tiled));
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_matrix_dump_info(const vg_lite_matrix_t * matrix)
 {
     for(int i = 0; i < 3; i++) {
@@ -395,6 +405,7 @@ void lv_vg_lite_matrix_dump_info(const vg_lite_matrix_t * matrix)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_is_dest_cf_supported(lv_color_format_t cf)
 {
     switch(cf) {
@@ -414,6 +425,7 @@ bool lv_vg_lite_is_dest_cf_supported(lv_color_format_t cf)
     return false;
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_is_src_cf_supported(lv_color_format_t cf)
 {
     switch(cf) {
@@ -444,6 +456,7 @@ bool lv_vg_lite_is_src_cf_supported(lv_color_format_t cf)
     return false;
 }
 
+LV_FUNC_SECTION
 vg_lite_buffer_format_t lv_vg_lite_vg_fmt(lv_color_format_t cf)
 {
     switch(cf) {
@@ -495,6 +508,7 @@ vg_lite_buffer_format_t lv_vg_lite_vg_fmt(lv_color_format_t cf)
     return 0;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_buffer_format_bytes(
     vg_lite_buffer_format_t format,
     uint32_t * mul,
@@ -584,6 +598,7 @@ void lv_vg_lite_buffer_format_bytes(
     }
 }
 
+LV_FUNC_SECTION
 uint32_t lv_vg_lite_width_to_stride(uint32_t w, vg_lite_buffer_format_t color_format)
 {
     w = lv_vg_lite_width_align(w);
@@ -593,6 +608,7 @@ uint32_t lv_vg_lite_width_to_stride(uint32_t w, vg_lite_buffer_format_t color_fo
     return LV_VG_LITE_ALIGN(((w * mul + div - 1) / div), align);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_vg_lite_width_align(uint32_t w)
 {
     if(lv_vg_lite_16px_align()) {
@@ -602,6 +618,7 @@ uint32_t lv_vg_lite_width_align(uint32_t w)
     return w;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_buffer_init(
     vg_lite_buffer_t * buffer,
     const void * ptr,
@@ -655,6 +672,7 @@ void lv_vg_lite_buffer_init(
     }
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_buffer_from_draw_buf(vg_lite_buffer_t * buffer, const lv_draw_buf_t * draw_buf)
 {
     LV_ASSERT_NULL(buffer);
@@ -683,6 +701,7 @@ void lv_vg_lite_buffer_from_draw_buf(vg_lite_buffer_t * buffer, const lv_draw_bu
     }
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_image_matrix(vg_lite_matrix_t * matrix, int32_t x, int32_t y, const lv_draw_image_dsc_t * dsc)
 {
     LV_ASSERT_NULL(matrix);
@@ -713,6 +732,7 @@ void lv_vg_lite_image_matrix(vg_lite_matrix_t * matrix, int32_t x, int32_t y, co
     }
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_buffer_open_image(vg_lite_buffer_t * buffer, lv_image_decoder_dsc_t * decoder_dsc, const void * src,
                                   bool no_cache, bool premultiply)
 {
@@ -758,18 +778,21 @@ bool lv_vg_lite_buffer_open_image(vg_lite_buffer_t * buffer, lv_image_decoder_ds
     return true;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_image_dsc_init(struct lv_draw_vg_lite_unit_t * unit)
 {
     unit->image_dsc_pending = lv_vg_lite_pending_create(sizeof(lv_image_decoder_dsc_t), 4);
     lv_vg_lite_pending_set_free_cb(unit->image_dsc_pending, image_dsc_free_cb, NULL);
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_image_dsc_deinit(struct lv_draw_vg_lite_unit_t * unit)
 {
     lv_vg_lite_pending_destroy(unit->image_dsc_pending);
     unit->image_dsc_pending = NULL;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_rect(vg_lite_rectangle_t * rect, const lv_area_t * area)
 {
     rect->x = area->x1;
@@ -778,11 +801,13 @@ void lv_vg_lite_rect(vg_lite_rectangle_t * rect, const lv_area_t * area)
     rect->height = lv_area_get_height(area);
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_matrix(vg_lite_matrix_t * dest, const lv_matrix_t * src)
 {
     lv_memcpy(dest, src, sizeof(lv_matrix_t));
 }
 
+LV_FUNC_SECTION
 uint32_t lv_vg_lite_get_palette_size(vg_lite_buffer_format_t format)
 {
     uint32_t size = 0;
@@ -805,6 +830,7 @@ uint32_t lv_vg_lite_get_palette_size(vg_lite_buffer_format_t format)
     return size;
 }
 
+LV_FUNC_SECTION
 vg_lite_color_t lv_vg_lite_color(lv_color_t color, lv_opa_t opa, bool pre_mul)
 {
     if(pre_mul && opa < LV_OPA_COVER) {
@@ -815,6 +841,7 @@ vg_lite_color_t lv_vg_lite_color(lv_color_t color, lv_opa_t opa, bool pre_mul)
     return (uint32_t)opa << 24 | (uint32_t)color.blue << 16 | (uint32_t)color.green << 8 | color.red;
 }
 
+LV_FUNC_SECTION
 vg_lite_blend_t lv_vg_lite_blend_mode(lv_blend_mode_t blend_mode, bool has_pre_mul)
 {
     if(!has_pre_mul && vg_lite_query_feature(gcFEATURE_BIT_VG_LVGL_SUPPORT)) {
@@ -857,6 +884,7 @@ vg_lite_blend_t lv_vg_lite_blend_mode(lv_blend_mode_t blend_mode, bool has_pre_m
     }
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_buffer_check(const vg_lite_buffer_t * buffer, bool is_src)
 {
     uint32_t mul;
@@ -933,6 +961,7 @@ bool lv_vg_lite_buffer_check(const vg_lite_buffer_t * buffer, bool is_src)
     return true;
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_path_check(const vg_lite_path_t * path)
 {
     if(path == NULL) {
@@ -1007,6 +1036,7 @@ bool lv_vg_lite_path_check(const vg_lite_path_t * path)
     return true;
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_matrix_check(const vg_lite_matrix_t * matrix)
 {
     if(matrix == NULL) {
@@ -1024,6 +1054,7 @@ bool lv_vg_lite_matrix_check(const vg_lite_matrix_t * matrix)
     return true;
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_support_blend_normal(void)
 {
     if(vg_lite_query_feature(gcFEATURE_BIT_VG_HW_PREMULTIPLY)) {
@@ -1037,11 +1068,13 @@ bool lv_vg_lite_support_blend_normal(void)
     return false;
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_16px_align(void)
 {
     return vg_lite_query_feature(gcFEATURE_BIT_VG_16PIXELS_ALIGN);
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_matrix_multiply(vg_lite_matrix_t * matrix, const vg_lite_matrix_t * mult)
 {
     vg_lite_matrix_t temp;
@@ -1063,6 +1096,7 @@ void lv_vg_lite_matrix_multiply(vg_lite_matrix_t * matrix, const vg_lite_matrix_
     lv_memcpy(matrix, &temp, sizeof(temp));
 }
 
+LV_FUNC_SECTION
 bool lv_vg_lite_matrix_inverse(vg_lite_matrix_t * result, const vg_lite_matrix_t * matrix)
 {
     vg_lite_float_t det00, det01, det02;
@@ -1118,6 +1152,7 @@ bool lv_vg_lite_matrix_inverse(vg_lite_matrix_t * result, const vg_lite_matrix_t
     return true;
 }
 
+LV_FUNC_SECTION
 lv_point_precise_t lv_vg_lite_matrix_transform_point(const vg_lite_matrix_t * matrix, const lv_point_precise_t * point)
 {
     lv_point_precise_t p;
@@ -1127,6 +1162,7 @@ lv_point_precise_t lv_vg_lite_matrix_transform_point(const vg_lite_matrix_t * ma
     return p;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_set_scissor_area(const lv_area_t * area)
 {
 #if VGLITE_RELEASE_VERSION <= VGLITE_MAKE_VERSION(4,0,57)
@@ -1148,6 +1184,7 @@ void lv_vg_lite_set_scissor_area(const lv_area_t * area)
                                area->y2 + 1));
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_disable_scissor(void)
 {
     /* Restore full screen scissor */
@@ -1158,6 +1195,7 @@ void lv_vg_lite_disable_scissor(void)
                                LV_VER_RES));
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_flush(struct lv_draw_vg_lite_unit_t * u)
 {
     LV_ASSERT_NULL(u);
@@ -1186,6 +1224,7 @@ void lv_vg_lite_flush(struct lv_draw_vg_lite_unit_t * u)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_finish(struct lv_draw_vg_lite_unit_t * u)
 {
     LV_ASSERT_NULL(u);
@@ -1208,6 +1247,7 @@ void lv_vg_lite_finish(struct lv_draw_vg_lite_unit_t * u)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void image_dsc_free_cb(void * dsc, void * user_data)
 {
     LV_UNUSED(user_data);

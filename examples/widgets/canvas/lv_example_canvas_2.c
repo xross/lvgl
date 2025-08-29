@@ -7,6 +7,7 @@
 /**
  * Create a transparent canvas with transparency
  */
+LV_FUNC_SECTION
 void lv_example_canvas_2(void)
 {
     lv_obj_set_style_bg_color(lv_screen_active(), lv_palette_lighten(LV_PALETTE_RED, 5), 0);

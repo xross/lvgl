@@ -9,6 +9,7 @@ static lv_obj_t * kb;
  * Automatically format text like a clock. E.g. "12:34"
  * Add the ':' automatically.
  */
+LV_FUNC_SECTION
 void lv_example_textarea_3(void)
 {
     /*Create the text area*/
@@ -26,6 +27,7 @@ void lv_example_textarea_3(void)
     lv_keyboard_set_textarea(kb, ta);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void ta_event_cb(lv_event_t * e)
 {
     lv_obj_t * ta = lv_event_get_target(e);

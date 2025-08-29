@@ -27,22 +27,26 @@ void test_animimg_set_duration(void);
 void test_animimg_set_repeat_count_infinite(void);
 void test_animimg_start(void);
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
     animimg = lv_animimg_create(active_screen);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_animimg_successful_create(void)
 {
     TEST_ASSERT_NOT_NULL(animimg);
 }
 
+LV_FUNC_SECTION
 void test_animimg_set_src(void)
 {
     lv_animimg_set_src(animimg, (const void **) anim_imgs, 3);
@@ -50,6 +54,7 @@ void test_animimg_set_src(void)
     TEST_ASSERT_NOT_NULL(animimg);
 }
 
+LV_FUNC_SECTION
 void test_animimg_get_src(void)
 {
     lv_animimg_set_src(animimg, (const void **) anim_imgs, 3);
@@ -60,6 +65,7 @@ void test_animimg_get_src(void)
     TEST_ASSERT_EQUAL_PTR(actual_dsc, anim_imgs);
 }
 
+LV_FUNC_SECTION
 void test_animimg_get_src_count(void)
 {
     uint8_t expected_count = 3;
@@ -71,6 +77,7 @@ void test_animimg_get_src_count(void)
     TEST_ASSERT_EQUAL_UINT8(actual_count, expected_count);
 }
 
+LV_FUNC_SECTION
 void test_animimg_set_duration(void)
 {
     uint16_t expected_duration = 1000;
@@ -82,6 +89,7 @@ void test_animimg_set_duration(void)
     TEST_ASSERT_EQUAL_UINT16(actual_duration, expected_duration);
 }
 
+LV_FUNC_SECTION
 void test_animimg_set_repeat_count_infinite(void)
 {
     lv_animimg_set_repeat_count(animimg, LV_ANIM_REPEAT_INFINITE);
@@ -91,6 +99,7 @@ void test_animimg_set_repeat_count_infinite(void)
     TEST_ASSERT_EQUAL_UINT32(actual_count, LV_ANIM_REPEAT_INFINITE);
 }
 
+LV_FUNC_SECTION
 void test_animimg_start(void)
 {
     // for lv_animimg_start() to actually work,

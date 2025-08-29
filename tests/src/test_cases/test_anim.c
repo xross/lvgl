@@ -5,28 +5,33 @@
 #include "unity/unity.h"
 #include "lv_test_helpers.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 static void exec_cb(void * var, int32_t v)
 {
     int32_t * var_i32 = var;
     *var_i32 = v;
 }
 
+LV_FUNC_SECTION
 static void custom_exec_cb(lv_anim_t * a, int32_t v)
 {
     int32_t * var_i32 = a->var;
     *var_i32 = v;
 }
 
+LV_FUNC_SECTION
 void test_anim_delete(void)
 {
     int32_t var;
@@ -59,6 +64,7 @@ void test_anim_delete(void)
     TEST_ASSERT_EQUAL(39, var);
 }
 
+LV_FUNC_SECTION
 void test_anim_delete_custom(void)
 {
     int32_t var;

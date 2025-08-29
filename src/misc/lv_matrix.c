@@ -41,6 +41,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_matrix_identity(lv_matrix_t * matrix)
 {
     matrix->m[0][0] = 1.0f;
@@ -54,6 +55,7 @@ void lv_matrix_identity(lv_matrix_t * matrix)
     matrix->m[2][2] = 1.0f;
 }
 
+LV_FUNC_SECTION
 void lv_matrix_translate(lv_matrix_t * matrix, float dx, float dy)
 {
     if(lv_matrix_is_identity_or_translation(matrix)) {
@@ -73,6 +75,7 @@ void lv_matrix_translate(lv_matrix_t * matrix, float dx, float dy)
     lv_matrix_multiply(matrix, &tlm);
 }
 
+LV_FUNC_SECTION
 void lv_matrix_scale(lv_matrix_t * matrix, float scale_x, float scale_y)
 {
     lv_matrix_t scm = {{
@@ -85,6 +88,7 @@ void lv_matrix_scale(lv_matrix_t * matrix, float scale_x, float scale_y)
     lv_matrix_multiply(matrix, &scm);
 }
 
+LV_FUNC_SECTION
 void lv_matrix_rotate(lv_matrix_t * matrix, float degree)
 {
     float radian = degree / 180.0f * (float)M_PI;
@@ -101,6 +105,7 @@ void lv_matrix_rotate(lv_matrix_t * matrix, float degree)
     lv_matrix_multiply(matrix, &rtm);
 }
 
+LV_FUNC_SECTION
 void lv_matrix_skew(lv_matrix_t * matrix, float skew_x, float skew_y)
 {
     float rskew_x = skew_x / 180.0f * (float)M_PI;
@@ -118,6 +123,7 @@ void lv_matrix_skew(lv_matrix_t * matrix, float skew_x, float skew_y)
     lv_matrix_multiply(matrix, &skm);
 }
 
+LV_FUNC_SECTION
 void lv_matrix_multiply(lv_matrix_t * matrix, const lv_matrix_t * mul)
 {
     /*TODO: use NEON to optimize this function on ARM architecture.*/
@@ -134,6 +140,7 @@ void lv_matrix_multiply(lv_matrix_t * matrix, const lv_matrix_t * mul)
     lv_memcpy(matrix, &tmp, sizeof(lv_matrix_t));
 }
 
+LV_FUNC_SECTION
 bool lv_matrix_inverse(lv_matrix_t * matrix, const lv_matrix_t * m)
 {
     float det00, det01, det02;
@@ -177,6 +184,7 @@ bool lv_matrix_inverse(lv_matrix_t * matrix, const lv_matrix_t * m)
     return true;
 }
 
+LV_FUNC_SECTION
 lv_point_precise_t lv_matrix_transform_precise_point(const lv_matrix_t * matrix, const lv_point_precise_t * point)
 {
     lv_point_precise_t p;
@@ -185,6 +193,7 @@ lv_point_precise_t lv_matrix_transform_precise_point(const lv_matrix_t * matrix,
     return p;
 }
 
+LV_FUNC_SECTION
 lv_area_t lv_matrix_transform_area(const lv_matrix_t * matrix, const lv_area_t * area)
 {
     lv_area_t res;
@@ -207,6 +216,7 @@ lv_area_t lv_matrix_transform_area(const lv_matrix_t * matrix, const lv_area_t *
     return res;
 }
 
+LV_FUNC_SECTION
 bool lv_matrix_is_identity_or_translation(const lv_matrix_t * matrix)
 {
     return (matrix->m[0][0] == 1.0f &&

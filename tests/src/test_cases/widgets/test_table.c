@@ -7,17 +7,20 @@
 static lv_obj_t * scr = NULL;
 static lv_obj_t * table = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     scr = lv_screen_active();
     table = lv_table_create(scr);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 void test_table_should_set_row_count_to_zero(void)
 {
     lv_table_set_row_count(table, 0);
@@ -25,6 +28,7 @@ void test_table_should_set_row_count_to_zero(void)
     TEST_ASSERT_EQUAL_UINT32(0, lv_table_get_row_count(table));
 }
 
+LV_FUNC_SECTION
 void test_table_should_return_assigned_cell_value(void)
 {
     uint16_t row = 0;
@@ -36,6 +40,7 @@ void test_table_should_return_assigned_cell_value(void)
     TEST_ASSERT_EQUAL_STRING(value, lv_table_get_cell_value(table, row, column));
 }
 
+LV_FUNC_SECTION
 void test_table_should_grow_columns_automatically_when_setting_formatted_cell_value(void)
 {
     /* Newly created tables have 1 column and 1 row */
@@ -50,6 +55,7 @@ void test_table_should_grow_columns_automatically_when_setting_formatted_cell_va
     TEST_ASSERT_EQUAL_UINT16(expected_column_count, lv_table_get_column_count(table));
 }
 
+LV_FUNC_SECTION
 void test_table_should_identify_cell_with_ctrl(void)
 {
     bool has_ctrl = false;
@@ -63,6 +69,7 @@ void test_table_should_identify_cell_with_ctrl(void)
     TEST_ASSERT_TRUE(has_ctrl);
 }
 
+LV_FUNC_SECTION
 void test_table_should_clear_selected_cell_ctrl(void)
 {
     bool has_ctrl = false;
@@ -76,6 +83,7 @@ void test_table_should_clear_selected_cell_ctrl(void)
     TEST_ASSERT_FALSE(has_ctrl);
 }
 
+LV_FUNC_SECTION
 void test_table_should_keep_not_selected_cell_ctrl(void)
 {
     bool has_ctrl = false;
@@ -91,11 +99,13 @@ void test_table_should_keep_not_selected_cell_ctrl(void)
 }
 
 /* We're using a newly created table */
+LV_FUNC_SECTION
 void test_table_cell_value_should_return_empty_string_when_cell_is_empty(void)
 {
     TEST_ASSERT_EQUAL_STRING("", lv_table_get_cell_value(table, 0, 0));
 }
 
+LV_FUNC_SECTION
 void test_table_row_height_should_increase_with_multiline_cell_value(void)
 {
     lv_table_t * table_ptr = (lv_table_t *) table;
@@ -111,6 +121,7 @@ void test_table_row_height_should_increase_with_multiline_cell_value(void)
     TEST_ASSERT_GREATER_THAN(singleline_row_height, multiline_row_height);
 }
 
+LV_FUNC_SECTION
 void test_table_should_wrap_long_texts(void)
 {
     lv_table_t * table_ptr = (lv_table_t *) table;
@@ -129,6 +140,7 @@ void test_table_should_wrap_long_texts(void)
     TEST_ASSERT_GREATER_THAN(row_height, wrapped_row_height);
 }
 
+LV_FUNC_SECTION
 static void draw_part_event_cb(lv_event_t * e)
 {
     lv_draw_task_t * draw_task = lv_event_get_draw_task(e);
@@ -169,6 +181,7 @@ static void draw_part_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void test_table_rendering(void)
 {
     lv_obj_center(table);
@@ -206,6 +219,7 @@ void test_table_rendering(void)
 }
 
 /* See #3120 for context */
+LV_FUNC_SECTION
 void test_table_should_reduce_cells(void)
 {
     const uint16_t initial_col_num = 8;
@@ -236,6 +250,7 @@ void test_table_should_reduce_cells(void)
 }
 
 /* See #3120 for context */
+LV_FUNC_SECTION
 void test_table_should_reduce_cells_with_more_than_one_row(void)
 {
     const uint16_t initial_col_num = 8;
@@ -265,6 +280,7 @@ void test_table_should_reduce_cells_with_more_than_one_row(void)
     }
 }
 
+LV_FUNC_SECTION
 void test_table_should_set_selected_cell(void)
 {
     lv_table_set_row_count(table, 2);
@@ -281,6 +297,7 @@ void test_table_should_set_selected_cell(void)
     TEST_ASSERT_EQUAL_UINT32(1, selected_column);
 }
 
+LV_FUNC_SECTION
 void test_table_cell_select_should_not_exceed_table_bounds(void)
 {
     lv_table_set_row_count(table, 2);
@@ -297,6 +314,7 @@ void test_table_cell_select_should_not_exceed_table_bounds(void)
     TEST_ASSERT_EQUAL_UINT32(1, selected_column);
 }
 
+LV_FUNC_SECTION
 void test_table_cell_select_should_not_allow_set_on_table_with_no_rows(void)
 {
     lv_table_set_row_count(table, 0);

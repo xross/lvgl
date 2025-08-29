@@ -104,6 +104,7 @@ const lv_obj_class_t lv_msgbox_backdrop_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -137,6 +138,7 @@ lv_obj_t * lv_msgbox_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_add_title(lv_obj_t * obj, const char * title)
 {
     lv_msgbox_t * mbox = (lv_msgbox_t *)obj;
@@ -163,6 +165,7 @@ lv_obj_t * lv_msgbox_add_title(lv_obj_t * obj, const char * title)
     return mbox->title;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_add_header_button(lv_obj_t * obj, const void * icon)
 {
     lv_msgbox_t * mbox = (lv_msgbox_t *)obj;
@@ -185,6 +188,7 @@ lv_obj_t * lv_msgbox_add_header_button(lv_obj_t * obj, const void * icon)
     return btn;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_add_text(lv_obj_t * obj, const char * text)
 {
     lv_msgbox_t * mbox = (lv_msgbox_t *)obj;
@@ -196,6 +200,7 @@ lv_obj_t * lv_msgbox_add_text(lv_obj_t * obj, const char * text)
     return label;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_add_footer_button(lv_obj_t * obj, const char * text)
 {
     lv_msgbox_t * mbox = (lv_msgbox_t *)obj;
@@ -225,6 +230,7 @@ lv_obj_t * lv_msgbox_add_footer_button(lv_obj_t * obj, const char * text)
     return btn;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_add_close_button(lv_obj_t * obj)
 {
     lv_obj_t * btn = lv_msgbox_add_header_button(obj, LV_SYMBOL_CLOSE);
@@ -232,6 +238,7 @@ lv_obj_t * lv_msgbox_add_close_button(lv_obj_t * obj)
     return btn;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_get_header(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -239,6 +246,7 @@ lv_obj_t * lv_msgbox_get_header(lv_obj_t * obj)
     return mbox->header;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_get_footer(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -246,6 +254,7 @@ lv_obj_t * lv_msgbox_get_footer(lv_obj_t * obj)
     return mbox->footer;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_get_content(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -253,6 +262,7 @@ lv_obj_t * lv_msgbox_get_content(lv_obj_t * obj)
     return mbox->content;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_msgbox_get_title(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -260,12 +270,14 @@ lv_obj_t * lv_msgbox_get_title(lv_obj_t * obj)
     return mbox->title;
 }
 
+LV_FUNC_SECTION
 void lv_msgbox_close(lv_obj_t * obj)
 {
     if(lv_obj_has_flag(obj, LV_MSGBOX_FLAG_AUTO_PARENT)) lv_obj_delete(lv_obj_get_parent(obj));
     else lv_obj_delete(obj);
 }
 
+LV_FUNC_SECTION
 void lv_msgbox_close_async(lv_obj_t * obj)
 {
     if(lv_obj_has_flag(obj, LV_MSGBOX_FLAG_AUTO_PARENT)) lv_obj_delete_async(lv_obj_get_parent(obj));
@@ -275,7 +287,7 @@ void lv_msgbox_close_async(lv_obj_t * obj)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void msgbox_close_click_event_cb(lv_event_t * e)
 {
     lv_obj_t * btn = lv_event_get_current_target(e);
@@ -283,6 +295,7 @@ static void msgbox_close_click_event_cb(lv_event_t * e)
     lv_msgbox_close(mbox);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void msgbox_size_changed_event_cb(lv_event_t * e)
 {
     lv_obj_t * mbox = lv_event_get_target(e);

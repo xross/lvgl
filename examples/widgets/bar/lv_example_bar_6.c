@@ -4,11 +4,13 @@
 #define MAX_VALUE 100
 #define MIN_VALUE 0
 
+LV_FUNC_SECTION
 static void set_value(void * bar, int32_t v)
 {
     lv_bar_set_value(bar, v, LV_ANIM_OFF);
 }
 
+LV_FUNC_SECTION
 static void event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -53,6 +55,7 @@ static void event_cb(lv_event_t * e)
 /**
  * Custom drawer on the bar to display the current value
  */
+LV_FUNC_SECTION
 void lv_example_bar_6(void)
 {
     lv_obj_t * bar = lv_bar_create(lv_screen_active());

@@ -6,6 +6,7 @@
 
 void test_config(void);
 
+LV_FUNC_SECTION
 void test_config(void)
 {
     TEST_ASSERT_EQUAL(130, LV_DPI_DEF);

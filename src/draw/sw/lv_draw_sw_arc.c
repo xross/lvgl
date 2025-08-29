@@ -50,6 +50,7 @@ static void get_rounded_area(int16_t angle, int32_t radius, uint8_t thickness, l
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_sw_arc(lv_draw_unit_t * draw_unit, const lv_draw_arc_dsc_t * dsc, const lv_area_t * coords)
 {
 #if LV_DRAW_SW_COMPLEX
@@ -246,6 +247,7 @@ void lv_draw_sw_arc(lv_draw_unit_t * draw_unit, const lv_draw_arc_dsc_t * dsc, c
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void add_circle(const lv_opa_t * circle_mask, const lv_area_t * blend_area, const lv_area_t * circle_area,
                        lv_opa_t * mask_buf,  int32_t width)
 {
@@ -266,6 +268,7 @@ static void add_circle(const lv_opa_t * circle_mask, const lv_area_t * blend_are
 
 }
 
+LV_FUNC_SECTION
 static void get_rounded_area(int16_t angle, int32_t radius, uint8_t thickness, lv_area_t * res_area)
 {
     int32_t thick_half = thickness / 2;
@@ -303,6 +306,7 @@ static void get_rounded_area(int16_t angle, int32_t radius, uint8_t thickness, l
 
 #else /*LV_DRAW_SW_COMPLEX*/
 
+LV_FUNC_SECTION
 void lv_draw_sw_arc(lv_draw_unit_t * draw_unit, const lv_draw_arc_dsc_t * dsc, const lv_area_t * coords)
 {
     LV_UNUSED(draw_unit);

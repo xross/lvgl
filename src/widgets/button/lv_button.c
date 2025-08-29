@@ -46,6 +46,7 @@ const lv_obj_class_t lv_button_class  = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_button_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -58,6 +59,7 @@ lv_obj_t * lv_button_create(lv_obj_t * parent)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_button_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);

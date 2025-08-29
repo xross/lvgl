@@ -7,11 +7,13 @@ static const int32_t opts_counts[] = {6, 10, 3};
 static lv_obj_t * sliders[3];
 static lv_obj_t * rollers[3];
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void slider_key_cb(lv_event_t * e)
 {
     uint8_t i = (uint32_t)(uintptr_t)lv_event_get_user_data(e);
     lv_roller_set_selected(rollers[i], lv_slider_get_value(sliders[i]), LV_ANIM_ON);
 }
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void roller_key_cb(lv_event_t * e)
 {
     uint8_t i = (uint32_t)(uintptr_t)lv_event_get_user_data(e);
@@ -21,6 +23,7 @@ static void roller_key_cb(lv_event_t * e)
 /**
  * Grid navigation for only one axis
  */
+LV_FUNC_SECTION
 void lv_example_gridnav_5(void)
 {
     /*It's assumed that the default group is set and

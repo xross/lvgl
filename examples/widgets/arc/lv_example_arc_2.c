@@ -2,6 +2,7 @@
 
 #if LV_USE_ARC && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void set_angle(void * obj, int32_t v)
 {
     lv_arc_set_value(obj, v);
@@ -10,6 +11,7 @@ static void set_angle(void * obj, int32_t v)
 /**
  * Create an arc which acts as a loader.
  */
+LV_FUNC_SECTION
 void lv_example_arc_2(void)
 {
     /*Create an Arc*/

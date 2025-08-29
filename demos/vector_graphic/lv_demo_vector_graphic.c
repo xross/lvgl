@@ -23,6 +23,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
+LV_FUNC_SECTION
 static void draw_pattern(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
 {
     lv_vector_path_clear(path);
@@ -48,6 +49,7 @@ static void draw_pattern(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
     lv_vector_dsc_add_path(ctx, path); // draw a path
 }
 
+LV_FUNC_SECTION
 static void draw_gradient(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
 {
     lv_vector_path_clear(path);
@@ -78,6 +80,7 @@ static void draw_gradient(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
     lv_vector_dsc_add_path(ctx, path); // draw a path
 }
 
+LV_FUNC_SECTION
 static void draw_radial_gradient(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
 {
     lv_vector_path_clear(path);
@@ -105,6 +108,7 @@ static void draw_radial_gradient(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
     lv_vector_dsc_add_path(ctx, path); // draw a path
 }
 
+LV_FUNC_SECTION
 static void draw_shapes(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
 {
     lv_vector_path_clear(path);
@@ -145,6 +149,7 @@ static void draw_shapes(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
     lv_vector_path_delete(path2);
 }
 
+LV_FUNC_SECTION
 static void draw_lines(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
 {
     lv_vector_path_clear(path);
@@ -169,6 +174,7 @@ static void draw_lines(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
     lv_vector_dsc_set_fill_opa(ctx, LV_OPA_COVER);
 }
 
+LV_FUNC_SECTION
 static void draw_blend(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
 {
     lv_vector_path_clear(path);
@@ -185,6 +191,7 @@ static void draw_blend(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
     lv_vector_dsc_add_path(ctx, path); // draw a path
 }
 
+LV_FUNC_SECTION
 static void draw_arc(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
 {
     lv_vector_path_clear(path);
@@ -216,6 +223,7 @@ static void draw_arc(lv_vector_dsc_t * ctx, lv_vector_path_t * path)
     lv_vector_dsc_add_path(ctx, path); // draw a path
 }
 
+LV_FUNC_SECTION
 static void draw_vector(lv_layer_t * layer)
 {
     lv_vector_dsc_t * ctx = lv_vector_dsc_create(layer);
@@ -238,6 +246,7 @@ static void draw_vector(lv_layer_t * layer)
     lv_vector_dsc_delete(ctx);
 }
 
+LV_FUNC_SECTION
 static void delete_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -245,6 +254,7 @@ static void delete_event_cb(lv_event_t * e)
     lv_draw_buf_destroy(draw_buf);
 }
 
+LV_FUNC_SECTION
 static void event_cb(lv_event_t * e)
 {
     lv_layer_t * layer = lv_event_get_layer(e);
@@ -263,12 +273,13 @@ static void event_cb(lv_event_t * e)
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_vector_graphic_not_buffered(void)
 {
     lv_obj_add_event_cb(lv_screen_active(), event_cb, LV_EVENT_DRAW_MAIN, NULL);
 }
 
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_vector_graphic_buffered(void)
 {
     lv_draw_buf_t * draw_buf = lv_draw_buf_create(WIDTH, HEIGHT, LV_COLOR_FORMAT_ARGB8888, LV_STRIDE_AUTO);
@@ -290,6 +301,7 @@ void lv_demo_vector_graphic_buffered(void)
  **********************/
 #else
 
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_vector_graphic_not_buffered(void)
 {
     /*fallback for online examples*/
@@ -298,6 +310,7 @@ void lv_demo_vector_graphic_not_buffered(void)
     lv_obj_center(label);
 }
 
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_vector_graphic_buffered(void)
 {
     /*fallback for online examples*/

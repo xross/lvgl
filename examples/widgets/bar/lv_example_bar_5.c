@@ -4,6 +4,7 @@
 /**
  * Bar with LTR and RTL base direction
  */
+LV_FUNC_SECTION
 void lv_example_bar_5(void)
 {
     lv_obj_t * label;

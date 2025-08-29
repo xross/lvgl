@@ -60,6 +60,7 @@ static int32_t get_y_center(lv_obj_t * obj);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_gridnav_add(lv_obj_t * obj, lv_gridnav_ctrl_t ctrl)
 {
     lv_gridnav_remove(obj); /*Be sure to not add gridnav twice*/
@@ -73,6 +74,7 @@ void lv_gridnav_add(lv_obj_t * obj, lv_gridnav_ctrl_t ctrl)
     lv_obj_remove_flag(obj, LV_OBJ_FLAG_SCROLL_WITH_ARROW);
 }
 
+LV_FUNC_SECTION
 void lv_gridnav_remove(lv_obj_t * obj)
 {
     lv_event_dsc_t * event_dsc = NULL;
@@ -89,6 +91,7 @@ void lv_gridnav_remove(lv_obj_t * obj)
 
 }
 
+LV_FUNC_SECTION
 void lv_gridnav_set_focused(lv_obj_t * cont, lv_obj_t * to_focus, lv_anim_enable_t anim_en)
 {
     LV_ASSERT_NULL(to_focus);
@@ -127,7 +130,7 @@ void lv_gridnav_set_focused(lv_obj_t * cont, lv_obj_t * to_focus, lv_anim_enable
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void gridnav_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -287,6 +290,7 @@ static void gridnav_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * find_chid(lv_obj_t * obj, lv_obj_t * start_child, find_mode_t mode)
 {
     int32_t x_start = get_x_center(start_child);
@@ -357,6 +361,7 @@ static lv_obj_t * find_chid(lv_obj_t * obj, lv_obj_t * start_child, find_mode_t 
     return guess;
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * find_first_focusable(lv_obj_t * obj)
 {
     uint32_t child_cnt = lv_obj_get_child_count(obj);
@@ -369,6 +374,7 @@ static lv_obj_t * find_first_focusable(lv_obj_t * obj)
     return NULL;
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * find_last_focusable(lv_obj_t * obj)
 {
     uint32_t child_cnt = lv_obj_get_child_count(obj);
@@ -380,6 +386,7 @@ static lv_obj_t * find_last_focusable(lv_obj_t * obj)
     return NULL;
 }
 
+LV_FUNC_SECTION
 static bool obj_is_focusable(lv_obj_t * obj)
 {
     if(lv_obj_has_flag(obj, LV_OBJ_FLAG_HIDDEN)) return false;
@@ -387,11 +394,13 @@ static bool obj_is_focusable(lv_obj_t * obj)
     else return false;
 }
 
+LV_FUNC_SECTION
 static int32_t get_x_center(lv_obj_t * obj)
 {
     return obj->coords.x1 + lv_area_get_width(&obj->coords) / 2;
 }
 
+LV_FUNC_SECTION
 static int32_t get_y_center(lv_obj_t * obj)
 {
     return obj->coords.y1 + lv_area_get_height(&obj->coords) / 2;

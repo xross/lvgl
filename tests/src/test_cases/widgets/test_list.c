@@ -6,16 +6,19 @@
 
 static lv_obj_t * list;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     list = lv_list_create(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
 
 }
 
+LV_FUNC_SECTION
 void test_list_get_text_from_added_button(void)
 {
     const char * message = "LVGL Rocks!";
@@ -24,6 +27,7 @@ void test_list_get_text_from_added_button(void)
     TEST_ASSERT_EQUAL_STRING(message, lv_list_get_button_text(list, button_ok));
 }
 
+LV_FUNC_SECTION
 void test_list_get_text_from_button_without_symbol(void)
 {
     const char * message = "LVGL Rocks!";
@@ -32,6 +36,7 @@ void test_list_get_text_from_button_without_symbol(void)
     TEST_ASSERT_EQUAL_STRING(message, lv_list_get_button_text(list, button_ok));
 }
 
+LV_FUNC_SECTION
 void test_list_gets_empty_text_from_button_without_text(void)
 {
     const char * empty_text = "";
@@ -40,6 +45,7 @@ void test_list_gets_empty_text_from_button_without_text(void)
     TEST_ASSERT_EQUAL_STRING(empty_text, lv_list_get_button_text(list, button_ok));
 }
 
+LV_FUNC_SECTION
 void test_list_get_text_from_label(void)
 {
     const char * message = "LVGL Rocks!";
@@ -48,6 +54,7 @@ void test_list_get_text_from_label(void)
     TEST_ASSERT_EQUAL_STRING(message, lv_label_get_text(label));
 }
 
+LV_FUNC_SECTION
 void test_list_snapshot(void)
 {
     lv_obj_t * snapshot_list = lv_list_create(lv_screen_active());

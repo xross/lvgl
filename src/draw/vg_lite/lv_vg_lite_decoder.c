@@ -62,6 +62,7 @@ static void image_color32_pre_mul(lv_color32_t * img_data, uint32_t px_size);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_vg_lite_decoder_init(void)
 {
     lv_image_decoder_t * decoder = lv_image_decoder_create();
@@ -72,6 +73,7 @@ void lv_vg_lite_decoder_init(void)
     decoder->name = DECODER_NAME;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_decoder_deinit(void)
 {
     lv_image_decoder_t * dec = NULL;
@@ -87,6 +89,7 @@ void lv_vg_lite_decoder_deinit(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void image_color32_pre_mul(lv_color32_t * img_data, uint32_t px_size)
 {
     while(px_size--) {
@@ -95,6 +98,7 @@ static void image_color32_pre_mul(lv_color32_t * img_data, uint32_t px_size)
     }
 }
 
+LV_FUNC_SECTION
 static uint32_t image_stride(const lv_image_header_t * header)
 {
     /* use stride in header */
@@ -108,6 +112,7 @@ static uint32_t image_stride(const lv_image_header_t * header)
     return ori_stride;
 }
 
+LV_FUNC_SECTION
 static void image_decode_to_index8_line(uint8_t * dest, const uint8_t * src, int32_t w_px,
                                         lv_color_format_t color_format)
 {
@@ -150,6 +155,7 @@ static void image_decode_to_index8_line(uint8_t * dest, const uint8_t * src, int
     }
 }
 
+__attribute__(( fptrgroup("lv_image_deocder_info_cb") ))
 static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc, lv_image_header_t * header)
 {
     lv_result_t res = lv_bin_decoder_info(decoder, dsc, header);
@@ -170,6 +176,7 @@ static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_d
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 static lv_result_t decoder_open_variable(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -232,6 +239,7 @@ static lv_result_t decoder_open_variable(lv_image_decoder_t * decoder, lv_image_
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 static lv_result_t decoder_open_file(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -343,6 +351,7 @@ failed:
  * @param dsc     pointer to the decoder descriptor
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't open the image
  */
+__attribute__(( fptrgroup("lv_image_deocder_open_cb") ))
 static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     lv_result_t res = LV_RESULT_INVALID;
@@ -383,6 +392,7 @@ static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_d
     return res;
 }
 
+__attribute__(( fptrgroup("lv_image_deocder_close_cb") ))
 static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder); /*Unused*/

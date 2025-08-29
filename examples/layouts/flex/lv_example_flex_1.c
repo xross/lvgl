@@ -4,6 +4,7 @@
 /**
  * A simple row and a column layout with flexbox
  */
+LV_FUNC_SECTION
 void lv_example_flex_1(void)
 {
     /*Create a container with ROW flex direction*/

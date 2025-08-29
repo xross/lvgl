@@ -13,6 +13,7 @@ uint8_t value_changed_event_cnt = 0;
 lv_obj_t * scr = NULL;
 lv_obj_t * sw = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
@@ -20,17 +21,20 @@ void setUp(void)
     sw = lv_switch_create(scr);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     value_changed_event_cnt = 0;
 }
 
+LV_FUNC_SECTION
 static void mouse_click_on_switch(void)
 {
     lv_test_mouse_click_at(sw->coords.x1, sw->coords.y1);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_handler(lv_event_t * e)
 {
     lv_event_code_t event = lv_event_get_code(e);
@@ -41,12 +45,14 @@ static void event_handler(lv_event_t * e)
 
 }
 
+LV_FUNC_SECTION
 void test_switch_should_have_default_state_after_being_created(void)
 {
     lv_state_t state = lv_obj_get_state(sw);
     TEST_ASSERT_EQUAL(state, LV_STATE_DEFAULT);
 }
 
+LV_FUNC_SECTION
 void test_switch_should_not_leak_memory_after_deletion(void)
 {
     size_t idx = 0;
@@ -67,6 +73,7 @@ void test_switch_should_not_leak_memory_after_deletion(void)
     LV_HEAP_CHECK(TEST_ASSERT_MEM_LEAK_LESS_THAN(initial_available_memory, 24));
 }
 
+LV_FUNC_SECTION
 void test_switch_animation(void)
 {
     lv_switch_t * anim_sw = (lv_switch_t *) sw;
@@ -88,6 +95,7 @@ void test_switch_animation(void)
     TEST_ASSERT_FALSE(lv_obj_has_state(sw, LV_STATE_CHECKED));
 }
 
+LV_FUNC_SECTION
 void test_switch_should_not_have_extra_draw_size_at_creation(void)
 {
     int32_t extra_size = lv_obj_get_ext_draw_size(sw);
@@ -95,6 +103,7 @@ void test_switch_should_not_have_extra_draw_size_at_creation(void)
     TEST_ASSERT_EQUAL(0, extra_size);
 }
 
+LV_FUNC_SECTION
 void test_switch_should_update_extra_draw_size_after_editing_padding(void)
 {
     int32_t pad = 6;
@@ -116,6 +125,7 @@ void test_switch_should_update_extra_draw_size_after_editing_padding(void)
 }
 
 /* See #2330 for context */
+LV_FUNC_SECTION
 void test_switch_should_trigger_value_changed_event_only_once(void)
 {
     lv_obj_add_event_cb(sw, event_handler, LV_EVENT_ALL, NULL);
@@ -125,6 +135,7 @@ void test_switch_should_trigger_value_changed_event_only_once(void)
 }
 
 /* See #2785 for context */
+LV_FUNC_SECTION
 void test_switch_should_state_change_when_event_bubbling_is_enabled(void)
 {
     lv_obj_add_flag(sw, LV_OBJ_FLAG_EVENT_BUBBLE);

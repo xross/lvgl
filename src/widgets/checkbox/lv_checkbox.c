@@ -57,6 +57,7 @@ const lv_obj_class_t lv_checkbox_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_checkbox_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -69,6 +70,7 @@ lv_obj_t * lv_checkbox_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_checkbox_set_text(lv_obj_t * obj, const char * txt)
 {
     lv_checkbox_t * cb = (lv_checkbox_t *)obj;
@@ -101,6 +103,7 @@ void lv_checkbox_set_text(lv_obj_t * obj, const char * txt)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_checkbox_set_text_static(lv_obj_t * obj, const char * txt)
 {
     lv_checkbox_t * cb = (lv_checkbox_t *)obj;
@@ -118,6 +121,7 @@ void lv_checkbox_set_text_static(lv_obj_t * obj, const char * txt)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 const char * lv_checkbox_get_text(const lv_obj_t * obj)
 {
     lv_checkbox_t * cb = (lv_checkbox_t *)obj;
@@ -128,6 +132,7 @@ const char * lv_checkbox_get_text(const lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_checkbox_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -151,6 +156,7 @@ static void lv_checkbox_constructor(const lv_obj_class_t * class_p, lv_obj_t * o
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_checkbox_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -164,6 +170,7 @@ static void lv_checkbox_destructor(const lv_obj_class_t * class_p, lv_obj_t * ob
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_checkbox_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -210,6 +217,7 @@ static void lv_checkbox_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void lv_checkbox_draw(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);

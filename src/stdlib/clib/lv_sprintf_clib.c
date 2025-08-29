@@ -37,6 +37,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 int lv_snprintf(char * buffer, size_t count, const char * format, ...)
 {
     va_list va;
@@ -46,6 +47,7 @@ int lv_snprintf(char * buffer, size_t count, const char * format, ...)
     return ret;
 }
 
+LV_FUNC_SECTION
 int lv_vsnprintf(char * buffer, size_t count, const char * format, va_list va)
 {
     return vsnprintf(buffer, count, format, va);

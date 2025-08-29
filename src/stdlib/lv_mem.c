@@ -59,6 +59,7 @@ lv_result_t lv_mem_test_core(void);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void * lv_malloc(size_t size)
 {
     LV_TRACE_MEM("allocating %lu bytes", (unsigned long)size);
@@ -89,6 +90,7 @@ void * lv_malloc(size_t size)
     return alloc;
 }
 
+LV_FUNC_SECTION
 void * lv_malloc_zeroed(size_t size)
 {
     LV_TRACE_MEM("allocating %lu bytes", (unsigned long)size);
@@ -116,6 +118,7 @@ void * lv_malloc_zeroed(size_t size)
     return alloc;
 }
 
+LV_FUNC_SECTION
 void lv_free(void * data)
 {
     LV_TRACE_MEM("freeing %p", data);
@@ -125,6 +128,7 @@ void lv_free(void * data)
     lv_free_core(data);
 }
 
+LV_FUNC_SECTION
 void * lv_realloc(void * data_p, size_t new_size)
 {
     LV_TRACE_MEM("reallocating %p with %lu size", data_p, (unsigned long)new_size);
@@ -147,6 +151,7 @@ void * lv_realloc(void * data_p, size_t new_size)
     return new_p;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mem_test(void)
 {
     if(zero_mem != ZERO_MEM_SENTINEL) {
@@ -157,6 +162,7 @@ lv_result_t lv_mem_test(void)
     return lv_mem_test_core();
 }
 
+LV_FUNC_SECTION
 void lv_mem_monitor(lv_mem_monitor_t * mon_p)
 {
     lv_memzero(mon_p, sizeof(lv_mem_monitor_t));

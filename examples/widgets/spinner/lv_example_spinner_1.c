@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_SPINNER && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_spinner_1(void)
 {
     /*Create a spinner*/

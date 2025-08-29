@@ -40,6 +40,7 @@ static void release_indev_cb(lv_event_t * e);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_indev_t * lv_sdl_keyboard_create(void)
 {
     lv_sdl_keyboard_t * dsc = lv_malloc_zeroed(sizeof(lv_sdl_keyboard_t));
@@ -66,6 +67,7 @@ lv_indev_t * lv_sdl_keyboard_create(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void sdl_keyboard_read(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_sdl_keyboard_t * dev = lv_indev_get_driver_data(indev);
@@ -86,6 +88,7 @@ static void sdl_keyboard_read(lv_indev_t * indev, lv_indev_data_t * data)
     }
 }
 
+LV_FUNC_SECTION
 static void release_indev_cb(lv_event_t * e)
 {
     lv_indev_t * indev = (lv_indev_t *) lv_event_get_user_data(e);
@@ -98,6 +101,7 @@ static void release_indev_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_sdl_keyboard_handler(SDL_Event * event)
 {
     uint32_t win_id = UINT32_MAX;
@@ -166,6 +170,7 @@ void lv_sdl_keyboard_handler(SDL_Event * event)
  * @param sdl_key the key code
  * @return LV_KEY_* control character or '\0'
  */
+LV_FUNC_SECTION
 static uint32_t keycode_to_ctrl_key(SDL_Keycode sdl_key)
 {
     /*Remap some key to LV_KEY_... to manage groups*/

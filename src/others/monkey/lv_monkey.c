@@ -59,6 +59,7 @@ static void lv_monkey_timer_cb(lv_timer_t * timer);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_monkey_config_init(lv_monkey_config_t * config)
 {
     lv_memzero(config, sizeof(lv_monkey_config_t));
@@ -67,6 +68,7 @@ void lv_monkey_config_init(lv_monkey_config_t * config)
     config->period_range.max = MONKEY_PERIOD_RANGE_MAX_DEF;
 }
 
+LV_FUNC_SECTION
 lv_monkey_t * lv_monkey_create(const lv_monkey_config_t * config)
 {
     lv_monkey_t * monkey = lv_malloc_zeroed(sizeof(lv_monkey_t));
@@ -83,36 +85,42 @@ lv_monkey_t * lv_monkey_create(const lv_monkey_config_t * config)
     return monkey;
 }
 
+LV_FUNC_SECTION
 lv_indev_t * lv_monkey_get_indev(lv_monkey_t * monkey)
 {
     LV_ASSERT_NULL(monkey);
     return monkey->indev;
 }
 
+LV_FUNC_SECTION
 void lv_monkey_set_enable(lv_monkey_t * monkey, bool en)
 {
     LV_ASSERT_NULL(monkey);
     en ? lv_timer_resume(monkey->timer) : lv_timer_pause(monkey->timer);
 }
 
+LV_FUNC_SECTION
 bool lv_monkey_get_enable(lv_monkey_t * monkey)
 {
     LV_ASSERT_NULL(monkey);
     return !lv_timer_get_paused(monkey->timer);
 }
 
+LV_FUNC_SECTION
 void lv_monkey_set_user_data(lv_monkey_t * monkey, void * user_data)
 {
     LV_ASSERT_NULL(monkey);
     monkey->user_data = user_data;
 }
 
+LV_FUNC_SECTION
 void * lv_monkey_get_user_data(lv_monkey_t * monkey)
 {
     LV_ASSERT_NULL(monkey);
     return monkey->user_data;
 }
 
+LV_FUNC_SECTION
 void lv_monkey_delete(lv_monkey_t * monkey)
 {
     LV_ASSERT_NULL(monkey);
@@ -126,6 +134,7 @@ void lv_monkey_delete(lv_monkey_t * monkey)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_monkey_read_cb(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_monkey_t * monkey = lv_indev_get_user_data(indev);
@@ -136,6 +145,7 @@ static void lv_monkey_read_cb(lv_indev_t * indev, lv_indev_data_t * data)
     data->state = monkey->indev_data.state;
 }
 
+LV_FUNC_SECTION
 static int32_t lv_monkey_random(int32_t howsmall, int32_t howbig)
 {
     if(howsmall >= howbig) {
@@ -145,6 +155,7 @@ static int32_t lv_monkey_random(int32_t howsmall, int32_t howbig)
     return (int32_t)lv_rand(0, diff) + howsmall;
 }
 
+LV_FUNC_SECTION
 static void lv_monkey_timer_cb(lv_timer_t * timer)
 {
     lv_monkey_t * monkey = lv_timer_get_user_data(timer);

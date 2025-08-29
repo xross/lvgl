@@ -17,6 +17,7 @@ static lv_obj_t * long_label;
 static lv_obj_t * long_label_multiline;
 static lv_obj_t * empty_label;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
@@ -30,17 +31,20 @@ void setUp(void)
     lv_label_set_text(empty_label, empty_text);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 void test_label_creation(void)
 {
     TEST_ASSERT_EQUAL_STRING(lv_label_get_text(label), LV_LABEL_DEFAULT_TEXT);
     TEST_ASSERT_EQUAL(lv_label_get_long_mode(label), LV_LABEL_LONG_WRAP);
 }
 
+LV_FUNC_SECTION
 void test_label_set_text(void)
 {
     const char * new_text = "Hello world";
@@ -54,6 +58,7 @@ void test_label_set_text(void)
     TEST_ASSERT_EQUAL_STRING(lv_label_get_text(label), new_text);
 }
 
+LV_FUNC_SECTION
 void test_label_get_letter_pos_align_left(void)
 {
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_LEFT, LV_STYLE_STATE_CMP_SAME);
@@ -82,6 +87,7 @@ void test_label_get_letter_pos_align_left(void)
     TEST_ASSERT_EQUAL(expected_last_letter_point.y, last_letter_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_get_letter_pos_align_left_on_empty_text(void)
 {
     lv_obj_set_style_text_align(empty_label, LV_TEXT_ALIGN_LEFT, LV_STYLE_STATE_CMP_SAME);
@@ -110,6 +116,7 @@ void test_label_get_letter_pos_align_left_on_empty_text(void)
     TEST_ASSERT_EQUAL(expected_last_letter_point.y, last_letter_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_long_text_multiline_get_letter_pos_align_left(void)
 {
     lv_obj_set_style_text_align(long_label_multiline, LV_TEXT_ALIGN_LEFT, LV_STYLE_STATE_CMP_SAME);
@@ -149,6 +156,7 @@ void test_label_long_text_multiline_get_letter_pos_align_left(void)
     TEST_ASSERT_EQUAL(expected_last_letter_after_new_line_point.y, last_letter_after_new_line_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_long_text_get_letter_pos_align_left(void)
 {
     lv_label_set_long_mode(long_label, LV_LABEL_LONG_WRAP);
@@ -181,6 +189,7 @@ void test_label_long_text_get_letter_pos_align_left(void)
     TEST_ASSERT_EQUAL(expected_last_letter_point.y, last_letter_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_get_letter_pos_align_right(void)
 {
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_RIGHT, LV_STYLE_STATE_CMP_SAME);
@@ -209,6 +218,7 @@ void test_label_get_letter_pos_align_right(void)
     TEST_ASSERT_EQUAL(expected_last_letter_point.y, last_letter_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_get_letter_pos_align_right_on_empty_text(void)
 {
     lv_obj_set_style_text_align(empty_label, LV_TEXT_ALIGN_RIGHT, LV_STYLE_STATE_CMP_SAME);
@@ -237,6 +247,7 @@ void test_label_get_letter_pos_align_right_on_empty_text(void)
     TEST_ASSERT_EQUAL(expected_last_letter_point.y, last_letter_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_long_text_multiline_get_letter_pos_align_right(void)
 {
     lv_obj_set_style_text_align(long_label_multiline, LV_TEXT_ALIGN_RIGHT, LV_STYLE_STATE_CMP_SAME);
@@ -276,6 +287,7 @@ void test_label_long_text_multiline_get_letter_pos_align_right(void)
     TEST_ASSERT_EQUAL(expected_last_letter_after_new_line_point.y, last_letter_after_new_line_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_long_text_get_letter_pos_align_right(void)
 {
     lv_label_set_long_mode(long_label, LV_LABEL_LONG_WRAP);
@@ -308,6 +320,7 @@ void test_label_long_text_get_letter_pos_align_right(void)
     TEST_ASSERT_EQUAL(expected_last_letter_point.y, last_letter_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_get_letter_pos_align_center(void)
 {
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, LV_STYLE_STATE_CMP_SAME);
@@ -336,6 +349,7 @@ void test_label_get_letter_pos_align_center(void)
     TEST_ASSERT_EQUAL(expected_last_letter_point.y, last_letter_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_get_letter_pos_align_center_on_empty_text(void)
 {
     lv_obj_set_style_text_align(empty_label, LV_TEXT_ALIGN_CENTER, LV_STYLE_STATE_CMP_SAME);
@@ -364,6 +378,7 @@ void test_label_get_letter_pos_align_center_on_empty_text(void)
     TEST_ASSERT_EQUAL(expected_last_letter_point.y, last_letter_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_long_text_multiline_get_letter_pos_align_center(void)
 {
     lv_obj_set_style_text_align(long_label_multiline, LV_TEXT_ALIGN_CENTER, LV_STYLE_STATE_CMP_SAME);
@@ -403,6 +418,7 @@ void test_label_long_text_multiline_get_letter_pos_align_center(void)
     TEST_ASSERT_EQUAL(expected_last_letter_after_new_line_point.y, last_letter_after_new_line_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_long_text_get_letter_pos_align_center(void)
 {
     lv_label_set_long_mode(long_label, LV_LABEL_LONG_WRAP);
@@ -435,6 +451,7 @@ void test_label_long_text_get_letter_pos_align_center(void)
     TEST_ASSERT_EQUAL(expected_last_letter_point.y, last_letter_point.y);
 }
 
+LV_FUNC_SECTION
 void test_label_is_char_under_pos_align_left(void)
 {
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_LEFT, LV_STYLE_STATE_CMP_SAME);
@@ -458,6 +475,7 @@ void test_label_is_char_under_pos_align_left(void)
     TEST_ASSERT_EQUAL(expected_result, result);
 }
 
+LV_FUNC_SECTION
 void test_label_is_char_under_pos_align_right(void)
 {
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_RIGHT, LV_STYLE_STATE_CMP_SAME);
@@ -481,6 +499,7 @@ void test_label_is_char_under_pos_align_right(void)
     TEST_ASSERT_EQUAL(expected_result, result);
 }
 
+LV_FUNC_SECTION
 void test_label_is_char_under_pos_align_center(void)
 {
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, LV_STYLE_STATE_CMP_SAME);
@@ -504,6 +523,7 @@ void test_label_is_char_under_pos_align_center(void)
     TEST_ASSERT_EQUAL(expected_result, result);
 }
 
+LV_FUNC_SECTION
 void test_label_cut_text(void)
 {
     const char * expected_text = "Te";
@@ -513,6 +533,7 @@ void test_label_cut_text(void)
     TEST_ASSERT_EQUAL_STRING(expected_text, lv_label_get_text(label));
 }
 
+LV_FUNC_SECTION
 void test_label_get_letter_on_left(void)
 {
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_LEFT, LV_STYLE_STATE_CMP_SAME);
@@ -526,6 +547,7 @@ void test_label_get_letter_on_left(void)
     TEST_ASSERT_EQUAL(last_letter_idx, letter_idx_result);
 }
 
+LV_FUNC_SECTION
 void test_label_get_letter_on_center(void)
 {
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, LV_STYLE_STATE_CMP_SAME);
@@ -539,6 +561,7 @@ void test_label_get_letter_on_center(void)
     TEST_ASSERT_EQUAL(last_letter_idx, letter_idx_result);
 }
 
+LV_FUNC_SECTION
 void test_label_get_letter_on_right(void)
 {
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_RIGHT, LV_STYLE_STATE_CMP_SAME);
@@ -552,6 +575,7 @@ void test_label_get_letter_on_right(void)
     TEST_ASSERT_EQUAL(last_letter_idx, letter_idx_result);
 }
 
+LV_FUNC_SECTION
 void test_label_text_selection(void)
 {
     const uint32_t selection_start = 0;
@@ -567,6 +591,7 @@ void test_label_text_selection(void)
     TEST_ASSERT_EQUAL(selection_end, end);
 }
 
+LV_FUNC_SECTION
 void test_label_rtl_dot_long_mode(void)
 {
     const char * message =
@@ -591,6 +616,7 @@ void test_label_rtl_dot_long_mode(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/label_rtl_dot_long_mode.png");
 }
 
+LV_FUNC_SECTION
 void test_label_max_width(void)
 {
     lv_obj_clean(lv_screen_active());

@@ -6,6 +6,7 @@ static lv_style_t style_btn;
 
 /*Will be called when the styles of the base theme are already added
   to add new styles*/
+LV_FUNC_SECTION
 static void new_theme_apply_cb(lv_theme_t * th, lv_obj_t * obj)
 {
     LV_UNUSED(th);
@@ -15,6 +16,7 @@ static void new_theme_apply_cb(lv_theme_t * th, lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 static void new_theme_init_and_set(void)
 {
     /*Initialize the styles*/
@@ -39,6 +41,7 @@ static void new_theme_init_and_set(void)
 /**
  * Extending the current theme
  */
+LV_FUNC_SECTION
 void lv_example_style_14(void)
 {
     lv_obj_t * btn;

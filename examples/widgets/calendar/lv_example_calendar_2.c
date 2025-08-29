@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_CALENDAR && LV_USE_CALENDAR_CHINESE && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_calendar_2(void)
 {
     lv_obj_t  * calendar = lv_calendar_create(lv_screen_active());
@@ -22,6 +23,7 @@ void lv_example_calendar_2(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_calendar_2(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());

@@ -3,6 +3,7 @@
 
 static uint32_t btn_cnt = 1;
 
+LV_FUNC_SECTION
 static void float_button_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -24,6 +25,7 @@ static void float_button_event_cb(lv_event_t * e)
 /**
  * Create a list with a floating button
  */
+LV_FUNC_SECTION
 void lv_example_scroll_3(void)
 {
     lv_obj_t * list = lv_list_create(lv_screen_active());

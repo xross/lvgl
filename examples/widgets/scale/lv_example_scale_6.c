@@ -14,6 +14,7 @@ static lv_point_precise_t minute_hand_points[2];
 static int32_t hour;
 static int32_t minute;
 
+LV_FUNC_SECTION
 static void timer_cb(lv_timer_t * timer)
 {
     LV_UNUSED(timer);
@@ -51,6 +52,7 @@ static void timer_cb(lv_timer_t * timer)
 /**
  * A round scale with multiple needles, resembling a clock
  */
+LV_FUNC_SECTION
 void lv_example_scale_6(void)
 {
     scale = lv_scale_create(lv_screen_active());

@@ -41,6 +41,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 vg_lite_error_t vg_lite_identity(vg_lite_matrix_t * matrix)
 {
     /* Set identify matrix. */
@@ -63,6 +64,7 @@ vg_lite_error_t vg_lite_identity(vg_lite_matrix_t * matrix)
     return VG_LITE_SUCCESS;
 }
 
+LV_FUNC_SECTION
 static void multiply(vg_lite_matrix_t * matrix, vg_lite_matrix_t * mult)
 {
     vg_lite_matrix_t temp;
@@ -87,6 +89,7 @@ static void multiply(vg_lite_matrix_t * matrix, vg_lite_matrix_t * mult)
 #endif /* VG_SW_BLIT_PRECISION_OPT */
 }
 
+LV_FUNC_SECTION
 vg_lite_error_t vg_lite_translate(vg_lite_float_t x, vg_lite_float_t y, vg_lite_matrix_t * matrix)
 {
     /* Set translation matrix. */
@@ -103,6 +106,7 @@ vg_lite_error_t vg_lite_translate(vg_lite_float_t x, vg_lite_float_t y, vg_lite_
     return VG_LITE_SUCCESS;
 }
 
+LV_FUNC_SECTION
 vg_lite_error_t vg_lite_scale(vg_lite_float_t scale_x, vg_lite_float_t scale_y, vg_lite_matrix_t * matrix)
 {
     /* Set scale matrix. */
@@ -124,6 +128,7 @@ vg_lite_error_t vg_lite_scale(vg_lite_float_t scale_x, vg_lite_float_t scale_y, 
     return VG_LITE_SUCCESS;
 }
 
+LV_FUNC_SECTION
 vg_lite_error_t vg_lite_rotate(vg_lite_float_t degrees, vg_lite_matrix_t * matrix)
 {
     /* Convert degrees into radians. */

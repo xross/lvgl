@@ -34,6 +34,7 @@ struct lv_rb_node_t {
 
 struct lv_rb_t {
     lv_rb_node_t * root;
+    __attribute__(( fptrgroup("lv_cache_compare_cb") ))
     lv_rb_compare_t compare;
     size_t size;
 };

@@ -4,6 +4,7 @@
 #define CANVAS_WIDTH  200
 #define CANVAS_HEIGHT  150
 
+LV_FUNC_SECTION
 void lv_example_canvas_1(void)
 {
     lv_draw_rect_dsc_t rect_dsc;

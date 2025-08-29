@@ -7,11 +7,13 @@
 void test_obj_tree_1(void);
 void test_obj_tree_2(void);
 
+LV_FUNC_SECTION
 void test_obj_tree_1(void)
 {
     TEST_ASSERT_EQUAL(lv_obj_get_child_count(lv_screen_active()), 0);
 }
 
+LV_FUNC_SECTION
 void test_obj_tree_2(void)
 {
 
@@ -37,6 +39,7 @@ void test_obj_tree_2(void)
     //TEST_ASSERT_EQUAL_SCREENSHOT("widgets/scr1.png")
 }
 
+LV_FUNC_SECTION
 void test_obj_tree_3(void)
 {
     /* tests lv_obj_swap */
@@ -83,6 +86,7 @@ void test_obj_tree_3(void)
 
 /** lv_obj_move_to_index **/
 
+LV_FUNC_SECTION
 void test_obj_move_to_index_move_to_the_background(void)
 {
     lv_obj_t * parent = NULL;
@@ -101,6 +105,7 @@ void test_obj_move_to_index_move_to_the_background(void)
     TEST_ASSERT_EQUAL(0, lv_obj_get_index(child2));
 }
 
+LV_FUNC_SECTION
 void test_obj_move_to_index_move_forward(void)
 {
     lv_obj_t * parent = NULL;
@@ -120,6 +125,7 @@ void test_obj_move_to_index_move_forward(void)
 }
 
 /* Tests scenarios when no operation is performed */
+LV_FUNC_SECTION
 void test_obj_move_to_index_no_operation_when_parent_is_null(void)
 {
     lv_obj_t * parent = NULL;
@@ -133,6 +139,7 @@ void test_obj_move_to_index_no_operation_when_parent_is_null(void)
     TEST_ASSERT_EQUAL_INT32(0xFFFFFFFF, lv_obj_get_index(child1));
 }
 
+LV_FUNC_SECTION
 void test_obj_move_to_index_no_operation_when_index_is_same_or_bigger_than_parent_child_count(void)
 {
     lv_obj_t * parent = NULL;
@@ -147,6 +154,7 @@ void test_obj_move_to_index_no_operation_when_index_is_same_or_bigger_than_paren
     TEST_ASSERT_EQUAL(0, lv_obj_get_index(child1));
 }
 
+LV_FUNC_SECTION
 void test_obj_move_to_index_no_operation_when_new_index_is_the_same_as_previous_index(void)
 {
     lv_obj_t * parent = NULL;
@@ -165,6 +173,7 @@ void test_obj_move_to_index_no_operation_when_new_index_is_the_same_as_previous_
     TEST_ASSERT_EQUAL(1, lv_obj_get_index(child2));
 }
 
+LV_FUNC_SECTION
 void test_obj_move_to_index_no_operation_when_requested_negative_index_is_greater_than_child_count(void)
 {
     lv_obj_t * parent = NULL;

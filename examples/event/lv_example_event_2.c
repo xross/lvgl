@@ -1,6 +1,7 @@
 #include "../lv_examples.h"
 #if LV_BUILD_EXAMPLES && LV_USE_SWITCH
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -27,6 +28,7 @@ static void event_cb(lv_event_t * e)
 /**
  * Handle multiple events
  */
+LV_FUNC_SECTION
 void lv_example_event_2(void)
 {
     lv_obj_t * btn = lv_button_create(lv_screen_active());

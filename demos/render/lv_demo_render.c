@@ -26,6 +26,7 @@
  **********************/
 typedef struct {
     const char * name;
+    __attribute__(( fptrgroup("lv_scene_create_cb") ))
     void (*create_cb)(lv_obj_t * parent);
 } scene_dsc_t;
 
@@ -35,6 +36,7 @@ typedef struct {
 static lv_opa_t opa_saved;
 static void add_to_cell(lv_obj_t * obj, int32_t col, int32_t row);
 
+LV_FUNC_SECTION
 static lv_obj_t * fill_obj_create(lv_obj_t * parent, int32_t col, int32_t row)
 {
     lv_color_t colors[] = {lv_color_hex3(0x000),
@@ -59,6 +61,7 @@ static lv_obj_t * fill_obj_create(lv_obj_t * parent, int32_t col, int32_t row)
 
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void fill_cb(lv_obj_t * parent)
 {
 
@@ -113,6 +116,7 @@ static void fill_cb(lv_obj_t * parent)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * border_obj_create(lv_obj_t * parent, int32_t col, int32_t row)
 {
     lv_obj_t * obj = lv_obj_create(parent);
@@ -127,6 +131,7 @@ static lv_obj_t * border_obj_create(lv_obj_t * parent, int32_t col, int32_t row)
 
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void border_cb(lv_obj_t * parent)
 {
     lv_border_side_t sides[] = {
@@ -208,6 +213,7 @@ static void border_cb(lv_obj_t * parent)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * box_shadow_obj_create(lv_obj_t * parent, int32_t col, int32_t row)
 {
     lv_obj_t * obj = lv_obj_create(parent);
@@ -222,6 +228,7 @@ static lv_obj_t * box_shadow_obj_create(lv_obj_t * parent, int32_t col, int32_t 
     return obj;
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void box_shadow_cb(lv_obj_t * parent)
 {
 
@@ -274,6 +281,7 @@ static void box_shadow_cb(lv_obj_t * parent)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * text_obj_create(lv_obj_t * parent, int32_t col, int32_t row)
 {
 
@@ -287,6 +295,7 @@ static lv_obj_t * text_obj_create(lv_obj_t * parent, int32_t col, int32_t row)
 
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void text_cb(lv_obj_t * parent)
 {
     lv_obj_t * obj;
@@ -312,6 +321,7 @@ static void text_cb(lv_obj_t * parent)
 
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * image_obj_create(lv_obj_t * parent, int32_t col, int32_t row, bool recolor)
 {
     lv_obj_t * obj = lv_image_create(parent);
@@ -328,6 +338,7 @@ static lv_obj_t * image_obj_create(lv_obj_t * parent, int32_t col, int32_t row, 
 
 }
 
+LV_FUNC_SECTION
 static void image_core_cb(lv_obj_t * parent, bool recolor, uint32_t startAt)
 {
     LV_IMAGE_DECLARE(img_render_lvgl_logo_xrgb8888);
@@ -402,26 +413,31 @@ static void image_core_cb(lv_obj_t * parent, bool recolor, uint32_t startAt)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void image_normal_1_cb(lv_obj_t * parent)
 {
     image_core_cb(parent, false, 0);
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void image_recolored_1_cb(lv_obj_t * parent)
 {
     image_core_cb(parent, true, 0);
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void image_normal_2_cb(lv_obj_t * parent)
 {
     image_core_cb(parent, false, 4);
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void image_recolored_2_cb(lv_obj_t * parent)
 {
     image_core_cb(parent, true, 4);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * line_obj_create(lv_obj_t * parent, int32_t col, int32_t row, lv_point_precise_t p[])
 {
     lv_obj_t * obj = lv_line_create(parent);
@@ -435,6 +451,7 @@ static lv_obj_t * line_obj_create(lv_obj_t * parent, int32_t col, int32_t row, l
     return obj;
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void line_cb(lv_obj_t * parent)
 {
 
@@ -465,6 +482,7 @@ static void line_cb(lv_obj_t * parent)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * arc_obj_create(lv_obj_t * parent, int32_t col, int32_t row, int32_t w,
                                  lv_value_precise_t start, lv_value_precise_t end)
 {
@@ -481,6 +499,7 @@ static lv_obj_t * arc_obj_create(lv_obj_t * parent, int32_t col, int32_t row, in
     return obj;
 }
 
+LV_FUNC_SECTION
 static void arc_core_cb(lv_obj_t * parent, const void * img_src)
 {
     static lv_value_precise_t angles[][2] = {
@@ -510,17 +529,20 @@ static void arc_core_cb(lv_obj_t * parent, const void * img_src)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void arc_normal_cb(lv_obj_t * parent)
 {
     arc_core_cb(parent, NULL);
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void arc_image_cb(lv_obj_t * parent)
 {
     LV_IMAGE_DECLARE(img_render_arc_bg);
     arc_core_cb(parent, &img_render_arc_bg);
 }
 
+LV_FUNC_SECTION
 static void triangle_draw_event_cb(lv_event_t * e)
 {
     lv_draw_triangle_dsc_t dsc;
@@ -555,6 +577,7 @@ static void triangle_draw_event_cb(lv_event_t * e)
     lv_draw_triangle(lv_event_get_layer(e), &dsc);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * triangle_obj_create(lv_obj_t * parent, int32_t col, int32_t row, lv_point_t p[])
 {
     lv_obj_t * obj = lv_arc_create(parent);
@@ -568,6 +591,7 @@ static lv_obj_t * triangle_obj_create(lv_obj_t * parent, int32_t col, int32_t ro
     return obj;
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void triangle_cb(lv_obj_t * parent)
 {
     static lv_point_t points[16][3] = {
@@ -629,6 +653,7 @@ static void triangle_cb(lv_obj_t * parent)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * layer_obj_create(lv_obj_t * parent, int32_t col, int32_t row, lv_blend_mode_t blend_mode)
 {
     lv_obj_t * obj = lv_obj_create(parent);
@@ -653,6 +678,7 @@ static lv_obj_t * layer_obj_create(lv_obj_t * parent, int32_t col, int32_t row, 
     return obj;
 }
 
+LV_FUNC_SECTION
 static void layer_core_cb(lv_obj_t * parent, lv_blend_mode_t blend_mode)
 {
 
@@ -710,11 +736,13 @@ static void layer_core_cb(lv_obj_t * parent, lv_blend_mode_t blend_mode)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void layer_normal_cb(lv_obj_t * parent)
 {
     layer_core_cb(parent, LV_BLEND_MODE_NORMAL);
 }
 
+LV_FUNC_SECTION
 static void create_blend_mode_image_buffer(lv_obj_t * canvas)
 {
     lv_canvas_fill_bg(canvas, lv_color_hex3(0x844), LV_OPA_COVER);
@@ -754,6 +782,7 @@ static void create_blend_mode_image_buffer(lv_obj_t * canvas)
     lv_canvas_finish_layer(canvas, &layer);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_blend_mode_obj(lv_obj_t * parent, int32_t col, int32_t row, const void * src,
                                         lv_blend_mode_t blend_mode)
 {
@@ -768,6 +797,7 @@ static lv_obj_t * create_blend_mode_obj(lv_obj_t * parent, int32_t col, int32_t 
     return obj;
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void blend_mode_cb(lv_obj_t * parent)
 {
 
@@ -840,6 +870,7 @@ static void blend_mode_cb(lv_obj_t * parent)
 
 #if LV_USE_DRAW_SW_COMPLEX_GRADIENTS
 
+LV_FUNC_SECTION
 static lv_obj_t * create_linear_gradient_obj(lv_obj_t * parent, int32_t col, int32_t row, lv_grad_dsc_t * grad,
                                              int32_t x1, int32_t y1, lv_grad_extend_t extend, bool use_opa_map, int32_t radius)
 {
@@ -879,6 +910,7 @@ static lv_obj_t * create_linear_gradient_obj(lv_obj_t * parent, int32_t col, int
     return obj;
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void linear_gradient_cb(lv_obj_t * parent)
 {
     static const int32_t grid_cols[] = { 53, 53, 53, 53, 53, 53, 53, 53, 53, LV_GRID_TEMPLATE_LAST };
@@ -916,6 +948,7 @@ static void linear_gradient_cb(lv_obj_t * parent)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_radial_gradient_obj(lv_obj_t * parent, int32_t col, int32_t row, lv_grad_dsc_t * grad,
                                              int32_t offs, int32_t r0, lv_grad_extend_t extend, bool use_opa_map, int32_t radius)
 {
@@ -959,6 +992,7 @@ static lv_obj_t * create_radial_gradient_obj(lv_obj_t * parent, int32_t col, int
     return obj;
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void radial_gradient_cb(lv_obj_t * parent)
 {
     static const int32_t grid_cols[] = { 53, 53, 53, 53, 53, 53, 53, 53, 53, LV_GRID_TEMPLATE_LAST };
@@ -994,6 +1028,7 @@ static void radial_gradient_cb(lv_obj_t * parent)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_conical_gradient_obj(lv_obj_t * parent, int32_t col, int32_t row, lv_grad_dsc_t * grad,
                                               int32_t a0, int32_t a1, lv_grad_extend_t extend, bool use_opa_map, int32_t radius)
 {
@@ -1033,6 +1068,7 @@ static lv_obj_t * create_conical_gradient_obj(lv_obj_t * parent, int32_t col, in
     return obj;
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void conical_gradient_cb(lv_obj_t * parent)
 {
     static const int32_t grid_cols[] = { 53, 53, 53, 53, 53, 53, 53, 53, 53, LV_GRID_TEMPLATE_LAST };
@@ -1107,6 +1143,7 @@ static scene_dsc_t scenes[] = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_demo_render(lv_demo_render_scene_t id, lv_opa_t opa)
 {
     lv_obj_t * scr = lv_screen_active();
@@ -1131,6 +1168,7 @@ void lv_demo_render(lv_demo_render_scene_t id, lv_opa_t opa)
     if(scenes[id].create_cb) scenes[id].create_cb(main_parent);
 }
 
+LV_FUNC_SECTION
 const char * lv_demo_render_get_scene_name(lv_demo_render_scene_t id)
 {
     if(id > LV_DEMO_RENDER_SCENE_NUM) return NULL;
@@ -1141,6 +1179,7 @@ const char * lv_demo_render_get_scene_name(lv_demo_render_scene_t id)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void add_to_cell(lv_obj_t * obj, int32_t col, int32_t row)
 {
     lv_obj_set_grid_cell(obj, LV_GRID_ALIGN_CENTER, col, 1, LV_GRID_ALIGN_CENTER, row, 1);

@@ -53,6 +53,7 @@ const lv_obj_class_t lv_line_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_line_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -65,16 +66,19 @@ lv_obj_t * lv_line_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_line_set_points(lv_obj_t * obj, const lv_point_precise_t points[], uint32_t point_num)
 {
     line_set_points(obj, points, point_num, false);
 }
 
+LV_FUNC_SECTION
 void lv_line_set_points_mutable(lv_obj_t * obj, lv_point_precise_t points[], uint32_t point_num)
 {
     line_set_points(obj, points, point_num, true);
 }
 
+LV_FUNC_SECTION
 void lv_line_set_y_invert(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -91,6 +95,7 @@ void lv_line_set_y_invert(lv_obj_t * obj, bool en)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 const lv_point_precise_t * lv_line_get_points(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -99,6 +104,7 @@ const lv_point_precise_t * lv_line_get_points(lv_obj_t * obj)
     return line->point_array.constant;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_line_get_point_count(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -107,6 +113,7 @@ uint32_t lv_line_get_point_count(lv_obj_t * obj)
     return line->point_num;
 }
 
+LV_FUNC_SECTION
 bool lv_line_is_point_array_mutable(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -115,6 +122,7 @@ bool lv_line_is_point_array_mutable(lv_obj_t * obj)
     return line->point_array_is_mutable;
 }
 
+LV_FUNC_SECTION
 lv_point_precise_t * lv_line_get_points_mutable(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -127,6 +135,7 @@ lv_point_precise_t * lv_line_get_points_mutable(lv_obj_t * obj)
     return line->point_array.mut;
 }
 
+LV_FUNC_SECTION
 bool lv_line_get_y_invert(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -140,6 +149,7 @@ bool lv_line_get_y_invert(const lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_line_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -157,6 +167,7 @@ static void lv_line_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void line_set_points(lv_obj_t * obj, const lv_point_precise_t points[], uint32_t point_num, bool mut)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -171,6 +182,7 @@ static void line_set_points(lv_obj_t * obj, const lv_point_precise_t points[], u
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 static inline lv_value_precise_t resolve_point_coord(lv_value_precise_t coord, int32_t max)
 {
     if(LV_COORD_IS_PCT((int32_t)coord)) {
@@ -181,6 +193,7 @@ static inline lv_value_precise_t resolve_point_coord(lv_value_precise_t coord, i
     }
 }
 
+LV_FUNC_SECTION
 static void lv_line_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);

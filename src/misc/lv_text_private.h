@@ -199,6 +199,7 @@ static inline bool lv_text_is_marker(uint32_t letter)
  * @param txt  pointer to a character in a string
  * @return length of the encoded character (1,2,3 ...). O in invalid
  */
+__attribute__(( fptrgroup("lv_text_encoded_size") ))
 extern uint8_t (*const lv_text_encoded_size)(const char * txt);
 
 /**
@@ -206,6 +207,7 @@ extern uint8_t (*const lv_text_encoded_size)(const char * txt);
  * @param letter_uni a Unicode letter
  * @return Encoded character in Little Endian to be compatible with C chars (e.g. 'Á', 'Ü')
  */
+__attribute__(( fptrgroup("lv_text_unicode_to_encoded") ))
 extern uint32_t (*const lv_text_unicode_to_encoded)(uint32_t letter_uni);
 
 /**
@@ -213,6 +215,7 @@ extern uint32_t (*const lv_text_unicode_to_encoded)(uint32_t letter_uni);
  * @param c a wide character
  * @return `c` in the encoded format
  */
+__attribute__(( fptrgroup("lv_text_encoded_conv_wc") ))
 extern uint32_t (*const lv_text_encoded_conv_wc)(uint32_t c);
 
 /**
@@ -223,6 +226,7 @@ extern uint32_t (*const lv_text_encoded_conv_wc)(uint32_t c);
  *                 NULL to use txt[0] as index
  * @return the decoded Unicode character or 0 on invalid data code
  */
+__attribute__(( fptrgroup("lv_text_encoded_next") ))
 extern uint32_t (*const lv_text_encoded_next)(const char * txt, uint32_t * i_start);
 
 /**
@@ -234,6 +238,7 @@ extern uint32_t (*const lv_text_encoded_next)(const char * txt, uint32_t * i_sta
  *
  * @return the decoded Unicode character or 0 on invalid data
  */
+__attribute__(( fptrgroup("lv_text_encoded_prev") ))
 extern uint32_t (*const lv_text_encoded_prev)(const char * txt, uint32_t * i_start);
 
 /**
@@ -243,6 +248,7 @@ extern uint32_t (*const lv_text_encoded_prev)(const char * txt, uint32_t * i_sta
  * @param utf8_id character index
  * @return byte index of the 'enc_id'th letter
  */
+__attribute__(( fptrgroup("lv_text_encoded_get_byte_id") ))
 extern uint32_t (*const lv_text_encoded_get_byte_id)(const char * txt, uint32_t utf8_id);
 
 /**
@@ -252,6 +258,7 @@ extern uint32_t (*const lv_text_encoded_get_byte_id)(const char * txt, uint32_t 
  * @param byte_id byte index
  * @return character index of the letter at 'byte_id'th position
  */
+__attribute__(( fptrgroup("lv_text_encoded_get_char_id") ))
 extern uint32_t (*const lv_text_encoded_get_char_id)(const char * txt, uint32_t byte_id);
 
 /**
@@ -260,6 +267,7 @@ extern uint32_t (*const lv_text_encoded_get_char_id)(const char * txt, uint32_t 
  * @param txt a '\0' terminated char string
  * @return number of characters
  */
+__attribute__(( fptrgroup("lv_text_get_encoded_length") ))
 extern uint32_t (*const lv_text_get_encoded_length)(const char * txt);
 
 /**********************

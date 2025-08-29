@@ -51,6 +51,7 @@ static void draw_border_simple(lv_draw_unit_t * draw_unit, const lv_area_t * out
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_sw_border(lv_draw_unit_t * draw_unit, const lv_draw_border_dsc_t * dsc, const lv_area_t * coords)
 {
     if(dsc->opa <= LV_OPA_MIN) return;
@@ -87,6 +88,7 @@ void lv_draw_sw_border(lv_draw_unit_t * draw_unit, const lv_draw_border_dsc_t * 
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void draw_border_complex(lv_draw_unit_t * draw_unit, const lv_area_t * outer_area, const lv_area_t * inner_area,
                          int32_t rout, int32_t rin, lv_color_t color, lv_opa_t opa)
 {
@@ -285,6 +287,7 @@ void draw_border_complex(lv_draw_unit_t * draw_unit, const lv_area_t * outer_are
 
 #endif /*LV_DRAW_SW_COMPLEX*/
 }
+LV_FUNC_SECTION
 static void draw_border_simple(lv_draw_unit_t * draw_unit, const lv_area_t * outer_area, const lv_area_t * inner_area,
                                lv_color_t color, lv_opa_t opa)
 {

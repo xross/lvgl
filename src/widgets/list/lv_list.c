@@ -63,6 +63,7 @@ const lv_obj_class_t lv_list_text_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_list_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -72,6 +73,7 @@ lv_obj_t * lv_list_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_list_add_text(lv_obj_t * list, const char * txt)
 {
     LV_LOG_INFO("begin");
@@ -82,6 +84,7 @@ lv_obj_t * lv_list_add_text(lv_obj_t * list, const char * txt)
     return obj;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_list_add_button(lv_obj_t * list, const void * icon, const char * txt)
 {
     LV_LOG_INFO("begin");
@@ -106,6 +109,7 @@ lv_obj_t * lv_list_add_button(lv_obj_t * list, const void * icon, const char * t
     return obj;
 }
 
+LV_FUNC_SECTION
 const char * lv_list_get_button_text(lv_obj_t * list, lv_obj_t * btn)
 {
     LV_UNUSED(list);
@@ -121,6 +125,7 @@ const char * lv_list_get_button_text(lv_obj_t * list, lv_obj_t * btn)
     return "";
 }
 
+LV_FUNC_SECTION
 void lv_list_set_button_text(lv_obj_t * list, lv_obj_t * btn, const char * txt)
 {
     LV_UNUSED(list);

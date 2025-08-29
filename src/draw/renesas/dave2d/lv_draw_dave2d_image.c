@@ -39,6 +39,7 @@ static void img_draw_core(lv_draw_unit_t * u_base, const lv_draw_image_dsc_t * d
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_dave2d_image(lv_draw_dave2d_unit_t * draw_unit, const lv_draw_image_dsc_t * draw_dsc,
                           const lv_area_t * coords)
 {
@@ -54,6 +55,7 @@ void lv_draw_dave2d_image(lv_draw_dave2d_unit_t * draw_unit, const lv_draw_image
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void img_draw_core(lv_draw_unit_t * u_base, const lv_draw_image_dsc_t * draw_dsc,
                           const lv_image_decoder_dsc_t * decoder_dsc, lv_draw_image_sup_t * sup,
                           const lv_area_t * img_coords, const lv_area_t * clipped_img_area)

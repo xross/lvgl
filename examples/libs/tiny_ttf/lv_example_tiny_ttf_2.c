@@ -4,6 +4,7 @@
 /**
  * Load a font with Tiny_TTF from file
  */
+LV_FUNC_SECTION
 void lv_example_tiny_ttf_2(void)
 {
     /*Create style with the new font*/

@@ -4,6 +4,7 @@
 /**
  * Using the text style properties
  */
+LV_FUNC_SECTION
 void lv_example_style_8(void)
 {
     static lv_style_t style;

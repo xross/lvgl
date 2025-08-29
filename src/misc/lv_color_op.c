@@ -43,6 +43,7 @@ lv_color_t LV_ATTRIBUTE_FAST_MEM lv_color_mix(lv_color_t c1, lv_color_t c2, uint
     return ret;
 }
 
+LV_FUNC_SECTION
 lv_color32_t lv_color_mix32(lv_color32_t fg, lv_color32_t bg)
 {
     if(fg.alpha >= LV_OPA_MAX) {
@@ -58,12 +59,14 @@ lv_color32_t lv_color_mix32(lv_color32_t fg, lv_color32_t bg)
     return bg;
 }
 
+LV_FUNC_SECTION
 uint8_t lv_color_brightness(lv_color_t c)
 {
     uint16_t bright = (uint16_t)(3u * c.red + c.green + 4u * c.blue);
     return (uint8_t)(bright >> 3);
 }
 
+LV_FUNC_SECTION
 void lv_color_filter_dsc_init(lv_color_filter_dsc_t * dsc, lv_color_filter_cb_t cb)
 {
     dsc->filter_cb = cb;

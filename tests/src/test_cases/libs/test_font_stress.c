@@ -78,6 +78,7 @@ static const uint16_t font_style[] = {
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_obj_t * label_create(const char * font_name, lv_obj_t * par, int size, int x, int y)
 {
     uint32_t index = lv_rand(0, sizeof(font_style) / sizeof(uint16_t) - 1);
@@ -106,6 +107,7 @@ static lv_obj_t * label_create(const char * font_name, lv_obj_t * par, int size,
     lv_label_set_text(label, (char *)str);
     return label;
 }
+LV_FUNC_SECTION
 static void label_delete(lv_obj_t * label)
 {
     const lv_font_t * font = lv_obj_get_style_text_font(label, 0);
@@ -113,6 +115,7 @@ static void label_delete(lv_obj_t * label)
     lv_freetype_font_delete((lv_font_t *)font);
     lv_obj_del(label);
 }
+LV_FUNC_SECTION
 static void label_delete_all(stress_test_ctx_t * ctx)
 {
     for(int i = 0; i < ctx->config.label_cnt; i++) {
@@ -123,6 +126,7 @@ static void label_delete_all(stress_test_ctx_t * ctx)
         }
     }
 }
+LV_FUNC_SECTION
 static void update_cb(void)
 {
     stress_test_ctx_t * ctx = &g_ctx;
@@ -150,6 +154,7 @@ static void update_cb(void)
     }
 }
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     lv_freetype_init(LV_FREETYPE_CACHE_FT_GLYPH_CNT);
@@ -169,6 +174,7 @@ void setUp(void)
     lv_rand_set_seed(RND_START_SEED);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     label_delete_all(&g_ctx);
@@ -177,6 +183,7 @@ void tearDown(void)
     lv_free(g_ctx.label_arr);
 }
 
+LV_FUNC_SECTION
 void test_font_stress(void)
 {
     for(uint32_t i = 0; g_ctx.config.loop_cnt > 0; g_ctx.config.loop_cnt--) {
@@ -193,14 +200,17 @@ void test_font_stress(void)
 
 #else
 
+LV_FUNC_SECTION
 void setUp(void)
 {
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
 }
 
+LV_FUNC_SECTION
 void test_font_stress(void)
 {
 }

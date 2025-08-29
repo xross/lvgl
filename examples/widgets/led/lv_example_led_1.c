@@ -4,6 +4,7 @@
 /**
  * Create LED's with different brightness and color
  */
+LV_FUNC_SECTION
 void lv_example_led_1(void)
 {
     /*Create a LED and switch it OFF*/

@@ -8,6 +8,7 @@
 #include "lv_test_helpers.h"
 #include "lv_test_indev.h"
 
+LV_FUNC_SECTION
 void test_demo_widgets(void)
 {
 #if LV_USE_DEMO_WIDGETS

@@ -52,6 +52,7 @@ static int is_jpg(const uint8_t * raw_data, size_t len);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_tjpgd_init(void)
 {
     lv_image_decoder_t * dec = lv_image_decoder_create();
@@ -63,6 +64,7 @@ void lv_tjpgd_init(void)
     dec->name = DECODER_NAME;
 }
 
+LV_FUNC_SECTION
 void lv_tjpgd_deinit(void)
 {
     lv_image_decoder_t * dec = NULL;
@@ -77,7 +79,7 @@ void lv_tjpgd_deinit(void)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_image_deocder_info_cb") ))
 static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc, lv_image_header_t * header)
 {
     LV_UNUSED(decoder);
@@ -125,6 +127,7 @@ static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_d
     return LV_RESULT_INVALID;
 }
 
+LV_FUNC_SECTION
 static size_t input_func(JDEC * jd, uint8_t * buff, size_t ndata)
 {
     lv_fs_file_t * f = jd->device;
@@ -150,6 +153,7 @@ static size_t input_func(JDEC * jd, uint8_t * buff, size_t ndata)
  * @param dsc     pointer to the decoder descriptor
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't open the image
  */
+__attribute__(( fptrgroup("lv_image_deocder_open_cb") ))
 static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -204,6 +208,7 @@ static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_d
     return LV_RESULT_OK;
 }
 
+__attribute__(( fptrgroup("lv_image_deocder_get_area_cb") ))
 static lv_result_t decoder_get_area(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc,
                                     const lv_area_t * full_area, lv_area_t * decoded_area)
 {
@@ -280,6 +285,7 @@ static lv_result_t decoder_get_area(lv_image_decoder_t * decoder, lv_image_decod
  * @param decoder pointer to the decoder where this function belongs
  * @param dsc pointer to a descriptor which describes this decoding session
  */
+__attribute__(( fptrgroup("lv_image_deocder_close_cb") ))
 static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -291,6 +297,7 @@ static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t *
     lv_free((void *)dsc->decoded);
 }
 
+LV_FUNC_SECTION
 static int is_jpg(const uint8_t * raw_data, size_t len)
 {
     const uint8_t jpg_signature[] = {0xFF, 0xD8, 0xFF,  0xE0,  0x00,  0x10, 0x4A,  0x46, 0x49, 0x46};

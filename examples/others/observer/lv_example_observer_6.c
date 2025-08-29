@@ -15,6 +15,7 @@ static lv_subject_t theme_subject;
 /**
  * Change between light and dark mode
  */
+LV_FUNC_SECTION
 void lv_example_observer_6(void)
 {
     lv_subject_init_int(&theme_subject, THEME_MODE_DARK);
@@ -37,6 +38,7 @@ void lv_example_observer_6(void)
     my_button_create(panel1, "Button 10", switch_theme_event_cb);
 }
 
+LV_FUNC_SECTION
 static void switch_theme_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
@@ -56,6 +58,7 @@ typedef struct {
     lv_style_t style_scrollbar;
 } my_panel_styles_t;
 
+LV_FUNC_SECTION
 static void my_panel_style_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     LV_UNUSED(subject);
@@ -80,6 +83,7 @@ static void my_panel_style_observer_cb(lv_observer_t * observer, lv_subject_t * 
     lv_obj_report_style_change(&styles->style_scrollbar);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * my_panel_create(lv_obj_t * parent)
 {
     static bool inited = false;
@@ -126,6 +130,7 @@ typedef struct {
     lv_style_t style_pressed;
 } my_button_styles_t;
 
+LV_FUNC_SECTION
 static void my_button_style_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     LV_UNUSED(subject);
@@ -154,6 +159,7 @@ static void my_button_style_observer_cb(lv_observer_t * observer, lv_subject_t *
     lv_obj_report_style_change(&styles->style_pressed);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * my_button_create(lv_obj_t * parent, const char * text, lv_event_cb_t event_cb)
 {
     static bool inited = false;

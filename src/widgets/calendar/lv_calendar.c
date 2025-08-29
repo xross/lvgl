@@ -68,6 +68,7 @@ static const char * day_names_def[7] = LV_CALENDAR_DEFAULT_DAY_NAMES;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_calendar_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -80,6 +81,7 @@ lv_obj_t * lv_calendar_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_calendar_set_day_names(lv_obj_t * obj, const char * day_names[])
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -92,6 +94,7 @@ void lv_calendar_set_day_names(lv_obj_t * obj, const char * day_names[])
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_calendar_set_today_date(lv_obj_t * obj, uint32_t year, uint32_t month, uint32_t day)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -104,6 +107,7 @@ void lv_calendar_set_today_date(lv_obj_t * obj, uint32_t year, uint32_t month, u
     highlight_update(obj);
 }
 
+LV_FUNC_SECTION
 void lv_calendar_set_highlighted_dates(lv_obj_t * obj, lv_calendar_date_t highlighted[], size_t date_num)
 {
     LV_ASSERT_NULL(highlighted);
@@ -117,6 +121,7 @@ void lv_calendar_set_highlighted_dates(lv_obj_t * obj, lv_calendar_date_t highli
     highlight_update(obj);
 }
 
+LV_FUNC_SECTION
 void lv_calendar_set_showed_date(lv_obj_t * obj, uint32_t year, uint32_t month)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -216,6 +221,7 @@ void lv_calendar_set_showed_date(lv_obj_t * obj, uint32_t year, uint32_t month)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_calendar_get_btnmatrix(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -223,6 +229,7 @@ lv_obj_t * lv_calendar_get_btnmatrix(const lv_obj_t * obj)
     return calendar->btnm;
 }
 
+LV_FUNC_SECTION
 const lv_calendar_date_t * lv_calendar_get_today_date(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -231,6 +238,7 @@ const lv_calendar_date_t * lv_calendar_get_today_date(const lv_obj_t * obj)
     return &calendar->today;
 }
 
+LV_FUNC_SECTION
 const lv_calendar_date_t * lv_calendar_get_showed_date(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -239,6 +247,7 @@ const lv_calendar_date_t * lv_calendar_get_showed_date(const lv_obj_t * obj)
     return &calendar->showed_date;
 }
 
+LV_FUNC_SECTION
 lv_calendar_date_t * lv_calendar_get_highlighted_dates(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -247,6 +256,7 @@ lv_calendar_date_t * lv_calendar_get_highlighted_dates(const lv_obj_t * obj)
     return calendar->highlighted_dates;
 }
 
+LV_FUNC_SECTION
 size_t lv_calendar_get_highlighted_dates_num(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -255,6 +265,7 @@ size_t lv_calendar_get_highlighted_dates_num(const lv_obj_t * obj)
     return calendar->highlighted_dates_num;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_calendar_get_pressed_date(const lv_obj_t * obj, lv_calendar_date_t * date)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -283,6 +294,7 @@ lv_result_t lv_calendar_get_pressed_date(const lv_obj_t * obj, lv_calendar_date_
  *  STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_calendar_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -336,6 +348,7 @@ static void lv_calendar_constructor(const lv_obj_class_t * class_p, lv_obj_t * o
     lv_calendar_set_today_date(obj, calendar->today.year, calendar->today.month, calendar->today.day);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void draw_task_added_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -384,6 +397,7 @@ static void draw_task_added_event_cb(lv_event_t * e)
  *              supported to handle next/prev. year
  * @return [28..31]
  */
+LV_FUNC_SECTION
 static uint8_t get_month_length(int32_t year, int32_t month)
 {
     month--;
@@ -405,6 +419,7 @@ static uint8_t get_month_length(int32_t year, int32_t month)
  * @param year a year
  * @return 0: not leap year; 1: leap year
  */
+LV_FUNC_SECTION
 static uint8_t is_leap_year(uint32_t year)
 {
     return (year % 4) || ((year % 100 == 0) && (year % 400)) ? 0 : 1;
@@ -417,6 +432,7 @@ static uint8_t is_leap_year(uint32_t year)
  * @param day a day [1..32]
  * @return [0..6] which means [Sun..Sat] or [Mon..Sun] depending on LV_CALENDAR_WEEK_STARTS_MONDAY
  */
+LV_FUNC_SECTION
 static uint8_t get_day_of_week(uint32_t year, uint32_t month, uint32_t day)
 {
     uint32_t a = month < 3 ? 1 : 0;
@@ -431,6 +447,7 @@ static uint8_t get_day_of_week(uint32_t year, uint32_t month, uint32_t day)
     return day_of_week  ;
 }
 
+LV_FUNC_SECTION
 static void highlight_update(lv_obj_t * obj)
 {
     lv_calendar_t * calendar = (lv_calendar_t *)obj;
@@ -457,6 +474,7 @@ static void highlight_update(lv_obj_t * obj)
 
 #if LV_USE_CALENDAR_CHINESE
 
+LV_FUNC_SECTION
 static lv_calendar_date_t gregorian_get_last_month_time(lv_calendar_date_t * time)
 {
     lv_calendar_date_t last_month_time;
@@ -471,6 +489,7 @@ static lv_calendar_date_t gregorian_get_last_month_time(lv_calendar_date_t * tim
     return last_month_time;
 }
 
+LV_FUNC_SECTION
 static lv_calendar_date_t gregorian_get_next_month_time(lv_calendar_date_t * time)
 {
     lv_calendar_date_t next_month_time;
@@ -485,6 +504,7 @@ static lv_calendar_date_t gregorian_get_next_month_time(lv_calendar_date_t * tim
     return next_month_time;
 }
 
+LV_FUNC_SECTION
 static void chinese_calendar_set_day_name(lv_obj_t * obj, uint8_t index, uint8_t day,
                                           lv_calendar_date_t * gregorian_time)
 {

@@ -4,6 +4,7 @@
 /**
  * Open a GIF image from a file and a variable
  */
+LV_FUNC_SECTION
 void lv_example_gif_1(void)
 {
     LV_IMAGE_DECLARE(img_bulb_gif);

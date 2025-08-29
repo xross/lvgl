@@ -1,11 +1,13 @@
 #include "../lv_examples.h"
 #if LV_BUILD_EXAMPLES && LV_USE_SWITCH
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void anim_x_cb(void * var, int32_t v)
 {
     lv_obj_set_x(var, v);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void anim_size_cb(void * var, int32_t v)
 {
     lv_obj_set_size(var, v, v);
@@ -14,6 +16,7 @@ static void anim_size_cb(void * var, int32_t v)
 /**
  * Create a playback animation
  */
+LV_FUNC_SECTION
 void lv_example_anim_2(void)
 {
 

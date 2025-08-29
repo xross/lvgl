@@ -4,6 +4,7 @@
 /**
  * Opacity and Transformations
  */
+LV_FUNC_SECTION
 void lv_example_style_15(void)
 {
     lv_obj_t * btn;

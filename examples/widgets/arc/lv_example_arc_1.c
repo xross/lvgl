@@ -4,6 +4,7 @@
 
 static void value_changed_event_cb(lv_event_t * e);
 
+LV_FUNC_SECTION
 void lv_example_arc_1(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());
@@ -21,6 +22,7 @@ void lv_example_arc_1(void)
     lv_obj_send_event(arc, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
+LV_FUNC_SECTION
 static void value_changed_event_cb(lv_event_t * e)
 {
     lv_obj_t * arc = lv_event_get_target(e);

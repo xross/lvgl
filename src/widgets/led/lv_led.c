@@ -53,6 +53,7 @@ const lv_obj_class_t lv_led_class  = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_led_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -65,6 +66,7 @@ lv_obj_t * lv_led_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_led_set_color(lv_obj_t * obj, lv_color_t color)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -74,6 +76,7 @@ void lv_led_set_color(lv_obj_t * obj, lv_color_t color)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_led_set_brightness(lv_obj_t * obj, uint8_t bright)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -87,16 +90,19 @@ void lv_led_set_brightness(lv_obj_t * obj, uint8_t bright)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_led_on(lv_obj_t * led)
 {
     lv_led_set_brightness(led, LV_LED_BRIGHT_MAX);
 }
 
+LV_FUNC_SECTION
 void lv_led_off(lv_obj_t * led)
 {
     lv_led_set_brightness(led, LV_LED_BRIGHT_MIN);
 }
 
+LV_FUNC_SECTION
 void lv_led_toggle(lv_obj_t * obj)
 {
     uint8_t bright = lv_led_get_brightness(obj);
@@ -110,6 +116,7 @@ void lv_led_toggle(lv_obj_t * obj)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 uint8_t lv_led_get_brightness(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -122,6 +129,7 @@ uint8_t lv_led_get_brightness(const lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_led_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -130,6 +138,7 @@ static void lv_led_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     led->bright = LV_LED_BRIGHT_MAX;
 }
 
+LV_FUNC_SECTION
 static void lv_led_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);

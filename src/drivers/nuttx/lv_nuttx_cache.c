@@ -42,6 +42,7 @@ static void flush_cache(const lv_draw_buf_t * draw_buf, const lv_area_t * area);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_nuttx_cache_init(void)
 {
     lv_draw_buf_handlers_t * handlers = lv_draw_buf_get_handlers();
@@ -49,6 +50,7 @@ void lv_nuttx_cache_init(void)
     handlers->flush_cache_cb = flush_cache;
 }
 
+LV_FUNC_SECTION
 void lv_nuttx_cache_deinit(void)
 {
     lv_draw_buf_handlers_t * handlers = lv_draw_buf_get_handlers();
@@ -60,6 +62,7 @@ void lv_nuttx_cache_deinit(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void draw_buf_to_region(
     const lv_draw_buf_t * draw_buf, const lv_area_t * area,
     lv_uintptr_t * start, lv_uintptr_t * end)
@@ -77,6 +80,7 @@ static void draw_buf_to_region(
     *end = *start + h * stride;
 }
 
+LV_FUNC_SECTION
 static void invalidate_cache(const lv_draw_buf_t * draw_buf, const lv_area_t * area)
 {
     lv_uintptr_t start;
@@ -85,6 +89,7 @@ static void invalidate_cache(const lv_draw_buf_t * draw_buf, const lv_area_t * a
     up_invalidate_dcache(start, end);
 }
 
+LV_FUNC_SECTION
 static void flush_cache(const lv_draw_buf_t * draw_buf, const lv_area_t * area)
 {
     lv_uintptr_t start;

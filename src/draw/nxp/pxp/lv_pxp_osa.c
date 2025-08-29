@@ -94,6 +94,7 @@ static pxp_cfg_t _pxp_default_cfg = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void PXP_IRQHandler(void)
 {
     if(kPXP_CompleteFlag & PXP_GetStatusFlags(PXP_ID)) {
@@ -106,6 +107,7 @@ void PXP_IRQHandler(void)
     }
 }
 
+LV_FUNC_SECTION
 pxp_cfg_t * pxp_get_default_cfg(void)
 {
     return &_pxp_default_cfg;
@@ -116,12 +118,14 @@ pxp_cfg_t * pxp_get_default_cfg(void)
  **********************/
 
 #if defined(__ZEPHYR__)
+LV_FUNC_SECTION
 static void _pxp_zephyr_irq_handler(void *)
 {
     PXP_IRQHandler();
 }
 #endif
 
+LV_FUNC_SECTION
 static void _pxp_interrupt_init(void)
 {
 #if LV_USE_OS
@@ -144,6 +148,7 @@ static void _pxp_interrupt_init(void)
     ucPXPIdle = true;
 }
 
+LV_FUNC_SECTION
 static void _pxp_interrupt_deinit(void)
 {
 #if defined(__ZEPHYR__)
@@ -160,6 +165,7 @@ static void _pxp_interrupt_deinit(void)
 /**
  * Function to start PXP job.
  */
+LV_FUNC_SECTION
 static void _pxp_run(void)
 {
     ucPXPIdle = false;
@@ -171,6 +177,7 @@ static void _pxp_run(void)
 /**
  * Function to wait for PXP completion.
  */
+LV_FUNC_SECTION
 static void _pxp_wait(void)
 {
     if(ucPXPIdle == true)

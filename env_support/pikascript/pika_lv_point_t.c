@@ -8,6 +8,7 @@
 
 #include "pika_lvgl_point_t.h"
 
+LV_FUNC_SECTION
 void pika_lvgl_point_t___init__(PikaObj* self) {
     lv_point_t lv_point = {0};
     args_setStruct(self->list, "lv_point_struct", lv_point);

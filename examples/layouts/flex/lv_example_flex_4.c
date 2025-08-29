@@ -4,6 +4,7 @@
 /**
  * Reverse the order of flex items
  */
+LV_FUNC_SECTION
 void lv_example_flex_4(void)
 {
 

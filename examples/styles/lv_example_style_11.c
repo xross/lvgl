@@ -4,6 +4,7 @@
 /**
  * Using multiple styles
  */
+LV_FUNC_SECTION
 void lv_example_style_11(void)
 {
     /*A base style*/

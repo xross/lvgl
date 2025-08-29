@@ -173,6 +173,7 @@ const uint8_t lv_style_builtin_prop_flag_lookup_table[LV_STYLE_NUM_BUILT_IN_PROP
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_style_init(lv_style_t * style)
 {
 #if LV_USE_ASSERT_STYLE
@@ -187,6 +188,7 @@ void lv_style_init(lv_style_t * style)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_style_reset(lv_style_t * style)
 {
     LV_ASSERT_STYLE(style);
@@ -198,6 +200,7 @@ void lv_style_reset(lv_style_t * style)
 #endif
 }
 
+LV_FUNC_SECTION
 lv_style_prop_t lv_style_register_prop(uint8_t flag)
 {
     if(lv_style_custom_prop_flag_lookup_table == NULL) {
@@ -234,11 +237,13 @@ lv_style_prop_t lv_style_register_prop(uint8_t flag)
     return last_custom_prop_id;
 }
 
+LV_FUNC_SECTION
 lv_style_prop_t lv_style_get_num_custom_props(void)
 {
     return last_custom_prop_id - LV_STYLE_LAST_BUILT_IN_PROP;
 }
 
+LV_FUNC_SECTION
 bool lv_style_remove_prop(lv_style_t * style, lv_style_prop_t prop)
 {
     LV_ASSERT_STYLE(style);
@@ -284,6 +289,7 @@ bool lv_style_remove_prop(lv_style_t * style, lv_style_prop_t prop)
     return false;
 }
 
+LV_FUNC_SECTION
 void lv_style_set_prop(lv_style_t * style, lv_style_prop_t prop, lv_style_value_t value)
 {
     LV_ASSERT_STYLE(style);
@@ -333,11 +339,13 @@ void lv_style_set_prop(lv_style_t * style, lv_style_prop_t prop, lv_style_value_
     style->has_group |= (uint32_t)1 << group;
 }
 
+LV_FUNC_SECTION
 lv_style_res_t lv_style_get_prop(const lv_style_t * style, lv_style_prop_t prop, lv_style_value_t * value)
 {
     return lv_style_get_prop_inlined(style, prop, value);
 }
 
+LV_FUNC_SECTION
 void lv_style_transition_dsc_init(lv_style_transition_dsc_t * tr, const lv_style_prop_t props[],
                                   lv_anim_path_cb_t path_cb, uint32_t time, uint32_t delay, void * user_data)
 {
@@ -349,6 +357,7 @@ void lv_style_transition_dsc_init(lv_style_transition_dsc_t * tr, const lv_style
     tr->user_data = user_data;
 }
 
+LV_FUNC_SECTION
 lv_style_value_t lv_style_prop_get_default(lv_style_prop_t prop)
 {
     const lv_color_t black = LV_COLOR_MAKE(0x00, 0x00, 0x00);
@@ -417,6 +426,7 @@ lv_style_value_t lv_style_prop_get_default(lv_style_prop_t prop)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_style_is_empty(const lv_style_t * style)
 {
     LV_ASSERT_STYLE(style);
@@ -424,6 +434,7 @@ bool lv_style_is_empty(const lv_style_t * style)
     return style->prop_cnt == 0;
 }
 
+LV_FUNC_SECTION
 uint8_t lv_style_prop_lookup_flags(lv_style_prop_t prop)
 {
     if(prop == LV_STYLE_PROP_ANY) return LV_STYLE_PROP_FLAG_ALL; /*Any prop can have any flags*/

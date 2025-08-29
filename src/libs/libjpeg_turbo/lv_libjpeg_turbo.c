@@ -73,6 +73,7 @@ const int JPEG_LITTLE_ENDIAN_TAG = 0x4949;
 /**
  * Register the JPEG decoder functions in LVGL
  */
+LV_FUNC_SECTION
 void lv_libjpeg_turbo_init(void)
 {
     lv_image_decoder_t * dec = lv_image_decoder_create();
@@ -83,6 +84,7 @@ void lv_libjpeg_turbo_init(void)
     dec->name = DECODER_NAME;
 }
 
+LV_FUNC_SECTION
 void lv_libjpeg_turbo_deinit(void)
 {
     lv_image_decoder_t * dec = NULL;
@@ -104,6 +106,7 @@ void lv_libjpeg_turbo_deinit(void)
  * @param header store the info here
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't get the info
  */
+__attribute__(( fptrgroup("lv_image_deocder_info_cb") ))
 static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc, lv_image_header_t * header)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -157,6 +160,7 @@ static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_d
  * @param dsc     pointer to the decoder descriptor
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't open the image
  */
+__attribute__(( fptrgroup("lv_image_deocder_open_cb") ))
 static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -199,6 +203,7 @@ static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_d
 /**
  * Free the allocated resources
  */
+__attribute__(( fptrgroup("lv_image_deocder_close_cb") ))
 static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -207,6 +212,7 @@ static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t *
        !lv_image_cache_is_enabled()) lv_draw_buf_destroy((lv_draw_buf_t *)dsc->decoded);
 }
 
+LV_FUNC_SECTION
 static uint8_t * read_file(const char * filename, uint32_t * size)
 {
     uint8_t * data = NULL;
@@ -262,6 +268,7 @@ failed:
     return data;
 }
 
+LV_FUNC_SECTION
 static lv_draw_buf_t * decode_jpeg_file(const char * filename)
 {
     /* This struct contains the JPEG decompression parameters and pointers to
@@ -420,6 +427,7 @@ static lv_draw_buf_t * decode_jpeg_file(const char * filename)
     return decoded;
 }
 
+LV_FUNC_SECTION
 static bool get_jpeg_head_info(const char * filename, uint32_t * width, uint32_t * height, uint32_t * orientation)
 {
     uint8_t * data = NULL;
@@ -442,6 +450,7 @@ static bool get_jpeg_head_info(const char * filename, uint32_t * width, uint32_t
     return JPEG_HEADER_OK;
 }
 
+LV_FUNC_SECTION
 static bool get_jpeg_size(uint8_t * data, uint32_t data_size, uint32_t * width, uint32_t * height)
 {
     struct jpeg_decompress_struct cinfo;
@@ -475,6 +484,7 @@ static bool get_jpeg_size(uint8_t * data, uint32_t data_size, uint32_t * width, 
     return JPEG_HEADER_OK;
 }
 
+LV_FUNC_SECTION
 static bool get_jpeg_direction(uint8_t * data, uint32_t data_size, uint32_t * orientation)
 {
     struct jpeg_decompress_struct cinfo;
@@ -563,6 +573,7 @@ static bool get_jpeg_direction(uint8_t * data, uint32_t data_size, uint32_t * or
     return JPEG_HEADER_OK;
 }
 
+LV_FUNC_SECTION
 static void rotate_buffer(lv_draw_buf_t * decoded, uint8_t * buffer, uint32_t line_index, uint32_t angle)
 {
     if(angle == 90) {
@@ -588,6 +599,7 @@ static void rotate_buffer(lv_draw_buf_t * decoded, uint8_t * buffer, uint32_t li
     }
 }
 
+LV_FUNC_SECTION
 static void error_exit(j_common_ptr cinfo)
 {
     error_mgr_t * myerr = (error_mgr_t *)cinfo->err;

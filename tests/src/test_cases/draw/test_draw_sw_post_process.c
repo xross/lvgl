@@ -4,16 +4,19 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 void test_rotate90_RGB565(void)
 {
     uint16_t srcArray[3 * 2] = {
@@ -38,6 +41,7 @@ void test_rotate90_RGB565(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate180_RGB565(void)
 {
     uint16_t srcArray[3 * 2] = {
@@ -59,6 +63,7 @@ void test_rotate180_RGB565(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate270_RGB565(void)
 {
     uint16_t srcArray[3 * 2] = {
@@ -83,6 +88,7 @@ void test_rotate270_RGB565(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate90_RGB888(void)
 {
     uint8_t srcArray[3 * 2 * 3] = {
@@ -107,6 +113,7 @@ void test_rotate90_RGB888(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate180_RGB888(void)
 {
     uint8_t srcArray[3 * 2 * 3] = {
@@ -130,6 +137,7 @@ void test_rotate180_RGB888(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate270_RGB888(void)
 {
     uint8_t srcArray[3 * 2 * 3] = {
@@ -154,6 +162,7 @@ void test_rotate270_RGB888(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate90_ARGB8888(void)
 {
     uint32_t srcArray[3 * 2] = {
@@ -179,6 +188,7 @@ void test_rotate90_ARGB8888(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate180_ARGB8888(void)
 {
     uint32_t srcArray[3 * 2] = {
@@ -203,6 +213,7 @@ void test_rotate180_ARGB8888(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate270_ARGB8888(void)
 {
     uint32_t srcArray[3 * 2] = {
@@ -225,6 +236,7 @@ void test_rotate270_ARGB8888(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate90_L8(void)
 {
     uint8_t srcArray[3 * 2] = {
@@ -250,6 +262,7 @@ void test_rotate90_L8(void)
 }
 
 
+LV_FUNC_SECTION
 void test_rotate180_L8(void)
 {
     uint8_t srcArray[3 * 2] = {
@@ -271,6 +284,7 @@ void test_rotate180_L8(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_rotate270_L8(void)
 {
     uint8_t srcArray[3 * 2] = {
@@ -295,6 +309,7 @@ void test_rotate270_L8(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedArray, dstArray, sizeof(dstArray));
 }
 
+LV_FUNC_SECTION
 void test_invert(void)
 {
     uint8_t expected_buf[10] = {0xff, 0xfe, 0xfd, 0xfc, 0xfb, 0xfa, 0xf9, 0xf8, 0xf7, 0xf6};

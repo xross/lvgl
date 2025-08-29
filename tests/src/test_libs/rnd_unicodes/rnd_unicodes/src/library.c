@@ -25,6 +25,7 @@
 
 #include "library.h"
 
+LV_FUNC_SECTION
 __attribute__((weak)) uint32_t RANDOM_CALL_PROCESS(void)
 {
     /*Algorithm "xor" from p. 4 of Marsaglia, "Xorshift RNGs"*/
@@ -56,6 +57,7 @@ const uint32_t ALPHANUM_TABLE[] = {
 };
 const uint32_t ALPHANUM_TABLE_LEN = sizeof(ALPHANUM_TABLE) / sizeof(unicode_t) / 2;
 
+LV_FUNC_SECTION
 static int unicode_to_utf8_bytes_len(unicode_t unicode)
 {
     if(unicode < 0x80) {
@@ -78,6 +80,7 @@ static int unicode_to_utf8_bytes_len(unicode_t unicode)
     }
 }
 
+LV_FUNC_SECTION
 static int unicode_to_uft8(utf8_t * buf, uint32_t buf_len, unicode_t unicode)
 {
     uint32_t unicode_len = unicode_to_utf8_bytes_len(unicode);
@@ -127,6 +130,7 @@ static int unicode_to_uft8(utf8_t * buf, uint32_t buf_len, unicode_t unicode)
     return buf_index;
 }
 
+LV_FUNC_SECTION
 static int random_one_utf8_char(utf8_t * buf, int buf_len, unicode_t char_range_min, unicode_t char_range_max)
 {
     if(buf_len < 1) {
@@ -138,6 +142,7 @@ static int random_one_utf8_char(utf8_t * buf, int buf_len, unicode_t char_range_
     return unicode_to_uft8(buf, buf_len, r);
 }
 
+LV_FUNC_SECTION
 int random_utf8_chars(utf8_t * buf, int buf_len, const unicode_t * ranges, uint32_t range_num, int char_num)
 {
     if(buf_len < char_num) {

@@ -56,6 +56,7 @@ static lv_cache_compare_res_t stroke_compare_cb(const stroke_item_t * lhs, const
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_vg_lite_stroke_init(struct lv_draw_vg_lite_unit_t * unit, uint32_t cache_cnt)
 {
     LV_ASSERT_NULL(unit);
@@ -70,6 +71,7 @@ void lv_vg_lite_stroke_init(struct lv_draw_vg_lite_unit_t * unit, uint32_t cache
     lv_cache_set_name(unit->stroke_cache, "VG_STROKE");
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_stroke_deinit(struct lv_draw_vg_lite_unit_t * unit)
 {
     LV_ASSERT_NULL(unit);
@@ -78,6 +80,7 @@ void lv_vg_lite_stroke_deinit(struct lv_draw_vg_lite_unit_t * unit)
     unit->stroke_cache = NULL;
 }
 
+LV_FUNC_SECTION
 static vg_lite_cap_style_t lv_stroke_cap_to_vg(lv_vector_stroke_cap_t cap)
 {
     switch(cap) {
@@ -92,6 +95,7 @@ static vg_lite_cap_style_t lv_stroke_cap_to_vg(lv_vector_stroke_cap_t cap)
     }
 }
 
+LV_FUNC_SECTION
 static vg_lite_join_style_t lv_stroke_join_to_vg(lv_vector_stroke_join_t join)
 {
     switch(join) {
@@ -106,6 +110,7 @@ static vg_lite_join_style_t lv_stroke_join_to_vg(lv_vector_stroke_join_t join)
     }
 }
 
+LV_FUNC_SECTION
 lv_cache_entry_t * lv_vg_lite_stroke_get(struct lv_draw_vg_lite_unit_t * unit,
                                          struct lv_vg_lite_path_t * path,
                                          const lv_vector_stroke_dsc_t * dsc)
@@ -147,6 +152,7 @@ lv_cache_entry_t * lv_vg_lite_stroke_get(struct lv_draw_vg_lite_unit_t * unit,
     return cache_node_entry;
 }
 
+LV_FUNC_SECTION
 struct lv_vg_lite_path_t * lv_vg_lite_stroke_get_path(lv_cache_entry_t * cache_entry)
 {
     LV_ASSERT_NULL(cache_entry);
@@ -156,6 +162,7 @@ struct lv_vg_lite_path_t * lv_vg_lite_stroke_get_path(lv_cache_entry_t * cache_e
     return stroke_item->path;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_stroke_drop(struct lv_draw_vg_lite_unit_t * unit,
                             lv_cache_entry_t * cache_entry)
 {
@@ -167,7 +174,7 @@ void lv_vg_lite_stroke_drop(struct lv_draw_vg_lite_unit_t * unit,
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_cache_create_cb") ))
 static bool stroke_create_cb(stroke_item_t * item, void * user_data)
 {
     LV_ASSERT_NULL(item);
@@ -235,6 +242,7 @@ static bool stroke_create_cb(stroke_item_t * item, void * user_data)
     return true;
 }
 
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void stroke_free_cb(stroke_item_t * item, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -245,6 +253,7 @@ static void stroke_free_cb(stroke_item_t * item, void * user_data)
     lv_memzero(item, sizeof(stroke_item_t));
 }
 
+LV_FUNC_SECTION
 static lv_cache_compare_res_t path_compare(const vg_lite_path_t * lhs, const vg_lite_path_t * rhs)
 {
     LV_VG_LITE_ASSERT_PATH(lhs);
@@ -265,6 +274,7 @@ static lv_cache_compare_res_t path_compare(const vg_lite_path_t * lhs, const vg_
     return 0;
 }
 
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t stroke_compare_cb(const stroke_item_t * lhs, const stroke_item_t * rhs)
 {
     if(lhs->width != lhs->width) {

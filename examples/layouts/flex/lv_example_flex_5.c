@@ -1,11 +1,13 @@
 #include "../../lv_examples.h"
 #if LV_USE_FLEX && LV_BUILD_EXAMPLES
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void row_gap_anim(void * obj, int32_t v)
 {
     lv_obj_set_style_pad_row(obj, v, 0);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void column_gap_anim(void * obj, int32_t v)
 {
     lv_obj_set_style_pad_column(obj, v, 0);
@@ -14,6 +16,7 @@ static void column_gap_anim(void * obj, int32_t v)
 /**
  * Demonstrate the effect of column and row gap style properties
  */
+LV_FUNC_SECTION
 void lv_example_flex_5(void)
 {
     lv_obj_t * cont = lv_obj_create(lv_screen_active());

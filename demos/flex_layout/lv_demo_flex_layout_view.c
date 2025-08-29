@@ -39,6 +39,7 @@ static void obj_child_node_checked_style_init(lv_style_t * style);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void view_create(lv_obj_t * par, view_t * ui)
 {
     /* layout */
@@ -112,6 +113,7 @@ void view_create(lv_obj_t * par, view_t * ui)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_obj_t * btn_create(lv_obj_t * par, const char * str, lv_color_t color)
 {
     lv_obj_t * btn = lv_button_create(par);
@@ -128,6 +130,7 @@ static lv_obj_t * btn_create(lv_obj_t * par, const char * str, lv_color_t color)
     return btn;
 }
 
+LV_FUNC_SECTION
 static void obj_child_node_def_style_init(lv_style_t * style)
 {
     lv_style_init(style);
@@ -137,6 +140,7 @@ static void obj_child_node_def_style_init(lv_style_t * style)
     lv_style_set_radius(style, 0);
 }
 
+LV_FUNC_SECTION
 static void obj_child_node_checked_style_init(lv_style_t * style)
 {
     lv_style_init(style);

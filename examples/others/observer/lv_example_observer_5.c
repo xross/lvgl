@@ -25,6 +25,7 @@ static lv_subject_t fw_update_status_subject;
  *   - the UI needs to wait for the App (connecting or downloading)
  * With observers these complex mechanisms can be implemented a simple and clean way.
  */
+LV_FUNC_SECTION
 void lv_example_observer_5(void)
 {
     lv_subject_init_int(&fw_download_percent_subject, 0);
@@ -40,6 +41,7 @@ void lv_example_observer_5(void)
     lv_label_set_text(label, "Firmware update");
 }
 
+LV_FUNC_SECTION
 static void fw_update_btn_clicked_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
@@ -60,12 +62,14 @@ static void fw_update_btn_clicked_event_cb(lv_event_t * e)
     lv_subject_add_observer_obj(&fw_update_status_subject, fw_update_win_observer_cb, win, NULL);
 }
 
+LV_FUNC_SECTION
 static void fw_update_close_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
     lv_subject_set_int(&fw_update_status_subject, FW_UPDATE_STATE_CANCEL);
 }
 
+LV_FUNC_SECTION
 static void restart_btn_click_event_cb(lv_event_t * e)
 {
     lv_obj_t * win = lv_event_get_user_data(e);
@@ -73,6 +77,7 @@ static void restart_btn_click_event_cb(lv_event_t * e)
     lv_subject_set_int(&fw_update_status_subject, FW_UPDATE_STATE_IDLE);
 }
 
+LV_FUNC_SECTION
 static void fw_update_win_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     lv_obj_t * win = lv_observer_get_target(observer);
@@ -120,6 +125,7 @@ static void fw_update_win_observer_cb(lv_observer_t * observer, lv_subject_t * s
     }
 }
 
+LV_FUNC_SECTION
 static void connect_timer_cb(lv_timer_t * t)
 {
     if(lv_subject_get_int(&fw_update_status_subject) != FW_UPDATE_STATE_CANCEL) {
@@ -128,6 +134,7 @@ static void connect_timer_cb(lv_timer_t * t)
     lv_timer_delete(t);
 }
 
+LV_FUNC_SECTION
 static void download_timer_cb(lv_timer_t * t)
 {
     if(lv_subject_get_int(&fw_update_status_subject) == FW_UPDATE_STATE_CANCEL) {
@@ -148,6 +155,7 @@ static void download_timer_cb(lv_timer_t * t)
 /**
  * Emulate connection and FW downloading by timers
  */
+LV_FUNC_SECTION
 static void fw_upload_manager_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     LV_UNUSED(subject);

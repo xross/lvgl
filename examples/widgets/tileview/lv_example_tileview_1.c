@@ -6,6 +6,7 @@
  * Demonstrate scroll chaining with a long list that
  * scrolls the tile view when it can't be scrolled further.
  */
+LV_FUNC_SECTION
 void lv_example_tileview_1(void)
 {
     lv_obj_t * tv = lv_tileview_create(lv_screen_active());

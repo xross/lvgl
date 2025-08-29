@@ -98,7 +98,7 @@ typedef struct {
     uint8_t blue;
     uint8_t green;
     uint8_t red;
-} lv_color_t;
+} __attribute__ ((aligned (2))) lv_color_t;
 
 typedef struct {
     uint16_t blue : 5;

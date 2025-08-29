@@ -5,11 +5,13 @@
 
 static lv_obj_t * active_screen = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
@@ -19,6 +21,7 @@ void tearDown(void)
  * Tests that green/blue checker pattern of various row and column sizes
  * completely covers underyling screen, no red background visible.
  */
+LV_FUNC_SECTION
 void test_grid_fr(void)
 {
     static int32_t col_dsc[] = {3 * 9, LV_GRID_FR(1), LV_GRID_FR(2), LV_GRID_FR(3), LV_GRID_FR(4), LV_GRID_TEMPLATE_LAST};

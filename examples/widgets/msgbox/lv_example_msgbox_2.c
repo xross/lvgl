@@ -1,19 +1,21 @@
 #include "../../lv_examples.h"
 #if LV_USE_MSGBOX && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void minimize_button_event_cb(lv_event_t * e)
 {
     lv_obj_t * mbox = (lv_obj_t *) lv_event_get_user_data(e);
     lv_obj_add_flag(mbox, LV_OBJ_FLAG_HIDDEN);
 }
 
+LV_FUNC_SECTION
 void lv_example_msgbox_2(void)
 {
     lv_obj_t * setting = lv_msgbox_create(lv_screen_active());
     lv_obj_set_style_clip_corner(setting, true, 0);
 
     /* setting fixed size */
-    lv_obj_set_size(setting, 300, 200);
+    lv_obj_set_size(setting, 200, 200);
 
     /* setting's titlebar/header */
     lv_msgbox_add_title(setting, "Setting");

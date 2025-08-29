@@ -4,6 +4,7 @@
 /**
  * Scrolling with Right To Left base direction
  */
+LV_FUNC_SECTION
 void lv_example_scroll_5(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());

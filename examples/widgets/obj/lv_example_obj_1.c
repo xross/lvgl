@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_obj_1(void)
 {
     lv_obj_t * obj1;

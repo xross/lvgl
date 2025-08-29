@@ -81,6 +81,7 @@ static void _pxp_execute_drawing(lv_draw_pxp_unit_t * u);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_pxp_init(void)
 {
     lv_pxp_init();
@@ -99,11 +100,13 @@ void lv_draw_pxp_init(void)
 #endif /*LV_USE_DRAW_PXP*/
 }
 
+LV_FUNC_SECTION
 void lv_draw_pxp_deinit(void)
 {
     lv_pxp_deinit();
 }
 
+LV_FUNC_SECTION
 void lv_draw_pxp_rotate(const void * src_buf, void * dest_buf, int32_t src_width, int32_t src_height,
                         int32_t src_stride, int32_t dest_stride, lv_display_rotation_t rotation,
                         lv_color_format_t cf)
@@ -170,6 +173,7 @@ void lv_draw_pxp_rotate(const void * src_buf, void * dest_buf, int32_t src_width
  *   STATIC FUNCTIONS
  **********************/
 #if LV_USE_DRAW_PXP
+LV_FUNC_SECTION
 static inline bool _pxp_src_cf_supported(lv_color_format_t cf)
 {
     bool is_cf_supported = false;
@@ -187,6 +191,7 @@ static inline bool _pxp_src_cf_supported(lv_color_format_t cf)
     return is_cf_supported;
 }
 
+LV_FUNC_SECTION
 static inline bool _pxp_dest_cf_supported(lv_color_format_t cf)
 {
     bool is_cf_supported = false;
@@ -205,6 +210,7 @@ static inline bool _pxp_dest_cf_supported(lv_color_format_t cf)
     return is_cf_supported;
 }
 
+LV_FUNC_SECTION
 static bool _pxp_draw_img_supported(const lv_draw_image_dsc_t * draw_dsc)
 {
     const lv_image_dsc_t * img_dsc = draw_dsc->src;
@@ -249,6 +255,7 @@ static bool _pxp_draw_img_supported(const lv_draw_image_dsc_t * draw_dsc)
     return true;
 }
 
+LV_FUNC_SECTION
 static int32_t _pxp_evaluate(lv_draw_unit_t * u, lv_draw_task_t * t)
 {
     LV_UNUSED(u);
@@ -317,6 +324,7 @@ static int32_t _pxp_evaluate(lv_draw_unit_t * u, lv_draw_task_t * t)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int32_t _pxp_dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
 {
     lv_draw_pxp_unit_t * draw_pxp_unit = (lv_draw_pxp_unit_t *) draw_unit;
@@ -356,6 +364,7 @@ static int32_t _pxp_dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
     return 1;
 }
 
+LV_FUNC_SECTION
 static int32_t _pxp_delete(lv_draw_unit_t * draw_unit)
 {
 #if LV_USE_PXP_DRAW_THREAD
@@ -377,6 +386,7 @@ static int32_t _pxp_delete(lv_draw_unit_t * draw_unit)
 #endif
 }
 
+LV_FUNC_SECTION
 static void _pxp_execute_drawing(lv_draw_pxp_unit_t * u)
 {
     lv_draw_task_t * t = u->task_act;
@@ -455,6 +465,7 @@ static void _pxp_execute_drawing(lv_draw_pxp_unit_t * u)
 }
 
 #if LV_USE_PXP_DRAW_THREAD
+LV_FUNC_SECTION
 static void _pxp_render_thread_cb(void * ptr)
 {
     lv_draw_pxp_unit_t * u = ptr;

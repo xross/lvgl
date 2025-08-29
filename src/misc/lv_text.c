@@ -89,6 +89,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_text_get_size(lv_point_t * size_res, const char * text, const lv_font_t * font, int32_t letter_space,
                       int32_t line_space, int32_t max_width, lv_text_flag_t flag)
 {
@@ -166,6 +167,7 @@ void lv_text_get_size(lv_point_t * size_res, const char * text, const lv_font_t 
  * @param[out] word_w_ptr width (in pixels) of the parsed word. May be NULL.
  * @return the index of the first char of the next word (in byte index not letter index. With UTF-8 they are different)
  */
+LV_FUNC_SECTION
 static uint32_t lv_text_get_next_word(const char * txt, const lv_font_t * font,
                                       int32_t letter_space, int32_t max_width,
                                       lv_text_flag_t flag, uint32_t * word_w_ptr)
@@ -272,6 +274,7 @@ static uint32_t lv_text_get_next_word(const char * txt, const lv_font_t * font,
 #endif
 }
 
+LV_FUNC_SECTION
 uint32_t lv_text_get_next_line(const char * txt, const lv_font_t * font,
                                int32_t letter_space, int32_t max_width,
                                int32_t * used_width, lv_text_flag_t flag)
@@ -338,6 +341,7 @@ uint32_t lv_text_get_next_line(const char * txt, const lv_font_t * font,
     return i;
 }
 
+LV_FUNC_SECTION
 int32_t lv_text_get_width(const char * txt, uint32_t length, const lv_font_t * font, int32_t letter_space)
 {
     if(txt == NULL) return 0;
@@ -369,6 +373,7 @@ int32_t lv_text_get_width(const char * txt, uint32_t length, const lv_font_t * f
     return width;
 }
 
+LV_FUNC_SECTION
 void lv_text_ins(char * txt_buf, uint32_t pos, const char * ins_txt)
 {
     if(txt_buf == NULL || ins_txt == NULL) return;
@@ -390,6 +395,7 @@ void lv_text_ins(char * txt_buf, uint32_t pos, const char * ins_txt)
     lv_memcpy(txt_buf + pos, ins_txt, ins_len);
 }
 
+LV_FUNC_SECTION
 void lv_text_cut(char * txt, uint32_t pos, uint32_t len)
 {
     if(txt == NULL) return;
@@ -406,6 +412,7 @@ void lv_text_cut(char * txt, uint32_t pos, uint32_t len)
     }
 }
 
+LV_FUNC_SECTION
 char * lv_text_set_text_vfmt(const char * fmt, va_list ap)
 {
     /*Allocate space for the new text by using trick from C99 standard section 7.19.6.12*/
@@ -448,6 +455,7 @@ char * lv_text_set_text_vfmt(const char * fmt, va_list ap)
     return text;
 }
 
+LV_FUNC_SECTION
 void lv_text_encoded_letter_next_2(const char * txt, uint32_t * letter, uint32_t * letter_next, uint32_t * ofs)
 {
     *letter = lv_text_encoded_next(txt, ofs);
@@ -464,6 +472,7 @@ void lv_text_encoded_letter_next_2(const char * txt, uint32_t * letter, uint32_t
  * @param str pointer to a character in a string
  * @return length of the UTF-8 character (1,2,3 or 4), 0 on invalid code.
  */
+__attribute__(( fptrgroup("lv_text_encoded_size_cb") ))
 static uint8_t lv_text_utf8_size(const char * str)
 {
     if(LV_IS_ASCII(str[0]))
@@ -482,6 +491,7 @@ static uint8_t lv_text_utf8_size(const char * str)
  * @param letter_uni a Unicode letter
  * @return UTF-8 coded character in Little Endian to be compatible with C chars (e.g. 'Á', 'Ű')
  */
+__attribute__(( fptrgroup("lv_text_unicode_to_encoded") ))
 static uint32_t lv_text_unicode_to_utf8(uint32_t letter_uni)
 {
     if(letter_uni < 128) return letter_uni;
@@ -518,6 +528,7 @@ static uint32_t lv_text_unicode_to_utf8(uint32_t letter_uni)
  * @param c a wide character or a  Little endian number
  * @return `c` in big endian
  */
+__attribute__(( fptrgroup("lv_text_encoded_conv_wc") ))
 static uint32_t lv_text_utf8_conv_wc(uint32_t c)
 {
 #if LV_BIG_ENDIAN_SYSTEM == 0
@@ -546,6 +557,7 @@ static uint32_t lv_text_utf8_conv_wc(uint32_t c)
  *          NULL to use txt[0] as index
  * @return the decoded Unicode character or 0 on invalid UTF-8 code
  */
+__attribute__(( fptrgroup("lv_text_encoded_next") ))
 static uint32_t lv_text_utf8_next(const char * txt, uint32_t * i)
 {
     /**
@@ -621,6 +633,7 @@ static uint32_t lv_text_utf8_next(const char * txt, uint32_t * i)
  * UTF-8 char in 'txt'.
  * @return the decoded Unicode character or 0 on invalid UTF-8 code
  */
+__attribute__(( fptrgroup("lv_text_encoded_prev") ))
 static uint32_t lv_text_utf8_prev(const char * txt, uint32_t * i)
 {
     uint8_t c_size;
@@ -654,6 +667,7 @@ static uint32_t lv_text_utf8_prev(const char * txt, uint32_t * i)
  * @param utf8_id character index
  * @return byte index of the 'utf8_id'th letter
  */
+__attribute__(( fptrgroup("lv_text_encoded_get_byte_id") ))
 static uint32_t lv_text_utf8_get_byte_id(const char * txt, uint32_t utf8_id)
 {
     uint32_t i;
@@ -674,6 +688,7 @@ static uint32_t lv_text_utf8_get_byte_id(const char * txt, uint32_t utf8_id)
  * @param byte_id byte index
  * @return character index of the letter at 'byte_id'th position
  */
+__attribute__(( fptrgroup("lv_text_encoded_get_char_id") ))
 static uint32_t lv_text_utf8_get_char_id(const char * txt, uint32_t byte_id)
 {
     uint32_t i        = 0;
@@ -693,6 +708,7 @@ static uint32_t lv_text_utf8_get_char_id(const char * txt, uint32_t byte_id)
  * @param txt a '\0' terminated char string
  * @return number of characters
  */
+__attribute__(( fptrgroup("lv_text_get_encoded_length") ))
 static uint32_t lv_text_utf8_get_length(const char * txt)
 {
     uint32_t len = 0;
@@ -716,6 +732,7 @@ static uint32_t lv_text_utf8_get_length(const char * txt)
  * @param str pointer to a character in a string
  * @return length of the ISO8859-1 coded character, will be always 1.
  */
+__attribute__(( fptrgroup("lv_text_encoded_size") ))
 static uint8_t lv_text_iso8859_1_size(const char * str)
 {
     LV_UNUSED(str); /*Unused*/
@@ -727,6 +744,7 @@ static uint8_t lv_text_iso8859_1_size(const char * str)
  * @param letter_uni a Unicode letter
  * @return ISO8859-1 coded character in Little Endian to be compatible with C chars (e.g. 'Á', 'Ű')
  */
+__attribute__(( fptrgroup("lv_text_unicode_to_encoded") ))
 static uint32_t lv_text_unicode_to_iso8859_1(uint32_t letter_uni)
 {
     if(letter_uni < 256)
@@ -741,6 +759,7 @@ static uint32_t lv_text_unicode_to_iso8859_1(uint32_t letter_uni)
  * @param c a character, e.g. 'A'
  * @return same as `c`
  */
+__attribute__(( fptrgroup("lv_text_encoded_conv_wc") ))
 static uint32_t lv_text_iso8859_1_conv_wc(uint32_t c)
 {
     return c;
@@ -754,6 +773,7 @@ static uint32_t lv_text_iso8859_1_conv_wc(uint32_t c)
  *          NULL to use txt[0] as index
  * @return the decoded ISO8859-1 character.
  */
+__attribute__(( fptrgroup("lv_text_encoded_next") ))
 static uint32_t lv_text_iso8859_1_next(const char * txt, uint32_t * i)
 {
     if(i == NULL) return txt[0]; /*Get the next char*/
@@ -769,6 +789,7 @@ static uint32_t lv_text_iso8859_1_next(const char * txt, uint32_t * i)
  * @param i start byte index in 'txt' where to start. After the call it will point to the previous ISO8859-1 coded char in 'txt'.
  * @return the decoded ISO8859-1 character.
  */
+__attribute__(( fptrgroup("lv_text_encoded_prev") ))
 static uint32_t lv_text_iso8859_1_prev(const char * txt, uint32_t * i)
 {
     if(i == NULL) return *(txt - 1); /*Get the prev. char*/
@@ -786,6 +807,7 @@ static uint32_t lv_text_iso8859_1_prev(const char * txt, uint32_t * i)
  * @param utf8_id character index
  * @return byte index of the 'utf8_id'th letter
  */
+__attribute__(( fptrgroup("lv_text_encoded_get_byte_id") ))
 static uint32_t lv_text_iso8859_1_get_byte_id(const char * txt, uint32_t utf8_id)
 {
     LV_UNUSED(txt); /*Unused*/
@@ -799,6 +821,7 @@ static uint32_t lv_text_iso8859_1_get_byte_id(const char * txt, uint32_t utf8_id
  * @param byte_id byte index
  * @return character index of the letter at 'byte_id'th position
  */
+__attribute__(( fptrgroup("lv_text_encoded_get_char_id") ))
 static uint32_t lv_text_iso8859_1_get_char_id(const char * txt, uint32_t byte_id)
 {
     LV_UNUSED(txt); /*Unused*/
@@ -811,6 +834,7 @@ static uint32_t lv_text_iso8859_1_get_char_id(const char * txt, uint32_t byte_id
  * @param txt a '\0' terminated char string
  * @return number of characters
  */
+__attribute__(( fptrgroup("lv_text_get_encoded_length") ))
 static uint32_t lv_text_iso8859_1_get_length(const char * txt)
 {
     return lv_strlen(txt);

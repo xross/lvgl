@@ -7,11 +7,13 @@
 static lv_obj_t * spangroup = NULL;
 static lv_obj_t * active_screen = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     spangroup = lv_spangroup_create(NULL);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_delete(spangroup);
@@ -24,6 +26,7 @@ void tearDown(void)
     active_screen = NULL;
 }
 
+LV_FUNC_SECTION
 void test_spangroup_create_returns_not_null_object(void)
 {
     lv_obj_t * obj = lv_spangroup_create(NULL);
@@ -31,6 +34,7 @@ void test_spangroup_create_returns_not_null_object(void)
     TEST_ASSERT(NULL != obj);
 }
 
+LV_FUNC_SECTION
 void test_spangroup_new_span_with_null_parameter_returns_null_object(void)
 {
     lv_span_t * span = lv_spangroup_new_span(NULL);
@@ -39,6 +43,7 @@ void test_spangroup_new_span_with_null_parameter_returns_null_object(void)
     TEST_ASSERT_EQUAL_INT(0, lv_spangroup_get_span_count(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_new_span_with_valid_parameter_returns_not_null_object(void)
 {
     lv_span_t * span = lv_spangroup_new_span(spangroup);
@@ -47,6 +52,7 @@ void test_spangroup_new_span_with_valid_parameter_returns_not_null_object(void)
     TEST_ASSERT_EQUAL_INT(1, lv_spangroup_get_span_count(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_delete_span_span_is_null(void)
 {
     lv_span_t * span = lv_spangroup_new_span(spangroup);
@@ -56,6 +62,7 @@ void test_spangroup_delete_span_span_is_null(void)
     TEST_ASSERT_EQUAL_INT(0, lv_spangroup_get_span_count(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_span_set_text(void)
 {
     const char * test_text = "Test Text";
@@ -66,6 +73,7 @@ void test_span_set_text(void)
     TEST_ASSERT_EQUAL_STRING(span->txt, test_text);
 }
 
+LV_FUNC_SECTION
 void test_span_set_text_with_bad_parameter_no_action_performed(void)
 {
     const char * test_text = "Test Text";
@@ -77,6 +85,7 @@ void test_span_set_text_with_bad_parameter_no_action_performed(void)
     TEST_ASSERT_EQUAL_STRING(span->txt, test_text);
 }
 
+LV_FUNC_SECTION
 void test_span_set_text_with_previous_test_overwrites(void)
 {
     const char * old_test_text = "Old Test Text";
@@ -89,6 +98,7 @@ void test_span_set_text_with_previous_test_overwrites(void)
     TEST_ASSERT_EQUAL_STRING(span->txt, new_test_text);
 }
 
+LV_FUNC_SECTION
 void test_span_set_text_static(void)
 {
     const char * test_text = "Test Text";
@@ -99,6 +109,7 @@ void test_span_set_text_static(void)
     TEST_ASSERT_EQUAL_STRING(span->txt, test_text);
 }
 
+LV_FUNC_SECTION
 void test_span_set_text_static_with_bad_parameter_no_action_performed(void)
 {
     const char * test_text = "Test Text";
@@ -110,6 +121,7 @@ void test_span_set_text_static_with_bad_parameter_no_action_performed(void)
     TEST_ASSERT_EQUAL_STRING(span->txt, test_text);
 }
 
+LV_FUNC_SECTION
 void test_span_set_text_static_with_previous_text_overwrites(void)
 {
     const char * old_test_text = "Old Test Text";
@@ -121,6 +133,7 @@ void test_span_set_text_static_with_previous_text_overwrites(void)
     TEST_ASSERT_EQUAL_STRING(span->txt, new_test_text);
 }
 
+LV_FUNC_SECTION
 void test_spangroup_set_align(void)
 {
     const lv_text_align_t align = LV_TEXT_ALIGN_CENTER;
@@ -129,6 +142,7 @@ void test_spangroup_set_align(void)
     TEST_ASSERT_EQUAL(align, lv_spangroup_get_align(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_set_overflow(void)
 {
     const lv_span_overflow_t overflow = LV_SPAN_OVERFLOW_ELLIPSIS;
@@ -137,6 +151,7 @@ void test_spangroup_set_overflow(void)
     TEST_ASSERT_EQUAL(overflow, lv_spangroup_get_overflow(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_set_overflow_invalid_parameters_overflow_not_changed(void)
 {
     lv_spangroup_set_overflow(spangroup, LV_SPAN_OVERFLOW_ELLIPSIS);
@@ -145,6 +160,7 @@ void test_spangroup_set_overflow_invalid_parameters_overflow_not_changed(void)
     TEST_ASSERT_EQUAL(LV_SPAN_OVERFLOW_ELLIPSIS, lv_spangroup_get_overflow(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_set_indent(void)
 {
     const int32_t indent = 100;
@@ -154,6 +170,7 @@ void test_spangroup_set_indent(void)
     TEST_ASSERT_EQUAL(indent, lv_spangroup_get_indent(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_set_mode(void)
 {
     lv_spangroup_set_mode(spangroup, LV_SPAN_MODE_EXPAND);
@@ -166,6 +183,7 @@ void test_spangroup_set_mode(void)
     TEST_ASSERT_EQUAL(LV_SPAN_MODE_FIXED, lv_spangroup_get_mode(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_set_mode_invalid_parameter_mode_not_changed(void)
 {
     lv_spangroup_set_mode(spangroup, LV_SPAN_MODE_EXPAND);
@@ -173,6 +191,7 @@ void test_spangroup_set_mode_invalid_parameter_mode_not_changed(void)
     TEST_ASSERT_EQUAL(LV_SPAN_MODE_EXPAND, lv_spangroup_get_mode(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_set_max_lines(void)
 {
     const int32_t lines = 100;
@@ -182,6 +201,7 @@ void test_spangroup_set_max_lines(void)
     TEST_ASSERT_EQUAL_INT32(lines, lv_spangroup_get_max_lines(spangroup));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_get_max_lines_for_new_span_group(void)
 {
     int32_t lines;
@@ -197,6 +217,7 @@ void test_spangroup_get_max_lines_for_new_span_group(void)
     TEST_ASSERT_EQUAL_INT32(3, lines);
 }
 
+LV_FUNC_SECTION
 void test_spangroup_get_max_line_h(void)
 {
     int32_t max_line;
@@ -212,6 +233,7 @@ void test_spangroup_get_max_line_h(void)
     TEST_ASSERT_EQUAL(16, (uint32_t)max_line);
 }
 
+LV_FUNC_SECTION
 void test_spangroup_draw(void)
 {
     active_screen = lv_screen_active();
@@ -242,6 +264,7 @@ void test_spangroup_draw(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/span_05.png");
 }
 
+LV_FUNC_SECTION
 void test_spangroup_get_child(void)
 {
     const int32_t span_1_idx = 0;
@@ -253,6 +276,7 @@ void test_spangroup_get_child(void)
     TEST_ASSERT_EQUAL_PTR(span_1, lv_spangroup_get_child(spangroup, span_1_idx));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_get_child_count(void)
 {
     (void)lv_spangroup_new_span(spangroup);
@@ -263,6 +287,7 @@ void test_spangroup_get_child_count(void)
     TEST_ASSERT_EQUAL(2, cnt);
 }
 
+LV_FUNC_SECTION
 void test_spangroup_get_expand_width(void)
 {
     const uint32_t experimental_size = 232;
@@ -280,6 +305,7 @@ void test_spangroup_get_expand_width(void)
                           lv_spangroup_get_expand_width(spangroup, experimental_size));
 }
 
+LV_FUNC_SECTION
 void test_spangroup_newlines(void)
 {
     active_screen = lv_screen_active();
@@ -312,6 +338,7 @@ void test_spangroup_newlines(void)
 
 #if LV_USE_FREETYPE && __WORDSIZE == 64
 
+LV_FUNC_SECTION
 void test_spangroup_chinese_break_line(void)
 {
     lv_font_t * font = lv_freetype_font_create("src/test_files/fonts/noto/NotoSansSC-Regular.ttf",
@@ -351,12 +378,14 @@ void test_spangroup_chinese_break_line(void)
 
 #else
 
+LV_FUNC_SECTION
 void test_spangroup_chinese_break_line(void)
 {
 }
 
 #endif
 
+LV_FUNC_SECTION
 void test_spangroup_style_text_letter_space(void)
 {
     active_screen = lv_screen_active();

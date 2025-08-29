@@ -37,6 +37,7 @@ static void obj_child_node_event_handler(lv_event_t * e);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * obj_child_node_create(lv_obj_t * par, view_t * ui)
 {
     if(par == NULL) {
@@ -63,6 +64,7 @@ lv_obj_t * obj_child_node_create(lv_obj_t * par, view_t * ui)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void obj_child_node_event_handler(lv_event_t * e)
 {
     view_t * ui = (view_t *)lv_event_get_user_data(e);

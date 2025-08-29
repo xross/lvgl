@@ -158,7 +158,9 @@ typedef void (*lv_lcd_send_color_cb_t)(lv_display_t * disp, const uint8_t * cmd,
  */
 typedef struct {
     lv_display_t      *     disp;          /* the associated LVGL display object */
+    __attribute__(( fptrgroup("lv_lcd_send_cmd_cb") ))
     lv_lcd_send_cmd_cb_t    send_cmd;       /* platform-specific implementation to send a command to the LCD controller */
+    __attribute__(( fptrgroup("lv_lcd_send_color_cb") ))
     lv_lcd_send_color_cb_t  send_color;     /* platform-specific implementation to send pixel data to the LCD controller */
     uint16_t                x_gap;          /* x offset of the (0,0) pixel in VRAM */
     uint16_t                y_gap;          /* y offset of the (0,0) pixel in VRAM */

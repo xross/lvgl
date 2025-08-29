@@ -20,6 +20,7 @@
  **********************/
 
 typedef struct lv_async_info_t {
+    __attribute__(( fptrgroup("lv_async_info_cb") ))
     lv_async_cb_t cb;
     void * user_data;
 } lv_async_info_t;
@@ -42,6 +43,7 @@ static void lv_async_timer_cb(lv_timer_t * timer);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_result_t lv_async_call(lv_async_cb_t async_xcb, void * user_data)
 {
     /*Allocate an info structure*/
@@ -65,6 +67,7 @@ lv_result_t lv_async_call(lv_async_cb_t async_xcb, void * user_data)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_async_call_cancel(lv_async_cb_t async_xcb, void * user_data)
 {
     lv_timer_t * timer = lv_timer_get_next(NULL);
@@ -96,6 +99,7 @@ lv_result_t lv_async_call_cancel(lv_async_cb_t async_xcb, void * user_data)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_async_timer_cb(lv_timer_t * timer)
 {
     /*Save the info because an lv_async_call_cancel might delete it in the callback*/

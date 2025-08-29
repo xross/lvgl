@@ -39,6 +39,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_obj_init_draw_rect_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_rect_dsc_t * draw_dsc)
 {
     draw_dsc->base.obj = obj;
@@ -144,6 +145,7 @@ void lv_obj_init_draw_rect_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_rect_dsc_
     }
 }
 
+LV_FUNC_SECTION
 void lv_obj_init_draw_label_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_label_dsc_t * draw_dsc)
 {
     draw_dsc->base.obj = obj;
@@ -173,6 +175,7 @@ void lv_obj_init_draw_label_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_label_ds
     draw_dsc->align = lv_obj_get_style_text_align(obj, part);
 }
 
+LV_FUNC_SECTION
 void lv_obj_init_draw_image_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_image_dsc_t * draw_dsc)
 {
     draw_dsc->base.obj = obj;
@@ -199,6 +202,7 @@ void lv_obj_init_draw_image_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_image_ds
     if(part != LV_PART_MAIN) draw_dsc->blend_mode = lv_obj_get_style_blend_mode(obj, part);
 }
 
+LV_FUNC_SECTION
 void lv_obj_init_draw_line_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_line_dsc_t * draw_dsc)
 {
     draw_dsc->base.obj = obj;
@@ -229,6 +233,7 @@ void lv_obj_init_draw_line_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_line_dsc_
     if(part != LV_PART_MAIN) draw_dsc->blend_mode = lv_obj_get_style_blend_mode(obj, part);
 }
 
+LV_FUNC_SECTION
 void lv_obj_init_draw_arc_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_arc_dsc_t * draw_dsc)
 {
     draw_dsc->base.obj = obj;
@@ -252,6 +257,7 @@ void lv_obj_init_draw_arc_dsc(lv_obj_t * obj, lv_part_t part, lv_draw_arc_dsc_t 
     draw_dsc->rounded = lv_obj_get_style_arc_rounded(obj, part);
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_calculate_ext_draw_size(lv_obj_t * obj, lv_part_t part)
 {
     int32_t s = 0;
@@ -286,6 +292,7 @@ int32_t lv_obj_calculate_ext_draw_size(lv_obj_t * obj, lv_part_t part)
     return s;
 }
 
+LV_FUNC_SECTION
 void lv_obj_refresh_ext_draw_size(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -308,12 +315,14 @@ void lv_obj_refresh_ext_draw_size(lv_obj_t * obj)
     if(s_new != s_old) lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_ext_draw_size(const lv_obj_t * obj)
 {
     if(obj->spec_attr) return obj->spec_attr->ext_draw_size;
     else return 0;
 }
 
+LV_FUNC_SECTION
 lv_layer_type_t lv_obj_get_layer_type(const lv_obj_t * obj)
 {
 

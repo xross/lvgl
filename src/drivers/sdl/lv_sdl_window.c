@@ -80,6 +80,7 @@ static lv_timer_t * event_handler_timer;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_sdl_window_create(int32_t hor_res, int32_t ver_res)
 {
     if(!inited) {
@@ -139,12 +140,14 @@ lv_display_t * lv_sdl_window_create(int32_t hor_res, int32_t ver_res)
     return disp;
 }
 
+LV_FUNC_SECTION
 void lv_sdl_window_set_resizeable(lv_display_t * disp, bool value)
 {
     lv_sdl_window_t * dsc = lv_display_get_driver_data(disp);
     SDL_SetWindowResizable(dsc->window, value);
 }
 
+LV_FUNC_SECTION
 void lv_sdl_window_set_zoom(lv_display_t * disp, uint8_t zoom)
 {
     lv_sdl_window_t * dsc = lv_display_get_driver_data(disp);
@@ -153,12 +156,14 @@ void lv_sdl_window_set_zoom(lv_display_t * disp, uint8_t zoom)
     lv_refr_now(disp);
 }
 
+LV_FUNC_SECTION
 uint8_t lv_sdl_window_get_zoom(lv_display_t * disp)
 {
     lv_sdl_window_t * dsc = lv_display_get_driver_data(disp);
     return dsc->zoom;
 }
 
+LV_FUNC_SECTION
 lv_display_t * lv_sdl_get_disp_from_win_id(uint32_t win_id)
 {
     lv_display_t * disp = lv_display_get_next(NULL);
@@ -174,18 +179,21 @@ lv_display_t * lv_sdl_get_disp_from_win_id(uint32_t win_id)
     return NULL;
 }
 
+LV_FUNC_SECTION
 void lv_sdl_window_set_title(lv_display_t * disp, const char * title)
 {
     lv_sdl_window_t * dsc = lv_display_get_driver_data(disp);
     SDL_SetWindowTitle(dsc->window, title);
 }
 
+LV_FUNC_SECTION
 void * lv_sdl_window_get_renderer(lv_display_t * disp)
 {
     lv_sdl_window_t * dsc = lv_display_get_driver_data(disp);
     return dsc->renderer;
 }
 
+LV_FUNC_SECTION
 void lv_sdl_quit(void)
 {
     if(inited) {
@@ -200,11 +208,13 @@ void lv_sdl_quit(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static inline int sdl_render_mode(void)
 {
     return LV_SDL_RENDER_MODE;
 }
 
+LV_FUNC_SECTION
 static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map)
 {
 #if LV_USE_DRAW_SDL == 0
@@ -290,6 +300,7 @@ static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_m
  * SDL main thread. All SDL related task have to be handled here!
  * It initializes SDL, handles drawing and the mouse.
  */
+LV_FUNC_SECTION
 static void sdl_event_handler(lv_timer_t * t)
 {
     LV_UNUSED(t);
@@ -338,6 +349,7 @@ static void sdl_event_handler(lv_timer_t * t)
     }
 }
 
+LV_FUNC_SECTION
 static void window_create(lv_display_t * disp)
 {
     lv_sdl_window_t * dsc = lv_display_get_driver_data(disp);
@@ -372,6 +384,7 @@ static void window_create(lv_display_t * disp)
 #endif /*LV_USE_DRAW_SDL == 0*/
 }
 
+LV_FUNC_SECTION
 static void window_update(lv_display_t * disp)
 {
     lv_sdl_window_t * dsc = lv_display_get_driver_data(disp);
@@ -389,6 +402,7 @@ static void window_update(lv_display_t * disp)
 }
 
 #if LV_USE_DRAW_SDL == 0
+LV_FUNC_SECTION
 static void texture_resize(lv_display_t * disp)
 {
     uint32_t stride = lv_draw_buf_width_to_stride(disp->hor_res, lv_display_get_color_format(disp));
@@ -426,6 +440,7 @@ static void texture_resize(lv_display_t * disp)
     SDL_SetTextureBlendMode(dsc->texture, SDL_BLENDMODE_BLEND);
 }
 
+LV_FUNC_SECTION
 static void * sdl_draw_buf_realloc_aligned(void * ptr, size_t new_size)
 {
     if(ptr) {
@@ -444,6 +459,7 @@ static void * sdl_draw_buf_realloc_aligned(void * ptr, size_t new_size)
 #endif /* _WIN32 */
 }
 
+LV_FUNC_SECTION
 static void sdl_draw_buf_free(void * ptr)
 {
 #ifndef _WIN32
@@ -454,6 +470,7 @@ static void sdl_draw_buf_free(void * ptr)
 }
 #endif
 
+LV_FUNC_SECTION
 static void res_chg_event_cb(lv_event_t * e)
 {
     lv_display_t * disp = lv_event_get_current_target(e);
@@ -468,6 +485,7 @@ static void res_chg_event_cb(lv_event_t * e)
 #endif
 }
 
+LV_FUNC_SECTION
 static void release_disp_cb(lv_event_t * e)
 {
     if(lv_deinit_in_progress) {

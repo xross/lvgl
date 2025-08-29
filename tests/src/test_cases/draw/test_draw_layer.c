@@ -4,17 +4,20 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 void test_draw_layer_bitmap_mask_from_variable(void)
 {
     LV_IMAGE_DECLARE(test_image_cogwheel_a8);
@@ -34,6 +37,7 @@ void test_draw_layer_bitmap_mask_from_variable(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("draw/draw_layer_bitmap_mask.png");
 }
 
+LV_FUNC_SECTION
 void test_draw_layer_bitmap_mask_from_image(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -52,6 +56,7 @@ void test_draw_layer_bitmap_mask_from_image(void)
 }
 
 
+LV_FUNC_SECTION
 void test_draw_layer_bitmap_mask_from_image_not_found(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());

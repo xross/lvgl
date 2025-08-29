@@ -4,6 +4,7 @@
 /**
  * A very basic line chart
  */
+LV_FUNC_SECTION
 void lv_example_chart_1(void)
 {
     /*Create a chart*/

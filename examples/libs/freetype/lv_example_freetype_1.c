@@ -11,6 +11,7 @@
 /**
  * Load a font with FreeType
  */
+LV_FUNC_SECTION
 void lv_example_freetype_1(void)
 {
     /*Create a font*/
@@ -38,6 +39,7 @@ void lv_example_freetype_1(void)
 }
 #else
 
+LV_FUNC_SECTION
 void lv_example_freetype_1(void)
 {
     /*TODO

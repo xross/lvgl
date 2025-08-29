@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_MONKEY && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_monkey_2(void)
 {
     /*Create encoder monkey test*/

@@ -4,17 +4,20 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_display_set_color_format(NULL, LV_COLOR_FORMAT_XRGB8888);
 }
 
+LV_FUNC_SECTION
 void test_render_to_i1(void)
 {
 #if LV_BIN_DECODER_RAM_LOAD && LV_USE_DRAW_VG_LITE == 0

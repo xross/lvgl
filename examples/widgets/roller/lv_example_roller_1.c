@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_ROLLER && LV_BUILD_EXAMPLES
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -15,6 +16,7 @@ static void event_handler(lv_event_t * e)
 /**
  * An infinite roller with the name of the months
  */
+LV_FUNC_SECTION
 void lv_example_roller_1(void)
 {
     lv_obj_t * roller1 = lv_roller_create(lv_screen_active());

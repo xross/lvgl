@@ -1,11 +1,13 @@
 #include "../lv_examples.h"
 #if LV_BUILD_EXAMPLES && LV_USE_SWITCH
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void anim_x_cb(void * var, int32_t v)
 {
     lv_obj_set_x(var, v);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void sw_event_cb(lv_event_t * e)
 {
     lv_obj_t * sw = lv_event_get_target(e);
@@ -37,6 +39,7 @@ static void sw_event_cb(lv_event_t * e)
 /**
  * Start animation on an event
  */
+LV_FUNC_SECTION
 void lv_example_anim_1(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());

@@ -52,6 +52,7 @@ static void lv_timer_handler_resume(void);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_timer_core_init(void)
 {
     lv_ll_init(timer_ll_p, sizeof(lv_timer_t));
@@ -60,6 +61,8 @@ void lv_timer_core_init(void)
     lv_timer_enable(true);
 }
 
+#pragma stackfunction 1024
+LV_FUNC_SECTION
 LV_ATTRIBUTE_TIMER_HANDLER uint32_t lv_timer_handler(void)
 {
     LV_TRACE_TIMER("begin");
@@ -148,6 +151,7 @@ LV_ATTRIBUTE_TIMER_HANDLER uint32_t lv_timer_handler(void)
     return time_until_next;
 }
 
+LV_FUNC_SECTION
 LV_ATTRIBUTE_TIMER_HANDLER void lv_timer_periodic_handler(void)
 {
     lv_timer_state_t * state_p = &state;
@@ -158,11 +162,13 @@ LV_ATTRIBUTE_TIMER_HANDLER void lv_timer_periodic_handler(void)
     }
 }
 
+LV_FUNC_SECTION
 lv_timer_t * lv_timer_create_basic(void)
 {
     return lv_timer_create(NULL, DEF_PERIOD, NULL);
 }
 
+LV_FUNC_SECTION
 lv_timer_t * lv_timer_create(lv_timer_cb_t timer_xcb, uint32_t period, void * user_data)
 {
     lv_timer_t * new_timer = NULL;
@@ -186,12 +192,14 @@ lv_timer_t * lv_timer_create(lv_timer_cb_t timer_xcb, uint32_t period, void * us
     return new_timer;
 }
 
+LV_FUNC_SECTION
 void lv_timer_set_cb(lv_timer_t * timer, lv_timer_cb_t timer_cb)
 {
     LV_ASSERT_NULL(timer);
     timer->timer_cb = timer_cb;
 }
 
+LV_FUNC_SECTION
 void lv_timer_delete(lv_timer_t * timer)
 {
     lv_ll_remove(timer_ll_p, timer);
@@ -200,12 +208,14 @@ void lv_timer_delete(lv_timer_t * timer)
     lv_free(timer);
 }
 
+LV_FUNC_SECTION
 void lv_timer_pause(lv_timer_t * timer)
 {
     LV_ASSERT_NULL(timer);
     timer->paused = true;
 }
 
+LV_FUNC_SECTION
 void lv_timer_resume(lv_timer_t * timer)
 {
     LV_ASSERT_NULL(timer);
@@ -213,36 +223,42 @@ void lv_timer_resume(lv_timer_t * timer)
     lv_timer_handler_resume();
 }
 
+LV_FUNC_SECTION
 void lv_timer_set_period(lv_timer_t * timer, uint32_t period)
 {
     LV_ASSERT_NULL(timer);
     timer->period = period;
 }
 
+LV_FUNC_SECTION
 void lv_timer_ready(lv_timer_t * timer)
 {
     LV_ASSERT_NULL(timer);
     timer->last_run = lv_tick_get() - timer->period - 1;
 }
 
+LV_FUNC_SECTION
 void lv_timer_set_repeat_count(lv_timer_t * timer, int32_t repeat_count)
 {
     LV_ASSERT_NULL(timer);
     timer->repeat_count = repeat_count;
 }
 
+LV_FUNC_SECTION
 void lv_timer_set_auto_delete(lv_timer_t * timer, bool auto_delete)
 {
     LV_ASSERT_NULL(timer);
     timer->auto_delete = auto_delete;
 }
 
+LV_FUNC_SECTION
 void lv_timer_set_user_data(lv_timer_t * timer, void * user_data)
 {
     LV_ASSERT_NULL(timer);
     timer->user_data = user_data;
 }
 
+LV_FUNC_SECTION
 void lv_timer_reset(lv_timer_t * timer)
 {
     LV_ASSERT_NULL(timer);
@@ -250,12 +266,14 @@ void lv_timer_reset(lv_timer_t * timer)
     lv_timer_handler_resume();
 }
 
+LV_FUNC_SECTION
 void lv_timer_enable(bool en)
 {
     state.lv_timer_run = en;
     if(en) lv_timer_handler_resume();
 }
 
+LV_FUNC_SECTION
 void lv_timer_core_deinit(void)
 {
     lv_timer_enable(false);
@@ -263,22 +281,26 @@ void lv_timer_core_deinit(void)
     lv_ll_clear(timer_ll_p);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_timer_get_idle(void)
 {
     return state.idle_last;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_timer_get_time_until_next(void)
 {
     return state.timer_time_until_next;
 }
 
+LV_FUNC_SECTION
 lv_timer_t * lv_timer_get_next(lv_timer_t * timer)
 {
     if(timer == NULL) return lv_ll_get_head(timer_ll_p);
     else return lv_ll_get_next(timer_ll_p, timer);
 }
 
+LV_FUNC_SECTION
 LV_ATTRIBUTE_TIMER_HANDLER uint32_t lv_timer_handler_run_in_period(uint32_t period)
 {
     static uint32_t last_tick = 0;
@@ -290,11 +312,13 @@ LV_ATTRIBUTE_TIMER_HANDLER uint32_t lv_timer_handler_run_in_period(uint32_t peri
     return 1;
 }
 
+LV_FUNC_SECTION
 void * lv_timer_get_user_data(lv_timer_t * timer)
 {
     return timer->user_data;
 }
 
+LV_FUNC_SECTION
 bool lv_timer_get_paused(lv_timer_t * timer)
 {
     return timer->paused;
@@ -309,6 +333,7 @@ bool lv_timer_get_paused(lv_timer_t * timer)
  * @param timer pointer to lv_timer
  * @return true: execute, false: not executed
  */
+LV_FUNC_SECTION
 static bool lv_timer_exec(lv_timer_t * timer)
 {
     if(timer->paused) return false;
@@ -357,6 +382,7 @@ static bool lv_timer_exec(lv_timer_t * timer)
  * @param timer pointer to lv_timer
  * @return the time remaining, or 0 if it needs to be run again
  */
+LV_FUNC_SECTION
 static uint32_t lv_timer_time_remaining(lv_timer_t * timer)
 {
     /*Check if at least 'period' time elapsed*/
@@ -369,6 +395,7 @@ static uint32_t lv_timer_time_remaining(lv_timer_t * timer)
 /**
  * Call the ready lv_timer
  */
+LV_FUNC_SECTION
 static void lv_timer_handler_resume(void)
 {
     /*If there is a timer which is ready to run then resume the timer loop*/
@@ -378,6 +405,7 @@ static void lv_timer_handler_resume(void)
     }
 }
 
+LV_FUNC_SECTION
 void lv_timer_handler_set_resume_cb(lv_timer_handler_resume_cb_t cb, void * data)
 {
     state.resume_cb = cb;

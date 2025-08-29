@@ -58,6 +58,7 @@ static lv_cache_compare_res_t freetype_glyph_outline_cmp_cb(const lv_freetype_ou
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_cache_t * lv_freetype_create_draw_data_outline(uint32_t cache_size)
 {
     lv_cache_ops_t glyph_outline_cache_ops = {
@@ -74,6 +75,7 @@ lv_cache_t * lv_freetype_create_draw_data_outline(uint32_t cache_size)
     return draw_data_cache;
 }
 
+LV_FUNC_SECTION
 void lv_freetype_set_cbs_outline_font(lv_freetype_font_dsc_t * dsc)
 {
     LV_ASSERT_FREETYPE_FONT_DSC(dsc);
@@ -81,6 +83,7 @@ void lv_freetype_set_cbs_outline_font(lv_freetype_font_dsc_t * dsc)
     dsc->font.release_glyph = freetype_release_glyph_cb;
 }
 
+LV_FUNC_SECTION
 void lv_freetype_outline_add_event(lv_event_cb_t event_cb, lv_event_code_t filter, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -90,6 +93,7 @@ void lv_freetype_outline_add_event(lv_event_cb_t event_cb, lv_event_code_t filte
     ctx->event_cb = event_cb;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_freetype_outline_get_scale(const lv_font_t * font)
 {
     LV_ASSERT_NULL(font);
@@ -99,6 +103,7 @@ uint32_t lv_freetype_outline_get_scale(const lv_font_t * font)
     return FT_INT_TO_F26DOT6(dsc->size) / dsc->cache_node->ref_size;
 }
 
+LV_FUNC_SECTION
 bool lv_freetype_is_outline_font(const lv_font_t * font)
 {
     LV_ASSERT_NULL(font);
@@ -117,7 +122,7 @@ bool lv_freetype_is_outline_font(const lv_font_t * font)
 /*-------------------
  *   OUTLINE CACHE
  *------------------*/
-
+__attribute__(( fptrgroup("lv_cache_create_cb") ))
 static bool freetype_glyph_outline_create_cb(lv_freetype_outline_node_t * node, lv_freetype_font_dsc_t * dsc)
 {
     lv_freetype_outline_t outline;
@@ -140,6 +145,7 @@ static bool freetype_glyph_outline_create_cb(lv_freetype_outline_node_t * node, 
     return true;
 }
 
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void freetype_glyph_outline_free_cb(lv_freetype_outline_node_t * node, lv_freetype_font_dsc_t * dsc)
 {
     LV_UNUSED(dsc);
@@ -149,6 +155,7 @@ static void freetype_glyph_outline_free_cb(lv_freetype_outline_node_t * node, lv
     outline_delete(ctx, outline);
 }
 
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t freetype_glyph_outline_cmp_cb(const lv_freetype_outline_node_t * node_a,
                                                             const lv_freetype_outline_node_t * node_b)
 {
@@ -158,6 +165,7 @@ static lv_cache_compare_res_t freetype_glyph_outline_cmp_cb(const lv_freetype_ou
     return node_a->glyph_index > node_b->glyph_index ? 1 : -1;
 }
 
+LV_FUNC_SECTION
 static const void * freetype_get_glyph_bitmap_cb(lv_font_glyph_dsc_t * g_dsc, lv_draw_buf_t * draw_buf)
 {
     LV_UNUSED(draw_buf);
@@ -176,6 +184,7 @@ static const void * freetype_get_glyph_bitmap_cb(lv_font_glyph_dsc_t * g_dsc, lv
     return node ? node->outline : NULL;
 }
 
+LV_FUNC_SECTION
 static void freetype_release_glyph_cb(const lv_font_t * font, lv_font_glyph_dsc_t * g_dsc)
 {
     LV_ASSERT_NULL(font);
@@ -188,6 +197,7 @@ static void freetype_release_glyph_cb(const lv_font_t * font, lv_font_glyph_dsc_
     g_dsc->entry = NULL;
 }
 
+LV_FUNC_SECTION
 static lv_cache_entry_t * lv_freetype_outline_lookup(lv_freetype_font_dsc_t * dsc, FT_UInt glyph_index)
 {
     lv_freetype_cache_node_t * cache_node = dsc->cache_node;
@@ -203,12 +213,14 @@ static lv_cache_entry_t * lv_freetype_outline_lookup(lv_freetype_font_dsc_t * ds
     return entry;
 }
 
+LV_FUNC_SECTION
 static void ft_vector_to_lv_vector(lv_freetype_outline_vector_t * dest, const FT_Vector * src)
 {
     dest->x = src ? src->x : 0;
     dest->y = src ? src->y : 0;
 }
 
+LV_FUNC_SECTION
 static lv_result_t outline_send_event(lv_freetype_context_t * ctx, lv_event_code_t code,
                                       lv_freetype_outline_event_param_t * param)
 {
@@ -228,6 +240,7 @@ static lv_result_t outline_send_event(lv_freetype_context_t * ctx, lv_event_code
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 static lv_result_t outline_push_point(
     lv_freetype_outline_t outline,
     lv_freetype_outline_type_t type,
@@ -248,6 +261,7 @@ static lv_result_t outline_push_point(
     return outline_send_event(ctx, LV_EVENT_INSERT, &param);
 }
 
+LV_FUNC_SECTION
 static int outline_move_to_cb(
     const FT_Vector * to,
     void * user)
@@ -257,6 +271,7 @@ static int outline_move_to_cb(
     return FT_Err_Ok;
 }
 
+LV_FUNC_SECTION
 static int outline_line_to_cb(
     const FT_Vector * to,
     void * user)
@@ -266,6 +281,7 @@ static int outline_line_to_cb(
     return FT_Err_Ok;
 }
 
+LV_FUNC_SECTION
 static int outline_conic_to_cb(
     const FT_Vector * control,
     const FT_Vector * to,
@@ -276,6 +292,7 @@ static int outline_conic_to_cb(
     return FT_Err_Ok;
 }
 
+LV_FUNC_SECTION
 static int outline_cubic_to_cb(
     const FT_Vector * control1,
     const FT_Vector * control2,
@@ -287,6 +304,7 @@ static int outline_cubic_to_cb(
     return FT_Err_Ok;
 }
 
+LV_FUNC_SECTION
 static lv_freetype_outline_t outline_create(
     lv_freetype_context_t * ctx,
     FT_Face face,
@@ -361,6 +379,7 @@ static lv_freetype_outline_t outline_create(
     return outline;
 }
 
+LV_FUNC_SECTION
 static lv_result_t outline_delete(lv_freetype_context_t * ctx, lv_freetype_outline_t outline)
 {
     lv_freetype_outline_event_param_t param;

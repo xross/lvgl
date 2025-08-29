@@ -56,6 +56,7 @@ void LV_ATTRIBUTE_FAST_MEM lv_draw_rect_dsc_init(lv_draw_rect_dsc_t * dsc)
     dsc->border_side = LV_BORDER_SIDE_FULL;
 }
 
+LV_FUNC_SECTION
 void lv_draw_fill_dsc_init(lv_draw_fill_dsc_t * dsc)
 {
     lv_memzero(dsc, sizeof(*dsc));
@@ -63,11 +64,13 @@ void lv_draw_fill_dsc_init(lv_draw_fill_dsc_t * dsc)
     dsc->base.dsc_size = sizeof(lv_draw_fill_dsc_t);
 }
 
+LV_FUNC_SECTION
 lv_draw_fill_dsc_t * lv_draw_task_get_fill_dsc(lv_draw_task_t * task)
 {
     return task->type == LV_DRAW_TASK_TYPE_FILL ? (lv_draw_fill_dsc_t *)task->draw_dsc : NULL;
 }
 
+LV_FUNC_SECTION
 void lv_draw_border_dsc_init(lv_draw_border_dsc_t * dsc)
 {
     lv_memzero(dsc, sizeof(*dsc));
@@ -76,11 +79,13 @@ void lv_draw_border_dsc_init(lv_draw_border_dsc_t * dsc)
     dsc->base.dsc_size = sizeof(lv_draw_border_dsc_t);
 }
 
+LV_FUNC_SECTION
 lv_draw_border_dsc_t * lv_draw_task_get_border_dsc(lv_draw_task_t * task)
 {
     return task->type == LV_DRAW_TASK_TYPE_BORDER ? (lv_draw_border_dsc_t *)task->draw_dsc : NULL;
 }
 
+LV_FUNC_SECTION
 void lv_draw_box_shadow_dsc_init(lv_draw_box_shadow_dsc_t * dsc)
 {
     lv_memzero(dsc, sizeof(*dsc));
@@ -88,11 +93,13 @@ void lv_draw_box_shadow_dsc_init(lv_draw_box_shadow_dsc_t * dsc)
     dsc->base.dsc_size = sizeof(lv_draw_box_shadow_dsc_t);
 }
 
+LV_FUNC_SECTION
 lv_draw_box_shadow_dsc_t * lv_draw_task_get_box_shadow_dsc(lv_draw_task_t * task)
 {
     return task->type == LV_DRAW_TASK_TYPE_BOX_SHADOW ? (lv_draw_box_shadow_dsc_t *)task->draw_dsc : NULL;
 }
 
+LV_FUNC_SECTION
 void lv_draw_rect(lv_layer_t * layer, const lv_draw_rect_dsc_t * dsc, const lv_area_t * coords)
 {
 

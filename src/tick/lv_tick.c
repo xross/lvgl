@@ -35,6 +35,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 LV_ATTRIBUTE_TICK_INC void lv_tick_inc(uint32_t tick_period)
 {
     lv_tick_state_t * state_p = &state;
@@ -43,6 +44,7 @@ LV_ATTRIBUTE_TICK_INC void lv_tick_inc(uint32_t tick_period)
     state_p->sys_time += tick_period;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_tick_get(void)
 {
     lv_tick_state_t * state_p = &state;
@@ -64,6 +66,7 @@ uint32_t lv_tick_get(void)
     return result;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_tick_elaps(uint32_t prev_tick)
 {
     uint32_t act_time = lv_tick_get();
@@ -80,6 +83,7 @@ uint32_t lv_tick_elaps(uint32_t prev_tick)
     return prev_tick;
 }
 
+LV_FUNC_SECTION
 void lv_delay_ms(uint32_t ms)
 {
     if(state.delay_cb) {
@@ -98,11 +102,13 @@ void lv_delay_ms(uint32_t ms)
     }
 }
 
+LV_FUNC_SECTION
 void lv_tick_set_cb(lv_tick_get_cb_t cb)
 {
     state.tick_get_cb = cb;
 }
 
+LV_FUNC_SECTION
 void lv_delay_set_cb(lv_delay_cb_t cb)
 {
     state.delay_cb = cb;

@@ -49,6 +49,7 @@ typedef struct {
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static int _evdev_process_key(uint16_t code)
 {
     switch(code) {
@@ -82,12 +83,14 @@ static int _evdev_process_key(uint16_t code)
     }
 }
 
+LV_FUNC_SECTION
 static int _evdev_calibrate(int v, int in_min, int in_max, int out_min, int out_max)
 {
     if(in_min != in_max) v = (v - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     return LV_CLAMP(out_min, v, out_max);
 }
 
+LV_FUNC_SECTION
 static lv_point_t _evdev_process_pointer(lv_indev_t * indev, int x, int y)
 {
     lv_display_t * disp = lv_indev_get_display(indev);
@@ -108,6 +111,7 @@ static lv_point_t _evdev_process_pointer(lv_indev_t * indev, int x, int y)
     return p;
 }
 
+LV_FUNC_SECTION
 static void _evdev_read(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_evdev_t * dsc = lv_indev_get_driver_data(indev);
@@ -163,6 +167,7 @@ static void _evdev_read(lv_indev_t * indev, lv_indev_data_t * data)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_indev_t * lv_evdev_create(lv_indev_type_t indev_type, const char * dev_path)
 {
     lv_evdev_t * dsc = lv_malloc_zeroed(sizeof(lv_evdev_t));
@@ -214,6 +219,7 @@ err_after_malloc:
     return NULL;
 }
 
+LV_FUNC_SECTION
 void lv_evdev_set_swap_axes(lv_indev_t * indev, bool swap_axes)
 {
     lv_evdev_t * dsc = lv_indev_get_driver_data(indev);
@@ -221,6 +227,7 @@ void lv_evdev_set_swap_axes(lv_indev_t * indev, bool swap_axes)
     dsc->swap_axes = swap_axes;
 }
 
+LV_FUNC_SECTION
 void lv_evdev_set_calibration(lv_indev_t * indev, int min_x, int min_y, int max_x, int max_y)
 {
     lv_evdev_t * dsc = lv_indev_get_driver_data(indev);
@@ -231,6 +238,7 @@ void lv_evdev_set_calibration(lv_indev_t * indev, int min_x, int min_y, int max_
     dsc->max_y = max_y;
 }
 
+LV_FUNC_SECTION
 void lv_evdev_delete(lv_indev_t * indev)
 {
     lv_evdev_t * dsc = lv_indev_get_driver_data(indev);

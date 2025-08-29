@@ -144,6 +144,7 @@ static struct {
 } smm_instance;
 
 
+LV_FUNC_SECTION
 void smm_init(struct smm_events * evs)
 {
     memcpy(&smm_instance.cbs, evs, sizeof(struct smm_events));
@@ -153,6 +154,7 @@ void smm_init(struct smm_events * evs)
 }
 
 
+LV_FUNC_SECTION
 void smm_deinit(void)
 {
     struct smm_group * grp;
@@ -165,12 +167,14 @@ void smm_deinit(void)
 }
 
 
+LV_FUNC_SECTION
 void smm_setctx(void * ctx)
 {
     smm_instance.cbs.ctx = ctx;
 }
 
 
+LV_FUNC_SECTION
 smm_group_t * smm_create(void)
 {
     struct smm_group * grp;
@@ -192,6 +196,7 @@ smm_group_t * smm_create(void)
 }
 
 
+LV_FUNC_SECTION
 void smm_resize(smm_group_t * grp, size_t sz)
 {
     struct smm_buffer * buf;
@@ -214,6 +219,7 @@ void smm_resize(smm_group_t * grp, size_t sz)
 }
 
 
+LV_FUNC_SECTION
 void smm_destroy(smm_group_t * grp)
 {
     struct smm_buffer * buf;
@@ -239,6 +245,7 @@ void smm_destroy(smm_group_t * grp)
 }
 
 
+LV_FUNC_SECTION
 smm_buffer_t * smm_acquire(smm_group_t * grp)
 {
     struct smm_buffer * buf;
@@ -278,6 +285,7 @@ smm_buffer_t * smm_acquire(smm_group_t * grp)
 }
 
 
+LV_FUNC_SECTION
 void * smm_map(smm_buffer_t * buf)
 {
     struct smm_buffer * mbuf = buf;
@@ -317,6 +325,7 @@ void * smm_map(smm_buffer_t * buf)
 }
 
 
+LV_FUNC_SECTION
 void smm_release(smm_buffer_t * buf)
 {
     struct smm_buffer * rbuf = buf;
@@ -346,6 +355,7 @@ void smm_release(smm_buffer_t * buf)
 }
 
 
+LV_FUNC_SECTION
 smm_buffer_t * smm_latest(smm_group_t * grp)
 {
     struct smm_group * lgrp = grp;
@@ -354,6 +364,7 @@ smm_buffer_t * smm_latest(smm_group_t * grp)
 }
 
 
+LV_FUNC_SECTION
 smm_buffer_t * smm_next(smm_buffer_t * buf)
 {
     struct smm_buffer * ibuf;
@@ -370,6 +381,7 @@ smm_buffer_t * smm_next(smm_buffer_t * buf)
     return ibuf;
 }
 
+LV_FUNC_SECTION
 void purge_history(struct smm_buffer * buf)
 {
     struct smm_buffer * ibuf;
@@ -387,6 +399,7 @@ void purge_history(struct smm_buffer * buf)
 }
 
 
+LV_FUNC_SECTION
 size_t calc_buffer_size(struct smm_buffer * buf)
 {
     size_t buf_sz;
@@ -403,6 +416,7 @@ size_t calc_buffer_size(struct smm_buffer * buf)
 }
 
 
+LV_FUNC_SECTION
 struct smm_buffer * get_from_pool(struct smm_group * grp)
 {
     int ret;
@@ -527,6 +541,7 @@ struct smm_buffer * get_from_pool(struct smm_group * grp)
 }
 
 
+LV_FUNC_SECTION
 void return_to_pool(struct smm_buffer * buf)
 {
     struct smm_group * grp = buf->props.group;
@@ -580,6 +595,7 @@ void return_to_pool(struct smm_buffer * buf)
 }
 
 
+LV_FUNC_SECTION
 struct smm_pool * alloc_pool(void)
 {
     struct smm_pool * pool;
@@ -623,6 +639,7 @@ struct smm_pool * alloc_pool(void)
 }
 
 
+LV_FUNC_SECTION
 void free_pool(struct smm_pool * pool)
 {
     if(pool->map != NULL) {
@@ -634,6 +651,7 @@ void free_pool(struct smm_pool * pool)
 }
 
 
+LV_FUNC_SECTION
 struct smm_buffer * alloc_buffer(struct smm_buffer * last, size_t offset)
 {
     struct smm_buffer * buf;
@@ -662,6 +680,7 @@ struct smm_buffer * alloc_buffer(struct smm_buffer * last, size_t offset)
 }
 
 
+LV_FUNC_SECTION
 void free_buffer(struct smm_buffer * buf)
 {
     struct smm_pool * buf_pool = buf->props.pool;

@@ -41,6 +41,7 @@ struct lv_vg_lite_pending_t {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_vg_lite_pending_t * lv_vg_lite_pending_create(size_t obj_size, uint32_t capacity_default)
 {
     lv_vg_lite_pending_t * pending = lv_malloc_zeroed(sizeof(lv_vg_lite_pending_t));
@@ -49,6 +50,7 @@ lv_vg_lite_pending_t * lv_vg_lite_pending_create(size_t obj_size, uint32_t capac
     return pending;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_pending_destroy(lv_vg_lite_pending_t * pending)
 {
     LV_ASSERT_NULL(pending);
@@ -58,6 +60,7 @@ void lv_vg_lite_pending_destroy(lv_vg_lite_pending_t * pending)
     lv_free(pending);
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_pending_set_free_cb(lv_vg_lite_pending_t * pending, lv_vg_lite_pending_free_cb_t free_cb,
                                     void * user_data)
 {
@@ -67,6 +70,7 @@ void lv_vg_lite_pending_set_free_cb(lv_vg_lite_pending_t * pending, lv_vg_lite_p
     pending->user_data = user_data;
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_pending_add(lv_vg_lite_pending_t * pending, void * obj)
 {
     LV_ASSERT_NULL(pending);
@@ -74,6 +78,7 @@ void lv_vg_lite_pending_add(lv_vg_lite_pending_t * pending, void * obj)
     lv_array_push_back(&pending->objs, obj);
 }
 
+LV_FUNC_SECTION
 void lv_vg_lite_pending_remove_all(lv_vg_lite_pending_t * pending)
 {
     LV_ASSERT_NULL(pending);

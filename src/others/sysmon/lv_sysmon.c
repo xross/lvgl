@@ -60,6 +60,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_sysmon_builtin_init(void)
 {
 
@@ -70,6 +71,7 @@ void lv_sysmon_builtin_init(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_sysmon_builtin_deinit(void)
 {
 #if LV_USE_MEM_MONITOR
@@ -77,6 +79,7 @@ void lv_sysmon_builtin_deinit(void)
 #endif
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_sysmon_create(lv_display_t * disp)
 {
     LV_LOG_INFO("begin");
@@ -97,6 +100,7 @@ lv_obj_t * lv_sysmon_create(lv_display_t * disp)
 
 #if LV_USE_PERF_MONITOR
 
+LV_FUNC_SECTION
 void lv_sysmon_show_performance(lv_display_t * disp)
 {
     if(disp == NULL) disp = lv_display_get_default();
@@ -124,6 +128,7 @@ void lv_sysmon_show_performance(lv_display_t * disp)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_sysmon_hide_performance(lv_display_t * disp)
 {
     if(disp == NULL) disp = lv_display_get_default();
@@ -139,6 +144,7 @@ void lv_sysmon_hide_performance(lv_display_t * disp)
 
 #if LV_USE_MEM_MONITOR
 
+LV_FUNC_SECTION
 void lv_sysmon_show_memory(lv_display_t * disp)
 {
     if(disp == NULL) disp = lv_display_get_default();
@@ -159,6 +165,7 @@ void lv_sysmon_show_memory(lv_display_t * disp)
     lv_obj_remove_flag(disp->mem_label, LV_OBJ_FLAG_HIDDEN);
 }
 
+LV_FUNC_SECTION
 void lv_sysmon_hide_memory(lv_display_t * disp)
 {
     if(disp == NULL) disp = lv_display_get_default();
@@ -178,6 +185,7 @@ void lv_sysmon_hide_memory(lv_display_t * disp)
 
 #if LV_USE_PERF_MONITOR
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void perf_monitor_disp_event_cb(lv_event_t * e)
 {
     lv_display_t * disp = lv_event_get_target(e);
@@ -229,6 +237,7 @@ static void perf_monitor_disp_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void perf_update_timer_cb(lv_timer_t * t)
 {
     lv_display_t * disp = lv_timer_get_user_data(t);
@@ -275,6 +284,7 @@ static void perf_update_timer_cb(lv_timer_t * t)
     info->measured.last_report_timestamp = lv_tick_get();
 }
 
+LV_FUNC_SECTION
 static void perf_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     const lv_sysmon_perf_info_t * perf = lv_subject_get_pointer(subject);
@@ -305,6 +315,7 @@ static void perf_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 
 #if LV_USE_MEM_MONITOR
 
+LV_FUNC_SECTION
 static void mem_update_timer_cb(lv_timer_t * t)
 {
     lv_mem_monitor_t * mem_mon = lv_timer_get_user_data(t);
@@ -312,6 +323,7 @@ static void mem_update_timer_cb(lv_timer_t * t)
     lv_subject_set_pointer(&sysmon_mem.subject, mem_mon);
 }
 
+LV_FUNC_SECTION
 static void mem_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     lv_obj_t * label = lv_observer_get_target(observer);

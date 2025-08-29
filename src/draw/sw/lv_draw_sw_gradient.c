@@ -89,6 +89,7 @@ static lv_grad_t * allocate_item(const lv_grad_dsc_t * g, int32_t w, int32_t h);
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_grad_t * allocate_item(const lv_grad_dsc_t * g, int32_t w, int32_t h)
 {
     int32_t size;
@@ -120,6 +121,7 @@ static lv_grad_t * allocate_item(const lv_grad_dsc_t * g, int32_t w, int32_t h)
 
 #if LV_USE_DRAW_SW_COMPLEX_GRADIENTS
 
+LV_FUNC_SECTION
 static inline int32_t extend_w(int32_t w, lv_grad_extend_t extend)
 {
     if(extend == LV_GRAD_EXTEND_PAD) {                  /**< Repeat the same color*/
@@ -141,6 +143,7 @@ static inline int32_t extend_w(int32_t w, lv_grad_extend_t extend)
  *     FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_grad_t * lv_gradient_get(const lv_grad_dsc_t * g, int32_t w, int32_t h)
 {
     /* No gradient, no cache */
@@ -214,11 +217,13 @@ void LV_ATTRIBUTE_FAST_MEM lv_gradient_color_calculate(const lv_grad_dsc_t * dsc
     *opa_out = LV_UDIV255(dsc->stops[found_i].opa * mix   + dsc->stops[found_i - 1].opa * imix);
 }
 
+LV_FUNC_SECTION
 void lv_gradient_cleanup(lv_grad_t * grad)
 {
     lv_free(grad);
 }
 
+LV_FUNC_SECTION
 void lv_gradient_init_stops(lv_grad_dsc_t * grad, const lv_color_t colors[], const lv_opa_t opa[],
                             const uint8_t fracs[], int num_stops)
 {
@@ -277,6 +282,7 @@ void lv_gradient_init_stops(lv_grad_dsc_t * grad, const lv_color_t colors[], con
 
 */
 
+LV_FUNC_SECTION
 void lv_gradient_radial_setup(lv_grad_dsc_t * dsc, const lv_area_t * coords)
 {
     lv_point_t start = dsc->params.radial.focal;
@@ -347,6 +353,7 @@ void lv_gradient_radial_setup(lv_grad_dsc_t * dsc, const lv_area_t * coords)
     }
 }
 
+LV_FUNC_SECTION
 void lv_gradient_radial_cleanup(lv_grad_dsc_t * dsc)
 {
     lv_grad_radial_state_t * state = dsc->state;
@@ -466,6 +473,7 @@ void LV_ATTRIBUTE_FAST_MEM lv_gradient_radial_get_line(lv_grad_dsc_t * dsc, int3
 
 */
 
+LV_FUNC_SECTION
 void lv_gradient_linear_setup(lv_grad_dsc_t * dsc, const lv_area_t * coords)
 {
     lv_point_t start = dsc->params.linear.start;
@@ -495,6 +503,7 @@ void lv_gradient_linear_setup(lv_grad_dsc_t * dsc, const lv_area_t * coords)
     state->c = ((start.x * dx + start.y * dy) << 16) / l2;
 }
 
+LV_FUNC_SECTION
 void lv_gradient_linear_cleanup(lv_grad_dsc_t * dsc)
 {
     lv_grad_linear_state_t * state = dsc->state;
@@ -539,6 +548,7 @@ void LV_ATTRIBUTE_FAST_MEM lv_gradient_linear_get_line(lv_grad_dsc_t * dsc, int3
         w is the unknown variable
 */
 
+LV_FUNC_SECTION
 void lv_gradient_conical_setup(lv_grad_dsc_t * dsc, const lv_area_t * coords)
 {
     lv_point_t c0 = dsc->params.conical.center;
@@ -567,6 +577,7 @@ void lv_gradient_conical_setup(lv_grad_dsc_t * dsc, const lv_area_t * coords)
     state->inv_da = (1 << 16) / (beta - alpha);
 }
 
+LV_FUNC_SECTION
 void lv_gradient_conical_cleanup(lv_grad_dsc_t * dsc)
 {
     lv_grad_conical_state_t * state = dsc->state;
@@ -618,6 +629,7 @@ void LV_ATTRIBUTE_FAST_MEM lv_gradient_conical_get_line(lv_grad_dsc_t * dsc, int
     }
 }
 
+LV_FUNC_SECTION
 void lv_grad_linear_init(lv_grad_dsc_t * dsc, int32_t from_x, int32_t from_y, int32_t to_x, int32_t to_y,
                          lv_grad_extend_t extend)
 {
@@ -629,6 +641,7 @@ void lv_grad_linear_init(lv_grad_dsc_t * dsc, int32_t from_x, int32_t from_y, in
     dsc->extend = extend;
 }
 
+LV_FUNC_SECTION
 void lv_grad_radial_init(lv_grad_dsc_t * dsc, int32_t center_x, int32_t center_y, int32_t to_x, int32_t to_y,
                          lv_grad_extend_t extend)
 {
@@ -644,6 +657,7 @@ void lv_grad_radial_init(lv_grad_dsc_t * dsc, int32_t center_x, int32_t center_y
     dsc->extend = extend;
 }
 
+LV_FUNC_SECTION
 void lv_grad_conical_init(lv_grad_dsc_t * dsc, int32_t center_x, int32_t center_y, int32_t start_angle,
                           int32_t end_angle, lv_grad_extend_t extend)
 {
@@ -655,6 +669,7 @@ void lv_grad_conical_init(lv_grad_dsc_t * dsc, int32_t center_x, int32_t center_
     dsc->extend = extend;
 }
 
+LV_FUNC_SECTION
 void lv_grad_radial_set_focal(lv_grad_dsc_t * dsc, int32_t center_x, int32_t center_y, int32_t radius)
 {
     dsc->params.radial.focal.x = center_x;

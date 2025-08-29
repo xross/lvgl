@@ -34,17 +34,20 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_mem_init(void)
 {
     return; /*Nothing to init*/
 }
 
+LV_FUNC_SECTION
 void lv_mem_deinit(void)
 {
     return; /*Nothing to deinit*/
 
 }
 
+LV_FUNC_SECTION
 lv_mem_pool_t lv_mem_add_pool(void * mem, size_t bytes)
 {
     /*Not supported*/
@@ -53,6 +56,7 @@ lv_mem_pool_t lv_mem_add_pool(void * mem, size_t bytes)
     return NULL;
 }
 
+LV_FUNC_SECTION
 void lv_mem_remove_pool(lv_mem_pool_t pool)
 {
     /*Not supported*/
@@ -60,6 +64,7 @@ void lv_mem_remove_pool(lv_mem_pool_t pool)
     return;
 }
 
+LV_FUNC_SECTION
 void * lv_malloc_core(size_t size)
 {
 #if MICROPY_MALLOC_USES_ALLOCATED_SIZE
@@ -69,6 +74,7 @@ void * lv_malloc_core(size_t size)
 #endif
 }
 
+LV_FUNC_SECTION
 void * lv_realloc_core(void * p, size_t new_size)
 {
 
@@ -79,6 +85,7 @@ void * lv_realloc_core(void * p, size_t new_size)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_free_core(void * p)
 {
 
@@ -90,6 +97,7 @@ void lv_free_core(void * p)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_mem_monitor_core(lv_mem_monitor_t * mon_p)
 {
     /*Not supported*/
@@ -97,6 +105,7 @@ void lv_mem_monitor_core(lv_mem_monitor_t * mon_p)
     return;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mem_test_core(void)
 {
     /*Not supported*/

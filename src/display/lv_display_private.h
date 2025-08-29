@@ -71,12 +71,14 @@ struct lv_display_t {
 
     /** MANDATORY: Write the internal buffer (draw_buf) to the display. 'lv_display_flush_ready()' has to be
      * called when finished*/
+    __attribute__(( fptrgroup("lv_display_flush_cb") ))
     lv_display_flush_cb_t flush_cb;
 
     /**
      * Used to wait while flushing is ready.
      * It can do any complex logic to wait, including semaphores, mutexes, polling flags, etc.
      * If not set `flushing` flag is used which can be cleared with `lv_display_flush_ready()` */
+    __attribute__(( fptrgroup("lv_display_flush_wait_cb") ))
     lv_display_flush_wait_cb_t flush_wait_cb;
 
     /** 1: flushing is in progress. (It can't be a bit field because when it's cleared from IRQ
@@ -112,7 +114,9 @@ struct lv_display_t {
      * Layer
      *--------------------*/
     lv_layer_t * layer_head;
+    __attribute__(( fptrgroup("lv_display_layer_init") ))
     void (*layer_init)(lv_display_t * disp, lv_layer_t * layer);
+    __attribute__(( fptrgroup("lv_display_layer_deinit") ))
     void (*layer_deinit)(lv_display_t * disp, lv_layer_t * layer);
 
     /*---------------------

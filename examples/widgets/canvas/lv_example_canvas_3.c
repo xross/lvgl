@@ -7,6 +7,7 @@
 /**
  * Draw a rectangle to the canvas
  */
+LV_FUNC_SECTION
 void lv_example_canvas_3(void)
 {
     /*Create a buffer for the canvas*/

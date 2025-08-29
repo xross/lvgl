@@ -9,17 +9,20 @@
 static lv_obj_t * g_active_screen = NULL;
 static lv_obj_t * g_bar = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     g_active_screen = lv_screen_active();
     g_bar = lv_bar_create(g_active_screen);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(g_active_screen);
 }
 
+LV_FUNC_SECTION
 void test_bar_should_have_valid_default_attributes(void)
 {
     TEST_ASSERT_EQUAL(0, lv_bar_get_min_value(g_bar));
@@ -43,6 +46,7 @@ void test_bar_should_have_valid_default_attributes(void)
  * - max value: 100
  * - base direction: LTR
  */
+LV_FUNC_SECTION
 void test_bar_should_update_indicator_right_coordinate_based_on_bar_value(void)
 {
     lv_bar_t * bar_ptr = (lv_bar_t *) g_bar;
@@ -96,6 +100,7 @@ void test_bar_should_update_indicator_right_coordinate_based_on_bar_value(void)
  * - min value: 0
  * - max value: 100
  */
+LV_FUNC_SECTION
 void test_bar_rtl_should_update_indicator_left_coordinate_based_on_bar_value(void)
 {
     lv_bar_t * bar_ptr = (lv_bar_t *) g_bar;
@@ -136,6 +141,7 @@ void test_bar_rtl_should_update_indicator_left_coordinate_based_on_bar_value(voi
     TEST_ASSERT_EQUAL_INT32(expected_coord, actual_coord);
 }
 
+LV_FUNC_SECTION
 void test_bar_normal(void)
 {
     int32_t w = 300;
@@ -206,6 +212,7 @@ void test_bar_normal(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/bar_1.png");
 }
 
+LV_FUNC_SECTION
 void test_bar_indicator_area_should_get_smaller_when_padding_is_increased(void)
 {
     lv_bar_t * bar_ptr = (lv_bar_t *) g_bar;
@@ -244,6 +251,7 @@ void test_bar_indicator_area_should_get_smaller_when_padding_is_increased(void)
     TEST_ASSERT_LESS_THAN_INT32(original_width, new_width);
 }
 
+LV_FUNC_SECTION
 void test_bar_start_value_should_only_change_when_in_range_mode(void)
 {
     int32_t new_start_value = 20u;
@@ -261,6 +269,7 @@ void test_bar_start_value_should_only_change_when_in_range_mode(void)
     TEST_ASSERT_EQUAL_INT32(new_start_value, lv_bar_get_start_value(g_bar));
 }
 
+LV_FUNC_SECTION
 void test_bar_start_value_should_be_smaller_than_current_value_in_range_mode(void)
 {
     /* Set bar in RANGE mode so we can edit the start value */
@@ -271,6 +280,7 @@ void test_bar_start_value_should_be_smaller_than_current_value_in_range_mode(voi
     TEST_ASSERT_EQUAL_INT32(lv_bar_get_value(g_bar), lv_bar_get_start_value(g_bar));
 }
 
+LV_FUNC_SECTION
 void test_bar_current_value_should_be_truncated_to_max_value_when_exceeds_it(void)
 {
     int32_t max_value = lv_bar_get_max_value(g_bar);
@@ -280,6 +290,7 @@ void test_bar_current_value_should_be_truncated_to_max_value_when_exceeds_it(voi
     TEST_ASSERT_EQUAL_INT32(max_value, lv_bar_get_value(g_bar));
 }
 
+LV_FUNC_SECTION
 void test_bar_current_value_should_be_truncated_to_min_value_when_it_is_below_it(void)
 {
     int32_t min_value = lv_bar_get_min_value(g_bar);
@@ -296,6 +307,7 @@ void test_bar_current_value_should_be_truncated_to_min_value_when_it_is_below_it
  * Bar properties assumed:
  * - base direction: LTR
  */
+LV_FUNC_SECTION
 void test_bar_indicator_should_be_drawn_towards_the_min_range_side_after_setting_a_more_negative_value(void)
 {
     lv_bar_t * bar_ptr = (lv_bar_t *) g_bar;
@@ -320,6 +332,7 @@ void test_bar_indicator_should_be_drawn_towards_the_min_range_side_after_setting
     TEST_ASSERT_LESS_THAN(original_pos, final_pos);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * styled_bar_create(bool ver, int32_t start_value, int32_t end_value, lv_grad_dir_t grad_dir,
                                     int32_t bg_radius, int32_t indic_radius, int32_t bg_pad)
 {
@@ -357,6 +370,7 @@ static lv_obj_t * styled_bar_create(bool ver, int32_t start_value, int32_t end_v
     return bar;
 }
 
+LV_FUNC_SECTION
 static void render_test_screen_create(bool ver, lv_grad_dir_t grad_dir, const char * ref_img_path)
 {
     lv_obj_t * active_screen = lv_screen_active();
@@ -391,6 +405,7 @@ static void render_test_screen_create(bool ver, lv_grad_dir_t grad_dir, const ch
     TEST_ASSERT_EQUAL_SCREENSHOT(ref_img_path);
 }
 
+LV_FUNC_SECTION
 void test_bar_render_corner(void)
 {
     render_test_screen_create(false, LV_GRAD_DIR_NONE, "widgets/bar_corner_1.png");
@@ -402,6 +417,7 @@ void test_bar_render_corner(void)
 }
 
 
+LV_FUNC_SECTION
 static lv_obj_t * bar_create_orientation(lv_bar_orientation_t orientation, int32_t w, int32_t h)
 {
     lv_obj_t * bar = lv_bar_create(g_active_screen);
@@ -413,6 +429,7 @@ static lv_obj_t * bar_create_orientation(lv_bar_orientation_t orientation, int32
 
 }
 
+LV_FUNC_SECTION
 void test_bar_orientation(void)
 {
     lv_obj_clean(g_active_screen);

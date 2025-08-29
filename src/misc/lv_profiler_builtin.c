@@ -86,6 +86,7 @@ static void flush_no_lock(void);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_profiler_builtin_config_init(lv_profiler_builtin_config_t * config)
 {
     LV_ASSERT_NULL(config);
@@ -98,6 +99,7 @@ void lv_profiler_builtin_config_init(lv_profiler_builtin_config_t * config)
     config->cpu_get_cb = default_cpu_get_cb;
 }
 
+LV_FUNC_SECTION
 void lv_profiler_builtin_init(const lv_profiler_builtin_config_t * config)
 {
     LV_ASSERT_NULL(config);
@@ -146,6 +148,7 @@ void lv_profiler_builtin_init(const lv_profiler_builtin_config_t * config)
     LV_LOG_INFO("init OK, item_num = %d", (int)num);
 }
 
+LV_FUNC_SECTION
 void lv_profiler_builtin_uninit(void)
 {
     LV_ASSERT_NULL(profiler_ctx);
@@ -155,6 +158,7 @@ void lv_profiler_builtin_uninit(void)
     profiler_ctx = NULL;
 }
 
+LV_FUNC_SECTION
 void lv_profiler_builtin_set_enable(bool enable)
 {
     if(!profiler_ctx) {
@@ -164,6 +168,7 @@ void lv_profiler_builtin_set_enable(bool enable)
     profiler_ctx->enable = enable;
 }
 
+LV_FUNC_SECTION
 void lv_profiler_builtin_flush(void)
 {
     LV_ASSERT_NULL(profiler_ctx);
@@ -173,6 +178,7 @@ void lv_profiler_builtin_flush(void)
     LV_PROFILER_MULTEX_UNLOCK;
 }
 
+LV_FUNC_SECTION
 void lv_profiler_builtin_write(const char * func, char tag)
 {
     LV_ASSERT_NULL(profiler_ctx);
@@ -208,21 +214,25 @@ void lv_profiler_builtin_write(const char * func, char tag)
  *   STATIC FUNCTIONS
  **********************/
 
+__attribute__(( fptrgroup("lv_profiler_flush_cb") ))
 static void default_flush_cb(const char * buf)
 {
     LV_LOG("%s", buf);
 }
 
+__attribute__(( fptrgroup("lv_profiler_tid_get_cb") ))
 static int default_tid_get_cb(void)
 {
     return 1;
 }
 
+__attribute__(( fptrgroup("lv_profiler_cpu_get_cb") ))
 static int default_cpu_get_cb(void)
 {
     return 0;
 }
 
+LV_FUNC_SECTION
 static void flush_no_lock(void)
 {
     if(!profiler_ctx->config.flush_cb) {

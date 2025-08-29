@@ -48,6 +48,7 @@ static struct xkb_context * context = NULL;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 bool lv_xkb_init(lv_xkb_t * dsc, struct xkb_rule_names names)
 {
     if(!context) {
@@ -61,6 +62,7 @@ bool lv_xkb_init(lv_xkb_t * dsc, struct xkb_rule_names names)
     return _set_keymap(dsc, names);
 }
 
+LV_FUNC_SECTION
 void lv_xkb_deinit(lv_xkb_t * dsc)
 {
     if(dsc->state) {
@@ -74,6 +76,7 @@ void lv_xkb_deinit(lv_xkb_t * dsc)
     }
 }
 
+LV_FUNC_SECTION
 uint32_t lv_xkb_process_key(lv_xkb_t * dsc, uint32_t scancode, bool down)
 {
     /* Offset the evdev scancode by 8, see https://xkbcommon.org/doc/current/xkbcommon_8h.html#ac29aee92124c08d1953910ab28ee1997 */
@@ -150,6 +153,7 @@ uint32_t lv_xkb_process_key(lv_xkb_t * dsc, uint32_t scancode, bool down)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static bool _set_keymap(lv_xkb_t * dsc, struct xkb_rule_names names)
 {
     if(dsc->keymap) {

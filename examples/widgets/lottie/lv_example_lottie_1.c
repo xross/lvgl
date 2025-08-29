@@ -5,6 +5,7 @@
 /**
  * Load an lottie animation from data
  */
+LV_FUNC_SECTION
 void lv_example_lottie_1(void)
 {
     extern const uint8_t lv_example_lottie_approve[];
@@ -29,6 +30,7 @@ void lv_example_lottie_1(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_lottie_1(void)
 {
     /*fallback for online examples*/

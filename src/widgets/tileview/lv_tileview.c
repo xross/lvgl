@@ -53,6 +53,7 @@ const lv_obj_class_t lv_tileview_tile_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_tileview_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -65,6 +66,7 @@ lv_obj_t * lv_tileview_create(lv_obj_t * parent)
  * Add/remove functions
  *=====================*/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_tileview_add_tile(lv_obj_t * tv, uint8_t col_id, uint8_t row_id, lv_dir_t dir)
 {
     LV_LOG_INFO("begin");
@@ -82,6 +84,7 @@ lv_obj_t * lv_tileview_add_tile(lv_obj_t * tv, uint8_t col_id, uint8_t row_id, l
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_tileview_set_tile(lv_obj_t * obj, lv_obj_t * tile_obj, lv_anim_enable_t anim_en)
 {
     int32_t tx = lv_obj_get_x(tile_obj);
@@ -95,6 +98,7 @@ void lv_tileview_set_tile(lv_obj_t * obj, lv_obj_t * tile_obj, lv_anim_enable_t 
     lv_obj_scroll_to(obj, tx, ty, anim_en);
 }
 
+LV_FUNC_SECTION
 void lv_tileview_set_tile_by_index(lv_obj_t * tv, uint32_t col_id, uint32_t row_id, lv_anim_enable_t anim_en)
 {
     lv_obj_update_layout(tv);
@@ -119,6 +123,7 @@ void lv_tileview_set_tile_by_index(lv_obj_t * tv, uint32_t col_id, uint32_t row_
     LV_LOG_WARN("No tile found with at (%d,%d) index", (int)col_id, (int)row_id);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_tileview_get_tile_active(lv_obj_t * obj)
 {
     lv_tileview_t * tv = (lv_tileview_t *) obj;
@@ -129,6 +134,7 @@ lv_obj_t * lv_tileview_get_tile_active(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_tileview_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -140,6 +146,7 @@ static void lv_tileview_constructor(const lv_obj_class_t * class_p, lv_obj_t * o
 
 }
 
+LV_FUNC_SECTION
 static void lv_tileview_tile_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
 
@@ -148,6 +155,7 @@ static void lv_tileview_tile_constructor(const lv_obj_class_t * class_p, lv_obj_
     lv_obj_update_layout(obj);  /*Be sure the size is correct*/
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void tileview_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);

@@ -69,17 +69,27 @@ typedef struct lv_fs_drv_t lv_fs_drv_t;
 struct lv_fs_drv_t {
     char letter;
     uint32_t cache_size;
+    __attribute__(( fptrgroup("lv_fs_ready_cb") ))
     bool (*ready_cb)(lv_fs_drv_t * drv);
 
+    __attribute__(( fptrgroup("lv_fs_open_cb") ))
     void * (*open_cb)(lv_fs_drv_t * drv, const char * path, lv_fs_mode_t mode);
+    __attribute__(( fptrgroup("lv_fs_close_cb") ))
     lv_fs_res_t (*close_cb)(lv_fs_drv_t * drv, void * file_p);
+    __attribute__(( fptrgroup("lv_fs_read_cb") ))
     lv_fs_res_t (*read_cb)(lv_fs_drv_t * drv, void * file_p, void * buf, uint32_t btr, uint32_t * br);
+    __attribute__(( fptrgroup("lv_fs_write_cb") ))
     lv_fs_res_t (*write_cb)(lv_fs_drv_t * drv, void * file_p, const void * buf, uint32_t btw, uint32_t * bw);
+    __attribute__(( fptrgroup("lv_fs_seek_cb") ))
     lv_fs_res_t (*seek_cb)(lv_fs_drv_t * drv, void * file_p, uint32_t pos, lv_fs_whence_t whence);
+    __attribute__(( fptrgroup("lv_fs_tell_cb") ))
     lv_fs_res_t (*tell_cb)(lv_fs_drv_t * drv, void * file_p, uint32_t * pos_p);
 
+    __attribute__(( fptrgroup("lv_fs_dir_open_cb") ))
     void * (*dir_open_cb)(lv_fs_drv_t * drv, const char * path);
+    __attribute__(( fptrgroup("lv_fs_dir_read_cb") ))
     lv_fs_res_t (*dir_read_cb)(lv_fs_drv_t * drv, void * rddir_p, char * fn, uint32_t fn_len);
+    __attribute__(( fptrgroup("lv_fs_dir_close_cb") ))
     lv_fs_res_t (*dir_close_cb)(lv_fs_drv_t * drv, void * rddir_p);
 
     void * user_data; /**< Custom file user data*/

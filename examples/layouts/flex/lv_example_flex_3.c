@@ -4,6 +4,7 @@
 /**
  * Demonstrate flex grow.
  */
+LV_FUNC_SECTION
 void lv_example_flex_3(void)
 {
     lv_obj_t * cont = lv_obj_create(lv_screen_active());

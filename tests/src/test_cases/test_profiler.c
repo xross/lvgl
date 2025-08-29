@@ -12,11 +12,13 @@ static uint32_t profiler_tick = 0;
 static int output_line = 0;
 static char output_buf[OUTPUT_LINE_MAX][OUTPUT_BUF_MAX];
 
+LV_FUNC_SECTION
 static uint32_t get_tick_cb(void)
 {
     return profiler_tick++;
 }
 
+LV_FUNC_SECTION
 static void flush_cb(const char * buf)
 {
     TEST_ASSERT_LESS_THAN(OUTPUT_LINE_MAX, output_line);
@@ -26,6 +28,7 @@ static void flush_cb(const char * buf)
     output_line++;
 }
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     lv_profiler_builtin_config_t config;
@@ -37,11 +40,13 @@ void setUp(void)
     lv_profiler_builtin_init(&config);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_profiler_builtin_uninit();
 }
 
+LV_FUNC_SECTION
 void test_profiler_normal(void)
 {
     /* enable profiler */
@@ -70,6 +75,7 @@ void test_profiler_normal(void)
     TEST_ASSERT_EQUAL_STRING(output_buf[3], "   LVGL-1 [0] 3.000000: tracing_mark_write: E|1|custom_tag\n");
 }
 
+LV_FUNC_SECTION
 void test_profiler_disable(void)
 {
     /* disable profiler */

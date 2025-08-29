@@ -59,11 +59,13 @@ static SDL_Texture * layer_get_texture(lv_layer_t * layer);
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+__attribute__(( fptrgroup("lv_cache_create_cb") ))
 static bool sdl_texture_cache_create_cb(cache_data_t * cached_data, void * user_data)
 {
     return draw_to_texture((lv_draw_sdl_unit_t *)user_data, cached_data);
 }
 
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void sdl_texture_cache_free_cb(cache_data_t * cached_data, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -74,6 +76,7 @@ static void sdl_texture_cache_free_cb(cache_data_t * cached_data, void * user_da
     cached_data->texture = NULL;
 }
 
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t sdl_texture_cache_compare_cb(const cache_data_t * lhs, const cache_data_t * rhs)
 {
     if(lhs == rhs) return 0;
@@ -106,6 +109,7 @@ static lv_cache_compare_res_t sdl_texture_cache_compare_cb(const cache_data_t * 
     return 0;
 }
 
+LV_FUNC_SECTION
 void lv_draw_sdl_init(void)
 {
     lv_draw_sdl_unit_t * draw_sdl_unit = lv_draw_create_unit(sizeof(lv_draw_sdl_unit_t));
@@ -124,6 +128,7 @@ void lv_draw_sdl_init(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static int32_t dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
 {
     lv_draw_sdl_unit_t * draw_sdl_unit = (lv_draw_sdl_unit_t *) draw_unit;
@@ -163,6 +168,7 @@ static int32_t dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
     return 1;
 }
 
+LV_FUNC_SECTION
 static int32_t evaluate(lv_draw_unit_t * draw_unit, lv_draw_task_t * task)
 {
     LV_UNUSED(draw_unit);
@@ -174,6 +180,7 @@ static int32_t evaluate(lv_draw_unit_t * draw_unit, lv_draw_task_t * task)
     return 0;
 }
 
+LV_FUNC_SECTION
 static bool draw_to_texture(lv_draw_sdl_unit_t * u, cache_data_t * cache_data)
 {
     lv_draw_task_t * task = u->task_act;
@@ -314,6 +321,7 @@ static bool draw_to_texture(lv_draw_sdl_unit_t * u, cache_data_t * cache_data)
     return true;
 }
 
+LV_FUNC_SECTION
 static void blend_texture_layer(lv_draw_sdl_unit_t * u)
 {
     lv_display_t * disp = lv_refr_get_disp_refreshing();
@@ -354,6 +362,7 @@ static void blend_texture_layer(lv_draw_sdl_unit_t * u)
     SDL_RenderSetClipRect(renderer, NULL);
 }
 
+LV_FUNC_SECTION
 static void draw_from_cached_texture(lv_draw_sdl_unit_t * u)
 {
     lv_draw_task_t * t = u->task_act;
@@ -427,6 +436,7 @@ static void draw_from_cached_texture(lv_draw_sdl_unit_t * u)
     }
 }
 
+LV_FUNC_SECTION
 static void execute_drawing(lv_draw_sdl_unit_t * u)
 {
     lv_draw_task_t * t = u->task_act;
@@ -461,6 +471,7 @@ static void execute_drawing(lv_draw_sdl_unit_t * u)
     draw_from_cached_texture(u);
 }
 
+LV_FUNC_SECTION
 static SDL_Texture * layer_get_texture(lv_layer_t * layer)
 {
     return layer->user_data;

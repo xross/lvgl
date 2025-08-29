@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_LABEL && LV_USE_TEXTAREA && LV_FONT_SIMSUN_16_CJK && LV_USE_IME_PINYIN && LV_IME_PINYIN_USE_K9_MODE && LV_BUILD_EXAMPLES
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void ta_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -20,6 +21,7 @@ static void ta_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_example_ime_pinyin_2(void)
 {
     lv_obj_t * pinyin_ime = lv_ime_pinyin_create(lv_screen_active());

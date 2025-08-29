@@ -52,6 +52,7 @@ typedef struct {
  *      MACROS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_area_to_tvg(_tvg_rect * rect, const lv_area_t * area)
 {
     rect->x = area->x1;
@@ -60,6 +61,7 @@ static void lv_area_to_tvg(_tvg_rect * rect, const lv_area_t * area)
     rect->h = lv_area_get_height(area) - 1;
 }
 
+LV_FUNC_SECTION
 static void lv_color_to_tvg(_tvg_color * color, const lv_color32_t * c, lv_opa_t opa)
 {
     color->r = c->red;
@@ -68,6 +70,7 @@ static void lv_color_to_tvg(_tvg_color * color, const lv_color32_t * c, lv_opa_t
     color->a = LV_OPA_MIX2(c->alpha, opa);
 }
 
+LV_FUNC_SECTION
 static void lv_matrix_to_tvg(Tvg_Matrix * tm, const lv_matrix_t * m)
 {
     tm->e11 = m->m[0][0];
@@ -81,11 +84,13 @@ static void lv_matrix_to_tvg(Tvg_Matrix * tm, const lv_matrix_t * m)
     tm->e33 = m->m[2][2];
 }
 
+LV_FUNC_SECTION
 static void _set_paint_matrix(Tvg_Paint * obj, const Tvg_Matrix * m)
 {
     tvg_paint_set_transform(obj, m);
 }
 
+LV_FUNC_SECTION
 static void _set_paint_shape(Tvg_Paint * obj, const lv_vector_path_t * p)
 {
     uint32_t pidx = 0;
@@ -138,6 +143,7 @@ static void _set_paint_shape(Tvg_Paint * obj, const lv_vector_path_t * p)
     }
 }
 
+LV_FUNC_SECTION
 static Tvg_Stroke_Cap lv_stroke_cap_to_tvg(lv_vector_stroke_cap_t cap)
 {
     switch(cap) {
@@ -152,6 +158,7 @@ static Tvg_Stroke_Cap lv_stroke_cap_to_tvg(lv_vector_stroke_cap_t cap)
     }
 }
 
+LV_FUNC_SECTION
 static Tvg_Stroke_Join lv_stroke_join_to_tvg(lv_vector_stroke_join_t join)
 {
     switch(join) {
@@ -166,6 +173,7 @@ static Tvg_Stroke_Join lv_stroke_join_to_tvg(lv_vector_stroke_join_t join)
     }
 }
 
+LV_FUNC_SECTION
 static Tvg_Stroke_Fill lv_spread_to_tvg(lv_vector_gradient_spread_t sp)
 {
     switch(sp) {
@@ -180,6 +188,7 @@ static Tvg_Stroke_Fill lv_spread_to_tvg(lv_vector_gradient_spread_t sp)
     }
 }
 
+LV_FUNC_SECTION
 static void _setup_gradient(Tvg_Gradient * gradient, const lv_vector_gradient_t * grad,
                             const lv_matrix_t * matrix)
 {
@@ -203,6 +212,7 @@ static void _setup_gradient(Tvg_Gradient * gradient, const lv_vector_gradient_t 
     lv_free(stops);
 }
 
+LV_FUNC_SECTION
 static void _set_paint_stroke_gradient(Tvg_Paint * obj, const lv_vector_gradient_t * g, const lv_matrix_t * m)
 {
     Tvg_Gradient * grad = NULL;
@@ -220,6 +230,7 @@ static void _set_paint_stroke_gradient(Tvg_Paint * obj, const lv_vector_gradient
     }
 }
 
+LV_FUNC_SECTION
 static void _set_paint_stroke(Tvg_Paint * obj, const lv_vector_stroke_dsc_t * dsc)
 {
     if(dsc->style == LV_VECTOR_DRAW_STYLE_SOLID) {
@@ -242,6 +253,7 @@ static void _set_paint_stroke(Tvg_Paint * obj, const lv_vector_stroke_dsc_t * ds
     }
 }
 
+LV_FUNC_SECTION
 static Tvg_Fill_Rule lv_fill_rule_to_tvg(lv_vector_fill_t rule)
 {
     switch(rule) {
@@ -254,6 +266,7 @@ static Tvg_Fill_Rule lv_fill_rule_to_tvg(lv_vector_fill_t rule)
     }
 }
 
+LV_FUNC_SECTION
 static void _set_paint_fill_gradient(Tvg_Paint * obj, const lv_vector_gradient_t * g, const lv_matrix_t * m)
 {
     Tvg_Gradient * grad = NULL;
@@ -271,6 +284,7 @@ static void _set_paint_fill_gradient(Tvg_Paint * obj, const lv_vector_gradient_t
     }
 }
 
+LV_FUNC_SECTION
 static void _set_paint_fill_pattern(Tvg_Paint * obj, Tvg_Canvas * canvas, const lv_draw_image_dsc_t * p,
                                     const lv_matrix_t * m)
 {
@@ -312,6 +326,7 @@ static void _set_paint_fill_pattern(Tvg_Paint * obj, Tvg_Canvas * canvas, const 
     lv_image_decoder_close(&decoder_dsc);
 }
 
+LV_FUNC_SECTION
 static void _set_paint_fill(Tvg_Paint * obj, Tvg_Canvas * canvas, const lv_vector_fill_dsc_t * dsc,
                             const lv_matrix_t * matrix)
 {
@@ -337,6 +352,7 @@ static void _set_paint_fill(Tvg_Paint * obj, Tvg_Canvas * canvas, const lv_vecto
     }
 }
 
+LV_FUNC_SECTION
 static Tvg_Blend_Method lv_blend_to_tvg(lv_vector_blend_t blend)
 {
     switch(blend) {
@@ -360,11 +376,13 @@ static Tvg_Blend_Method lv_blend_to_tvg(lv_vector_blend_t blend)
     }
 }
 
+LV_FUNC_SECTION
 static void _set_paint_blend_mode(Tvg_Paint * obj, lv_vector_blend_t blend)
 {
     tvg_paint_set_blend_method(obj, lv_blend_to_tvg(blend));
 }
 
+LV_FUNC_SECTION
 static void _task_draw_cb(void * ctx, const lv_vector_path_t * path, const lv_vector_draw_dsc_t * dsc)
 {
     Tvg_Canvas * canvas = (Tvg_Canvas *)ctx;
@@ -405,6 +423,7 @@ static void _task_draw_cb(void * ctx, const lv_vector_path_t * path, const lv_ve
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 void lv_draw_sw_vector(lv_draw_unit_t * draw_unit, const lv_draw_vector_task_dsc_t * dsc)
 {
     LV_UNUSED(draw_unit);

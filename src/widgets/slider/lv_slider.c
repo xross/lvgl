@@ -67,6 +67,7 @@ const lv_obj_class_t lv_slider_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_slider_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -75,6 +76,7 @@ lv_obj_t * lv_slider_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 bool lv_slider_is_dragged(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -83,46 +85,55 @@ bool lv_slider_is_dragged(const lv_obj_t * obj)
     return slider->dragging;
 }
 
+LV_FUNC_SECTION
 void lv_slider_set_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim)
 {
     lv_bar_set_value(obj, value, anim);
 }
 
+LV_FUNC_SECTION
 void lv_slider_set_left_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim)
 {
     lv_bar_set_start_value(obj, value, anim);
 }
 
+LV_FUNC_SECTION
 void lv_slider_set_range(lv_obj_t * obj, int32_t min, int32_t max)
 {
     lv_bar_set_range(obj, min, max);
 }
 
+LV_FUNC_SECTION
 void lv_slider_set_mode(lv_obj_t * obj, lv_slider_mode_t mode)
 {
     lv_bar_set_mode(obj, (lv_bar_mode_t)mode);
 }
 
+LV_FUNC_SECTION
 int32_t lv_slider_get_value(const lv_obj_t * obj)
 {
     return lv_bar_get_value(obj);
 }
 
+LV_FUNC_SECTION
 int32_t lv_slider_get_left_value(const lv_obj_t * obj)
 {
     return lv_bar_get_start_value(obj);
 }
 
+LV_FUNC_SECTION
 int32_t lv_slider_get_min_value(const lv_obj_t * obj)
 {
     return lv_bar_get_min_value(obj);
 }
 
+LV_FUNC_SECTION
 int32_t lv_slider_get_max_value(const lv_obj_t * obj)
 {
     return lv_bar_get_max_value(obj);
 }
 
+LV_FUNC_SECTION
 lv_slider_mode_t lv_slider_get_mode(lv_obj_t * slider)
 {
     lv_bar_mode_t mode = lv_bar_get_mode(slider);
@@ -131,6 +142,7 @@ lv_slider_mode_t lv_slider_get_mode(lv_obj_t * slider)
     else return LV_SLIDER_MODE_NORMAL;
 }
 
+LV_FUNC_SECTION
 bool lv_slider_is_symmetrical(lv_obj_t * obj)
 {
     return lv_bar_is_symmetrical(obj);
@@ -140,6 +152,7 @@ bool lv_slider_is_symmetrical(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_slider_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -156,6 +169,7 @@ static void lv_slider_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj
     lv_obj_set_ext_click_area(obj, LV_DPX(8));
 }
 
+LV_FUNC_SECTION
 static void lv_slider_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -295,6 +309,7 @@ static void lv_slider_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_knob(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -356,6 +371,7 @@ static void draw_knob(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void position_knob(lv_obj_t * obj, lv_area_t * knob_area, const int32_t knob_size, const bool hor)
 {
     if(hor) {
@@ -386,11 +402,13 @@ static void position_knob(lv_obj_t * obj, lv_area_t * knob_area, const int32_t k
     knob_area->y2 += knob_bottom + transf_h;
 }
 
+LV_FUNC_SECTION
 static bool is_slider_horizontal(lv_obj_t * obj)
 {
     return lv_obj_get_width(obj) >= lv_obj_get_height(obj);
 }
 
+LV_FUNC_SECTION
 static void drag_start(lv_obj_t * obj)
 {
     lv_slider_t * slider = (lv_slider_t *)obj;
@@ -455,6 +473,7 @@ static void drag_start(lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 static void update_knob_pos(lv_obj_t * obj, bool check_drag)
 {
     lv_slider_t * slider = (lv_slider_t *)obj;

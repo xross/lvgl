@@ -4,6 +4,7 @@
 /**
  * Using the border style properties
  */
+LV_FUNC_SECTION
 void lv_example_style_3(void)
 {
     static lv_style_t style;

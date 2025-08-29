@@ -52,6 +52,7 @@ static void tab_layout_create(lv_obj_t * tab, view_t * ui);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void view_ctrl_pad_create(lv_obj_t * par, view_t * ui)
 {
     lv_obj_t * tv = lv_tabview_create(par);
@@ -82,6 +83,7 @@ void view_ctrl_pad_create(lv_obj_t * par, view_t * ui)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_obj_t * ddlist_create(lv_obj_t * par, const char * name, const char * options)
 {
     lv_obj_t * cont = lv_obj_create(par);
@@ -98,6 +100,7 @@ static lv_obj_t * ddlist_create(lv_obj_t * par, const char * name, const char * 
     return ddlist;
 }
 
+LV_FUNC_SECTION
 static void tab_flex_create(lv_obj_t * tab, view_t * ui)
 {
     lv_obj_set_flex_flow(tab, LV_FLEX_FLOW_COLUMN);
@@ -126,6 +129,7 @@ static void tab_flex_create(lv_obj_t * tab, view_t * ui)
     ui->ctrl_pad.tab.flex.checkbox_scrl = cb;
 }
 
+LV_FUNC_SECTION
 static void tab_align_create(lv_obj_t * tab, view_t * ui)
 {
     lv_obj_set_flex_flow(tab, LV_FLEX_FLOW_COLUMN);
@@ -141,6 +145,7 @@ static void tab_align_create(lv_obj_t * tab, view_t * ui)
     DDLIST_ALIGN_CREATE_DEF(track);
 }
 
+LV_FUNC_SECTION
 static void btn_inc_event_handler(lv_event_t * e)
 {
     lv_obj_t * spinbox = lv_event_get_user_data(e);
@@ -150,6 +155,7 @@ static void btn_inc_event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void btn_dec_event_handler(lv_event_t * e)
 {
     lv_obj_t * spinbox = lv_event_get_user_data(e);
@@ -159,6 +165,7 @@ static void btn_dec_event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * spinbox_ctrl_create(lv_obj_t * par, lv_style_prop_t prop, lv_obj_t ** cont_)
 {
     lv_obj_t * cont_main = par;
@@ -222,6 +229,7 @@ static lv_obj_t * spinbox_ctrl_create(lv_obj_t * par, lv_style_prop_t prop, lv_o
     return spinbox;
 }
 
+LV_FUNC_SECTION
 static void tab_layout_create(lv_obj_t * tab, view_t * ui)
 {
     lv_obj_set_flex_flow(tab, LV_FLEX_FLOW_COLUMN);

@@ -6,6 +6,7 @@
 /**
  * Using radial gradient as background
  */
+LV_FUNC_SECTION
 void lv_example_style_17(void)
 {
     static const lv_color_t grad_colors[2] = {
@@ -39,6 +40,7 @@ void lv_example_style_17(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_style_17(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());

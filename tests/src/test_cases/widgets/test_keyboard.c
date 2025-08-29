@@ -6,16 +6,19 @@
 
 static lv_obj_t * active_screen = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_keyboard_mode(void)
 {
     lv_obj_t * keyboard  = lv_keyboard_create(active_screen);
@@ -39,6 +42,7 @@ void test_keyboard_mode(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/keyboard_4.png");
 }
 
+LV_FUNC_SECTION
 void test_keyboard_properties(void)
 {
 #if LV_USE_OBJ_PROPERTY

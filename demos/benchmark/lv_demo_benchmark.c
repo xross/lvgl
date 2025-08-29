@@ -38,6 +38,7 @@
 
 typedef struct {
     const char * name;
+    __attribute__(( fptrgroup("lv_scene_create_cb") ))
     void (*create_cb)(void);
     uint32_t scene_time;
     uint32_t cpu_avg_usage;
@@ -72,11 +73,13 @@ static void arc_anim(lv_obj_t * obj);
 
 static lv_obj_t * card_create(void);
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void empty_screen_cb(void)
 {
     color_anim(lv_screen_active());
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void moving_wallpaper_cb(void)
 {
     lv_obj_set_style_pad_all(lv_screen_active(), 0, 0);
@@ -89,6 +92,7 @@ static void moving_wallpaper_cb(void)
     shake_anim(img, - lv_display_get_vertical_resolution(NULL) / 3);
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void single_rectangle_cb(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -101,6 +105,7 @@ static void single_rectangle_cb(void)
 
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void multiple_rectangles_cb(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);
@@ -117,6 +122,7 @@ static void multiple_rectangles_cb(void)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void multiple_rgb_images_cb(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);
@@ -143,6 +149,7 @@ static void multiple_rgb_images_cb(void)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void multiple_argb_images_cb(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);
@@ -169,6 +176,7 @@ static void multiple_argb_images_cb(void)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void rotated_argb_image_cb(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);
@@ -196,6 +204,7 @@ static void rotated_argb_image_cb(void)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void multiple_labels_cb(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);
@@ -219,6 +228,7 @@ static void multiple_labels_cb(void)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void screen_sized_text_cb(void)
 {
     const char * txt =
@@ -239,6 +249,7 @@ static void screen_sized_text_cb(void)
     scroll_anim(scr, lv_obj_get_scroll_bottom(scr));
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void multiple_arcs_cb(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);
@@ -274,6 +285,7 @@ static void multiple_arcs_cb(void)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void containers_cb(void)
 {
 
@@ -297,6 +309,7 @@ static void containers_cb(void)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void containers_with_overlay_cb(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);
@@ -322,6 +335,7 @@ static void containers_with_overlay_cb(void)
     color_anim(lv_layer_top());
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void containers_with_opa_cb(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);
@@ -345,6 +359,7 @@ static void containers_with_opa_cb(void)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void containers_with_opa_layer_cb(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);
@@ -368,6 +383,7 @@ static void containers_with_opa_layer_cb(void)
     }
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void containers_with_scrolling_cb(void)
 {
     lv_obj_t * scr = lv_screen_active();
@@ -384,6 +400,7 @@ static void containers_with_scrolling_cb(void)
     scroll_anim(scr, lv_obj_get_scroll_bottom(scr));
 }
 
+__attribute__(( fptrgroup("lv_scene_create_cb") ))
 static void widgets_demo_cb(void)
 {
     lv_obj_t * scr = lv_screen_active();
@@ -431,7 +448,7 @@ static uint32_t rnd_act;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_benchmark(void)
 {
     scene_act = 0;
@@ -470,6 +487,7 @@ void lv_demo_benchmark(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void load_scene(uint32_t scene)
 {
     lv_obj_t * scr = lv_screen_active();
@@ -493,6 +511,7 @@ static void load_scene(uint32_t scene)
     if(scenes[scene].create_cb) scenes[scene].create_cb();
 }
 
+LV_FUNC_SECTION
 static void next_scene_timer_cb(lv_timer_t * timer)
 {
     LV_UNUSED(timer);
@@ -510,6 +529,7 @@ static void next_scene_timer_cb(lv_timer_t * timer)
 }
 
 #if LV_USE_PERF_MONITOR
+LV_FUNC_SECTION
 static void sysmon_perf_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     const lv_sysmon_perf_info_t * info = lv_subject_get_pointer(subject);
@@ -548,6 +568,7 @@ static void sysmon_perf_observer_cb(lv_observer_t * observer, lv_subject_t * sub
 }
 #endif
 
+LV_FUNC_SECTION
 static void table_draw_task_event_cb(lv_event_t * e)
 {
     lv_draw_task_t * t = lv_event_get_draw_task(e);
@@ -580,6 +601,7 @@ static void table_draw_task_event_cb(lv_event_t * e)
 
 }
 
+LV_FUNC_SECTION
 static void summary_create(void)
 {
     lv_obj_clean(lv_screen_active());
@@ -684,6 +706,7 @@ static void summary_create(void)
  * SCENE HELPERS
  *----------------*/
 
+LV_FUNC_SECTION
 static void color_anim_cb(void * var, int32_t v)
 {
     LV_UNUSED(v);
@@ -691,6 +714,7 @@ static void color_anim_cb(void * var, int32_t v)
     lv_obj_set_style_text_color(var, lv_color_hex3(lv_rand(0x00f, 0xff0)), 0);
 }
 
+LV_FUNC_SECTION
 static void color_anim(lv_obj_t * obj)
 {
     lv_anim_t a;
@@ -703,11 +727,13 @@ static void color_anim(lv_obj_t * obj)
     lv_anim_start(&a);
 }
 
+LV_FUNC_SECTION
 static void arc_anim_cb(void * var, int32_t v)
 {
     lv_arc_set_value(var, v);
 }
 
+LV_FUNC_SECTION
 static void arc_anim(lv_obj_t * obj)
 {
     uint32_t t1 = rnd_next(1000, 3000);
@@ -723,11 +749,13 @@ static void arc_anim(lv_obj_t * obj)
     lv_anim_start(&a);
 }
 
+LV_FUNC_SECTION
 static void scroll_anim_y_cb(void * var, int32_t v)
 {
     lv_obj_scroll_to_y(var, v, LV_ANIM_OFF);
 }
 
+LV_FUNC_SECTION
 static void scroll_anim(lv_obj_t * obj, int32_t y_max)
 {
     uint32_t t = lv_anim_speed(lv_display_get_dpi(NULL));
@@ -743,11 +771,13 @@ static void scroll_anim(lv_obj_t * obj, int32_t y_max)
     lv_anim_start(&a);
 
 }
+LV_FUNC_SECTION
 static void shake_anim_y_cb(void * var, int32_t v)
 {
     lv_obj_set_style_translate_y(var, v, 0);
 }
 
+LV_FUNC_SECTION
 static void shake_anim(lv_obj_t * obj, int32_t y_max)
 {
     uint32_t t1 = rnd_next(300, 3000);
@@ -764,6 +794,7 @@ static void shake_anim(lv_obj_t * obj, int32_t y_max)
     lv_anim_start(&a);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * card_create(void)
 {
     lv_obj_t * panel = lv_obj_create(lv_screen_active());
@@ -794,11 +825,13 @@ static lv_obj_t * card_create(void)
     return panel;
 }
 
+LV_FUNC_SECTION
 static void rnd_reset(void)
 {
     rnd_act = 0;
 }
 
+LV_FUNC_SECTION
 static int32_t rnd_next(int32_t min, int32_t max)
 {
     static const uint32_t rnd_map[] = {

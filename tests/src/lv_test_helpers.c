@@ -2,6 +2,7 @@
 
 #include "lv_test_helpers.h"
 
+LV_FUNC_SECTION
 void lv_test_wait(uint32_t ms)
 {
     lv_tick_inc(ms);

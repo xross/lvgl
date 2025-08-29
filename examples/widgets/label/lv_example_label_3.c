@@ -4,6 +4,7 @@
 /**
  * Show mixed LTR, RTL and Chinese label
  */
+LV_FUNC_SECTION
 void lv_example_label_3(void)
 {
     lv_obj_t * ltr_label = lv_label_create(lv_screen_active());

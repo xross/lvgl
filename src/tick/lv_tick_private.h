@@ -27,7 +27,9 @@ extern "C" {
 typedef struct {
     uint32_t sys_time;
     volatile uint8_t sys_irq_flag;
+    __attribute__(( fptrgroup("lv_tick_get_cb") ))
     lv_tick_get_cb_t tick_get_cb;
+    __attribute__(( fptrgroup("lv_tick_delay_cb") ))
     lv_delay_cb_t delay_cb;
 } lv_tick_state_t;
 

@@ -44,6 +44,7 @@ typedef struct {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_indev_t * lv_sdl_mouse_create(void)
 {
     lv_sdl_mouse_t * dsc = lv_malloc_zeroed(sizeof(lv_sdl_mouse_t));
@@ -71,6 +72,7 @@ lv_indev_t * lv_sdl_mouse_create(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void sdl_mouse_read(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_sdl_mouse_t * dsc = lv_indev_get_driver_data(indev);
@@ -85,6 +87,7 @@ static void sdl_mouse_read(lv_indev_t * indev, lv_indev_data_t * data)
 #endif
 }
 
+LV_FUNC_SECTION
 static void release_indev_cb(lv_event_t * e)
 {
     lv_indev_t * indev = (lv_indev_t *) lv_event_get_user_data(e);
@@ -97,6 +100,7 @@ static void release_indev_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_sdl_mouse_handler(SDL_Event * event)
 {
     uint32_t win_id = UINT32_MAX;

@@ -87,6 +87,7 @@ ft_free(FT_Memory  memory,
 /* documentation is in ftstream.h */
 
 FT_BASE_DEF(FT_Error)
+LV_FUNC_SECTION
 FT_Stream_Open(FT_Stream    stream,
                const char * filepathname)
 {
@@ -151,6 +152,7 @@ FT_Stream_Open(FT_Stream    stream,
 /* documentation is in ftobjs.h */
 
 FT_BASE_DEF(FT_Memory)
+LV_FUNC_SECTION
 FT_New_Memory(void)
 {
     FT_Memory  memory;
@@ -172,6 +174,7 @@ FT_New_Memory(void)
 /* documentation is in ftobjs.h */
 
 FT_BASE_DEF(void)
+LV_FUNC_SECTION
 FT_Done_Memory(FT_Memory  memory)
 {
 #ifdef FT_DEBUG_MEMORY
@@ -191,6 +194,7 @@ FT_Done_Memory(FT_Memory  memory)
  * @return The address of newly allocated block.
  */
 FT_CALLBACK_DEF(void *)
+LV_FUNC_SECTION
 ft_alloc(FT_Memory  memory,
          long       size)
 {
@@ -208,6 +212,7 @@ ft_alloc(FT_Memory  memory,
  * @return The address of the reallocated memory block.
  */
 FT_CALLBACK_DEF(void *)
+LV_FUNC_SECTION
 ft_realloc(FT_Memory  memory,
            long       cur_size,
            long       new_size,
@@ -225,6 +230,7 @@ ft_realloc(FT_Memory  memory,
  * @param block The address of block in memory to be freed.
  */
 FT_CALLBACK_DEF(void)
+LV_FUNC_SECTION
 ft_free(FT_Memory  memory,
         void   *   block)
 {
@@ -240,6 +246,7 @@ ft_free(FT_Memory  memory,
  * @param stream A pointer to the stream object.
  */
 FT_CALLBACK_DEF(void)
+LV_FUNC_SECTION
 ft_lv_fs_stream_close(FT_Stream  stream)
 {
     lv_fs_file_t * file_p = STREAM_FILE(stream);
@@ -262,6 +269,7 @@ ft_lv_fs_stream_close(FT_Stream  stream)
  *         indicates an error.
  */
 FT_CALLBACK_DEF(unsigned long)
+LV_FUNC_SECTION
 ft_lv_fs_stream_io(FT_Stream       stream,
                    unsigned long   offset,
                    unsigned char * buffer,

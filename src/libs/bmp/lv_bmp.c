@@ -56,6 +56,7 @@ static void decoder_close(lv_image_decoder_t * dec, lv_image_decoder_dsc_t * dsc
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 void lv_bmp_init(void)
 {
     lv_image_decoder_t * dec = lv_image_decoder_create();
@@ -67,6 +68,7 @@ void lv_bmp_init(void)
     dec->name = DECODER_NAME;
 }
 
+LV_FUNC_SECTION
 void lv_bmp_deinit(void)
 {
     lv_image_decoder_t * dec = NULL;
@@ -88,6 +90,7 @@ void lv_bmp_deinit(void)
  * @param header store the info here
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't get the info
  */
+__attribute__(( fptrgroup("lv_image_deocder_info_cb") ))
 static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc, lv_image_header_t * header)
 {
     LV_UNUSED(decoder);
@@ -144,6 +147,7 @@ static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_d
  * @param dsc     pointer to the decoder descriptor
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't open the image
  */
+__attribute__(( fptrgroup("lv_image_deocder_open_cb") ))
 static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -191,6 +195,7 @@ static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_d
     return LV_RESULT_INVALID;    /*If not returned earlier then it failed*/
 }
 
+__attribute__(( fptrgroup("lv_image_deocder_get_area_cb") ))
 static lv_result_t decoder_get_area(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc,
                                     const lv_area_t * full_area, lv_area_t * decoded_area)
 {
@@ -240,6 +245,7 @@ static lv_result_t decoder_get_area(lv_image_decoder_t * decoder, lv_image_decod
 /**
  * Free the allocated resources
  */
+__attribute__(( fptrgroup("lv_image_deocder_close_cb") ))
 static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);

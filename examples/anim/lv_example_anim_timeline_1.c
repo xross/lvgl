@@ -4,21 +4,25 @@
 static const int32_t obj_width = 90;
 static const int32_t obj_height = 70;
 
+__attribute__(( fptrgroup("lv_anim_custom_exec_cb") ))
 static void set_width(lv_anim_t * var, int32_t v)
 {
     lv_obj_set_width(var->var, v);
 }
 
+__attribute__(( fptrgroup("lv_anim_custom_exec_cb") ))
 static void set_height(lv_anim_t * var, int32_t v)
 {
     lv_obj_set_height(var->var, v);
 }
 
+__attribute__(( fptrgroup("lv_anim_custom_exec_cb") ))
 static void set_slider_value(lv_anim_t * var, int32_t v)
 {
     lv_slider_set_value(var->var, v, LV_ANIM_OFF);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void btn_start_event_handler(lv_event_t * e)
 {
     lv_obj_t * btn = lv_event_get_current_target_obj(e);
@@ -29,12 +33,14 @@ static void btn_start_event_handler(lv_event_t * e)
     lv_anim_timeline_start(anim_timeline);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void btn_pause_event_handler(lv_event_t * e)
 {
     lv_anim_timeline_t * anim_timeline = lv_event_get_user_data(e);
     lv_anim_timeline_pause(anim_timeline);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void slider_prg_event_handler(lv_event_t * e)
 {
     lv_obj_t * slider = lv_event_get_current_target_obj(e);
@@ -46,6 +52,7 @@ static void slider_prg_event_handler(lv_event_t * e)
 /**
  * Create an animation timeline
  */
+LV_FUNC_SECTION
 void lv_example_anim_timeline_1(void)
 {
     /* Create anim timeline */

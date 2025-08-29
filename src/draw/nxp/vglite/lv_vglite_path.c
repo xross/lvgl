@@ -42,6 +42,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void vglite_create_rect_path_data(int32_t * path_data, uint32_t * path_data_size,
                                   int32_t radius,
                                   const lv_area_t * coords)

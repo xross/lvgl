@@ -87,6 +87,7 @@ static const lv_flex_align_t flex_align_map[] = {
  **********************/
 
 FLEX_ALIGN_EVENT_DEF(main)
+LV_FUNC_SECTION
 FLEX_ALIGN_EVENT_DEF(cross)
 FLEX_ALIGN_EVENT_DEF(track)
 
@@ -108,6 +109,7 @@ void flex_loader_attach(view_t * ui)
     FLEX_ALIGN_EVENT_ATTACH(track);
 }
 
+LV_FUNC_SECTION
 void flex_loader_obj_update(lv_obj_t * obj, view_t * ui)
 {
     lv_flex_flow_t flex_flow = lv_obj_get_style_flex_flow(obj, 0);
@@ -128,6 +130,7 @@ void flex_loader_obj_update(lv_obj_t * obj, view_t * ui)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void flex_flow_event_handler(lv_event_t * e)
 {
     view_t * ui = lv_event_get_user_data(e);

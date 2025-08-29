@@ -9,6 +9,7 @@ static lv_obj_t * chart = NULL;
 
 static lv_color_t red_color;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
@@ -17,6 +18,7 @@ void setUp(void)
     red_color = lv_palette_main(LV_PALETTE_RED);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Is there a way to destroy a chart without having to call remove_series for each of it series? */
@@ -24,6 +26,7 @@ void tearDown(void)
 }
 
 /* NOTE: Default chart type is LV_CHART_TYPE_LINE */
+LV_FUNC_SECTION
 void test_chart_add_series(void)
 {
     lv_chart_series_t * red_series;
@@ -36,6 +39,7 @@ void test_chart_add_series(void)
     lv_chart_remove_series(chart, red_series);
 }
 
+LV_FUNC_SECTION
 void test_chart_set_point_count_increments(void)
 {
     lv_chart_series_t * red_series;
@@ -50,6 +54,7 @@ void test_chart_set_point_count_increments(void)
     lv_chart_remove_series(chart, red_series);
 }
 
+LV_FUNC_SECTION
 void test_chart_set_point_count_decrements(void)
 {
     lv_chart_series_t * red_series;
@@ -64,6 +69,7 @@ void test_chart_set_point_count_decrements(void)
     lv_chart_remove_series(chart, red_series);
 }
 
+LV_FUNC_SECTION
 void test_chart_set_point_count_as_same(void)
 {
     lv_chart_series_t * red_series;
@@ -78,6 +84,7 @@ void test_chart_set_point_count_as_same(void)
     lv_chart_remove_series(chart, red_series);
 }
 
+LV_FUNC_SECTION
 void test_chart_set_new_point_count_as_zero(void)
 {
     lv_chart_series_t * red_series;
@@ -89,6 +96,7 @@ void test_chart_set_new_point_count_as_zero(void)
     lv_chart_remove_series(chart, red_series);
 }
 
+LV_FUNC_SECTION
 void test_chart_point_is_added_at_the_end_of_a_series(void)
 {
     lv_chart_series_t * red_series;
@@ -100,12 +108,14 @@ void test_chart_point_is_added_at_the_end_of_a_series(void)
     lv_chart_remove_series(chart, red_series);
 }
 
+LV_FUNC_SECTION
 void test_chart_one_point_when_setting_point_count_to_zero(void)
 {
     lv_chart_set_point_count(chart, 0u);
     TEST_ASSERT_EQUAL(1u, lv_chart_get_point_count(chart));
 }
 
+LV_FUNC_SECTION
 static void chart_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -158,6 +168,7 @@ static void chart_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void test_draw_task_hooking(void)
 {
     lv_obj_t * chart_wrapper = lv_obj_create(lv_screen_active());

@@ -31,10 +31,13 @@ extern "C" {
 struct lv_obj_class_t {
     const lv_obj_class_t * base_class;
     /** class_p is the final class while obj->class_p is the class currently being [de]constructed. */
+    __attribute__(( fptrgroup("lv_obj_constructor_cb") ))
     void (*constructor_cb)(const lv_obj_class_t * class_p, lv_obj_t * obj);
+    __attribute__(( fptrgroup("lv_obj_destructor_cb") ))
     void (*destructor_cb)(const lv_obj_class_t * class_p, lv_obj_t * obj);
 
     /** class_p is the class in which event is being processed. */
+    __attribute__(( fptrgroup("lv_event_cb") ))
     void (*event_cb)(const lv_obj_class_t * class_p, lv_event_t * e);  /**< Widget type specific event function*/
 
 #if LV_USE_OBJ_PROPERTY

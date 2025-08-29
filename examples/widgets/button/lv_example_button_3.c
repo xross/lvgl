@@ -4,6 +4,7 @@
 /**
  * Create a style transition on a button to act like a gum when clicked
  */
+LV_FUNC_SECTION
 void lv_example_button_3(void)
 {
     /*Properties to transition*/

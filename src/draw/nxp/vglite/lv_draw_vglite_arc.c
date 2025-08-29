@@ -96,6 +96,7 @@ static void _vglite_draw_arc(const lv_point_t * center, const lv_area_t * clip_a
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vglite_arc(lv_draw_unit_t * draw_unit, const lv_draw_arc_dsc_t * dsc,
                         const lv_area_t * coords)
 {
@@ -122,6 +123,7 @@ void lv_draw_vglite_arc(lv_draw_unit_t * draw_unit, const lv_draw_arc_dsc_t * ds
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _copy_arc(vg_arc * dst, vg_arc * src)
 {
     dst->quarter = src->quarter;
@@ -140,6 +142,7 @@ static void _copy_arc(vg_arc * dst, vg_arc * src)
 /**
  * Rotate the point according given rotation angle rotation center is 0,0
  */
+LV_FUNC_SECTION
 static void _rotate_point(int32_t angle, int32_t * x, int32_t * y)
 {
     int32_t ori_x = *x;
@@ -157,6 +160,7 @@ static void _rotate_point(int32_t angle, int32_t * x, int32_t * y)
  * ---+---
  * Q1 | Q0
  */
+LV_FUNC_SECTION
 static void _set_full_arc(vg_arc * fullarc)
 {
     /* the tangent length for the bezier circle approx */
@@ -216,6 +220,7 @@ static void _set_full_arc(vg_arc * fullarc)
  * Linear interpolation between two points 'a' and 'b'
  * 't' parameter is the proportion ratio expressed in range [0 ; T_FRACTION ]
  */
+LV_FUNC_SECTION
 static inline float _lerp(float coord_a, float coord_b, uint16_t t)
 {
     float tf = (float)t;
@@ -225,6 +230,7 @@ static inline float _lerp(float coord_a, float coord_b, uint16_t t)
 /**
  * Computes a point of bezier curve given 't' param
  */
+LV_FUNC_SECTION
 static inline float _comp_bezier_point(float t, cubic_cont_pt cp)
 {
     float t_sq = t * t;
@@ -241,6 +247,7 @@ static inline float _comp_bezier_point(float t, cubic_cont_pt cp)
  * bezier curve is defined by control points [p0 p1 p2 p3]
  * 'dec' tells if curve is decreasing (true) or increasing (false)
  */
+LV_FUNC_SECTION
 static uint16_t _get_bez_t_from_pos(float pt, cubic_cont_pt cp, bool dec)
 {
     /* initialize dichotomy with boundary 't' values */
@@ -269,6 +276,7 @@ static uint16_t _get_bez_t_from_pos(float pt, cubic_cont_pt cp, bool dec)
  * Gives relative coords of the control points
  * for the sub-arc starting at angle with given angle span
  */
+LV_FUNC_SECTION
 static void _get_subarc_control_points(vg_arc * arc, int32_t span)
 {
     vg_arc fullarc = {0};
@@ -362,6 +370,7 @@ static void _get_subarc_control_points(vg_arc * arc, int32_t span)
 /**
  * Gives relative coords of the control points
  */
+LV_FUNC_SECTION
 static void _get_arc_control_points(vg_arc * arc, bool start)
 {
     vg_arc fullarc = {0};
@@ -427,6 +436,7 @@ static void _get_arc_control_points(vg_arc * arc, bool start)
  * center: (in) the center of the circle in draw coordinates
  * cw: (in) true if arc is clockwise
  */
+LV_FUNC_SECTION
 static void _add_split_arc_path(int32_t * arc_path, int * pidx, vg_arc * q_arc, const lv_point_t * center, bool cw)
 {
     /* assumes first control point already in array arc_path[] */
@@ -477,6 +487,7 @@ static void _add_split_arc_path(int32_t * arc_path, int * pidx, vg_arc * q_arc, 
     *pidx = idx;
 }
 
+LV_FUNC_SECTION
 static void _add_arc_path(int32_t * arc_path, int * pidx, int32_t radius,
                           int32_t start_angle, int32_t end_angle, const lv_point_t * center, bool cw)
 {
@@ -559,6 +570,7 @@ static void _add_arc_path(int32_t * arc_path, int * pidx, int32_t radius,
     }
 }
 
+LV_FUNC_SECTION
 static void _vglite_draw_arc(const lv_point_t * center, const lv_area_t * clip_area,
                              const lv_draw_arc_dsc_t * dsc)
 {

@@ -21,6 +21,7 @@
 
 PikaObj* pika_lv_event_listener_g;
 
+LV_FUNC_SECTION
 void pika_lvgl_STATE___init__(PikaObj* self) {
     obj_setInt(self, "DEFAULT", LV_STATE_DEFAULT);
     obj_setInt(self, "CHECKED", LV_STATE_CHECKED);
@@ -38,11 +39,13 @@ void pika_lvgl_STATE___init__(PikaObj* self) {
     obj_setInt(self, "ANY", LV_STATE_ANY);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_ANIM___init__(PikaObj* self) {
     obj_setInt(self, "ON", LV_ANIM_OFF);
     obj_setInt(self, "OFF", LV_ANIM_ON);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_ALIGN___init__(PikaObj* self) {
     obj_setInt(self, "CENTER", LV_ALIGN_CENTER);
     obj_setInt(self, "DEFAULT", LV_ALIGN_DEFAULT);
@@ -68,6 +71,7 @@ void pika_lvgl_ALIGN___init__(PikaObj* self) {
     obj_setInt(self, "OUT_RIGHT_BOTTOM", LV_ALIGN_OUT_RIGHT_BOTTOM);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_EVENT___init__(PikaObj* self) {
     obj_setInt(self, "ALL", LV_EVENT_ALL);
     obj_setInt(self, "PRESSED", LV_EVENT_PRESSED);
@@ -117,11 +121,13 @@ void pika_lvgl_EVENT___init__(PikaObj* self) {
     obj_setInt(self, "PREPROCESS", LV_EVENT_PREPROCESS);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_OPA___init__(PikaObj* self) {
     obj_setInt(self, "TRANSP", LV_OPA_TRANSP);
     obj_setInt(self, "COVER", LV_OPA_COVER);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_PALETTE___init__(PikaObj* self) {
     obj_setInt(self, "RED", LV_PALETTE_RED);
     obj_setInt(self, "PINK", LV_PALETTE_PINK);
@@ -145,6 +151,7 @@ void pika_lvgl_PALETTE___init__(PikaObj* self) {
     obj_setInt(self, "NONE", LV_PALETTE_NONE);
 }
 
+LV_FUNC_SECTION
 PikaObj* pika_lvgl_screen_active(PikaObj* self) {
     PikaObj* new_obj = newNormalObj(New_TinyObj);
     lv_obj_t* lv_obj = lv_screen_active();
@@ -152,11 +159,13 @@ PikaObj* pika_lvgl_screen_active(PikaObj* self) {
     return new_obj;
 }
 
+LV_FUNC_SECTION
 void pika_lvgl___init__(PikaObj* self) {
     obj_newDirectObj(self, "lv_event_listener", New_TinyObj);
     pika_lv_event_listener_g = obj_getObj(self, "lv_event_listener");
 }
 
+LV_FUNC_SECTION
 PikaObj* pika_lvgl_obj(PikaObj* self, PikaObj* parent) {
     lv_obj_t* lv_parent = obj_getPtr(parent, "lv_obj");
     lv_obj_t* lv_obj = lv_obj_create(lv_parent);
@@ -165,6 +174,7 @@ PikaObj* pika_lvgl_obj(PikaObj* self, PikaObj* parent) {
     return new_obj;
 }
 
+LV_FUNC_SECTION
 PikaObj* pika_lvgl_palette_lighten(PikaObj *self, int p, int lvl){
     PikaObj* new_obj = newNormalObj(New_pika_lvgl_lv_color_t);
     lv_color_t lv_color = lv_palette_lighten(p, lvl);
@@ -174,6 +184,7 @@ PikaObj* pika_lvgl_palette_lighten(PikaObj *self, int p, int lvl){
     return new_obj;
 }
 
+LV_FUNC_SECTION
 PikaObj* pika_lvgl_palette_main(PikaObj* self, int p) {
     PikaObj* new_obj = newNormalObj(New_pika_lvgl_lv_color_t);
     lv_color_t lv_color = lv_palette_main(p);
@@ -183,6 +194,7 @@ PikaObj* pika_lvgl_palette_main(PikaObj* self, int p) {
     return new_obj;
 }
 
+LV_FUNC_SECTION
 PikaObj* pika_lvgl_indev_get_active(PikaObj *self){
     PikaObj* new_obj = newNormalObj(New_pika_lvgl_indev_t);
     lv_indev_t *lv_indev = lv_indev_active();
@@ -190,6 +202,7 @@ PikaObj* pika_lvgl_indev_get_active(PikaObj *self){
     return new_obj;
 }
 
+LV_FUNC_SECTION
 PikaObj* pika_lvgl_timer_create_basic(PikaObj *self){
     PikaObj* new_obj = newNormalObj(New_pika_lvgl_lv_timer_t);
     lv_timer_t *lv_timer = lv_timer_create_basic();

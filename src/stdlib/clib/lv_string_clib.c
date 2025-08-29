@@ -50,16 +50,19 @@ void * LV_ATTRIBUTE_FAST_MEM lv_memmove(void * dst, const void * src, size_t len
     return memmove(dst, src, len);
 }
 
+LV_FUNC_SECTION
 int lv_memcmp(const void * p1, const void * p2, size_t len)
 {
     return memcmp(p1, p2, len);
 }
 
+LV_FUNC_SECTION
 size_t lv_strlen(const char * str)
 {
     return strlen(str);
 }
 
+LV_FUNC_SECTION
 size_t lv_strlcpy(char * dst, const char * src, size_t dst_size)
 {
     size_t src_len = strlen(src);
@@ -71,21 +74,25 @@ size_t lv_strlcpy(char * dst, const char * src, size_t dst_size)
     return src_len;
 }
 
+LV_FUNC_SECTION
 char * lv_strncpy(char * dst, const char * src, size_t dest_size)
 {
     return strncpy(dst, src, dest_size);
 }
 
+LV_FUNC_SECTION
 char * lv_strcpy(char * dst, const char * src)
 {
     return strcpy(dst, src);
 }
 
+LV_FUNC_SECTION
 int lv_strcmp(const char * s1, const char * s2)
 {
     return strcmp(s1, s2);
 }
 
+LV_FUNC_SECTION
 char * lv_strdup(const char * src)
 {
     /*strdup uses malloc, so use the lv_malloc when LV_USE_STDLIB_MALLOC is not LV_STDLIB_CLIB */
@@ -97,11 +104,13 @@ char * lv_strdup(const char * src)
     return dst;
 }
 
+LV_FUNC_SECTION
 char * lv_strcat(char * dst, const char * src)
 {
     return strcat(dst, src);
 }
 
+LV_FUNC_SECTION
 char * lv_strncat(char * dst, const char * src, size_t src_len)
 {
     return strncat(dst, src, src_len);

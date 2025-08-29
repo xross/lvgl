@@ -48,6 +48,7 @@ static void copy_cell_txt(lv_table_cell_t * dst, const char * txt);
 static void get_cell_area(lv_obj_t * obj, uint32_t row, uint32_t col, lv_area_t * area);
 static void scroll_to_selected_cell(lv_obj_t * obj);
 
+LV_FUNC_SECTION
 static inline bool is_cell_empty(void * cell)
 {
     return cell == NULL;
@@ -76,6 +77,7 @@ const lv_obj_class_t lv_table_class  = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_table_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -88,6 +90,7 @@ lv_obj_t * lv_table_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_table_set_cell_value(lv_obj_t * obj, uint32_t row, uint32_t col, const char * txt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -123,6 +126,7 @@ void lv_table_set_cell_value(lv_obj_t * obj, uint32_t row, uint32_t col, const c
     refr_cell_size(obj, row, col);
 }
 
+LV_FUNC_SECTION
 void lv_table_set_cell_value_fmt(lv_obj_t * obj, uint32_t row, uint32_t col, const char * fmt, ...)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -200,6 +204,7 @@ void lv_table_set_cell_value_fmt(lv_obj_t * obj, uint32_t row, uint32_t col, con
     refr_cell_size(obj, row, col);
 }
 
+LV_FUNC_SECTION
 void lv_table_set_row_count(lv_obj_t * obj, uint32_t row_cnt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -243,6 +248,7 @@ void lv_table_set_row_count(lv_obj_t * obj, uint32_t row_cnt)
     refr_size_form_row(obj, 0);
 }
 
+LV_FUNC_SECTION
 void lv_table_set_column_count(lv_obj_t * obj, uint32_t col_cnt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -302,6 +308,7 @@ void lv_table_set_column_count(lv_obj_t * obj, uint32_t col_cnt)
     refr_size_form_row(obj, 0) ;
 }
 
+LV_FUNC_SECTION
 void lv_table_set_column_width(lv_obj_t * obj, uint32_t col_id, int32_t w)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -315,6 +322,7 @@ void lv_table_set_column_width(lv_obj_t * obj, uint32_t col_id, int32_t w)
     refr_size_form_row(obj, 0);
 }
 
+LV_FUNC_SECTION
 void lv_table_add_cell_ctrl(lv_obj_t * obj, uint32_t row, uint32_t col, lv_table_cell_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -340,6 +348,7 @@ void lv_table_add_cell_ctrl(lv_obj_t * obj, uint32_t row, uint32_t col, lv_table
     table->cell_data[cell]->ctrl |= ctrl;
 }
 
+LV_FUNC_SECTION
 void lv_table_clear_cell_ctrl(lv_obj_t * obj, uint32_t row, uint32_t col, lv_table_cell_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -365,6 +374,7 @@ void lv_table_clear_cell_ctrl(lv_obj_t * obj, uint32_t row, uint32_t col, lv_tab
     table->cell_data[cell]->ctrl &= (~ctrl);
 }
 
+LV_FUNC_SECTION
 void lv_table_set_cell_user_data(lv_obj_t * obj, uint16_t row, uint16_t col, void * user_data)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -394,6 +404,7 @@ void lv_table_set_cell_user_data(lv_obj_t * obj, uint16_t row, uint16_t col, voi
     table->cell_data[cell]->user_data = user_data;
 }
 
+LV_FUNC_SECTION
 void lv_table_set_selected_cell(lv_obj_t * obj, uint16_t row, uint16_t col)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -418,6 +429,7 @@ void lv_table_set_selected_cell(lv_obj_t * obj, uint16_t row, uint16_t col)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 const char * lv_table_get_cell_value(lv_obj_t * obj, uint32_t row, uint32_t col)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -434,6 +446,7 @@ const char * lv_table_get_cell_value(lv_obj_t * obj, uint32_t row, uint32_t col)
     return table->cell_data[cell]->txt;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_table_get_row_count(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -442,6 +455,7 @@ uint32_t lv_table_get_row_count(lv_obj_t * obj)
     return table->row_cnt;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_table_get_column_count(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -450,6 +464,7 @@ uint32_t lv_table_get_column_count(lv_obj_t * obj)
     return table->col_cnt;
 }
 
+LV_FUNC_SECTION
 int32_t lv_table_get_column_width(lv_obj_t * obj, uint32_t col)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -464,6 +479,7 @@ int32_t lv_table_get_column_width(lv_obj_t * obj, uint32_t col)
     return table->col_w[col];
 }
 
+LV_FUNC_SECTION
 bool lv_table_has_cell_ctrl(lv_obj_t * obj, uint32_t row, uint32_t col, lv_table_cell_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -479,6 +495,7 @@ bool lv_table_has_cell_ctrl(lv_obj_t * obj, uint32_t row, uint32_t col, lv_table
     else return (table->cell_data[cell]->ctrl & ctrl) == ctrl;
 }
 
+LV_FUNC_SECTION
 void lv_table_get_selected_cell(lv_obj_t * obj, uint32_t * row, uint32_t * col)
 {
     lv_table_t * table = (lv_table_t *)obj;
@@ -486,6 +503,7 @@ void lv_table_get_selected_cell(lv_obj_t * obj, uint32_t * row, uint32_t * col)
     *col = table->col_act;
 }
 
+LV_FUNC_SECTION
 void * lv_table_get_cell_user_data(lv_obj_t * obj, uint16_t row, uint16_t col)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -506,6 +524,7 @@ void * lv_table_get_cell_user_data(lv_obj_t * obj, uint16_t row, uint16_t col)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_table_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -525,6 +544,7 @@ static void lv_table_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_table_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -547,6 +567,7 @@ static void lv_table_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     if(table->col_w) lv_free(table->col_w);
 }
 
+LV_FUNC_SECTION
 static void lv_table_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -668,6 +689,7 @@ static void lv_table_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_main(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -858,6 +880,7 @@ static void draw_main(lv_event_t * e)
 }
 
 /* Refreshes size of the table starting from @start_row row */
+LV_FUNC_SECTION
 static void refr_size_form_row(lv_obj_t * obj, uint32_t start_row)
 {
     const int32_t cell_pad_left = lv_obj_get_style_pad_left(obj, LV_PART_ITEMS);
@@ -884,6 +907,7 @@ static void refr_size_form_row(lv_obj_t * obj, uint32_t start_row)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 static void refr_cell_size(lv_obj_t * obj, uint32_t row, uint32_t col)
 {
     const int32_t cell_pad_left = lv_obj_get_style_pad_left(obj, LV_PART_ITEMS);
@@ -918,6 +942,7 @@ static void refr_cell_size(lv_obj_t * obj, uint32_t row, uint32_t col)
     }
 }
 
+LV_FUNC_SECTION
 static int32_t get_row_height(lv_obj_t * obj, uint32_t row_id, const lv_font_t * font,
                               int32_t letter_space, int32_t line_space,
                               int32_t cell_left, int32_t cell_right, int32_t cell_top, int32_t cell_bottom)
@@ -983,6 +1008,7 @@ static int32_t get_row_height(lv_obj_t * obj, uint32_t row_id, const lv_font_t *
     return h_max;
 }
 
+LV_FUNC_SECTION
 static lv_result_t get_pressed_cell(lv_obj_t * obj, uint32_t * row, uint32_t * col)
 {
     lv_table_t * table = (lv_table_t *)obj;
@@ -1035,6 +1061,7 @@ static lv_result_t get_pressed_cell(lv_obj_t * obj, uint32_t * row, uint32_t * c
 }
 
 /* Returns number of bytes to allocate based on chars configuration */
+LV_FUNC_SECTION
 static size_t get_cell_txt_len(const char * txt)
 {
     size_t retval = 0;
@@ -1049,6 +1076,7 @@ static size_t get_cell_txt_len(const char * txt)
 }
 
 /* Copy txt into dst skipping the format byte */
+LV_FUNC_SECTION
 static void copy_cell_txt(lv_table_cell_t * dst, const char * txt)
 {
 #if LV_USE_ARABIC_PERSIAN_CHARS
@@ -1058,6 +1086,7 @@ static void copy_cell_txt(lv_table_cell_t * dst, const char * txt)
 #endif
 }
 
+LV_FUNC_SECTION
 static void get_cell_area(lv_obj_t * obj, uint32_t row, uint32_t col, lv_area_t * area)
 {
     lv_table_t * table = (lv_table_t *)obj;
@@ -1093,6 +1122,7 @@ static void get_cell_area(lv_obj_t * obj, uint32_t row, uint32_t col, lv_area_t 
 
 }
 
+LV_FUNC_SECTION
 static void scroll_to_selected_cell(lv_obj_t * obj)
 {
     lv_table_t * table = (lv_table_t *)obj;

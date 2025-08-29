@@ -11,6 +11,7 @@ static void dave2d_draw_border_simple(lv_draw_dave2d_unit_t * draw_unit, const l
                                       const lv_area_t * inner_area,
                                       lv_color_t color, lv_opa_t opa);
 
+LV_FUNC_SECTION
 void lv_draw_dave2d_border(lv_draw_dave2d_unit_t * draw_unit, const lv_draw_border_dsc_t * dsc,
                            const lv_area_t * coords)
 {
@@ -44,6 +45,7 @@ void lv_draw_dave2d_border(lv_draw_dave2d_unit_t * draw_unit, const lv_draw_bord
 
 }
 
+LV_FUNC_SECTION
 static void dave2d_draw_border_simple(lv_draw_dave2d_unit_t * u, const lv_area_t * outer_area,
                                       const lv_area_t * inner_area,
                                       lv_color_t color, lv_opa_t opa)
@@ -155,6 +157,7 @@ static void dave2d_draw_border_simple(lv_draw_dave2d_unit_t * u, const lv_area_t
 #endif
 }
 
+LV_FUNC_SECTION
 static void dave2d_draw_border_complex(lv_draw_dave2d_unit_t * u, const lv_area_t * orig_outer_area,
                                        const lv_area_t * orig_inner_area,
                                        int32_t rout, int32_t rin, lv_color_t color, lv_opa_t opa)

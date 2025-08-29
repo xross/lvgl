@@ -5,6 +5,7 @@
 /**
  * Open an image from a file
  */
+LV_FUNC_SECTION
 void lv_example_ffmpeg_1(void)
 {
     /*It always uses the LVGL filesystem abstraction (not the OS filesystem)
@@ -17,6 +18,7 @@ void lv_example_ffmpeg_1(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_ffmpeg_1(void)
 {
     /*TODO

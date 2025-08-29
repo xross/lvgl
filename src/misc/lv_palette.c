@@ -32,6 +32,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_color_t lv_palette_main(lv_palette_t p)
 {
     static const lv_color_t colors[] = {
@@ -51,6 +52,7 @@ lv_color_t lv_palette_main(lv_palette_t p)
 
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_palette_lighten(lv_palette_t p, uint8_t lvl)
 {
     static const lv_color_t colors[][5] = {
@@ -90,6 +92,7 @@ lv_color_t lv_palette_lighten(lv_palette_t p, uint8_t lvl)
     return colors[p][lvl];
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_palette_darken(lv_palette_t p, uint8_t lvl)
 {
     static const lv_color_t colors[][4] = {

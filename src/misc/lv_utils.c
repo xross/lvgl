@@ -35,8 +35,9 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void * lv_utils_bsearch(const void * key, const void * base, size_t n, size_t size,
-                        int (*cmp)(const void * pRef, const void * pElement))
+    __attribute__(( fptrgroup("lv_utils_cmp") ))int (*cmp)(const void * pRef, const void * pElement))
 {
     const char * middle;
     int32_t c;
@@ -58,6 +59,7 @@ void * lv_utils_bsearch(const void * key, const void * base, size_t n, size_t si
     return NULL;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_draw_buf_save_to_file(const lv_draw_buf_t * draw_buf, const char * path)
 {
     lv_fs_file_t file;

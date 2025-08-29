@@ -162,6 +162,7 @@ static void rotate270_l8(const uint8_t * src, uint8_t * dst, int32_t src_width, 
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_sw_init(void)
 {
 
@@ -187,6 +188,7 @@ void lv_draw_sw_init(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_deinit(void)
 {
 #if LV_USE_VECTOR_GRAPHIC && LV_USE_THORVG
@@ -198,6 +200,7 @@ void lv_draw_sw_deinit(void)
 #endif
 }
 
+LV_FUNC_SECTION
 static int32_t lv_draw_sw_delete(lv_draw_unit_t * draw_unit)
 {
 #if LV_USE_OS
@@ -217,6 +220,7 @@ static int32_t lv_draw_sw_delete(lv_draw_unit_t * draw_unit)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_rgb565_swap(void * buf, uint32_t buf_size_px)
 {
     if(LV_DRAW_SW_RGB565_SWAP(buf, buf_size_px) == LV_RESULT_OK) return;
@@ -251,6 +255,7 @@ void lv_draw_sw_rgb565_swap(void * buf, uint32_t buf_size_px)
 
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_i1_invert(void * buf, uint32_t buf_size)
 {
     if(buf == NULL) return;
@@ -282,6 +287,7 @@ void lv_draw_sw_i1_invert(void * buf, uint32_t buf_size)
     }
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_rotate(const void * src, void * dest, int32_t src_width, int32_t src_height, int32_t src_stride,
                        int32_t dest_stride, lv_display_rotation_t rotation, lv_color_format_t color_format)
 {
@@ -379,6 +385,7 @@ void lv_draw_sw_rotate(const void * src, void * dest, int32_t src_width, int32_t
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 static inline void execute_drawing_unit(lv_draw_sw_unit_t * u)
 {
     execute_drawing(u);
@@ -390,6 +397,7 @@ static inline void execute_drawing_unit(lv_draw_sw_unit_t * u)
     lv_draw_dispatch_request();
 }
 
+LV_FUNC_SECTION
 static int32_t evaluate(lv_draw_unit_t * draw_unit, lv_draw_task_t * task)
 {
     LV_UNUSED(draw_unit);
@@ -428,6 +436,7 @@ static int32_t evaluate(lv_draw_unit_t * draw_unit, lv_draw_task_t * task)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int32_t dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
 {
     LV_PROFILER_BEGIN;
@@ -468,6 +477,7 @@ static int32_t dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
 }
 
 #if LV_USE_OS
+LV_FUNC_SECTION
 static void render_thread_cb(void * ptr)
 {
     lv_draw_sw_unit_t * u = ptr;
@@ -497,6 +507,7 @@ static void render_thread_cb(void * ptr)
 }
 #endif
 
+LV_FUNC_SECTION
 static void execute_drawing(lv_draw_sw_unit_t * u)
 {
     LV_PROFILER_BEGIN;
@@ -588,6 +599,7 @@ static void execute_drawing(lv_draw_sw_unit_t * u)
 
 #if LV_DRAW_SW_SUPPORT_ARGB8888
 
+LV_FUNC_SECTION
 static void rotate270_argb8888(const uint32_t * src, uint32_t * dst, int32_t src_width, int32_t src_height,
                                int32_t src_stride,
                                int32_t dst_stride)
@@ -609,6 +621,7 @@ static void rotate270_argb8888(const uint32_t * src, uint32_t * dst, int32_t src
     }
 }
 
+LV_FUNC_SECTION
 static void rotate180_argb8888(const uint32_t * src, uint32_t * dst, int32_t width, int32_t height, int32_t src_stride,
                                int32_t dest_stride)
 {
@@ -628,6 +641,7 @@ static void rotate180_argb8888(const uint32_t * src, uint32_t * dst, int32_t wid
     }
 }
 
+LV_FUNC_SECTION
 static void rotate90_argb8888(const uint32_t * src, uint32_t * dst, int32_t src_width, int32_t src_height,
                               int32_t src_stride, int32_t dst_stride)
 {
@@ -652,6 +666,7 @@ static void rotate90_argb8888(const uint32_t * src, uint32_t * dst, int32_t src_
 
 #if LV_DRAW_SW_SUPPORT_RGB888
 
+LV_FUNC_SECTION
 static void rotate90_rgb888(const uint8_t * src, uint8_t * dst, int32_t src_width, int32_t src_height,
                             int32_t src_stride,
                             int32_t dst_stride)
@@ -671,6 +686,7 @@ static void rotate90_rgb888(const uint8_t * src, uint8_t * dst, int32_t src_widt
     }
 }
 
+LV_FUNC_SECTION
 static void rotate180_rgb888(const uint8_t * src, uint8_t * dst, int32_t width, int32_t height, int32_t src_stride,
                              int32_t dest_stride)
 {
@@ -689,6 +705,7 @@ static void rotate180_rgb888(const uint8_t * src, uint8_t * dst, int32_t width, 
     }
 }
 
+LV_FUNC_SECTION
 static void rotate270_rgb888(const uint8_t * src, uint8_t * dst, int32_t width, int32_t height, int32_t src_stride,
                              int32_t dst_stride)
 {
@@ -711,6 +728,7 @@ static void rotate270_rgb888(const uint8_t * src, uint8_t * dst, int32_t width, 
 
 #if LV_DRAW_SW_SUPPORT_RGB565
 
+LV_FUNC_SECTION
 static void rotate270_rgb565(const uint16_t * src, uint16_t * dst, int32_t src_width, int32_t src_height,
                              int32_t src_stride,
                              int32_t dst_stride)
@@ -732,6 +750,7 @@ static void rotate270_rgb565(const uint16_t * src, uint16_t * dst, int32_t src_w
     }
 }
 
+LV_FUNC_SECTION
 static void rotate180_rgb565(const uint16_t * src, uint16_t * dst, int32_t width, int32_t height, int32_t src_stride,
                              int32_t dest_stride)
 {
@@ -751,6 +770,7 @@ static void rotate180_rgb565(const uint16_t * src, uint16_t * dst, int32_t width
     }
 }
 
+LV_FUNC_SECTION
 static void rotate90_rgb565(const uint16_t * src, uint16_t * dst, int32_t src_width, int32_t src_height,
                             int32_t src_stride,
                             int32_t dst_stride)
@@ -777,6 +797,7 @@ static void rotate90_rgb565(const uint16_t * src, uint16_t * dst, int32_t src_wi
 
 #if LV_DRAW_SW_SUPPORT_L8
 
+LV_FUNC_SECTION
 static void rotate90_l8(const uint8_t * src, uint8_t * dst, int32_t src_width, int32_t src_height,
                         int32_t src_stride,
                         int32_t dst_stride)
@@ -795,6 +816,7 @@ static void rotate90_l8(const uint8_t * src, uint8_t * dst, int32_t src_width, i
     }
 }
 
+LV_FUNC_SECTION
 static void rotate180_l8(const uint8_t * src, uint8_t * dst, int32_t width, int32_t height, int32_t src_stride,
                          int32_t dest_stride)
 {
@@ -811,6 +833,7 @@ static void rotate180_l8(const uint8_t * src, uint8_t * dst, int32_t width, int3
     }
 }
 
+LV_FUNC_SECTION
 static void rotate270_l8(const uint8_t * src, uint8_t * dst, int32_t src_width, int32_t src_height,
                          int32_t src_stride,
                          int32_t dst_stride)

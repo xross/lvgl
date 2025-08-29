@@ -6,16 +6,19 @@
 #include "lv_test_indev.h"
 #include <string.h>
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_obj_clean(lv_screen_active());
 }
+LV_FUNC_SECTION
 void test_dropdown_create_delete(void)
 {
     lv_dropdown_create(lv_screen_active());
@@ -49,6 +52,7 @@ void test_dropdown_create_delete(void)
 
 }
 
+LV_FUNC_SECTION
 void test_dropdown_set_options(void)
 {
 
@@ -115,6 +119,7 @@ void test_dropdown_set_options(void)
     TEST_ASSERT_UINT_WITHIN(48, m1.free_size, m2.free_size);
 }
 
+LV_FUNC_SECTION
 void test_dropdown_select(void)
 {
     lv_obj_t * dd1 = lv_dropdown_create(lv_screen_active());
@@ -136,6 +141,7 @@ void test_dropdown_select(void)
     TEST_ASSERT_EQUAL(2, lv_dropdown_get_selected(dd1));
 }
 
+LV_FUNC_SECTION
 void test_dropdown_click(void)
 {
     lv_obj_clean(lv_screen_active());
@@ -154,12 +160,14 @@ void test_dropdown_click(void)
 }
 
 static uint32_t event_cnt;
+LV_FUNC_SECTION
 static void dd_event(lv_event_t * e)
 {
     LV_UNUSED(e);
     event_cnt++;
 }
 
+LV_FUNC_SECTION
 void test_dropdown_keypad(void)
 {
     lv_obj_clean(lv_screen_active());
@@ -262,6 +270,7 @@ void test_dropdown_keypad(void)
     lv_group_delete(g);
 }
 
+LV_FUNC_SECTION
 void test_dropdown_encoder(void)
 {
     lv_obj_clean(lv_screen_active());
@@ -318,6 +327,7 @@ void test_dropdown_encoder(void)
     lv_group_delete(g);
 }
 
+LV_FUNC_SECTION
 void test_dropdown_render_1(void)
 {
     lv_obj_clean(lv_screen_active());
@@ -363,6 +373,7 @@ void test_dropdown_render_1(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/dropdown_1.png");
 }
 
+LV_FUNC_SECTION
 void test_dropdown_render_2(void)
 {
     lv_obj_clean(lv_screen_active());
@@ -424,6 +435,7 @@ void test_dropdown_render_2(void)
 }
 
 /* See #2893 */
+LV_FUNC_SECTION
 void test_dropdown_should_list_on_top(void)
 {
     lv_obj_t * cont1 = lv_obj_create(lv_screen_active());
@@ -442,6 +454,7 @@ void test_dropdown_should_list_on_top(void)
 }
 
 /* See #4191 */
+LV_FUNC_SECTION
 void test_dropdown_get_options_should_check_lengths(void)
 {
     lv_obj_t * dd = lv_dropdown_create(lv_screen_active());
@@ -453,6 +466,7 @@ void test_dropdown_get_options_should_check_lengths(void)
     TEST_ASSERT_EQUAL_INT(-1, lv_dropdown_get_option_index(dd, "Option "));
 }
 
+LV_FUNC_SECTION
 void test_dropdown_properties(void)
 {
 #if LV_USE_OBJ_PROPERTY

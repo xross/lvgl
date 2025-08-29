@@ -42,9 +42,13 @@ struct lv_image_decoder_args_t {
 };
 
 struct lv_image_decoder_t {
+    __attribute__(( fptrgroup("lv_image_deocder_info_cb") ))
     lv_image_decoder_info_f_t info_cb;
+    __attribute__(( fptrgroup("lv_image_deocder_open_cb") ))
     lv_image_decoder_open_f_t open_cb;
+    __attribute__(( fptrgroup("lv_image_deocder_get_area_cb") ))
     lv_image_decoder_get_area_cb_t get_area_cb;
+    __attribute__(( fptrgroup("lv_image_deocder_close_cb") ))
     lv_image_decoder_close_f_t close_cb;
 
     const char * name;

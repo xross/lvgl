@@ -64,6 +64,7 @@ struct lv_lru_rb_t {
     lv_rb_t rb;
     lv_ll_t ll;
 
+    __attribute__(( fptrgroup("lv_lru_get_data_size_cb_cb") ))
     get_data_size_cb_t * get_data_size_cb;
 };
 typedef struct lv_lru_rb_t lv_lru_rb_t_;
@@ -136,6 +137,7 @@ const lv_cache_class_t lv_cache_class_lru_rb_size = {
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 static void * alloc_new_node(lv_lru_rb_t_ * lru, void * key, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -172,11 +174,13 @@ FAILED_HANDLER2:
     return node;
 }
 
+LV_FUNC_SECTION
 inline static void ** get_lru_node(lv_lru_rb_t_ * lru, lv_rb_node_t * node)
 {
     return (void **)((char *)node->data + lru->rb.size - sizeof(void *));
 }
 
+__attribute__(( fptrgroup("lv_cache_alloc_cb") ))
 static void * alloc_cb(void)
 {
     void * res = lv_malloc(sizeof(lv_lru_rb_t_));
@@ -190,6 +194,7 @@ static void * alloc_cb(void)
     return res;
 }
 
+__attribute__(( fptrgroup("lv_cache_init_cb") ))
 static bool init_cnt_cb(lv_cache_t * cache)
 {
     lv_lru_rb_t_ * lru = (lv_lru_rb_t_ *)cache;
@@ -213,6 +218,7 @@ static bool init_cnt_cb(lv_cache_t * cache)
     return true;
 }
 
+__attribute__(( fptrgroup("lv_cache_init_cb") ))
 static bool init_size_cb(lv_cache_t * cache)
 {
     lv_lru_rb_t_ * lru = (lv_lru_rb_t_ *)cache;
@@ -236,6 +242,7 @@ static bool init_size_cb(lv_cache_t * cache)
     return true;
 }
 
+__attribute__(( fptrgroup("lv_cache_destroy_cb") ))
 static void destroy_cb(lv_cache_t * cache, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -251,6 +258,7 @@ static void destroy_cb(lv_cache_t * cache, void * user_data)
     cache->clz->drop_all_cb(cache, user_data);
 }
 
+__attribute__(( fptrgroup("lv_cache_get_cb") ))
 static lv_cache_entry_t * get_cb(lv_cache_t * cache, const void * key, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -288,6 +296,7 @@ static lv_cache_entry_t * get_cb(lv_cache_t * cache, const void * key, void * us
     return NULL;
 }
 
+__attribute__(( fptrgroup("lv_cache_add_cb") ))
 static lv_cache_entry_t * add_cb(lv_cache_t * cache, const void * key, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -313,6 +322,7 @@ static lv_cache_entry_t * add_cb(lv_cache_t * cache, const void * key, void * us
     return entry;
 }
 
+__attribute__(( fptrgroup("lv_cache_remove_cb") ))
 static void remove_cb(lv_cache_t * cache, lv_cache_entry_t * entry, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -340,6 +350,7 @@ static void remove_cb(lv_cache_t * cache, lv_cache_entry_t * entry, void * user_
     cache->size -= lru->get_data_size_cb(data);
 }
 
+__attribute__(( fptrgroup("lv_cache_drop_cb") ))
 static void drop_cb(lv_cache_t * cache, const void * key, void * user_data)
 {
     lv_lru_rb_t_ * lru = (lv_lru_rb_t_ *)cache;
@@ -371,6 +382,7 @@ static void drop_cb(lv_cache_t * cache, const void * key, void * user_data)
     lv_free(lru_node);
 }
 
+__attribute__(( fptrgroup("lv_cache_drop_all_cb") ))
 static void drop_all_cb(lv_cache_t * cache, void * user_data)
 {
     lv_lru_rb_t_ * lru = (lv_lru_rb_t_ *)cache;
@@ -405,6 +417,7 @@ static void drop_all_cb(lv_cache_t * cache, void * user_data)
     cache->size = 0;
 }
 
+__attribute__(( fptrgroup("lv_cache_get_victim_cb") ))
 static lv_cache_entry_t * get_victim_cb(lv_cache_t * cache, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -425,6 +438,7 @@ static lv_cache_entry_t * get_victim_cb(lv_cache_t * cache, void * user_data)
     return NULL;
 }
 
+__attribute__(( fptrgroup("lv_cache_reserve_cond_cb") ))
 static lv_cache_reserve_cond_res_t reserve_cond_cb(lv_cache_t * cache, const void * key, size_t reserved_size,
                                                    void * user_data)
 {
@@ -449,12 +463,14 @@ static lv_cache_reserve_cond_res_t reserve_cond_cb(lv_cache_t * cache, const voi
            : LV_CACHE_RESERVE_COND_OK;
 }
 
+__attribute__(( fptrgroup("lv_lru_get_data_size_cb_cb") ))
 static uint32_t cnt_get_data_size_cb(const void * data)
 {
     LV_UNUSED(data);
     return 1;
 }
 
+__attribute__(( fptrgroup("lv_lru_get_data_size_cb_cb") ))
 static uint32_t size_get_data_size_cb(const void * data)
 {
     lv_cache_slot_size_t * slot = (lv_cache_slot_size_t *)data;

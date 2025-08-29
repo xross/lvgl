@@ -106,6 +106,7 @@ const ap_chars_map_t ap_chars_map[] = {
 /**********************
 *   GLOBAL FUNCTIONS
 **********************/
+LV_FUNC_SECTION
 uint32_t lv_text_ap_calc_bytes_count(const char * txt)
 {
     uint32_t txt_length = 0;
@@ -140,6 +141,7 @@ uint32_t lv_text_ap_calc_bytes_count(const char * txt)
     return chars_cnt + 1;
 }
 
+LV_FUNC_SECTION
 void lv_text_ap_proc(const char * txt, char * txt_out)
 {
     uint32_t txt_length = 0;
@@ -253,6 +255,7 @@ void lv_text_ap_proc(const char * txt, char * txt_out)
 *   STATIC FUNCTIONS
 **********************/
 
+LV_FUNC_SECTION
 static uint32_t lv_ap_get_char_index(uint16_t c)
 {
     for(uint8_t i = 0; ap_chars_map[i].char_end_form; i++) {
@@ -268,6 +271,7 @@ static uint32_t lv_ap_get_char_index(uint16_t c)
     return LV_UNDEF_ARABIC_PERSIAN_CHARS;
 }
 
+LV_FUNC_SECTION
 static uint32_t lv_text_lam_alef(uint32_t ch_curr, uint32_t ch_next)
 {
     uint32_t ch_code = 0;
@@ -293,6 +297,7 @@ static uint32_t lv_text_lam_alef(uint32_t ch_curr, uint32_t ch_next)
     return 0;
 }
 
+LV_FUNC_SECTION
 static bool lv_text_is_arabic_vowel(uint16_t c)
 {
     return (c >= 0x064B) && (c <= 0x0652);

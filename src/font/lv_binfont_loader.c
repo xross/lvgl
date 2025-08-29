@@ -77,6 +77,7 @@ static unsigned int read_bits(bit_iterator_t * it, int n_bits, lv_fs_res_t * res
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_font_t * lv_binfont_create(const char * path)
 {
     LV_ASSERT_NULL(path);
@@ -105,6 +106,7 @@ lv_font_t * lv_binfont_create(const char * path)
 }
 
 #if LV_USE_FS_MEMFS
+LV_FUNC_SECTION
 lv_font_t * lv_binfont_create_from_buffer(void * buffer, uint32_t size)
 {
     lv_fs_path_ex_t mempath;
@@ -114,6 +116,7 @@ lv_font_t * lv_binfont_create_from_buffer(void * buffer, uint32_t size)
 }
 #endif
 
+LV_FUNC_SECTION
 void lv_binfont_destroy(lv_font_t * font)
 {
     if(font == NULL) return;
@@ -158,6 +161,7 @@ void lv_binfont_destroy(lv_font_t * font)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static bit_iterator_t init_bit_iterator(lv_fs_file_t * fp)
 {
     bit_iterator_t it;
@@ -167,6 +171,7 @@ static bit_iterator_t init_bit_iterator(lv_fs_file_t * fp)
     return it;
 }
 
+LV_FUNC_SECTION
 static unsigned int read_bits(bit_iterator_t * it, int n_bits, lv_fs_res_t * res)
 {
     unsigned int value = 0;
@@ -189,6 +194,7 @@ static unsigned int read_bits(bit_iterator_t * it, int n_bits, lv_fs_res_t * res
     return value;
 }
 
+LV_FUNC_SECTION
 static int read_bits_signed(bit_iterator_t * it, int n_bits, lv_fs_res_t * res)
 {
     unsigned int value = read_bits(it, n_bits, res);
@@ -198,6 +204,7 @@ static int read_bits_signed(bit_iterator_t * it, int n_bits, lv_fs_res_t * res)
     return value;
 }
 
+LV_FUNC_SECTION
 static int read_label(lv_fs_file_t * fp, int start, const char * label)
 {
     lv_fs_seek(fp, start, LV_FS_SEEK_SET);
@@ -215,6 +222,7 @@ static int read_label(lv_fs_file_t * fp, int start, const char * label)
     return length;
 }
 
+LV_FUNC_SECTION
 static bool load_cmaps_tables(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_dsc,
                               uint32_t cmaps_start, cmap_table_bin_t * cmap_table)
 {
@@ -282,6 +290,7 @@ static bool load_cmaps_tables(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_ds
     return true;
 }
 
+LV_FUNC_SECTION
 static int32_t load_cmaps(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_dsc, uint32_t cmaps_start)
 {
     int32_t cmaps_length = read_label(fp, cmaps_start, "cmap");
@@ -311,6 +320,7 @@ static int32_t load_cmaps(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_dsc, u
     return success ? cmaps_length : -1;
 }
 
+LV_FUNC_SECTION
 static int32_t load_glyph(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_dsc,
                           uint32_t start, uint32_t * glyph_offset, uint32_t loca_count, font_header_bin_t * header)
 {
@@ -456,6 +466,7 @@ static int32_t load_glyph(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_dsc,
  * `lv_binfont_destroy` will assume that all non-null pointers are allocated and
  * should be freed.
  */
+LV_FUNC_SECTION
 static bool lvgl_load_font(lv_fs_file_t * fp, lv_font_t * font)
 {
     lv_font_fmt_txt_dsc_t * font_dsc = (lv_font_fmt_txt_dsc_t *)
@@ -561,6 +572,7 @@ static bool lvgl_load_font(lv_fs_file_t * fp, lv_font_t * font)
     return kern_length >= 0;
 }
 
+LV_FUNC_SECTION
 int32_t load_kern(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_dsc, uint8_t format, uint32_t start)
 {
     int32_t kern_length = read_label(fp, start, "kern");

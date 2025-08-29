@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_LINE && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_line_1(void)
 {
     /*Create an array for the points of the line*/

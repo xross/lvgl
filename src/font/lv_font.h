@@ -87,12 +87,15 @@ typedef enum {
 /** Describe the properties of a font*/
 struct lv_font_t {
     /** Get a glyph's descriptor from a font*/
+    __attribute__(( fptrgroup("lv_font_get_glyph_dsc") ))
     bool (*get_glyph_dsc)(const lv_font_t *, lv_font_glyph_dsc_t *, uint32_t letter, uint32_t letter_next);
 
     /** Get a glyph's bitmap from a font*/
+    __attribute__(( fptrgroup("lv_font_get_glyph_bitmap") ))
     const void * (*get_glyph_bitmap)(lv_font_glyph_dsc_t *, lv_draw_buf_t *);
 
     /** Release a glyph*/
+    __attribute__(( fptrgroup("lv_font_release_glyph") ))
     void (*release_glyph)(const lv_font_t *, lv_font_glyph_dsc_t *);
 
     /*Pointer to the font in a font pack (must have the same line height)*/

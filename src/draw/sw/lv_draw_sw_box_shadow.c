@@ -55,6 +55,7 @@ static void /* LV_ATTRIBUTE_FAST_MEM */ shadow_blur_corner(int32_t size, int32_t
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_sw_box_shadow(lv_draw_unit_t * draw_unit, const lv_draw_box_shadow_dsc_t * dsc, const lv_area_t * coords)
 {
     /*Calculate the rectangle which is blurred to get the shadow in `shadow_area`*/
@@ -729,6 +730,7 @@ static void LV_ATTRIBUTE_FAST_MEM shadow_blur_corner(int32_t size, int32_t sw, u
 
 #else /*LV_DRAW_SW_COMPLEX*/
 
+LV_FUNC_SECTION
 void lv_draw_sw_box_shadow(lv_draw_unit_t * draw_unit, const lv_draw_box_shadow_dsc_t * dsc, const lv_area_t * coords)
 {
     LV_UNUSED(draw_unit);

@@ -5,11 +5,13 @@
 #include "unity/unity.h"
 #include <unistd.h>
 
+LV_FUNC_SECTION
 static void obj_set_height_helper(void * obj, int32_t height)
 {
     lv_obj_set_height((lv_obj_t *)obj, (int32_t)height);
 }
 
+LV_FUNC_SECTION
 void test_gradient_vertical_misalignment(void)
 {
     /* Tests gradient caching as the height of widget changes.*/
@@ -42,6 +44,7 @@ void test_gradient_vertical_misalignment(void)
     }
 }
 
+LV_FUNC_SECTION
 void test_custom_prop_ids(void)
 {
     uint8_t fake_flag = 0;
@@ -79,6 +82,7 @@ const lv_style_const_prop_t const_style_props[] = {
 
 LV_STYLE_CONST_INIT(const_style, const_style_props);
 
+LV_FUNC_SECTION
 void test_const_style(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -87,6 +91,7 @@ void test_const_style(void)
     TEST_ASSERT_EQUAL(50, lv_obj_get_style_height(obj, LV_PART_MAIN));
 }
 
+LV_FUNC_SECTION
 void test_style_replacement(void)
 {
     /*Define styles*/
@@ -118,6 +123,7 @@ void test_style_replacement(void)
     lv_style_reset(&style_blue);
 }
 
+LV_FUNC_SECTION
 void test_style_has_prop(void)
 {
     lv_style_t style;

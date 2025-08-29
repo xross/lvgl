@@ -66,6 +66,7 @@ static void check_stack_size(void);
 
 #if LV_ENABLE_GLOBAL_CUSTOM
 
+LV_FUNC_SECTION
 static void lv_global_free(void * data)
 {
     if(data) {
@@ -73,6 +74,7 @@ static void lv_global_free(void * data)
     }
 }
 
+LV_FUNC_SECTION
 lv_global_t * lv_global_default(void)
 {
     static int index = -1;
@@ -93,6 +95,7 @@ lv_global_t * lv_global_default(void)
 }
 #endif
 
+LV_FUNC_SECTION
 void lv_nuttx_dsc_init(lv_nuttx_dsc_t * dsc)
 {
     if(dsc == NULL)
@@ -107,6 +110,7 @@ void lv_nuttx_dsc_init(lv_nuttx_dsc_t * dsc)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_nuttx_init(const lv_nuttx_dsc_t * dsc, lv_nuttx_result_t * result)
 {
     nuttx_ctx_p = lv_malloc_zeroed(sizeof(lv_nuttx_ctx_t));
@@ -174,6 +178,7 @@ void lv_nuttx_init(const lv_nuttx_dsc_t * dsc, lv_nuttx_result_t * result)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_nuttx_run(lv_nuttx_result_t * result)
 {
 #ifdef CONFIG_LV_USE_NUTTX_LIBUV
@@ -192,6 +197,7 @@ void lv_nuttx_run(lv_nuttx_result_t * result)
 
 #ifdef CONFIG_SCHED_CPULOAD
 
+LV_FUNC_SECTION
 uint32_t lv_nuttx_get_idle(void)
 {
     struct cpuload_s cpuload;
@@ -210,6 +216,7 @@ uint32_t lv_nuttx_get_idle(void)
 
 #endif
 
+LV_FUNC_SECTION
 void lv_nuttx_deinit(lv_nuttx_result_t * result)
 {
 #if !LV_USE_NUTTX_CUSTOM_INIT
@@ -246,6 +253,7 @@ void lv_nuttx_deinit(lv_nuttx_result_t * result)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static uint32_t millis(void)
 {
     struct timespec ts;
@@ -257,6 +265,7 @@ static uint32_t millis(void)
 }
 
 #if LV_USE_LOG
+LV_FUNC_SECTION
 static void syslog_print(lv_log_level_t level, const char * buf)
 {
     static const int priority[LV_LOG_LEVEL_NUM] = {
@@ -268,6 +277,7 @@ static void syslog_print(lv_log_level_t level, const char * buf)
 #endif
 
 #ifdef CONFIG_LV_USE_NUTTX_LIBUV
+LV_FUNC_SECTION
 static void lv_nuttx_uv_loop(lv_nuttx_result_t * result)
 {
     uv_loop_t loop;
@@ -290,6 +300,7 @@ static void lv_nuttx_uv_loop(lv_nuttx_result_t * result)
 }
 #endif
 
+LV_FUNC_SECTION
 static void check_stack_size(void)
 {
     pthread_t tid = pthread_self();

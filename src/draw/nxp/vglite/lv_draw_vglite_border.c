@@ -64,6 +64,7 @@ static void _vglite_draw_border(const lv_area_t * coords, const lv_area_t * clip
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vglite_border(lv_draw_unit_t * draw_unit, const lv_draw_border_dsc_t * dsc,
                            const lv_area_t * coords)
 {
@@ -101,6 +102,7 @@ void lv_draw_vglite_border(lv_draw_unit_t * draw_unit, const lv_draw_border_dsc_
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _vglite_draw_border(const lv_area_t * coords, const lv_area_t * clip_area,
                                 const lv_draw_border_dsc_t * dsc)
 {

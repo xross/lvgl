@@ -6,6 +6,7 @@ static lv_obj_t * list2;
 
 static lv_obj_t * currentButton = NULL;
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -33,6 +34,7 @@ static void event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void event_handler_top(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -43,6 +45,7 @@ static void event_handler_top(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void event_handler_up(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -55,6 +58,7 @@ static void event_handler_up(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void event_handler_center(lv_event_t * e)
 {
     const lv_event_code_t code = lv_event_get_code(e);
@@ -70,6 +74,7 @@ static void event_handler_center(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void event_handler_dn(lv_event_t * e)
 {
     const lv_event_code_t code = lv_event_get_code(e);
@@ -82,6 +87,7 @@ static void event_handler_dn(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void event_handler_bottom(lv_event_t * e)
 {
     const lv_event_code_t code = lv_event_get_code(e);
@@ -92,6 +98,7 @@ static void event_handler_bottom(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void event_handler_swap(lv_event_t * e)
 {
     const lv_event_code_t code = lv_event_get_code(e);
@@ -109,6 +116,7 @@ static void event_handler_swap(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_example_list_2(void)
 {
     /*Create a list*/

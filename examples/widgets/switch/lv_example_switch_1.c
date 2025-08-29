@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_SWITCH && LV_BUILD_EXAMPLES
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -11,6 +12,7 @@ static void event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_example_switch_1(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_COLUMN);

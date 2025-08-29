@@ -4,6 +4,7 @@
 /**
  * Demonstrate how scrolling appears automatically
  */
+LV_FUNC_SECTION
 void lv_example_scroll_1(void)
 {
     /*Create an object with the new style*/

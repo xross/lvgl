@@ -120,6 +120,7 @@ static const char * fragment_shader =
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_opengles_init(void)
 {
     if(is_init) return;
@@ -157,6 +158,7 @@ void lv_opengles_init(void)
     is_init = true;
 }
 
+LV_FUNC_SECTION
 void lv_opengles_deinit(void)
 {
     if(!is_init) return;
@@ -169,6 +171,7 @@ void lv_opengles_deinit(void)
     is_init = false;
 }
 
+LV_FUNC_SECTION
 void lv_opengles_render_texture(unsigned int texture, const lv_area_t * texture_area, lv_opa_t opa, int32_t disp_w,
                                 int32_t disp_h)
 {
@@ -193,11 +196,13 @@ void lv_opengles_render_texture(unsigned int texture, const lv_area_t * texture_
     lv_opengles_render_draw();
 }
 
+LV_FUNC_SECTION
 void lv_opengles_render_clear(void)
 {
     GL_CALL(glClear(GL_COLOR_BUFFER_BIT));
 }
 
+LV_FUNC_SECTION
 void lv_opengles_viewport(int32_t x, int32_t y, int32_t w, int32_t h)
 {
     glViewport(x, y, w, h);
@@ -207,12 +212,14 @@ void lv_opengles_viewport(int32_t x, int32_t y, int32_t w, int32_t h)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_opengles_enable_blending(void)
 {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_vertex_buffer_init(const void * data, unsigned int size)
 {
     GL_CALL(glGenBuffers(1, &vertex_buffer_id));
@@ -220,41 +227,49 @@ static void lv_opengles_vertex_buffer_init(const void * data, unsigned int size)
     GL_CALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_vertex_buffer_deinit(void)
 {
     GL_CALL(glDeleteBuffers(1, &vertex_buffer_id));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_vertex_buffer_bind(void)
 {
     GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_id));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_vertex_buffer_unbind(void)
 {
     GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_vertex_array_init(void)
 {
     GL_CALL(glGenVertexArrays(1, &vertex_array_id));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_vertex_array_deinit(void)
 {
     GL_CALL(glDeleteVertexArrays(1, &vertex_array_id));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_vertex_array_bind(void)
 {
     GL_CALL(glBindVertexArray(vertex_array_id));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_vertex_array_unbind(void)
 {
     GL_CALL(glBindVertexArray(0));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_vertex_array_add_buffer(void)
 {
     lv_opengles_vertex_buffer_bind();
@@ -268,6 +283,7 @@ static void lv_opengles_vertex_array_add_buffer(void)
     }
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_index_buffer_init(const unsigned int * data, unsigned int count)
 {
     index_buffer_count = count;
@@ -278,26 +294,31 @@ static void lv_opengles_index_buffer_init(const unsigned int * data, unsigned in
     GL_CALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(GLuint), data, GL_STATIC_DRAW));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_index_buffer_deinit(void)
 {
     GL_CALL(glDeleteBuffers(1, &index_buffer_id));
 }
 
+LV_FUNC_SECTION
 static unsigned int lv_opengles_index_buffer_get_count(void)
 {
     return index_buffer_count;
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_index_buffer_bind(void)
 {
     GL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_buffer_id));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_index_buffer_unbind(void)
 {
     GL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 }
 
+LV_FUNC_SECTION
 static unsigned int lv_opengles_shader_compile(unsigned int type, const char * source)
 {
     GL_CALL(unsigned int id = glCreateShader(type));
@@ -321,6 +342,7 @@ static unsigned int lv_opengles_shader_compile(unsigned int type, const char * s
     return id;
 }
 
+LV_FUNC_SECTION
 static unsigned int lv_opengles_shader_create(const char * vertexShader, const char * fragmentShader)
 {
     GL_CALL(unsigned int program = glCreateProgram());
@@ -338,26 +360,31 @@ static unsigned int lv_opengles_shader_create(const char * vertexShader, const c
     return program;
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_shader_init(void)
 {
     shader_id = lv_opengles_shader_create(vertex_shader, fragment_shader);
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_shader_deinit(void)
 {
     GL_CALL(glDeleteProgram(shader_id));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_shader_bind(void)
 {
     GL_CALL(glUseProgram(shader_id));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_shader_unbind(void)
 {
     GL_CALL(glUseProgram(0));
 }
 
+LV_FUNC_SECTION
 static int lv_opengles_shader_get_uniform_location(const char * name)
 {
     int id = -1;
@@ -382,21 +409,25 @@ static int lv_opengles_shader_get_uniform_location(const char * name)
     return location;
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_shader_set_uniform1i(const char * name, int value)
 {
     GL_CALL(glUniform1i(lv_opengles_shader_get_uniform_location(name), value));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_shader_set_uniformmatrix3fv(const char * name, int count, bool transpose, const float * values)
 {
     GL_CALL(glUniformMatrix3fv(lv_opengles_shader_get_uniform_location(name), count, transpose, values));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_shader_set_uniform1f(const char * name, float value)
 {
     GL_CALL(glUniform1f(lv_opengles_shader_get_uniform_location(name), value));
 }
 
+LV_FUNC_SECTION
 static void lv_opengles_render_draw(void)
 {
     lv_opengles_shader_bind();

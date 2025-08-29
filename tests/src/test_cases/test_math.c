@@ -7,6 +7,7 @@
 #define ERROR_THRESHOLD         5 /*5 in 1024, 0.5% max error allowed*/
 #define NEWTON_ITERATIONS       8
 
+LV_FUNC_SECTION
 static float do_cubic_bezier_f(float t, float a, float b, float c)
 {
     /*a*t^3 + b*t^2 + c*t*/
@@ -22,6 +23,7 @@ static float do_cubic_bezier_f(float t, float a, float b, float c)
  * @param y2 y of control point 2 in range of [0..1]
  * @return the value calculated
  */
+LV_FUNC_SECTION
 static float lv_cubic_bezier_f(float x, float x1, float y1, float x2, float y2)
 {
     float ax, bx, cx, ay, by, cy;
@@ -75,6 +77,7 @@ found:
     return do_cubic_bezier_f(t, ay, by, cy);
 }
 
+LV_FUNC_SECTION
 static int test_cubic_bezier_ease_functions(float fx1, float fy1, float fx2, float fy2)
 {
     int x1, y1, x2, y2, y;
@@ -97,6 +100,7 @@ static int test_cubic_bezier_ease_functions(float fx1, float fy1, float fx2, flo
     return 1;
 }
 
+LV_FUNC_SECTION
 static uint32_t lv_bezier3_legacy(uint32_t t, uint32_t u0, uint32_t u1, uint32_t u2, uint32_t u3)
 {
     uint32_t t_rem  = 1024 - t;
@@ -113,6 +117,7 @@ static uint32_t lv_bezier3_legacy(uint32_t t, uint32_t u0, uint32_t u1, uint32_t
     return v1 + v2 + v3 + v4;
 }
 
+LV_FUNC_SECTION
 void test_math_cubic_bezier_result_should_be_precise(void)
 {
     /*ease-in-out function*/

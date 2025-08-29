@@ -74,6 +74,7 @@ static const char UNITY_PROGMEM UnityStrDetail2Name[]            = " " UNITY_DET
 
 /*-----------------------------------------------*/
 /* Local helper function to print characters. */
+LV_FUNC_SECTION
 static void UnityPrintChar(const char* pch)
 {
     /* printable characters plus CR & LF are printed */
@@ -105,6 +106,7 @@ static void UnityPrintChar(const char* pch)
 /*-----------------------------------------------*/
 /* Local helper function to print ANSI escape strings e.g. "\033[42m". */
 #ifdef UNITY_OUTPUT_COLOR
+LV_FUNC_SECTION
 static UNITY_UINT UnityPrintAnsiEscapeString(const char* string)
 {
     const char* pch = string;
@@ -124,6 +126,7 @@ static UNITY_UINT UnityPrintAnsiEscapeString(const char* string)
 #endif
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityPrint(const char* string)
 {
     const char* pch = string;
@@ -146,6 +149,7 @@ void UnityPrint(const char* string)
     }
 }
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityPrintLen(const char* string, const UNITY_UINT32 length)
 {
     const char* pch = string;
@@ -184,6 +188,7 @@ void UnityPrintLen(const char* string, const UNITY_UINT32 length)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityPrintNumberByStyle(const UNITY_INT number, const UNITY_DISPLAY_STYLE_T style)
 {
     if ((style & UNITY_DISPLAY_RANGE_INT) == UNITY_DISPLAY_RANGE_INT)
@@ -235,6 +240,7 @@ void UnityPrintNumberByStyle(const UNITY_INT number, const UNITY_DISPLAY_STYLE_T
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityPrintNumber(const UNITY_INT number_to_print)
 {
     UNITY_UINT number = (UNITY_UINT)number_to_print;
@@ -250,6 +256,7 @@ void UnityPrintNumber(const UNITY_INT number_to_print)
 
 /*-----------------------------------------------
  * basically do an itoa using as little ram as possible */
+LV_FUNC_SECTION
 void UnityPrintNumberUnsigned(const UNITY_UINT number)
 {
     UNITY_UINT divisor = 1;
@@ -269,6 +276,7 @@ void UnityPrintNumberUnsigned(const UNITY_UINT number)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityPrintNumberHex(const UNITY_UINT number, const char nibbles_to_print)
 {
     int nibble;
@@ -295,6 +303,7 @@ void UnityPrintNumberHex(const UNITY_UINT number, const char nibbles_to_print)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityPrintMask(const UNITY_UINT mask, const UNITY_UINT number)
 {
     UNITY_UINT current_bit = (UNITY_UINT)1 << (UNITY_INT_WIDTH - 1);
@@ -330,6 +339,7 @@ void UnityPrintMask(const UNITY_UINT mask, const UNITY_UINT number)
  * in single-precision operation (for that level of accuracy, a more
  * complicated algorithm would be needed).
  */
+LV_FUNC_SECTION
 void UnityPrintFloat(const UNITY_DOUBLE input_number)
 {
 #ifdef UNITY_INCLUDE_DOUBLE
@@ -491,6 +501,7 @@ void UnityPrintFloat(const UNITY_DOUBLE input_number)
 #endif /* ! UNITY_EXCLUDE_FLOAT_PRINT */
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 static void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line)
 {
 #ifdef UNITY_OUTPUT_FOR_ECLIPSE
@@ -534,6 +545,7 @@ static void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 static void UnityTestResultsFailBegin(const UNITY_LINE_TYPE line)
 {
     UnityTestResultsBegin(Unity.TestFile, line);
@@ -542,6 +554,7 @@ static void UnityTestResultsFailBegin(const UNITY_LINE_TYPE line)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityConcludeTest(void)
 {
     if (Unity.CurrentTestIgnored)
@@ -566,6 +579,7 @@ void UnityConcludeTest(void)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 static void UnityAddMsgIfSpecified(const char* msg)
 {
 #ifdef UNITY_PRINT_TEST_CONTEXT
@@ -593,6 +607,7 @@ static void UnityAddMsgIfSpecified(const char* msg)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 static void UnityPrintExpectedAndActualStrings(const char* expected, const char* actual)
 {
     UnityPrint(UnityStrExpected);
@@ -620,6 +635,7 @@ static void UnityPrintExpectedAndActualStrings(const char* expected, const char*
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 static void UnityPrintExpectedAndActualStringsLen(const char* expected,
                                                   const char* actual,
                                                   const UNITY_UINT32 length)
@@ -653,6 +669,7 @@ static void UnityPrintExpectedAndActualStringsLen(const char* expected,
  *-----------------------------------------------*/
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 static int UnityIsOneArrayNull(UNITY_INTERNAL_PTR expected,
                                UNITY_INTERNAL_PTR actual,
                                const UNITY_LINE_TYPE lineNumber,
@@ -687,6 +704,7 @@ static int UnityIsOneArrayNull(UNITY_INTERNAL_PTR expected,
  *-----------------------------------------------*/
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertBits(const UNITY_INT mask,
                      const UNITY_INT expected,
                      const UNITY_INT actual,
@@ -708,6 +726,7 @@ void UnityAssertBits(const UNITY_INT mask,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertEqualNumber(const UNITY_INT expected,
                             const UNITY_INT actual,
                             const char* msg,
@@ -729,6 +748,7 @@ void UnityAssertEqualNumber(const UNITY_INT expected,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertGreaterOrLessOrEqualNumber(const UNITY_INT threshold,
                                            const UNITY_INT actual,
                                            const UNITY_COMPARISON_T compare,
@@ -777,6 +797,7 @@ do {                                       \
 } while (0)
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertEqualIntArray(UNITY_INTERNAL_PTR expected,
                               UNITY_INTERNAL_PTR actual,
                               const UNITY_UINT32 num_elements,
@@ -922,6 +943,7 @@ void UnityAssertEqualIntArray(UNITY_INTERNAL_PTR expected,
 #endif /* UNITY_EXCLUDE_FLOAT_PRINT */
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 static int UnityFloatsWithin(UNITY_FLOAT delta, UNITY_FLOAT expected, UNITY_FLOAT actual)
 {
     UNITY_FLOAT diff;
@@ -929,6 +951,7 @@ static int UnityFloatsWithin(UNITY_FLOAT delta, UNITY_FLOAT expected, UNITY_FLOA
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertWithinFloatArray(const UNITY_FLOAT delta,
                                  UNITY_PTR_ATTRIBUTE const UNITY_FLOAT* expected,
                                  UNITY_PTR_ATTRIBUTE const UNITY_FLOAT* actual,
@@ -1009,6 +1032,7 @@ void UnityAssertWithinFloatArray(const UNITY_FLOAT delta,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertFloatsWithin(const UNITY_FLOAT delta,
                              const UNITY_FLOAT expected,
                              const UNITY_FLOAT actual,
@@ -1028,6 +1052,7 @@ void UnityAssertFloatsWithin(const UNITY_FLOAT delta,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertFloatsNotWithin(const UNITY_FLOAT delta,
                                 const UNITY_FLOAT expected,
                                 const UNITY_FLOAT actual,
@@ -1049,6 +1074,7 @@ void UnityAssertFloatsNotWithin(const UNITY_FLOAT delta,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertGreaterOrLessFloat(const UNITY_FLOAT threshold,
                                    const UNITY_FLOAT actual,
                                    const UNITY_COMPARISON_T compare,
@@ -1082,6 +1108,7 @@ void UnityAssertGreaterOrLessFloat(const UNITY_FLOAT threshold,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertFloatSpecial(const UNITY_FLOAT actual,
                              const char* msg,
                              const UNITY_LINE_TYPE lineNumber,
@@ -1150,6 +1177,7 @@ void UnityAssertFloatSpecial(const UNITY_FLOAT actual,
 
 /*-----------------------------------------------*/
 #ifndef UNITY_EXCLUDE_DOUBLE
+LV_FUNC_SECTION
 static int UnityDoublesWithin(UNITY_DOUBLE delta, UNITY_DOUBLE expected, UNITY_DOUBLE actual)
 {
     UNITY_DOUBLE diff;
@@ -1157,6 +1185,7 @@ static int UnityDoublesWithin(UNITY_DOUBLE delta, UNITY_DOUBLE expected, UNITY_D
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertWithinDoubleArray(const UNITY_DOUBLE delta,
                                   UNITY_PTR_ATTRIBUTE const UNITY_DOUBLE* expected,
                                   UNITY_PTR_ATTRIBUTE const UNITY_DOUBLE* actual,
@@ -1237,6 +1266,7 @@ void UnityAssertWithinDoubleArray(const UNITY_DOUBLE delta,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertDoublesWithin(const UNITY_DOUBLE delta,
                               const UNITY_DOUBLE expected,
                               const UNITY_DOUBLE actual,
@@ -1255,6 +1285,7 @@ void UnityAssertDoublesWithin(const UNITY_DOUBLE delta,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertDoublesNotWithin(const UNITY_DOUBLE delta,
                                  const UNITY_DOUBLE expected,
                                  const UNITY_DOUBLE actual,
@@ -1276,6 +1307,7 @@ void UnityAssertDoublesNotWithin(const UNITY_DOUBLE delta,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertGreaterOrLessDouble(const UNITY_DOUBLE threshold,
                                     const UNITY_DOUBLE actual,
                                     const UNITY_COMPARISON_T compare,
@@ -1309,6 +1341,7 @@ void UnityAssertGreaterOrLessDouble(const UNITY_DOUBLE threshold,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertDoubleSpecial(const UNITY_DOUBLE actual,
                               const char* msg,
                               const UNITY_LINE_TYPE lineNumber,
@@ -1376,6 +1409,7 @@ void UnityAssertDoubleSpecial(const UNITY_DOUBLE actual,
 #endif /* not UNITY_EXCLUDE_DOUBLE */
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertNumbersWithin(const UNITY_UINT delta,
                               const UNITY_INT expected,
                               const UNITY_INT actual,
@@ -1423,6 +1457,7 @@ void UnityAssertNumbersWithin(const UNITY_UINT delta,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertNumbersArrayWithin(const UNITY_UINT delta,
                                    UNITY_INTERNAL_PTR expected,
                                    UNITY_INTERNAL_PTR actual,
@@ -1587,6 +1622,7 @@ void UnityAssertNumbersArrayWithin(const UNITY_UINT delta,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertEqualString(const char* expected,
                             const char* actual,
                             const char* msg,
@@ -1626,6 +1662,7 @@ void UnityAssertEqualString(const char* expected,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertEqualStringLen(const char* expected,
                                const char* actual,
                                const UNITY_UINT32 length,
@@ -1666,6 +1703,7 @@ void UnityAssertEqualStringLen(const char* expected,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertEqualStringArray(UNITY_INTERNAL_PTR expected,
                                  const char** actual,
                                  const UNITY_UINT32 num_elements,
@@ -1749,6 +1787,7 @@ void UnityAssertEqualStringArray(UNITY_INTERNAL_PTR expected,
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityAssertEqualMemory(UNITY_INTERNAL_PTR expected,
                             UNITY_INTERNAL_PTR actual,
                             const UNITY_UINT32 length,
@@ -1838,6 +1877,7 @@ static union
 #endif
 } UnityQuickCompare;
 
+LV_FUNC_SECTION
 UNITY_INTERNAL_PTR UnityNumToPtr(const UNITY_INT num, const UNITY_UINT8 size)
 {
     switch(size)
@@ -1864,6 +1904,7 @@ UNITY_INTERNAL_PTR UnityNumToPtr(const UNITY_INT num, const UNITY_UINT8 size)
 
 #ifndef UNITY_EXCLUDE_FLOAT
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 UNITY_INTERNAL_PTR UnityFloatToPtr(const float num)
 {
     UnityQuickCompare.f = num;
@@ -1873,6 +1914,7 @@ UNITY_INTERNAL_PTR UnityFloatToPtr(const float num)
 
 #ifndef UNITY_EXCLUDE_DOUBLE
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 UNITY_INTERNAL_PTR UnityDoubleToPtr(const double num)
 {
     UnityQuickCompare.d = num;
@@ -1915,6 +1957,7 @@ do {                                                               \
     }                                                              \
 } while (0)
 
+LV_FUNC_SECTION
 static enum UnityLengthModifier UnityLengthModifierGet(const char *pch, int *length)
 {
     enum UnityLengthModifier length_mod;
@@ -1970,6 +2013,7 @@ static enum UnityLengthModifier UnityLengthModifierGet(const char *pch, int *len
 /*-----------------------------------------------
  * printf helper function
  *-----------------------------------------------*/
+LV_FUNC_SECTION
 static void UnityPrintFVA(const char* format, va_list va)
 {
     const char* pch = format;
@@ -2098,6 +2142,7 @@ static void UnityPrintFVA(const char* format, va_list va)
     }
 }
 
+LV_FUNC_SECTION
 void UnityPrintF(const UNITY_LINE_TYPE line, const char* format, ...)
 {
     UnityTestResultsBegin(Unity.TestFile, line);
@@ -2120,6 +2165,7 @@ void UnityPrintF(const UNITY_LINE_TYPE line, const char* format, ...)
  *-----------------------------------------------*/
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityFail(const char* msg, const UNITY_LINE_TYPE line)
 {
     RETURN_IF_FAIL_OR_IGNORE;
@@ -2157,6 +2203,7 @@ void UnityFail(const char* msg, const UNITY_LINE_TYPE line)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityIgnore(const char* msg, const UNITY_LINE_TYPE line)
 {
     RETURN_IF_FAIL_OR_IGNORE;
@@ -2173,6 +2220,7 @@ void UnityIgnore(const char* msg, const UNITY_LINE_TYPE line)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityMessage(const char* msg, const UNITY_LINE_TYPE line)
 {
     UnityTestResultsBegin(Unity.TestFile, line);
@@ -2189,6 +2237,7 @@ void UnityMessage(const char* msg, const UNITY_LINE_TYPE line)
 /*-----------------------------------------------*/
 /* If we have not defined our own test runner, then include our default test runner to make life easier */
 #ifndef UNITY_SKIP_DEFAULT_RUNNER
+LV_FUNC_SECTION
 void UnityDefaultTestRun(UnityTestFunction Func, const char* FuncName, const int FuncLineNum)
 {
     Unity.CurrentTestName = FuncName;
@@ -2211,12 +2260,14 @@ void UnityDefaultTestRun(UnityTestFunction Func, const char* FuncName, const int
 #endif
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnitySetTestFile(const char* filename)
 {
     Unity.TestFile = filename;
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 void UnityBegin(const char* filename)
 {
     Unity.TestFile = filename;
@@ -2233,6 +2284,7 @@ void UnityBegin(const char* filename)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 int UnityEnd(void)
 {
     UNITY_PRINT_EOL();
@@ -2272,6 +2324,7 @@ char* UnityOptionExcludeNamed = NULL;
 int UnityVerbosity            = 1;
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 int UnityParseOptions(int argc, char** argv)
 {
     int i;
@@ -2350,6 +2403,7 @@ int UnityParseOptions(int argc, char** argv)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 int IsStringInBiggerString(const char* longstring, const char* shortstring)
 {
     const char* lptr = longstring;
@@ -2395,6 +2449,7 @@ int IsStringInBiggerString(const char* longstring, const char* shortstring)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 int UnityStringArgumentMatches(const char* str)
 {
     int retval;
@@ -2458,6 +2513,7 @@ int UnityStringArgumentMatches(const char* str)
 }
 
 /*-----------------------------------------------*/
+LV_FUNC_SECTION
 int UnityTestMatches(void)
 {
     /* Check if this test name matches the included test pattern */

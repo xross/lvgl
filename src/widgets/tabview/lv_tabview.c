@@ -58,6 +58,7 @@ typedef struct {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_tabview_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -67,6 +68,7 @@ lv_obj_t * lv_tabview_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_tabview_add_tab(lv_obj_t * obj, const char * name)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -96,6 +98,7 @@ lv_obj_t * lv_tabview_add_tab(lv_obj_t * obj, const char * name)
     return page;
 }
 
+LV_FUNC_SECTION
 void lv_tabview_rename_tab(lv_obj_t * obj, uint32_t idx, const char * new_name)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -106,6 +109,7 @@ void lv_tabview_rename_tab(lv_obj_t * obj, uint32_t idx, const char * new_name)
     lv_label_set_text(label, new_name);
 }
 
+LV_FUNC_SECTION
 void lv_tabview_set_active(lv_obj_t * obj, uint32_t idx, lv_anim_enable_t anim_en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -152,6 +156,7 @@ void lv_tabview_set_active(lv_obj_t * obj, uint32_t idx, lv_anim_enable_t anim_e
     tabview->tab_cur = idx;
 }
 
+LV_FUNC_SECTION
 void lv_tabview_set_tab_bar_position(lv_obj_t * obj, lv_dir_t dir)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -221,6 +226,7 @@ void lv_tabview_set_tab_bar_position(lv_obj_t * obj, lv_dir_t dir)
     tabview->tab_pos = dir;
 }
 
+LV_FUNC_SECTION
 void lv_tabview_set_tab_bar_size(lv_obj_t * obj, int32_t size)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -236,6 +242,7 @@ void lv_tabview_set_tab_bar_size(lv_obj_t * obj, int32_t size)
 
 }
 
+LV_FUNC_SECTION
 uint32_t lv_tabview_get_tab_active(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -243,6 +250,7 @@ uint32_t lv_tabview_get_tab_active(lv_obj_t * obj)
     return tabview->tab_cur;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_tabview_get_tab_count(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -250,11 +258,13 @@ uint32_t lv_tabview_get_tab_count(lv_obj_t * obj)
     return lv_obj_get_child_count_by_type(tab_bar, &lv_button_class);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_tabview_get_content(lv_obj_t * tv)
 {
     return lv_obj_get_child(tv, 1);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_tabview_get_tab_bar(lv_obj_t * tv)
 {
     return lv_obj_get_child(tv, 0);
@@ -264,6 +274,7 @@ lv_obj_t * lv_tabview_get_tab_bar(lv_obj_t * tv)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_tabview_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -286,6 +297,7 @@ static void lv_tabview_constructor(const lv_obj_class_t * class_p, lv_obj_t * ob
     lv_obj_remove_flag(cont, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 }
 
+LV_FUNC_SECTION
 static void lv_tabview_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -300,6 +312,7 @@ static void lv_tabview_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void button_clicked_event_cb(lv_event_t * e)
 {
     lv_obj_t * button = lv_event_get_current_target(e);
@@ -309,6 +322,8 @@ static void button_clicked_event_cb(lv_event_t * e)
     lv_tabview_set_active(tv, idx, LV_ANIM_OFF);
 }
 
+#pragma stackfunction 2048
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void cont_scroll_end_event_cb(lv_event_t * e)
 {
     lv_obj_t * cont = lv_event_get_current_target(e);

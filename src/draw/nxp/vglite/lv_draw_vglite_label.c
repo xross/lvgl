@@ -64,6 +64,7 @@ static void _vglite_draw_letter(const lv_area_t * mask_area, lv_color_t color, l
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vglite_label(lv_draw_unit_t * draw_unit, const lv_draw_label_dsc_t * dsc,
                           const lv_area_t * coords)
 {
@@ -76,6 +77,7 @@ void lv_draw_vglite_label(lv_draw_unit_t * draw_unit, const lv_draw_label_dsc_t 
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _draw_vglite_letter(lv_draw_unit_t * draw_unit, lv_draw_glyph_dsc_t * glyph_draw_dsc,
                                 lv_draw_fill_dsc_t * fill_draw_dsc, const lv_area_t * fill_area)
 {
@@ -150,6 +152,7 @@ static void _draw_vglite_letter(lv_draw_unit_t * draw_unit, lv_draw_glyph_dsc_t 
     }
 }
 
+LV_FUNC_SECTION
 static void _vglite_draw_letter(const lv_area_t * mask_area, lv_color_t color, lv_opa_t opa)
 {
     vg_lite_buffer_t * dst_vgbuf = vglite_get_dest_buf();

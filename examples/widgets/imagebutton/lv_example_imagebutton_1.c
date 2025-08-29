@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_IMAGEBUTTON && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_imagebutton_1(void)
 {
     LV_IMAGE_DECLARE(imagebutton_left);

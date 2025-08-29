@@ -50,16 +50,19 @@ void * LV_ATTRIBUTE_FAST_MEM lv_memmove(void * dst, const void * src, size_t len
     return rt_memmove(dst, src, len);
 }
 
+LV_FUNC_SECTION
 size_t lv_strlen(const char * str)
 {
     return rt_strlen(str);
 }
 
+LV_FUNC_SECTION
 int lv_memcmp(const void * p1, const void * p2, size_t len)
 {
     return rt_memcmp(p1, p2, len);
 }
 
+LV_FUNC_SECTION
 size_t lv_strlcpy(char * dst, const char * src, size_t dst_size)
 {
     size_t src_len = lv_strlen(src);
@@ -71,21 +74,25 @@ size_t lv_strlcpy(char * dst, const char * src, size_t dst_size)
     return src_len;
 }
 
+LV_FUNC_SECTION
 char * lv_strncpy(char * dst, const char * src, size_t dest_size)
 {
     return rt_strncpy(dst, src, dest_size);
 }
 
+LV_FUNC_SECTION
 char * lv_strcpy(char * dst, const char * src)
 {
     return rt_strcpy(dst, src);
 }
 
+LV_FUNC_SECTION
 int lv_strcmp(const char * s1, const char * s2)
 {
     return rt_strcmp(s1, s2);
 }
 
+LV_FUNC_SECTION
 char * lv_strdup(const char * src)
 {
     size_t len = lv_strlen(src) + 1;
@@ -96,6 +103,7 @@ char * lv_strdup(const char * src)
     return dst;
 }
 
+LV_FUNC_SECTION
 char * lv_strcat(char * dst, const char * src)
 {
     /*Since RT-thread does not have rt_strcat,
@@ -104,6 +112,7 @@ char * lv_strcat(char * dst, const char * src)
     return dst;
 }
 
+LV_FUNC_SECTION
 char * lv_strncat(char * dst, const char * src, size_t src_len)
 {
     char * tmp = dst;

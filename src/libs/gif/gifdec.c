@@ -40,6 +40,7 @@ static void f_gif_close(gd_GIF * gif);
 #endif
 
 static uint16_t
+LV_FUNC_SECTION
 read_num(gd_GIF * gif)
 {
     uint8_t bytes[2];
@@ -49,6 +50,7 @@ read_num(gd_GIF * gif)
 }
 
 gd_GIF *
+LV_FUNC_SECTION
 gd_open_gif_file(const char * fname)
 {
     gd_GIF gif_base;
@@ -61,6 +63,7 @@ gd_open_gif_file(const char * fname)
 }
 
 gd_GIF *
+LV_FUNC_SECTION
 gd_open_gif_data(const void * data)
 {
     gd_GIF gif_base;
@@ -72,6 +75,7 @@ gd_open_gif_data(const void * data)
     return gif_open(&gif_base);
 }
 
+LV_FUNC_SECTION
 static gd_GIF * gif_open(gd_GIF * gif_base)
 {
     uint8_t sigver[3];
@@ -170,6 +174,7 @@ ok:
 }
 
 static void
+LV_FUNC_SECTION
 discard_sub_blocks(gd_GIF * gif)
 {
     uint8_t size;
@@ -181,6 +186,7 @@ discard_sub_blocks(gd_GIF * gif)
 }
 
 static void
+LV_FUNC_SECTION
 read_plain_text_ext(gd_GIF * gif)
 {
     if(gif->plain_text) {
@@ -209,6 +215,7 @@ read_plain_text_ext(gd_GIF * gif)
 }
 
 static void
+LV_FUNC_SECTION
 read_graphic_control_ext(gd_GIF * gif)
 {
     uint8_t rdit;
@@ -226,6 +233,7 @@ read_graphic_control_ext(gd_GIF * gif)
 }
 
 static void
+LV_FUNC_SECTION
 read_comment_ext(gd_GIF * gif)
 {
     if(gif->comment) {
@@ -238,6 +246,7 @@ read_comment_ext(gd_GIF * gif)
 }
 
 static void
+LV_FUNC_SECTION
 read_application_ext(gd_GIF * gif)
 {
     char app_id[8];
@@ -277,6 +286,7 @@ read_application_ext(gd_GIF * gif)
 }
 
 static void
+LV_FUNC_SECTION
 read_ext(gd_GIF * gif)
 {
     uint8_t label;
@@ -301,6 +311,7 @@ read_ext(gd_GIF * gif)
 }
 
 static uint16_t
+LV_FUNC_SECTION
 get_key(gd_GIF *gif, int key_size, uint8_t *sub_len, uint8_t *shift, uint8_t *byte)
 {
     int bits_read;
@@ -333,6 +344,7 @@ get_key(gd_GIF *gif, int key_size, uint8_t *sub_len, uint8_t *shift, uint8_t *by
 /* Decompress image pixels.
  * Return 0 on success or -1 on out-of-memory (w.r.t. LZW code table) or parse error. */
 static int
+LV_FUNC_SECTION
 read_image_data(gd_GIF *gif, int interlace)
 {
     uint8_t sub_len, shift, byte;
@@ -480,6 +492,7 @@ read_image_data(gd_GIF *gif, int interlace)
 }
 #else
 static Table *
+LV_FUNC_SECTION
 new_table(int key_size)
 {
     int key;
@@ -502,6 +515,7 @@ new_table(int key_size)
  *  +1 if key size must be incremented after this addition
  *  -1 if could not realloc table */
 static int
+LV_FUNC_SECTION
 add_entry(Table ** tablep, uint16_t length, uint16_t prefix, uint8_t suffix)
 {
     Table * table = *tablep;
@@ -523,6 +537,7 @@ add_entry(Table ** tablep, uint16_t length, uint16_t prefix, uint8_t suffix)
 
 /* Compute output index of y-th input line, in frame of height h. */
 static int
+LV_FUNC_SECTION
 interlaced_line_index(int h, int y)
 {
     int p; /* number of lines in current pass */
@@ -546,6 +561,7 @@ interlaced_line_index(int h, int y)
 /* Decompress image pixels.
  * Return 0 on success or -1 on out-of-memory (w.r.t. LZW code table) or parse error. */
 static int
+LV_FUNC_SECTION
 read_image_data(gd_GIF * gif, int interlace)
 {
     uint8_t sub_len, shift, byte;
@@ -627,6 +643,7 @@ read_image_data(gd_GIF * gif, int interlace)
 /* Read image.
  * Return 0 on success or -1 on out-of-memory (w.r.t. LZW code table) or parse error. */
 static int
+LV_FUNC_SECTION
 read_image(gd_GIF * gif)
 {
     uint8_t fisrz;
@@ -658,6 +675,7 @@ read_image(gd_GIF * gif)
 }
 
 static void
+LV_FUNC_SECTION
 render_frame_rect(gd_GIF * gif, uint8_t * buffer)
 {
     int i = gif->fy * gif->width + gif->fx;
@@ -686,6 +704,7 @@ render_frame_rect(gd_GIF * gif, uint8_t * buffer)
 }
 
 static void
+LV_FUNC_SECTION
 dispose(gd_GIF * gif)
 {
     int i;
@@ -723,6 +742,7 @@ dispose(gd_GIF * gif)
 
 /* Return 1 if got a frame; 0 if got GIF trailer; -1 if error. */
 int
+LV_FUNC_SECTION
 gd_get_frame(gd_GIF * gif)
 {
     char sep;
@@ -750,12 +770,14 @@ gd_get_frame(gd_GIF * gif)
 }
 
 void
+LV_FUNC_SECTION
 gd_render_frame(gd_GIF * gif, uint8_t * buffer)
 {
     render_frame_rect(gif, buffer);
 }
 
 void
+LV_FUNC_SECTION
 gd_rewind(gd_GIF * gif)
 {
     gif->loop_count = -1;
@@ -763,12 +785,14 @@ gd_rewind(gd_GIF * gif)
 }
 
 void
+LV_FUNC_SECTION
 gd_close_gif(gd_GIF * gif)
 {
     f_gif_close(gif);
     lv_free(gif);
 }
 
+LV_FUNC_SECTION
 static bool f_gif_open(gd_GIF * gif, const void * path, bool is_file)
 {
     gif->f_rw_p = 0;
@@ -786,6 +810,7 @@ static bool f_gif_open(gd_GIF * gif, const void * path, bool is_file)
     }
 }
 
+LV_FUNC_SECTION
 static void f_gif_read(gd_GIF * gif, void * buf, size_t len)
 {
     if(gif->is_file) {
@@ -797,6 +822,7 @@ static void f_gif_read(gd_GIF * gif, void * buf, size_t len)
     }
 }
 
+LV_FUNC_SECTION
 static int f_gif_seek(gd_GIF * gif, size_t pos, int k)
 {
     if(gif->is_file) {
@@ -812,6 +838,7 @@ static int f_gif_seek(gd_GIF * gif, size_t pos, int k)
     }
 }
 
+LV_FUNC_SECTION
 static void f_gif_close(gd_GIF * gif)
 {
     if(gif->is_file) {

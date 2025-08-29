@@ -9,16 +9,19 @@
 
 static lv_obj_t * active_screen = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_barcode_normal(void)
 {
     lv_color_t bg_color = lv_palette_lighten(LV_PALETTE_LIGHT_BLUE, 5);
@@ -44,14 +47,17 @@ void test_barcode_normal(void)
 
 #else
 
+LV_FUNC_SECTION
 void setUp(void)
 {
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
 }
 
+LV_FUNC_SECTION
 void test_barcode_normal(void)
 {
 }

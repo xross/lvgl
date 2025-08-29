@@ -13,16 +13,19 @@ static lv_obj_t * list_button_create(lv_obj_t * parent);
 static void opa_anim_cb(void * var, int32_t v);
 static void draw_to_canvas(lv_obj_t * canvas);
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 void test_binding(void)
 {
     create_ui();
@@ -33,6 +36,7 @@ void test_binding(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("binding.png");
 }
 
+LV_FUNC_SECTION
 static void create_ui(void)
 {
     /*Create a colors*/
@@ -194,6 +198,7 @@ static void create_ui(void)
     lv_image_set_scale_x(img, 400);
 }
 
+LV_FUNC_SECTION
 static void chart_type_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     int32_t v = lv_subject_get_int(subject);
@@ -201,6 +206,7 @@ static void chart_type_observer_cb(lv_observer_t * observer, lv_subject_t * subj
     lv_chart_set_type(chart, v == 0 ? LV_CHART_TYPE_LINE : LV_CHART_TYPE_BAR);
 }
 
+LV_FUNC_SECTION
 static void buttonmatrix_event_cb(lv_event_t * e)
 {
     lv_obj_t * label = lv_event_get_user_data(e);
@@ -211,6 +217,7 @@ static void buttonmatrix_event_cb(lv_event_t * e)
     lv_label_set_text(label, text);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * list_button_create(lv_obj_t * parent)
 {
     lv_obj_t * btn = lv_button_create(parent);
@@ -226,11 +233,13 @@ static lv_obj_t * list_button_create(lv_obj_t * parent)
     return btn;
 }
 
+LV_FUNC_SECTION
 static void opa_anim_cb(void * var, int32_t v)
 {
     lv_obj_set_style_opa(var, v, 0);
 }
 
+LV_FUNC_SECTION
 static void draw_to_canvas(lv_obj_t * canvas)
 {
     lv_layer_t layer;

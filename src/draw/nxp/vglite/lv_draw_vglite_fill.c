@@ -66,6 +66,7 @@ static void _vglite_draw_rect(const lv_area_t * coords, const lv_area_t * clip_a
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vglite_fill(lv_draw_unit_t * draw_unit, const lv_draw_fill_dsc_t * dsc,
                          const lv_area_t * coords)
 {
@@ -98,6 +99,7 @@ void lv_draw_vglite_fill(lv_draw_unit_t * draw_unit, const lv_draw_fill_dsc_t * 
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _vglite_fill(const lv_area_t * dest_area, const lv_draw_fill_dsc_t * dsc)
 {
     vg_lite_buffer_t * vgbuf = vglite_get_dest_buf();
@@ -145,6 +147,7 @@ static void _vglite_fill(const lv_area_t * dest_area, const lv_draw_fill_dsc_t *
     }
 }
 
+LV_FUNC_SECTION
 static void _vglite_draw_rect(const lv_area_t * coords, const lv_area_t * clip_area,
                               const lv_draw_fill_dsc_t * dsc)
 {

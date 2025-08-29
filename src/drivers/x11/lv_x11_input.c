@@ -57,6 +57,7 @@ typedef struct _x11_inp_data {
  * X11 input event handler, predicated to fetch and handle only input related events
  * (MotionNotify, ButtonPress/Release, KeyPress/Release)
  */
+LV_FUNC_SECTION
 static int is_inp_event(Display * disp, XEvent * event, XPointer arg)
 {
     LV_UNUSED(disp);
@@ -65,6 +66,7 @@ static int is_inp_event(Display * disp, XEvent * event, XPointer arg)
              || (event->type >= DestroyNotify && event->type <= CirculateNotify) /* events from StructureNotifyMask */
              ||  event->type == ClientMessage);
 }
+LV_FUNC_SECTION
 static void x11_inp_event_handler(lv_timer_t * t)
 {
     lv_display_t * disp = lv_timer_get_user_data(t);
@@ -183,6 +185,7 @@ static void x11_inp_event_handler(lv_timer_t * t)
  * event called by lvgl display if display has been closed (@ref lv_display_delete has been called)
  * @param[in] e  event data, containing lv_display_t object
  */
+LV_FUNC_SECTION
 static void x11_inp_delete_evt_cb(lv_event_t * e)
 {
     x11_inp_data_t * xd = (x11_inp_data_t *)lv_event_get_user_data(e);
@@ -197,6 +200,7 @@ static void x11_inp_delete_evt_cb(lv_event_t * e)
  * @param[in] disp   the created X11 display object from @lv_x11_window_create
  * @return           pointer to the local user data object @x11_inp_data_t
  */
+LV_FUNC_SECTION
 static x11_inp_data_t * x11_input_get_user_data(lv_display_t * disp)
 {
     _x11_user_hdr_t * disp_hdr = lv_display_get_driver_data(disp);
@@ -216,6 +220,7 @@ static x11_inp_data_t * x11_input_get_user_data(lv_display_t * disp)
     return *inp_data;
 }
 
+LV_FUNC_SECTION
 static void x11_keyboard_read_cb(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_display_t * disp = lv_indev_get_driver_data(indev);
@@ -233,6 +238,7 @@ static void x11_keyboard_read_cb(lv_indev_t * indev, lv_indev_data_t * data)
     }
 }
 
+LV_FUNC_SECTION
 static void x11_mouse_read_cb(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_display_t * disp = lv_indev_get_driver_data(indev);
@@ -248,6 +254,7 @@ static void x11_mouse_read_cb(lv_indev_t * indev, lv_indev_data_t * data)
     data->state = xd->left_mouse_btn ? LV_INDEV_STATE_PRESSED : LV_INDEV_STATE_RELEASED;
 }
 
+LV_FUNC_SECTION
 static void x11_mousewheel_read_cb(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_display_t * disp = lv_indev_get_driver_data(indev);
@@ -258,6 +265,7 @@ static void x11_mousewheel_read_cb(lv_indev_t * indev, lv_indev_data_t * data)
     xd->wheel_cnt  = 0;
 }
 
+LV_FUNC_SECTION
 static lv_indev_t * lv_x11_keyboard_create(lv_display_t * disp)
 {
     lv_indev_t * indev = lv_indev_create();
@@ -270,6 +278,7 @@ static lv_indev_t * lv_x11_keyboard_create(lv_display_t * disp)
     return indev;
 }
 
+LV_FUNC_SECTION
 static lv_indev_t * lv_x11_mouse_create(lv_display_t * disp, lv_image_dsc_t const * symb)
 {
     lv_indev_t * indev = lv_indev_create();
@@ -288,6 +297,7 @@ static lv_indev_t * lv_x11_mouse_create(lv_display_t * disp, lv_image_dsc_t cons
     return indev;
 }
 
+LV_FUNC_SECTION
 static lv_indev_t * lv_x11_mousewheel_create(lv_display_t * disp)
 {
     lv_indev_t * indev = lv_indev_create();
@@ -303,6 +313,7 @@ static lv_indev_t * lv_x11_mousewheel_create(lv_display_t * disp)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_x11_inputs_create(lv_display_t * disp, lv_image_dsc_t const * mouse_img)
 {
     x11_inp_data_t * xd = x11_input_get_user_data(disp);

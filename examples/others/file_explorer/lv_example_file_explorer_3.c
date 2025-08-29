@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+LV_FUNC_SECTION
 static void exch_table_item(lv_obj_t * tb, int16_t i, int16_t j)
 {
     const char * tmp;
@@ -21,6 +22,7 @@ static void exch_table_item(lv_obj_t * tb, int16_t i, int16_t j)
 }
 
 /*Quick sort 3 way*/
+LV_FUNC_SECTION
 static void sort_by_file_kind(lv_obj_t * tb, int16_t lo, int16_t hi)
 {
     if(lo >= hi) return;
@@ -42,6 +44,7 @@ static void sort_by_file_kind(lv_obj_t * tb, int16_t lo, int16_t hi)
     sort_by_file_kind(tb, gt + 1, hi);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void file_explorer_event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -61,6 +64,7 @@ static void file_explorer_event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_example_file_explorer_3(void)
 {
     lv_obj_t * file_explorer = lv_file_explorer_create(lv_screen_active());

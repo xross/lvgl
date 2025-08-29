@@ -15,41 +15,49 @@
 
 extern PikaObj* pika_lv_event_listener_g;
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_center(PikaObj* self) {
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     lv_obj_center(lv_obj);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_set_size(PikaObj* self, int size_x, int size_y) {
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     lv_obj_set_size(lv_obj, size_x, size_y);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_align(PikaObj* self, int align, int x_ofs, int y_ofs) {
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     lv_obj_align(lv_obj, align, x_ofs, y_ofs);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_set_height(PikaObj* self, int h) {
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     lv_obj_set_height(lv_obj, h);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_update_layout(PikaObj* self) {
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     lv_obj_update_layout(lv_obj);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_set_width(PikaObj* self, int w) {
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     lv_obj_set_width(lv_obj, w);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_add_state(PikaObj* self, int state) {
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     lv_obj_add_state(lv_obj, state);
 }
 
+LV_FUNC_SECTION
 PikaObj* eventListener_getHandler(PikaObj* self, uintptr_t event_id) {
     Args buffs = {0};
     char* event_name =
@@ -60,6 +68,7 @@ PikaObj* eventListener_getHandler(PikaObj* self, uintptr_t event_id) {
     return event_handler;
 }
 
+LV_FUNC_SECTION
 static void __pika_event_cb(lv_event_t* e) {
     lv_obj_t* target = lv_event_get_target(e);
     PikaObj* event_handler =
@@ -69,6 +78,7 @@ static void __pika_event_cb(lv_event_t* e) {
     obj_run(event_handler, "_event_cb(_event_evt)");
 }
 
+LV_FUNC_SECTION
 void eventListener_registerEvent(PikaObj* self,
                               uintptr_t event_id,
                               PikaObj* event_handler) {
@@ -81,6 +91,7 @@ void eventListener_registerEvent(PikaObj* self,
     strsDeinit(&buffs);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_add_event_cb(PikaObj* self,
                                    Arg* event_cb,
                                    int filter,
@@ -93,22 +104,26 @@ void pika_lvgl_lv_obj_add_event_cb(PikaObj* self,
     eventListener_registerEvent(pika_lv_event_listener_g, (uintptr_t)lv_obj, self);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_add_style(PikaObj *self, PikaObj* style, int selector){
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     lv_style_t* lv_style = obj_getPtr(style, "lv_style");
     lv_obj_add_style(lv_obj, lv_style, selector);
 }
 
+LV_FUNC_SECTION
 int pika_lvgl_lv_obj_get_x(PikaObj *self){
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     return lv_obj_get_x(lv_obj);
 }
 
+LV_FUNC_SECTION
 int pika_lvgl_lv_obj_get_y(PikaObj *self){
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     return lv_obj_get_y(lv_obj);
 }
 
+LV_FUNC_SECTION
 void pika_lvgl_lv_obj_set_pos(PikaObj *self, int x, int y){
     lv_obj_t* lv_obj = obj_getPtr(self, "lv_obj");
     lv_obj_set_pos(lv_obj, x, y);

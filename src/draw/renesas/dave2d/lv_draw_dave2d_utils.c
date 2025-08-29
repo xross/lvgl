@@ -34,6 +34,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 d2_color  lv_draw_dave2d_lv_colour_to_d2_colour(lv_color_t color)
 {
     uint8_t alpha, red, green, blue;
@@ -64,6 +65,7 @@ d2_color  lv_draw_dave2d_lv_colour_to_d2_colour(lv_color_t color)
            | (blue) << 0UL;
 }
 
+LV_FUNC_SECTION
 d2_s32 lv_draw_dave2d_cf_fb_get(void)
 {
     d2_s32 d2_fb_mode = 0;
@@ -94,6 +96,7 @@ d2_s32 lv_draw_dave2d_cf_fb_get(void)
     return d2_fb_mode;
 }
 
+LV_FUNC_SECTION
 d2_u32 lv_draw_dave2d_lv_colour_fmt_to_d2_fmt(lv_color_format_t colour_format)
 {
     d2_u32 d2_lvgl_mode = 0;
@@ -120,6 +123,7 @@ d2_u32 lv_draw_dave2d_lv_colour_fmt_to_d2_fmt(lv_color_format_t colour_format)
     return d2_lvgl_mode;
 }
 
+LV_FUNC_SECTION
 void d2_framebuffer_from_layer(d2_device * handle, lv_layer_t * layer)
 {
     lv_draw_buf_t * draw_buf = layer->draw_buf;

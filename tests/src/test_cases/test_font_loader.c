@@ -55,17 +55,20 @@ static lv_font_t * font_1_bin = NULL;
 static lv_font_t * font_2_bin = NULL;
 static lv_font_t * font_3_bin = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 
 }
 
+LV_FUNC_SECTION
 static void common(void)
 {
     compare_fonts(&test_font_1, font_1_bin);
@@ -97,6 +100,7 @@ static void common(void)
     lv_binfont_destroy(font_3_bin);
 }
 
+LV_FUNC_SECTION
 void test_font_loader_with_cache(void)
 {
     /*Test with cache ('A' has cache)*/
@@ -113,6 +117,7 @@ void test_font_loader_with_cache(void)
     common();
 }
 
+LV_FUNC_SECTION
 void test_font_loader_no_cache(void)
 {
     /*Test without cache ('B' has NO cache)*/
@@ -129,6 +134,7 @@ void test_font_loader_no_cache(void)
     common();
 }
 
+LV_FUNC_SECTION
 void test_font_loader_from_buffer(void)
 {
     /*Test with memfs*/
@@ -145,6 +151,7 @@ void test_font_loader_from_buffer(void)
     common();
 }
 
+LV_FUNC_SECTION
 void test_font_loader_reload(void)
 {
     /*Reload a font which is being used by a label*/
@@ -178,6 +185,7 @@ void test_font_loader_reload(void)
     lv_binfont_destroy(font);
 }
 
+LV_FUNC_SECTION
 static int compare_fonts(lv_font_t * f1, lv_font_t * f2)
 {
     TEST_ASSERT_NOT_NULL_MESSAGE(f1, "font not null");

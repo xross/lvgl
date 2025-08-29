@@ -107,6 +107,7 @@ int32_t LV_ATTRIBUTE_FAST_MEM lv_trigo_sin(int16_t angle)
  *
  */
 
+LV_FUNC_SECTION
 static int32_t do_cubic_bezier(int32_t t, int32_t a, int32_t b, int32_t c)
 {
     /*a * t^3 + b * t^2 + c * t*/
@@ -123,6 +124,7 @@ static int32_t do_cubic_bezier(int32_t t, int32_t a, int32_t b, int32_t c)
     return ret;
 }
 
+LV_FUNC_SECTION
 int32_t lv_cubic_bezier(int32_t x, int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
     int32_t ax, bx, cx, ay, by, cy;
@@ -311,6 +313,7 @@ adj:
     return xn;
 }
 
+LV_FUNC_SECTION
 uint16_t lv_atan2(int x, int y)
 {
     /**
@@ -388,6 +391,7 @@ uint16_t lv_atan2(int x, int y)
     return degree;
 }
 
+LV_FUNC_SECTION
 int64_t lv_pow(int64_t base, int8_t exp)
 {
     int64_t result = 1;
@@ -401,6 +405,7 @@ int64_t lv_pow(int64_t base, int8_t exp)
     return result;
 }
 
+LV_FUNC_SECTION
 int32_t lv_map(int32_t x, int32_t min_in, int32_t max_in, int32_t min_out, int32_t max_out)
 {
     if(max_in >= min_in && x >= max_in) return max_out;
@@ -422,11 +427,13 @@ int32_t lv_map(int32_t x, int32_t min_in, int32_t max_in, int32_t min_out, int32
     return ((x - min_in) * delta_out) / delta_in + min_out;
 }
 
+LV_FUNC_SECTION
 void lv_rand_set_seed(uint32_t seed)
 {
     rand_seed = seed;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_rand(uint32_t min, uint32_t max)
 {
     /*Algorithm "xor" from p. 4 of Marsaglia, "Xorshift RNGs"*/
@@ -444,6 +451,7 @@ int32_t LV_ATTRIBUTE_FAST_MEM lv_trigo_cos(int16_t angle)
     return lv_trigo_sin(angle + 90);
 }
 
+LV_FUNC_SECTION
 int32_t lv_bezier3(int32_t t, int32_t u0, uint32_t u1, int32_t u2, int32_t u3)
 {
     LV_UNUSED(u0);

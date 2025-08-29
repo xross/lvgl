@@ -171,6 +171,7 @@ void * LV_ATTRIBUTE_FAST_MEM lv_memmove(void * dst, const void * src, size_t len
     return dst;
 }
 
+LV_FUNC_SECTION
 int lv_memcmp(const void * p1, const void * p2, size_t len)
 {
     const char * s1 = (const char *) p1;
@@ -183,6 +184,7 @@ int lv_memcmp(const void * p1, const void * p2, size_t len)
 }
 
 /* See https://en.cppreference.com/w/c/string/byte/strlen for reference */
+LV_FUNC_SECTION
 size_t lv_strlen(const char * str)
 {
     size_t i = 0;
@@ -191,6 +193,7 @@ size_t lv_strlen(const char * str)
     return i;
 }
 
+LV_FUNC_SECTION
 size_t lv_strlcpy(char * dst, const char * src, size_t dst_size)
 {
     size_t i = 0;
@@ -204,6 +207,7 @@ size_t lv_strlcpy(char * dst, const char * src, size_t dst_size)
     return i;
 }
 
+LV_FUNC_SECTION
 char * lv_strncpy(char * dst, const char * src, size_t dst_size)
 {
     size_t i;
@@ -216,6 +220,7 @@ char * lv_strncpy(char * dst, const char * src, size_t dst_size)
     return dst;
 }
 
+LV_FUNC_SECTION
 char * lv_strcpy(char * dst, const char * src)
 {
     char * tmp = dst;
@@ -223,6 +228,7 @@ char * lv_strcpy(char * dst, const char * src)
     return tmp;
 }
 
+LV_FUNC_SECTION
 int lv_strcmp(const char * s1, const char * s2)
 {
     while(*s1 && (*s1 == *s2)) {
@@ -232,6 +238,7 @@ int lv_strcmp(const char * s1, const char * s2)
     return *(const unsigned char *)s1 - *(const unsigned char *)s2;
 }
 
+LV_FUNC_SECTION
 char * lv_strdup(const char * src)
 {
     size_t len = lv_strlen(src) + 1;
@@ -242,12 +249,14 @@ char * lv_strdup(const char * src)
     return dst;
 }
 
+LV_FUNC_SECTION
 char * lv_strcat(char * dst, const char * src)
 {
     lv_strcpy(dst + lv_strlen(dst), src);
     return dst;
 }
 
+LV_FUNC_SECTION
 char * lv_strncat(char * dst, const char * src, size_t src_len)
 {
     char * tmp = dst;

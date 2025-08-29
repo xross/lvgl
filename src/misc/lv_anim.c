@@ -58,6 +58,7 @@ static void remove_anim(void * a);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_anim_core_init(void)
 {
     lv_ll_init(anim_ll_p, sizeof(lv_anim_t));
@@ -67,11 +68,13 @@ void lv_anim_core_init(void)
     state.anim_run_round = false;
 }
 
+LV_FUNC_SECTION
 void lv_anim_core_deinit(void)
 {
     lv_anim_delete_all();
 }
 
+LV_FUNC_SECTION
 void lv_anim_init(lv_anim_t * a)
 {
     lv_memzero(a, sizeof(lv_anim_t));
@@ -83,6 +86,7 @@ void lv_anim_init(lv_anim_t * a)
     a->early_apply = 1;
 }
 
+LV_FUNC_SECTION
 lv_anim_t * lv_anim_start(const lv_anim_t * a)
 {
     LV_TRACE_ANIM("begin");
@@ -128,6 +132,7 @@ lv_anim_t * lv_anim_start(const lv_anim_t * a)
     return new_anim;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_get_playtime(const lv_anim_t * a)
 {
     if(a->repeat_cnt == LV_ANIM_REPEAT_INFINITE) {
@@ -142,6 +147,7 @@ uint32_t lv_anim_get_playtime(const lv_anim_t * a)
     return playtime;
 }
 
+LV_FUNC_SECTION
 bool lv_anim_delete(void * var, lv_anim_exec_xcb_t exec_cb)
 {
     lv_anim_t * a;
@@ -165,12 +171,14 @@ bool lv_anim_delete(void * var, lv_anim_exec_xcb_t exec_cb)
     return del_any;
 }
 
+LV_FUNC_SECTION
 void lv_anim_delete_all(void)
 {
     lv_ll_clear_custom(anim_ll_p, remove_anim);
     anim_mark_list_change();
 }
 
+LV_FUNC_SECTION
 lv_anim_t * lv_anim_get(void * var, lv_anim_exec_xcb_t exec_cb)
 {
     lv_anim_t * a;
@@ -183,11 +191,13 @@ lv_anim_t * lv_anim_get(void * var, lv_anim_exec_xcb_t exec_cb)
     return NULL;
 }
 
+LV_FUNC_SECTION
 lv_timer_t * lv_anim_get_timer(void)
 {
     return state.timer;
 }
 
+LV_FUNC_SECTION
 uint16_t lv_anim_count_running(void)
 {
     uint16_t cnt = 0;
@@ -197,6 +207,7 @@ uint16_t lv_anim_count_running(void)
     return cnt;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_speed_clamped(uint32_t speed, uint32_t min_time, uint32_t max_time)
 {
 
@@ -222,11 +233,13 @@ uint32_t lv_anim_speed_clamped(uint32_t speed, uint32_t min_time, uint32_t max_t
 
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_speed(uint32_t speed)
 {
     return lv_anim_speed_clamped(speed, 0, 10000);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_speed_to_time(uint32_t speed, int32_t start, int32_t end)
 {
     uint32_t d = LV_ABS(start - end);
@@ -237,11 +250,13 @@ uint32_t lv_anim_speed_to_time(uint32_t speed, int32_t start, int32_t end)
     return time;
 }
 
+LV_FUNC_SECTION
 void lv_anim_refr_now(void)
 {
     anim_timer(NULL);
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 int32_t lv_anim_path_linear(const lv_anim_t * a)
 {
     /*Calculate the current step*/
@@ -257,29 +272,34 @@ int32_t lv_anim_path_linear(const lv_anim_t * a)
     return new_value;
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 int32_t lv_anim_path_ease_in(const lv_anim_t * a)
 {
     return lv_anim_path_cubic_bezier(a, LV_BEZIER_VAL_FLOAT(0.42), LV_BEZIER_VAL_FLOAT(0),
                                      LV_BEZIER_VAL_FLOAT(1), LV_BEZIER_VAL_FLOAT(1));
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 int32_t lv_anim_path_ease_out(const lv_anim_t * a)
 {
     return lv_anim_path_cubic_bezier(a, LV_BEZIER_VAL_FLOAT(0), LV_BEZIER_VAL_FLOAT(0),
                                      LV_BEZIER_VAL_FLOAT(0.58), LV_BEZIER_VAL_FLOAT(1));
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 int32_t lv_anim_path_ease_in_out(const lv_anim_t * a)
 {
     return lv_anim_path_cubic_bezier(a, LV_BEZIER_VAL_FLOAT(0.42), LV_BEZIER_VAL_FLOAT(0),
                                      LV_BEZIER_VAL_FLOAT(0.58), LV_BEZIER_VAL_FLOAT(1));
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 int32_t lv_anim_path_overshoot(const lv_anim_t * a)
 {
     return lv_anim_path_cubic_bezier(a, 341, 0, 683, 1300);
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 int32_t lv_anim_path_bounce(const lv_anim_t * a)
 {
     /*Calculate the current step*/
@@ -332,6 +352,7 @@ int32_t lv_anim_path_bounce(const lv_anim_t * a)
     return new_value;
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 int32_t lv_anim_path_step(const lv_anim_t * a)
 {
     if(a->act_time >= a->duration)
@@ -340,37 +361,44 @@ int32_t lv_anim_path_step(const lv_anim_t * a)
         return a->start_value;
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 int32_t lv_anim_path_custom_bezier3(const lv_anim_t * a)
 {
     const lv_anim_bezier3_para_t * para = &a->parameter.bezier3;
     return lv_anim_path_cubic_bezier(a, para->x1, para->y1, para->x2, para->y2);
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_var(lv_anim_t * a, void * var)
 {
     a->var = var;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_exec_cb(lv_anim_t * a, lv_anim_exec_xcb_t exec_cb)
 {
     a->exec_cb = exec_cb;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_duration(lv_anim_t * a, uint32_t duration)
 {
     a->duration = duration;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_time(lv_anim_t * a, uint32_t duration)
 {
     lv_anim_set_duration(a, duration);
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_delay(lv_anim_t * a, uint32_t delay)
 {
     a->act_time = -(int32_t)(delay);
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_values(lv_anim_t * a, int32_t start, int32_t end)
 {
     a->start_value = start;
@@ -378,71 +406,85 @@ void lv_anim_set_values(lv_anim_t * a, int32_t start, int32_t end)
     a->end_value = end;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_custom_exec_cb(lv_anim_t * a, lv_anim_custom_exec_cb_t exec_cb)
 {
     a->custom_exec_cb = exec_cb;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_path_cb(lv_anim_t * a, lv_anim_path_cb_t path_cb)
 {
     a->path_cb = path_cb;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_start_cb(lv_anim_t * a, lv_anim_start_cb_t start_cb)
 {
     a->start_cb = start_cb;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_get_value_cb(lv_anim_t * a, lv_anim_get_value_cb_t get_value_cb)
 {
     a->get_value_cb = get_value_cb;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_completed_cb(lv_anim_t * a, lv_anim_completed_cb_t completed_cb)
 {
     a->completed_cb = completed_cb;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_deleted_cb(lv_anim_t * a, lv_anim_deleted_cb_t deleted_cb)
 {
     a->deleted_cb = deleted_cb;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_playback_duration(lv_anim_t * a, uint32_t duration)
 {
     a->playback_duration = duration;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_playback_time(lv_anim_t * a, uint32_t duration)
 {
     lv_anim_set_playback_duration(a, duration);
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_playback_delay(lv_anim_t * a, uint32_t delay)
 {
     a->playback_delay = delay;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_repeat_count(lv_anim_t * a, uint32_t cnt)
 {
     a->repeat_cnt = cnt;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_repeat_delay(lv_anim_t * a, uint32_t delay)
 {
     a->repeat_delay = delay;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_early_apply(lv_anim_t * a, bool en)
 {
     a->early_apply = en;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_user_data(lv_anim_t * a, void * user_data)
 {
     a->user_data = user_data;
 }
 
+LV_FUNC_SECTION
 void lv_anim_set_bezier3_param(lv_anim_t * a, int16_t x1, int16_t y1, int16_t x2, int16_t y2)
 {
     lv_anim_bezier3_para_t * para = &a->parameter.bezier3;
@@ -453,31 +495,37 @@ void lv_anim_set_bezier3_param(lv_anim_t * a, int16_t x1, int16_t y1, int16_t x2
     para->y2 = y2;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_get_delay(const lv_anim_t * a)
 {
     return -a->act_time;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_get_time(const lv_anim_t * a)
 {
     return a->duration;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_get_repeat_count(const lv_anim_t * a)
 {
     return a->repeat_cnt;
 }
 
+LV_FUNC_SECTION
 void * lv_anim_get_user_data(const lv_anim_t * a)
 {
     return a->user_data;
 }
 
+LV_FUNC_SECTION
 bool lv_anim_custom_delete(lv_anim_t * a, lv_anim_custom_exec_cb_t exec_cb)
 {
     return lv_anim_delete(a ? a->var : NULL, (lv_anim_exec_xcb_t)exec_cb);
 }
 
+LV_FUNC_SECTION
 lv_anim_t * lv_anim_custom_get(lv_anim_t * a, lv_anim_custom_exec_cb_t exec_cb)
 {
     return lv_anim_get(a ? a->var : NULL, (lv_anim_exec_xcb_t)exec_cb);
@@ -490,6 +538,7 @@ lv_anim_t * lv_anim_custom_get(lv_anim_t * a, lv_anim_custom_exec_cb_t exec_cb)
  * Periodically handle the animations.
  * @param param unused
  */
+LV_FUNC_SECTION
 static void anim_timer(lv_timer_t * param)
 {
     LV_UNUSED(param);
@@ -567,6 +616,7 @@ static void anim_timer(lv_timer_t * param)
  * e.g. repeat, play back, delete etc.
  * @param a pointer to an animation descriptor
  */
+LV_FUNC_SECTION
 static void anim_completed_handler(lv_anim_t * a)
 {
     /*In the end of a forward anim decrement repeat cnt.*/
@@ -612,6 +662,7 @@ static void anim_completed_handler(lv_anim_t * a)
     }
 }
 
+LV_FUNC_SECTION
 static void anim_mark_list_change(void)
 {
     state.anim_list_changed = true;
@@ -621,6 +672,7 @@ static void anim_mark_list_change(void)
         lv_timer_resume(state.timer);
 }
 
+LV_FUNC_SECTION
 static int32_t lv_anim_path_cubic_bezier(const lv_anim_t * a, int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
     /*Calculate the current step*/
@@ -635,6 +687,7 @@ static int32_t lv_anim_path_cubic_bezier(const lv_anim_t * a, int32_t x1, int32_
     return new_value;
 }
 
+LV_FUNC_SECTION
 static uint32_t convert_speed_to_time(uint32_t speed_or_time, int32_t start, int32_t end)
 {
     /*It was a simple time*/
@@ -649,6 +702,7 @@ static uint32_t convert_speed_to_time(uint32_t speed_or_time, int32_t start, int
     return LV_CLAMP(min_time * 10, time, max_time * 10);
 }
 
+LV_FUNC_SECTION
 static void resolve_time(lv_anim_t * a)
 {
     a->duration = convert_speed_to_time(a->duration, a->start_value, a->end_value);
@@ -663,6 +717,7 @@ static void resolve_time(lv_anim_t * a)
  * @param a_current     the current animation, use its var and exec_cb as reference to know what to remove
  * @return              true: at least one animation was delete
  */
+LV_FUNC_SECTION
 static bool remove_concurrent_anims(lv_anim_t * a_current)
 {
     if(a_current->exec_cb == NULL && a_current->custom_exec_cb == NULL) return false;
@@ -698,6 +753,7 @@ static bool remove_concurrent_anims(lv_anim_t * a_current)
     return del_any;
 }
 
+__attribute__(( fptrgroup("lv_ll_cleanup") ))
 static void remove_anim(void * a)
 {
     lv_anim_t * anim = a;

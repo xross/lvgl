@@ -4,6 +4,7 @@
 /**
  * Open a BMP file from a file
  */
+LV_FUNC_SECTION
 void lv_example_bmp_1(void)
 {
     lv_obj_t * img = lv_image_create(lv_screen_active());

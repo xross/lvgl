@@ -279,6 +279,7 @@ static void wayland_deinit(void);
  * @param struct wl_callback The callback that needs to be destroyed and re-created
  * @param time Timestamp of the event (unused)
  */
+LV_FUNC_SECTION
 static void graphic_obj_frame_done(void * data, struct wl_callback * cb, uint32_t time)
 {
     struct graphic_object * obj;
@@ -303,6 +304,7 @@ static const struct wl_callback_listener wl_surface_frame_listener = {
     .done = graphic_obj_frame_done,
 };
 
+LV_FUNC_SECTION
 static inline bool _is_digit(char ch)
 {
     return (ch >= '0') && (ch <= '9');
@@ -313,6 +315,7 @@ static inline bool _is_digit(char ch)
  *  @description called by the compositor to advertise the supported
  *  color formats for SHM buffers, there is a call per supported format
  */
+LV_FUNC_SECTION
 static void shm_format(void * data, struct wl_shm * wl_shm, uint32_t format)
 {
     struct application * app = data;
@@ -346,6 +349,7 @@ static const struct wl_shm_listener shm_listener = {
     shm_format
 };
 
+LV_FUNC_SECTION
 static void pointer_handle_enter(void * data, struct wl_pointer * pointer,
                                  uint32_t serial, struct wl_surface * surface,
                                  wl_fixed_t sx, wl_fixed_t sy)
@@ -444,6 +448,7 @@ static void pointer_handle_enter(void * data, struct wl_pointer * pointer,
     }
 }
 
+LV_FUNC_SECTION
 static void pointer_handle_leave(void * data, struct wl_pointer * pointer,
                                  uint32_t serial, struct wl_surface * surface)
 {
@@ -457,6 +462,7 @@ static void pointer_handle_leave(void * data, struct wl_pointer * pointer,
     }
 }
 
+LV_FUNC_SECTION
 static void pointer_handle_motion(void * data, struct wl_pointer * pointer,
                                   uint32_t time, wl_fixed_t sx, wl_fixed_t sy)
 {
@@ -473,6 +479,7 @@ static void pointer_handle_motion(void * data, struct wl_pointer * pointer,
     app->pointer_obj->input.pointer.y = LV_MAX(0, LV_MIN(wl_fixed_to_int(sy), app->pointer_obj->height - 1));
 }
 
+LV_FUNC_SECTION
 static void pointer_handle_button(void * data, struct wl_pointer * wl_pointer,
                                   uint32_t serial, uint32_t time, uint32_t button,
                                   uint32_t state)
@@ -643,6 +650,7 @@ static void pointer_handle_button(void * data, struct wl_pointer * wl_pointer,
     }
 }
 
+LV_FUNC_SECTION
 static void pointer_handle_axis(void * data, struct wl_pointer * wl_pointer,
                                 uint32_t time, uint32_t axis, wl_fixed_t value)
 {
@@ -674,6 +682,7 @@ static const struct wl_pointer_listener pointer_listener = {
     .axis   = pointer_handle_axis,
 };
 
+LV_FUNC_SECTION
 static lv_key_t keycode_xkb_to_lv(xkb_keysym_t xkb_key)
 {
     lv_key_t key = 0;
@@ -742,6 +751,7 @@ static lv_key_t keycode_xkb_to_lv(xkb_keysym_t xkb_key)
     return key;
 }
 
+LV_FUNC_SECTION
 static void keyboard_handle_keymap(void * data, struct wl_keyboard * keyboard,
                                    uint32_t format, int fd, uint32_t size)
 {
@@ -789,6 +799,7 @@ static void keyboard_handle_keymap(void * data, struct wl_keyboard * keyboard,
     app->seat.xkb.state = state;
 }
 
+LV_FUNC_SECTION
 static void keyboard_handle_enter(void * data, struct wl_keyboard * keyboard,
                                   uint32_t serial, struct wl_surface * surface,
                                   struct wl_array * keys)
@@ -807,6 +818,7 @@ static void keyboard_handle_enter(void * data, struct wl_keyboard * keyboard,
     }
 }
 
+LV_FUNC_SECTION
 static void keyboard_handle_leave(void * data, struct wl_keyboard * keyboard,
                                   uint32_t serial, struct wl_surface * surface)
 {
@@ -820,6 +832,7 @@ static void keyboard_handle_leave(void * data, struct wl_keyboard * keyboard,
     }
 }
 
+LV_FUNC_SECTION
 static void keyboard_handle_key(void * data, struct wl_keyboard * keyboard,
                                 uint32_t serial, uint32_t time, uint32_t key,
                                 uint32_t state)
@@ -851,6 +864,7 @@ static void keyboard_handle_key(void * data, struct wl_keyboard * keyboard,
     }
 }
 
+LV_FUNC_SECTION
 static void keyboard_handle_modifiers(void * data, struct wl_keyboard * keyboard,
                                       uint32_t serial, uint32_t mods_depressed,
                                       uint32_t mods_latched, uint32_t mods_locked,
@@ -878,6 +892,7 @@ static const struct wl_keyboard_listener keyboard_listener = {
     .modifiers  = keyboard_handle_modifiers,
 };
 
+LV_FUNC_SECTION
 static void touch_handle_down(void * data, struct wl_touch * wl_touch,
                               uint32_t serial, uint32_t time, struct wl_surface * surface,
                               int32_t id, wl_fixed_t x_w, wl_fixed_t y_w)
@@ -923,6 +938,7 @@ static void touch_handle_down(void * data, struct wl_touch * wl_touch,
 #endif
 }
 
+LV_FUNC_SECTION
 static void touch_handle_up(void * data, struct wl_touch * wl_touch,
                             uint32_t serial, uint32_t time, int32_t id)
 {
@@ -971,6 +987,7 @@ static void touch_handle_up(void * data, struct wl_touch * wl_touch,
     app->touch_obj = NULL;
 }
 
+LV_FUNC_SECTION
 static void touch_handle_motion(void * data, struct wl_touch * wl_touch,
                                 uint32_t time, int32_t id, wl_fixed_t x_w, wl_fixed_t y_w)
 {
@@ -988,6 +1005,7 @@ static void touch_handle_motion(void * data, struct wl_touch * wl_touch,
     app->touch_obj->input.touch.y = wl_fixed_to_int(y_w);
 }
 
+LV_FUNC_SECTION
 static void touch_handle_frame(void * data, struct wl_touch * wl_touch)
 {
     LV_UNUSED(wl_touch);
@@ -995,6 +1013,7 @@ static void touch_handle_frame(void * data, struct wl_touch * wl_touch)
 
 }
 
+LV_FUNC_SECTION
 static void touch_handle_cancel(void * data, struct wl_touch * wl_touch)
 {
     LV_UNUSED(wl_touch);
@@ -1009,6 +1028,7 @@ static const struct wl_touch_listener touch_listener = {
     .cancel = touch_handle_cancel,
 };
 
+LV_FUNC_SECTION
 static void seat_handle_capabilities(void * data, struct wl_seat * wl_seat, enum wl_seat_capability caps)
 {
     struct application * app = data;
@@ -1053,6 +1073,7 @@ static const struct wl_seat_listener seat_listener = {
     .capabilities = seat_handle_capabilities,
 };
 
+LV_FUNC_SECTION
 static void draw_window(struct window * window, uint32_t width, uint32_t height)
 {
 
@@ -1083,11 +1104,13 @@ static void draw_window(struct window * window, uint32_t width, uint32_t height)
 }
 
 #if LV_WAYLAND_WL_SHELL
+LV_FUNC_SECTION
 static void wl_shell_handle_ping(void * data, struct wl_shell_surface * shell_surface, uint32_t serial)
 {
     return wl_shell_surface_pong(shell_surface, serial);
 }
 
+LV_FUNC_SECTION
 static void wl_shell_handle_configure(void * data, struct wl_shell_surface * shell_surface,
                                       uint32_t edges, int32_t width, int32_t height)
 {
@@ -1112,6 +1135,7 @@ static const struct wl_shell_surface_listener shell_surface_listener = {
 #endif
 
 #if LV_WAYLAND_XDG_SHELL
+LV_FUNC_SECTION
 static void xdg_surface_handle_configure(void * data, struct xdg_surface * xdg_surface, uint32_t serial)
 {
     struct window * window = (struct window *)data;
@@ -1142,6 +1166,7 @@ static const struct xdg_surface_listener xdg_surface_listener = {
     .configure = xdg_surface_handle_configure,
 };
 
+LV_FUNC_SECTION
 static void xdg_toplevel_handle_configure(void * data, struct xdg_toplevel * xdg_toplevel,
                                           int32_t width, int32_t height, struct wl_array * states)
 {
@@ -1173,6 +1198,7 @@ static void xdg_toplevel_handle_configure(void * data, struct xdg_toplevel * xdg
     }
 }
 
+LV_FUNC_SECTION
 static void xdg_toplevel_handle_close(void * data, struct xdg_toplevel * xdg_toplevel)
 {
     struct window * window = (struct window *)data;
@@ -1181,6 +1207,7 @@ static void xdg_toplevel_handle_close(void * data, struct xdg_toplevel * xdg_top
     LV_UNUSED(xdg_toplevel);
 }
 
+LV_FUNC_SECTION
 static void xdg_toplevel_handle_configure_bounds(void * data, struct xdg_toplevel * xdg_toplevel,
                                                  int32_t width, int32_t height)
 {
@@ -1201,6 +1228,7 @@ static const struct xdg_toplevel_listener xdg_toplevel_listener = {
     .configure_bounds = xdg_toplevel_handle_configure_bounds
 };
 
+LV_FUNC_SECTION
 static void xdg_wm_base_ping(void * data, struct xdg_wm_base * xdg_wm_base, uint32_t serial)
 {
     LV_UNUSED(data);
@@ -1216,6 +1244,7 @@ static const struct xdg_wm_base_listener xdg_wm_base_listener = {
 #endif
 
 
+LV_FUNC_SECTION
 static void handle_global(void * data, struct wl_registry * registry,
                           uint32_t name, const char * interface, uint32_t version)
 {
@@ -1253,6 +1282,7 @@ static void handle_global(void * data, struct wl_registry * registry,
 #endif
 }
 
+LV_FUNC_SECTION
 static void handle_global_remove(void * data, struct wl_registry * registry, uint32_t name)
 {
 
@@ -1267,6 +1297,7 @@ static const struct wl_registry_listener registry_listener = {
     .global_remove  = handle_global_remove
 };
 
+LV_FUNC_SECTION
 static void handle_wl_buffer_release(void * data, struct wl_buffer * wl_buffer)
 {
     const struct smm_buffer_properties * props;
@@ -1289,12 +1320,14 @@ static const struct wl_buffer_listener wl_buffer_listener = {
     .release = handle_wl_buffer_release,
 };
 
+LV_FUNC_SECTION
 static void cache_clear(struct window * window)
 {
     window->dmg_cache.start = window->dmg_cache.end;
     window->dmg_cache.size = 0;
 }
 
+LV_FUNC_SECTION
 static void cache_purge(struct window * window, smm_buffer_t * buf)
 {
     lv_area_t * next_dmg;
@@ -1314,6 +1347,7 @@ static void cache_purge(struct window * window, smm_buffer_t * buf)
     }
 }
 
+LV_FUNC_SECTION
 static void cache_add_area(struct window * window, smm_buffer_t * buf, const lv_area_t * area)
 {
     if(SMM_BUFFER_PROPERTIES(buf)->tag[TAG_BUFFER_DAMAGE] == NULL) {
@@ -1343,6 +1377,7 @@ done:
     return;
 }
 
+LV_FUNC_SECTION
 static void cache_apply_areas(struct window * window, void * dest, void * src, smm_buffer_t * src_buf)
 {
     unsigned long offset;
@@ -1384,6 +1419,7 @@ static void cache_apply_areas(struct window * window, void * dest, void * src, s
 
 }
 
+LV_FUNC_SECTION
 static bool sme_new_pool(void * ctx, smm_pool_t * pool)
 {
     struct wl_shm_pool * wl_pool;
@@ -1400,6 +1436,7 @@ static bool sme_new_pool(void * ctx, smm_pool_t * pool)
     return (wl_pool == NULL);
 }
 
+LV_FUNC_SECTION
 static void sme_expand_pool(void * ctx, smm_pool_t * pool)
 {
     const struct smm_pool_properties * props = SMM_POOL_PROPERTIES(pool);
@@ -1409,6 +1446,7 @@ static void sme_expand_pool(void * ctx, smm_pool_t * pool)
     wl_shm_pool_resize(props->tag[TAG_LOCAL], props->size);
 }
 
+LV_FUNC_SECTION
 static void sme_free_pool(void * ctx, smm_pool_t * pool)
 {
     struct wl_shm_pool * wl_pool = SMM_POOL_PROPERTIES(pool)->tag[TAG_LOCAL];
@@ -1418,6 +1456,7 @@ static void sme_free_pool(void * ctx, smm_pool_t * pool)
     wl_shm_pool_destroy(wl_pool);
 }
 
+LV_FUNC_SECTION
 static bool sme_new_buffer(void * ctx, smm_buffer_t * buf)
 {
     struct wl_buffer * wl_buf;
@@ -1448,6 +1487,7 @@ static bool sme_new_buffer(void * ctx, smm_buffer_t * buf)
     return fail_alloc;
 }
 
+LV_FUNC_SECTION
 static bool sme_init_buffer(void * ctx, smm_buffer_t * buf)
 {
     smm_buffer_t * src;
@@ -1521,6 +1561,7 @@ done:
     return fail_init;
 }
 
+LV_FUNC_SECTION
 static void sme_free_buffer(void * ctx, smm_buffer_t * buf)
 {
     struct wl_buffer * wl_buf = SMM_BUFFER_PROPERTIES(buf)->tag[TAG_LOCAL];
@@ -1530,6 +1571,7 @@ static void sme_free_buffer(void * ctx, smm_buffer_t * buf)
     wl_buffer_destroy(wl_buf);
 }
 
+LV_FUNC_SECTION
 static struct graphic_object * create_graphic_obj(struct application * app, struct window * window,
                                                   enum object_type type,
                                                   struct graphic_object * parent)
@@ -1577,6 +1619,7 @@ err_out:
     return NULL;
 }
 
+LV_FUNC_SECTION
 static void destroy_graphic_obj(struct graphic_object * obj)
 {
     if(obj->subsurface) {
@@ -1589,6 +1632,7 @@ static void destroy_graphic_obj(struct graphic_object * obj)
 }
 
 #if LV_WAYLAND_WINDOW_DECORATIONS
+LV_FUNC_SECTION
 static bool attach_decoration(struct window * window, struct graphic_object * decoration,
                               smm_buffer_t * decoration_buffer, struct graphic_object * parent)
 {
@@ -1690,6 +1734,7 @@ err_destroy_surface:
  * @param height height of the filled area
  *
  */
+LV_FUNC_SECTION
 static void color_fill(void * pixels, lv_color_t color, uint32_t width, uint32_t height)
 {
 
@@ -1706,6 +1751,7 @@ static void color_fill(void * pixels, lv_color_t color, uint32_t width, uint32_t
     }
 }
 
+LV_FUNC_SECTION
 static void color_fill_XRGB8888(void * pixels, lv_color_t color, uint32_t width, uint32_t height)
 {
     unsigned char * buf = pixels;
@@ -1722,6 +1768,7 @@ static void color_fill_XRGB8888(void * pixels, lv_color_t color, uint32_t width,
 
 }
 
+LV_FUNC_SECTION
 static void color_fill_RGB565(void * pixels, lv_color_t color, uint32_t width, uint32_t height)
 {
     uint16_t * buf = pixels;
@@ -1734,6 +1781,7 @@ static void color_fill_RGB565(void * pixels, lv_color_t color, uint32_t width, u
     }
 }
 
+LV_FUNC_SECTION
 static bool create_decoration(struct window * window,
                               struct graphic_object * decoration,
                               int window_width, int window_height)
@@ -1871,6 +1919,7 @@ static bool create_decoration(struct window * window,
     return attach_decoration(window, decoration, buf, window->body);
 }
 
+LV_FUNC_SECTION
 static void detach_decoration(struct window * window,
                               struct graphic_object * decoration)
 {
@@ -1884,6 +1933,7 @@ static void detach_decoration(struct window * window,
 }
 #endif
 
+LV_FUNC_SECTION
 static bool resize_window(struct window * window, int width, int height)
 {
     struct smm_buffer_t * body_buf1;
@@ -1981,6 +2031,7 @@ static bool resize_window(struct window * window, int width, int height)
  * @param width the height of the window w/decorations
  * @param height the width of the window w/decorations
 */
+LV_FUNC_SECTION
 static struct window * create_window(struct application * app, int width, int height, const char * title)
 {
     struct window * window;
@@ -2080,6 +2131,7 @@ err_free_window:
     return NULL;
 }
 
+LV_FUNC_SECTION
 static void destroy_window(struct window * window)
 {
     if(!window) {
@@ -2111,6 +2163,7 @@ static void destroy_window(struct window * window)
     destroy_graphic_obj(window->body);
 }
 
+LV_FUNC_SECTION
 static void _lv_wayland_flush(lv_display_t * disp, const lv_area_t * area, unsigned char * color_p)
 {
     unsigned long offset;
@@ -2220,6 +2273,7 @@ skip:
     }
 }
 
+LV_FUNC_SECTION
 static void _lv_wayland_handle_input(void)
 {
     int prepare_read = wl_display_prepare_read(application.display);
@@ -2231,6 +2285,7 @@ static void _lv_wayland_handle_input(void)
     wl_display_dispatch_pending(application.display);
 }
 
+LV_FUNC_SECTION
 static void _lv_wayland_handle_output(void)
 {
     struct window * window;
@@ -2293,6 +2348,7 @@ static void _lv_wayland_handle_output(void)
     }
 }
 
+LV_FUNC_SECTION
 static void _lv_wayland_pointer_read(lv_indev_t * drv, lv_indev_data_t * data)
 {
     struct window * window = lv_display_get_user_data(lv_indev_get_display(drv));
@@ -2306,6 +2362,7 @@ static void _lv_wayland_pointer_read(lv_indev_t * drv, lv_indev_data_t * data)
     data->state = window->body->input.pointer.left_button;
 }
 
+LV_FUNC_SECTION
 static void _lv_wayland_pointeraxis_read(lv_indev_t * drv, lv_indev_data_t * data)
 {
     struct window * window = lv_display_get_user_data(lv_indev_get_display(drv));
@@ -2320,6 +2377,7 @@ static void _lv_wayland_pointeraxis_read(lv_indev_t * drv, lv_indev_data_t * dat
     window->body->input.pointer.wheel_diff = 0;
 }
 
+LV_FUNC_SECTION
 static void _lv_wayland_keyboard_read(lv_indev_t * drv, lv_indev_data_t * data)
 {
     struct window * window = lv_display_get_user_data(lv_indev_get_display(drv));
@@ -2331,6 +2389,7 @@ static void _lv_wayland_keyboard_read(lv_indev_t * drv, lv_indev_data_t * data)
     data->state = window->body->input.keyboard.state;
 }
 
+LV_FUNC_SECTION
 static void _lv_wayland_touch_read(lv_indev_t * drv, lv_indev_data_t * data)
 {
     struct window * window = lv_display_get_user_data(lv_indev_get_display(drv));
@@ -2350,6 +2409,7 @@ static void _lv_wayland_touch_read(lv_indev_t * drv, lv_indev_data_t * data)
 /**
  * Initialize Wayland driver
  */
+LV_FUNC_SECTION
 static void wayland_init(void)
 {
     struct smm_events evs = {
@@ -2424,6 +2484,7 @@ static void wayland_init(void)
 /**
  * De-initialize Wayland driver
  */
+LV_FUNC_SECTION
 static void wayland_deinit(void)
 {
     struct window * window = NULL;
@@ -2472,6 +2533,7 @@ static void wayland_deinit(void)
 
 }
 
+LV_FUNC_SECTION
 static uint32_t tick_get_cb(void)
 {
     struct timespec t;
@@ -2484,6 +2546,7 @@ static uint32_t tick_get_cb(void)
  * Get Wayland display file descriptor
  * @return Wayland display file descriptor
  */
+LV_FUNC_SECTION
 int lv_wayland_get_fd(void)
 {
     return wl_display_get_fd(application.display);
@@ -2497,6 +2560,7 @@ int lv_wayland_get_fd(void)
  * @param close_cb function to be called when the window gets closed by the user (optional)
  * @return new display backed by a Wayland window, or NULL on error
  */
+LV_FUNC_SECTION
 lv_display_t * lv_wayland_window_create(uint32_t hor_res, uint32_t ver_res, char * title,
                                         lv_wayland_display_close_f_t close_cb)
 {
@@ -2594,6 +2658,7 @@ lv_display_t * lv_wayland_window_create(uint32_t hor_res, uint32_t ver_res, char
  * Close wayland window
  * @param disp LVGL display using window to be closed
  */
+LV_FUNC_SECTION
 void lv_wayland_window_close(lv_display_t * disp)
 {
     struct window * window = lv_display_get_user_data(disp);
@@ -2610,6 +2675,7 @@ void lv_wayland_window_close(lv_display_t * disp)
  * argument is NULL), check if any Wayland window is open.
  * @return true if window open, false otherwise
  */
+LV_FUNC_SECTION
 bool lv_wayland_window_is_open(lv_display_t * disp)
 {
     struct window * window;
@@ -2637,6 +2703,7 @@ bool lv_wayland_window_is_open(lv_display_t * disp)
  * @param disp LVGL display using window to be set/unset maximization
  * @param Maximization requested status (true = maximized)
  */
+LV_FUNC_SECTION
 void lv_wayland_window_set_maximized(lv_display_t * disp, bool maximized)
 {
     struct window * window = lv_display_get_user_data(disp);
@@ -2682,6 +2749,7 @@ void lv_wayland_window_set_maximized(lv_display_t * disp, bool maximized)
  * @param disp LVGL display using window to be set/unset fullscreen
  * @param fullscreen requested status (true = fullscreen)
  */
+LV_FUNC_SECTION
 void lv_wayland_window_set_fullscreen(lv_display_t * disp, bool fullscreen)
 {
     struct window * window = lv_display_get_user_data(disp);
@@ -2730,6 +2798,7 @@ void lv_wayland_window_set_fullscreen(lv_display_t * disp, bool fullscreen)
  * @param disp LVGL display
  * @return input device connected to pointer events, or NULL on error
  */
+LV_FUNC_SECTION
 lv_indev_t * lv_wayland_get_pointer(lv_display_t * disp)
 {
     struct window * window = lv_display_get_user_data(disp);
@@ -2744,6 +2813,7 @@ lv_indev_t * lv_wayland_get_pointer(lv_display_t * disp)
  * @param disp LVGL display
  * @return input device connected to pointer axis events, or NULL on error
  */
+LV_FUNC_SECTION
 lv_indev_t * lv_wayland_get_pointeraxis(lv_display_t * disp)
 {
     struct window * window = lv_display_get_user_data(disp);
@@ -2758,6 +2828,7 @@ lv_indev_t * lv_wayland_get_pointeraxis(lv_display_t * disp)
  * @param disp LVGL display
  * @return input device connected to keyboard, or NULL on error
  */
+LV_FUNC_SECTION
 lv_indev_t * lv_wayland_get_keyboard(lv_display_t * disp)
 {
     struct window * window = lv_display_get_user_data(disp);
@@ -2772,6 +2843,7 @@ lv_indev_t * lv_wayland_get_keyboard(lv_display_t * disp)
  * @param disp LVGL display
  * @return input device connected to touchscreen, or NULL on error
  */
+LV_FUNC_SECTION
 lv_indev_t * lv_wayland_get_touchscreen(lv_display_t * disp)
 {
     struct window * window = lv_display_get_user_data(disp);
@@ -2784,6 +2856,7 @@ lv_indev_t * lv_wayland_get_touchscreen(lv_display_t * disp)
 /**
  * Wayland specific timer handler (use in place of LVGL lv_timer_handler)
  */
+LV_FUNC_SECTION
 bool lv_wayland_timer_handler(void)
 {
     struct window * window;

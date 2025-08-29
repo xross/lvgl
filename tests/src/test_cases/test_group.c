@@ -4,14 +4,17 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
 }
 
+LV_FUNC_SECTION
 void test_group_count(void)
 {
     lv_group_t * group_1 = lv_group_create();
@@ -26,6 +29,7 @@ void test_group_count(void)
     TEST_ASSERT_EQUAL_UINT32(lv_group_get_count(), 0U);
 }
 
+LV_FUNC_SECTION
 void test_group_by_index(void)
 {
     lv_group_t * group_1 = lv_group_create();
@@ -39,6 +43,7 @@ void test_group_by_index(void)
     lv_group_delete(group_2);
 }
 
+LV_FUNC_SECTION
 void test_group_obj_by_index(void)
 {
     lv_group_t * group = lv_group_create();

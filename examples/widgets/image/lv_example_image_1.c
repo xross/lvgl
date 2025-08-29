@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_IMAGE && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_image_1(void)
 {
     LV_IMAGE_DECLARE(img_cogwheel_argb);

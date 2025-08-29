@@ -3,6 +3,7 @@
 
 #include "../../../misc/lv_area_private.h"
 
+LV_FUNC_SECTION
 void lv_draw_dave2d_fill(lv_draw_dave2d_unit_t * u, const lv_draw_fill_dsc_t * dsc, const lv_area_t * coords)
 {
     lv_area_t draw_area;

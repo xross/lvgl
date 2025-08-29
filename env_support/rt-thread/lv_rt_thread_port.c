@@ -40,6 +40,7 @@ extern void lv_user_gui_init(void);
 static struct rt_thread lvgl_thread;
 
 #ifdef rt_align
+LV_FUNC_SECTION
     rt_align(RT_ALIGN_SIZE)
 #else
     ALIGN(RT_ALIGN_SIZE)
@@ -55,12 +56,14 @@ static void lv_rt_log(lv_log_level_t level, const char * buf)
 #endif /* LV_USE_LOG */
 
 #ifdef PKG_USING_CPU_USAGE
+LV_FUNC_SECTION
 uint32_t lv_timer_os_get_idle(void)
 {
     return (100 - (uint32_t)cpu_load_average());
 }
 #endif /* PKG_USING_CPU_USAGE */
 
+LV_FUNC_SECTION
 static void lvgl_thread_entry(void *parameter)
 {
 #if LV_USE_LOG
@@ -85,6 +88,7 @@ static void lvgl_thread_entry(void *parameter)
     }
 }
 
+LV_FUNC_SECTION
 static int lvgl_thread_init(void)
 {
     rt_err_t err;

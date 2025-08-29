@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_MENU && LV_USE_MSGBOX && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void back_event_handler(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -14,6 +15,7 @@ static void back_event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_example_menu_2(void)
 {
     lv_obj_t * menu = lv_menu_create(lv_screen_active());

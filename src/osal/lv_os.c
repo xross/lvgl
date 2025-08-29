@@ -35,6 +35,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_os_init(void)
 {
 #if LV_USE_OS != LV_OS_NONE
@@ -42,6 +43,7 @@ void lv_os_init(void)
 #endif /*LV_USE_OS != LV_OS_NONE*/
 }
 
+LV_FUNC_SECTION
 void lv_lock(void)
 {
 #if LV_USE_OS != LV_OS_NONE
@@ -49,6 +51,7 @@ void lv_lock(void)
 #endif /*LV_USE_OS != LV_OS_NONE*/
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_lock_isr(void)
 {
 #if LV_USE_OS != LV_OS_NONE
@@ -58,6 +61,7 @@ lv_result_t lv_lock_isr(void)
 #endif /*LV_USE_OS != LV_OS_NONE*/
 }
 
+LV_FUNC_SECTION
 void lv_unlock(void)
 {
 #if LV_USE_OS != LV_OS_NONE

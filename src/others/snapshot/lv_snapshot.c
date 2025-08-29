@@ -44,6 +44,7 @@
 /**
  * Create a draw buffer for object to store the snapshot image.
  */
+LV_FUNC_SECTION
 lv_draw_buf_t * lv_snapshot_create_draw_buf(lv_obj_t * obj, lv_color_format_t cf)
 {
     lv_obj_update_layout(obj);
@@ -57,6 +58,7 @@ lv_draw_buf_t * lv_snapshot_create_draw_buf(lv_obj_t * obj, lv_color_format_t cf
     return lv_draw_buf_create(w, h, cf, LV_STRIDE_AUTO);
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_snapshot_reshape_draw_buf(lv_obj_t * obj, lv_draw_buf_t * draw_buf)
 {
     lv_obj_update_layout(obj);
@@ -71,6 +73,7 @@ lv_result_t lv_snapshot_reshape_draw_buf(lv_obj_t * obj, lv_draw_buf_t * draw_bu
     return draw_buf == NULL ? LV_RESULT_INVALID : LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_snapshot_take_to_draw_buf(lv_obj_t * obj, lv_color_format_t cf, lv_draw_buf_t * draw_buf)
 {
     LV_ASSERT_NULL(obj);
@@ -137,6 +140,7 @@ lv_result_t lv_snapshot_take_to_draw_buf(lv_obj_t * obj, lv_color_format_t cf, l
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_draw_buf_t * lv_snapshot_take(lv_obj_t * obj, lv_color_format_t cf)
 {
     LV_ASSERT_NULL(obj);
@@ -151,12 +155,14 @@ lv_draw_buf_t * lv_snapshot_take(lv_obj_t * obj, lv_color_format_t cf)
     return draw_buf;
 }
 
+LV_FUNC_SECTION
 void lv_snapshot_free(lv_image_dsc_t * dsc)
 {
     LV_LOG_WARN("Deprecated API, use lv_draw_buf_destroy directly.");
     lv_draw_buf_destroy((lv_draw_buf_t *)dsc);
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_snapshot_take_to_buf(lv_obj_t * obj, lv_color_format_t cf, lv_image_dsc_t * dsc,
                                     void * buf,
                                     uint32_t buf_size)

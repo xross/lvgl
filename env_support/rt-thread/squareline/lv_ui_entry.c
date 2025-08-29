@@ -10,6 +10,7 @@
 
 #ifdef __RTTHREAD__
 
+LV_FUNC_SECTION
 void lv_user_gui_init(void)
 {
     extern void ui_init(void);

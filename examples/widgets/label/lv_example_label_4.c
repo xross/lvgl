@@ -5,6 +5,7 @@
 #define MASK_WIDTH 150
 #define MASK_HEIGHT 60
 
+LV_FUNC_SECTION
 static void generate_mask(lv_draw_buf_t * mask, int32_t w, int32_t h, const char * txt)
 {
     /*Create a "8 bit alpha" canvas and clear it*/
@@ -33,6 +34,7 @@ static void generate_mask(lv_draw_buf_t * mask, int32_t w, int32_t h, const char
 /**
  * Draw label with gradient color
  */
+LV_FUNC_SECTION
 void lv_example_label_4(void)
 {
     /* Create the mask of a text by drawing it to a canvas*/

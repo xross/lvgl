@@ -35,6 +35,7 @@ typedef enum {
  * In this example the widgets to set the time are create/deleted dynamically,
  * yet they always know what the current values are by using subjects.
  */
+LV_FUNC_SECTION
 void lv_example_observer_3(void)
 {
     /*Initialize the subjects.
@@ -66,6 +67,7 @@ void lv_example_observer_3(void)
     lv_subject_set_int(&am_pm_subject, TIME_PM);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void set_btn_clicked_event_cb(lv_event_t * e)
 {
     lv_obj_t * set_btn = lv_event_get_target(e);
@@ -108,6 +110,7 @@ static void set_btn_clicked_event_cb(lv_event_t * e)
     lv_label_set_text(close_label, LV_SYMBOL_CLOSE);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void close_clicked_event_cb(lv_event_t * e)
 {
     lv_obj_t * set_btn = lv_event_get_user_data(e);
@@ -118,6 +121,7 @@ static void close_clicked_event_cb(lv_event_t * e)
 }
 
 /*Watch all related subject to display the current time correctly*/
+__attribute__(( fptrgroup("lv_observer_cb") ))
 static void time_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     int32_t hour = lv_subject_get_int(lv_subject_get_group_element(subject, 0));
@@ -136,6 +140,7 @@ static void time_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 }
 
 /*Change the hour options on format change*/
+LV_FUNC_SECTION
 static void hour_roller_options_update(lv_observer_t * observer, lv_subject_t * subject)
 {
     lv_obj_t * roller = lv_observer_get_target(observer);

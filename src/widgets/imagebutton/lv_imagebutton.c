@@ -60,6 +60,7 @@ const lv_obj_class_t lv_imagebutton_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_imagebutton_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -72,6 +73,7 @@ lv_obj_t * lv_imagebutton_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_imagebutton_set_src(lv_obj_t * obj, lv_imagebutton_state_t state, const void * src_left, const void * src_mid,
                             const void * src_right)
 {
@@ -86,6 +88,7 @@ void lv_imagebutton_set_src(lv_obj_t * obj, lv_imagebutton_state_t state, const 
     refr_image(obj);
 }
 
+LV_FUNC_SECTION
 void lv_imagebutton_set_state(lv_obj_t * obj, lv_imagebutton_state_t state)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -110,6 +113,7 @@ void lv_imagebutton_set_state(lv_obj_t * obj, lv_imagebutton_state_t state)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 const void * lv_imagebutton_get_src_left(lv_obj_t * obj, lv_imagebutton_state_t state)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -119,6 +123,7 @@ const void * lv_imagebutton_get_src_left(lv_obj_t * obj, lv_imagebutton_state_t 
     return imagebutton->src_left[state].img_src;
 }
 
+LV_FUNC_SECTION
 const void * lv_imagebutton_get_src_middle(lv_obj_t * obj, lv_imagebutton_state_t state)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -127,6 +132,7 @@ const void * lv_imagebutton_get_src_middle(lv_obj_t * obj, lv_imagebutton_state_
     return imagebutton->src_mid[state].img_src;
 }
 
+LV_FUNC_SECTION
 const void * lv_imagebutton_get_src_right(lv_obj_t * obj, lv_imagebutton_state_t state)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -139,6 +145,7 @@ const void * lv_imagebutton_get_src_right(lv_obj_t * obj, lv_imagebutton_state_t
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_imagebutton_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -150,6 +157,7 @@ static void lv_imagebutton_constructor(const lv_obj_class_t * class_p, lv_obj_t 
     lv_memzero(&imagebutton->src_right, sizeof(imagebutton->src_right));
 }
 
+LV_FUNC_SECTION
 static void lv_imagebutton_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -181,6 +189,7 @@ static void lv_imagebutton_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_main(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -248,6 +257,7 @@ static void draw_main(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void refr_image(lv_obj_t * obj)
 {
     lv_imagebutton_t * imagebutton = (lv_imagebutton_t *)obj;
@@ -269,6 +279,7 @@ static void refr_image(lv_obj_t * obj)
  * @param state the state to convert
  * @return the suggested state
  */
+LV_FUNC_SECTION
 static lv_imagebutton_state_t suggest_state(lv_obj_t * obj, lv_imagebutton_state_t state)
 {
     lv_imagebutton_t * imagebutton = (lv_imagebutton_t *)obj;
@@ -300,6 +311,7 @@ static lv_imagebutton_state_t suggest_state(lv_obj_t * obj, lv_imagebutton_state
     return state;
 }
 
+LV_FUNC_SECTION
 static lv_imagebutton_state_t get_state(const lv_obj_t * imagebutton)
 {
     LV_ASSERT_OBJ(imagebutton, MY_CLASS);
@@ -321,6 +333,7 @@ static lv_imagebutton_state_t get_state(const lv_obj_t * imagebutton)
     }
 }
 
+LV_FUNC_SECTION
 static void update_src_info(lv_imagebutton_src_info_t * info, const void * src)
 {
     if(!src) {

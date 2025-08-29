@@ -6,16 +6,19 @@
 
 static lv_obj_t * active_screen = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_led_render_1(void)
 {
     lv_obj_t * led  = lv_led_create(active_screen);
@@ -34,6 +37,7 @@ void test_led_render_1(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/led_1.png");
 }
 
+LV_FUNC_SECTION
 void test_led_set_color_works(void)
 {
     lv_obj_t * led  = lv_led_create(active_screen);
@@ -50,6 +54,7 @@ void test_led_set_color_works(void)
     TEST_ASSERT_EQUAL_COLOR(lv_palette_main(LV_PALETTE_RED), ledObj->color);
 }
 
+LV_FUNC_SECTION
 void test_led_set_brightness_works(void)
 {
     lv_obj_t * led  = lv_led_create(active_screen);
@@ -65,6 +70,7 @@ void test_led_set_brightness_works(void)
     TEST_ASSERT_EQUAL(255, lv_led_get_brightness(led));
 }
 
+LV_FUNC_SECTION
 void test_led_on_off_works(void)
 {
     lv_obj_t * led  = lv_led_create(active_screen);
@@ -79,6 +85,7 @@ void test_led_on_off_works(void)
     TEST_ASSERT_EQUAL(LV_LED_BRIGHT_MAX, lv_led_get_brightness(led));
 }
 
+LV_FUNC_SECTION
 void test_led_toggle_works(void)
 {
     lv_obj_t * led  = lv_led_create(active_screen);
@@ -92,6 +99,7 @@ void test_led_toggle_works(void)
     TEST_ASSERT_EQUAL(LV_LED_BRIGHT_MIN, lv_led_get_brightness(led));
 }
 
+LV_FUNC_SECTION
 void test_led_get_brightness_works(void)
 {
     lv_obj_t * led  = lv_led_create(active_screen);

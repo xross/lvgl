@@ -57,6 +57,7 @@ static void _vglite_draw_triangle(const lv_area_t * coords, const lv_area_t * cl
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vglite_triangle(lv_draw_unit_t * draw_unit, const lv_draw_triangle_dsc_t * dsc)
 {
     if(dsc->bg_opa <= (lv_opa_t)LV_OPA_MIN)
@@ -86,6 +87,7 @@ void lv_draw_vglite_triangle(lv_draw_unit_t * draw_unit, const lv_draw_triangle_
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _vglite_draw_triangle(const lv_area_t * coords, const lv_area_t * clip_area,
                                   const lv_draw_triangle_dsc_t * dsc)
 {

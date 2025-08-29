@@ -42,7 +42,7 @@ static int16_t g_state = -1;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_stress(void)
 {
     LV_LOG_USER("Starting stress test. (< 100 bytes permanent memory leak is normal due to fragmentation)");
@@ -50,6 +50,7 @@ void lv_demo_stress(void)
     lv_timer_ready(t); /*Prepare the test right now in first state change.*/
 }
 
+LV_FUNC_SECTION
 bool lv_demo_stress_finished(void)
 {
     return g_state == -1;
@@ -59,6 +60,7 @@ bool lv_demo_stress_finished(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void obj_test_task_cb(lv_timer_t * tmr)
 {
     (void) tmr;    /*Unused*/
@@ -425,6 +427,7 @@ static void obj_test_task_cb(lv_timer_t * tmr)
     g_state++;
 }
 
+LV_FUNC_SECTION
 static void auto_delete(lv_obj_t * obj, uint32_t delay)
 {
     lv_anim_t a;
@@ -436,21 +439,25 @@ static void auto_delete(lv_obj_t * obj, uint32_t delay)
     lv_anim_start(&a);
 }
 
+LV_FUNC_SECTION
 static void msgbox_delete(lv_timer_t * tmr)
 {
     lv_msgbox_close(lv_timer_get_user_data(tmr));
 }
 
+LV_FUNC_SECTION
 static void set_y_anim(void * obj, int32_t v)
 {
     lv_obj_set_y(obj, v);
 }
 
+LV_FUNC_SECTION
 static void set_width_anim(void * obj, int32_t v)
 {
     lv_obj_set_width(obj, v);
 }
 
+LV_FUNC_SECTION
 static void arc_set_end_angle_anim(void * obj, int32_t v)
 {
     lv_arc_set_end_angle(obj, v);

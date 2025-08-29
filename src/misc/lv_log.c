@@ -64,11 +64,13 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_log_register_print_cb(lv_log_print_g_cb_t print_cb)
 {
     custom_print_cb = print_cb;
 }
 
+LV_FUNC_SECTION
 void lv_log_add(lv_log_level_t level, const char * file, int line, const char * func, const char * format, ...)
 {
     if(level >= LV_LOG_LEVEL_NUM) return; /*Invalid level*/
@@ -119,6 +121,7 @@ void lv_log_add(lv_log_level_t level, const char * file, int line, const char * 
     }
 }
 
+LV_FUNC_SECTION
 void lv_log(const char * format, ...)
 {
     if(LV_LOG_LEVEL >= LV_LOG_LEVEL_NONE) return; /* disable log */

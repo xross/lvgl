@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_BUTTONMATRIX && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -78,6 +79,7 @@ static void event_cb(lv_event_t * e)
 /**
  * Add custom drawer to the button matrix to customize buttons one by one
  */
+LV_FUNC_SECTION
 void lv_example_buttonmatrix_2(void)
 {
     lv_obj_t * btnm = lv_buttonmatrix_create(lv_screen_active());

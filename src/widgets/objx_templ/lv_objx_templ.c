@@ -59,6 +59,7 @@ const lv_obj_class_t lv_templ_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_templ_create(lv_obj_t * parent)
 {
 
@@ -104,6 +105,7 @@ lv_obj_t * lv_templ_create(lv_obj_t * parent)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_templ_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -115,12 +117,14 @@ static void lv_templ_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_templ_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     lv_templ_t * templ = (lv_templ_t *)obj;
     /*Free the widget specific data*/
 }
 
+LV_FUNC_SECTION
 static void lv_templ_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);

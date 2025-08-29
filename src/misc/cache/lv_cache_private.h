@@ -111,8 +111,11 @@ typedef lv_cache_reserve_cond_res_t (*lv_cache_reserve_cond_cb)(lv_cache_t * cac
  * The cache operations struct
  */
 struct lv_cache_ops_t {
+    __attribute__(( fptrgroup("lv_cache_compare_cb") ))
     lv_cache_compare_cb_t compare_cb;    /**< Compare function for keys */
+    __attribute__(( fptrgroup("lv_cache_create_cb") ))
     lv_cache_create_cb_t create_cb;      /**< Create function for nodes */
+    __attribute__(( fptrgroup("lv_cache_free_cb") ))
     lv_cache_free_cb_t free_cb;          /**< Free function for nodes */
 };
 
@@ -144,16 +147,26 @@ struct lv_cache_t {
  * - lv_cache_class_lru_rb_size for LRU-based cache with size-based eviction policy.
  */
 struct lv_cache_class_t {
+    __attribute__(( fptrgroup("lv_cache_alloc_cb") ))
     lv_cache_alloc_cb_t alloc_cb;                 /**< The allocation function for cache entries */
+    __attribute__(( fptrgroup("lv_cache_init_cb") ))
     lv_cache_init_cb_t init_cb;                   /**< The initialization function for cache entries */
+    __attribute__(( fptrgroup("lv_cache_destroy_cb") ))
     lv_cache_destroy_cb_t destroy_cb;             /**< The destruction function for cache entries */
 
+    __attribute__(( fptrgroup("lv_cache_get_cb") ))
     lv_cache_get_cb_t get_cb;                     /**< The get function for cache entries */
+    __attribute__(( fptrgroup("lv_cache_add_cb") ))
     lv_cache_add_cb_t add_cb;                     /**< The add function for cache entries */
+    __attribute__(( fptrgroup("lv_cache_remove_cb") ))
     lv_cache_remove_cb_t remove_cb;               /**< The remove function for cache entries */
+    __attribute__(( fptrgroup("lv_cache_drop_cb") ))
     lv_cache_drop_cb_t drop_cb;                   /**< The drop function for cache entries */
+    __attribute__(( fptrgroup("lv_cache_drop_all_cb") ))
     lv_cache_drop_all_cb_t drop_all_cb;           /**< The drop all function for cache entries */
+    __attribute__(( fptrgroup("lv_cache_get_victim_cb") ))
     lv_cache_get_victim_cb get_victim_cb;         /**< The get victim function for cache entries */
+    __attribute__(( fptrgroup("lv_cache_reserve_cond_cb") ))
     lv_cache_reserve_cond_cb reserve_cond_cb;     /**< The reserve condition function for cache entries */
 };
 

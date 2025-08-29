@@ -74,6 +74,7 @@ static void theme_apply(lv_theme_t * th, lv_obj_t * obj);
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void style_init(my_theme_t * theme)
 {
     style_init_reset(&theme->styles.scrollbar);
@@ -142,6 +143,7 @@ static void style_init(my_theme_t * theme)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 bool lv_theme_simple_is_inited(void)
 {
     my_theme_t * theme = theme_def;
@@ -149,6 +151,7 @@ bool lv_theme_simple_is_inited(void)
     return theme->inited;
 }
 
+LV_FUNC_SECTION
 lv_theme_t * lv_theme_simple_get(void)
 {
     if(!lv_theme_simple_is_inited()) {
@@ -158,6 +161,7 @@ lv_theme_t * lv_theme_simple_get(void)
     return (lv_theme_t *)theme_def;
 }
 
+LV_FUNC_SECTION
 void lv_theme_simple_deinit(void)
 {
     my_theme_t * theme = theme_def;
@@ -174,6 +178,7 @@ void lv_theme_simple_deinit(void)
     }
 }
 
+LV_FUNC_SECTION
 lv_theme_t * lv_theme_simple_init(lv_display_t * disp)
 {
     /*This trick is required only to avoid the garbage collection of
@@ -202,6 +207,7 @@ lv_theme_t * lv_theme_simple_init(lv_display_t * disp)
     return (lv_theme_t *)theme_def;
 }
 
+LV_FUNC_SECTION
 static void theme_apply(lv_theme_t * th, lv_obj_t * obj)
 {
     LV_UNUSED(th);
@@ -425,6 +431,7 @@ static void theme_apply(lv_theme_t * th, lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void style_init_reset(lv_style_t * style)
 {
     if(lv_theme_simple_is_inited()) {

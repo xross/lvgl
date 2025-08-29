@@ -37,12 +37,14 @@ static void apply_theme_recursion(lv_theme_t * th, lv_obj_t * obj);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_theme_t  * lv_theme_get_from_obj(lv_obj_t * obj)
 {
     lv_display_t * disp = obj ? lv_obj_get_display(obj) : lv_display_get_default();
     return lv_display_get_theme(disp);
 }
 
+LV_FUNC_SECTION
 void lv_theme_apply(lv_obj_t * obj)
 {
     lv_theme_t * th = lv_theme_get_from_obj(obj);
@@ -53,40 +55,47 @@ void lv_theme_apply(lv_obj_t * obj)
     apply_theme_recursion(th, obj);    /*Apply the theme including the base theme(s)*/
 }
 
+LV_FUNC_SECTION
 void lv_theme_set_parent(lv_theme_t * new_theme, lv_theme_t * base)
 {
     new_theme->parent = base;
 }
 
+LV_FUNC_SECTION
 void lv_theme_set_apply_cb(lv_theme_t * theme, lv_theme_apply_cb_t apply_cb)
 {
     theme->apply_cb = apply_cb;
 }
 
+LV_FUNC_SECTION
 const lv_font_t * lv_theme_get_font_small(lv_obj_t * obj)
 {
     lv_theme_t * th = lv_theme_get_from_obj(obj);
     return th ? th->font_small : LV_FONT_DEFAULT;
 }
 
+LV_FUNC_SECTION
 const lv_font_t * lv_theme_get_font_normal(lv_obj_t * obj)
 {
     lv_theme_t * th = lv_theme_get_from_obj(obj);
     return th ? th->font_normal : LV_FONT_DEFAULT;
 }
 
+LV_FUNC_SECTION
 const lv_font_t * lv_theme_get_font_large(lv_obj_t * obj)
 {
     lv_theme_t * th = lv_theme_get_from_obj(obj);
     return th ? th->font_large : LV_FONT_DEFAULT;
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_theme_get_color_primary(lv_obj_t * obj)
 {
     lv_theme_t * th = lv_theme_get_from_obj(obj);
     return th ? th->color_primary : lv_palette_main(LV_PALETTE_BLUE_GREY);
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_theme_get_color_secondary(lv_obj_t * obj)
 {
     lv_theme_t * th = lv_theme_get_from_obj(obj);
@@ -96,13 +105,16 @@ lv_color_t lv_theme_get_color_secondary(lv_obj_t * obj)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+#pragma stackfunction 2048
+LV_FUNC_SECTION
 static void apply_theme(lv_theme_t * th, lv_obj_t * obj)
 {
     if(th->parent) apply_theme(th->parent, obj);
     if(th->apply_cb) th->apply_cb(th, obj);
 }
 
+#pragma stackfunction 2048
+LV_FUNC_SECTION
 static void apply_theme_recursion(lv_theme_t * th, lv_obj_t * obj)
 {
     const lv_obj_class_t * original_class_p = obj->class_p;

@@ -5,6 +5,7 @@ static lv_obj_t * chart;
 static lv_chart_series_t * ser;
 static lv_chart_cursor_t * cursor;
 
+LV_FUNC_SECTION
 static void value_changed_event_cb(lv_event_t * e)
 {
     static int32_t last_id = -1;
@@ -19,6 +20,7 @@ static void value_changed_event_cb(lv_event_t * e)
 /**
  * Show cursor on the clicked point
  */
+LV_FUNC_SECTION
 void lv_example_chart_6(void)
 {
     chart = lv_chart_create(lv_screen_active());

@@ -61,6 +61,7 @@ static const char * year_list = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_calendar_header_dropdown_create(lv_obj_t * parent)
 {
     lv_obj_t * obj = lv_obj_class_create_obj(&lv_calendar_header_dropdown_class, parent);
@@ -69,6 +70,7 @@ lv_obj_t * lv_calendar_header_dropdown_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_calendar_header_dropdown_set_year_list(lv_obj_t * parent, const char * years_list)
 {
     /* Search for the header dropdown */
@@ -98,6 +100,7 @@ void lv_calendar_header_dropdown_set_year_list(lv_obj_t * parent, const char * y
  *  STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void my_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_TRACE_OBJ_CREATE("begin");
@@ -123,6 +126,7 @@ static void my_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     lv_obj_send_event(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void month_event_cb(lv_event_t * e)
 {
     lv_obj_t * dropdown = lv_event_get_current_target(e);
@@ -138,6 +142,7 @@ static void month_event_cb(lv_event_t * e)
     lv_calendar_set_showed_date(calendar, newd.year, newd.month);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void year_event_cb(lv_event_t * e)
 {
     lv_obj_t * dropdown = lv_event_get_current_target(e);
@@ -160,6 +165,7 @@ static void year_event_cb(lv_event_t * e)
     lv_calendar_set_showed_date(calendar, newd.year, newd.month);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void value_changed_event_cb(lv_event_t * e)
 {
     lv_obj_t * header = lv_event_get_current_target(e);

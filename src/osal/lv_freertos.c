@@ -85,6 +85,7 @@ static void prvTestAndDecrement(lv_thread_sync_t * pxCond,
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_init(lv_thread_t * pxThread, lv_thread_prio_t xSchedPriority,
                            void (*pvStartRoutine)(void *), size_t usStackSize,
                            void * xAttr)
@@ -109,6 +110,7 @@ lv_result_t lv_thread_init(lv_thread_t * pxThread, lv_thread_prio_t xSchedPriori
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_delete(lv_thread_t * pxThread)
 {
     vTaskDelete(pxThread->xTaskHandle);
@@ -116,6 +118,7 @@ lv_result_t lv_thread_delete(lv_thread_t * pxThread)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_init(lv_mutex_t * pxMutex)
 {
     /* If mutex in uninitialized, perform initialization. */
@@ -124,6 +127,7 @@ lv_result_t lv_mutex_init(lv_mutex_t * pxMutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_lock(lv_mutex_t * pxMutex)
 {
     /* If mutex in uninitialized, perform initialization. */
@@ -138,6 +142,7 @@ lv_result_t lv_mutex_lock(lv_mutex_t * pxMutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_lock_isr(lv_mutex_t * pxMutex)
 {
     /* If mutex in uninitialized, perform initialization. */
@@ -160,6 +165,7 @@ lv_result_t lv_mutex_lock_isr(lv_mutex_t * pxMutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_unlock(lv_mutex_t * pxMutex)
 {
     /* If mutex in uninitialized, perform initialization. */
@@ -174,6 +180,7 @@ lv_result_t lv_mutex_unlock(lv_mutex_t * pxMutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_delete(lv_mutex_t * pxMutex)
 {
     vSemaphoreDelete(pxMutex->xMutex);
@@ -182,6 +189,7 @@ lv_result_t lv_mutex_delete(lv_mutex_t * pxMutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_init(lv_thread_sync_t * pxCond)
 {
     /* If the cond is uninitialized, perform initialization. */
@@ -190,6 +198,7 @@ lv_result_t lv_thread_sync_init(lv_thread_sync_t * pxCond)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_wait(lv_thread_sync_t * pxCond)
 {
     lv_result_t lvRes = LV_RESULT_OK;
@@ -272,6 +281,7 @@ lv_result_t lv_thread_sync_wait(lv_thread_sync_t * pxCond)
     return lvRes;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_signal(lv_thread_sync_t * pxCond)
 {
     /* If the cond is uninitialized, perform initialization. */
@@ -329,6 +339,7 @@ lv_result_t lv_thread_sync_signal(lv_thread_sync_t * pxCond)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_delete(lv_thread_sync_t * pxCond)
 {
 #if !LV_USE_FREERTOS_TASK_NOTIFY
@@ -343,6 +354,7 @@ lv_result_t lv_thread_sync_delete(lv_thread_sync_t * pxCond)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_signal_isr(lv_thread_sync_t * pxCond)
 {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
@@ -388,6 +400,7 @@ lv_result_t lv_thread_sync_signal_isr(lv_thread_sync_t * pxCond)
 }
 
 
+LV_FUNC_SECTION
 void lv_freertos_task_switch_in(const char * name)
 {
     if(lv_strcmp(name, "IDLE")) globals->freertos_idle_task_running = false;
@@ -396,6 +409,7 @@ void lv_freertos_task_switch_in(const char * name)
     globals->freertos_task_switch_timestamp = lv_tick_get();
 }
 
+LV_FUNC_SECTION
 void lv_freertos_task_switch_out(void)
 {
     uint32_t elaps = lv_tick_elaps(globals->freertos_task_switch_timestamp);
@@ -403,6 +417,7 @@ void lv_freertos_task_switch_out(void)
     else globals->freertos_non_idle_time_sum += elaps;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_os_get_idle_percent(void)
 {
     if(globals->freertos_non_idle_time_sum + globals->freertos_idle_time_sum == 0) {
@@ -423,6 +438,7 @@ uint32_t lv_os_get_idle_percent(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void prvRunThread(void * pxArg)
 {
     lv_thread_t * pxThread = (lv_thread_t *)pxArg;
@@ -433,6 +449,7 @@ static void prvRunThread(void * pxArg)
     vTaskDelete(NULL);
 }
 
+LV_FUNC_SECTION
 static void prvMutexInit(lv_mutex_t * pxMutex)
 {
     pxMutex->xMutex = xSemaphoreCreateRecursiveMutex();
@@ -447,6 +464,7 @@ static void prvMutexInit(lv_mutex_t * pxMutex)
     pxMutex->xIsInitialized = pdTRUE;
 }
 
+LV_FUNC_SECTION
 static void prvCheckMutexInit(lv_mutex_t * pxMutex)
 {
     /* Check if the mutex needs to be initialized. */
@@ -467,6 +485,7 @@ static void prvCheckMutexInit(lv_mutex_t * pxMutex)
     }
 }
 
+LV_FUNC_SECTION
 static void prvCondInit(lv_thread_sync_t * pxCond)
 {
     pxCond->xIsInitialized = pdTRUE;
@@ -498,6 +517,7 @@ static void prvCondInit(lv_thread_sync_t * pxCond)
 #endif
 }
 
+LV_FUNC_SECTION
 static void prvCheckCondInit(lv_thread_sync_t * pxCond)
 {
     /* Check if the condition variable needs to be initialized. */
@@ -518,6 +538,7 @@ static void prvCheckCondInit(lv_thread_sync_t * pxCond)
     }
 }
 
+LV_FUNC_SECTION
 static void prvCheckCondInitIsr(lv_thread_sync_t * pxCond)
 {
     /* Check if the condition variable needs to be initialized. */
@@ -539,6 +560,7 @@ static void prvCheckCondInitIsr(lv_thread_sync_t * pxCond)
 }
 
 #if !LV_USE_FREERTOS_TASK_NOTIFY
+LV_FUNC_SECTION
 static void prvTestAndDecrement(lv_thread_sync_t * pxCond,
                                 uint32_t ulLocalWaitingThreads)
 {

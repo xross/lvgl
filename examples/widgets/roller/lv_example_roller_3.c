@@ -2,6 +2,7 @@
 
 #if LV_USE_ROLLER && LV_DRAW_SW_COMPLEX && LV_BUILD_EXAMPLES && 1
 
+LV_FUNC_SECTION
 static void generate_mask(lv_draw_buf_t * mask)
 {
     /*Create a "8 bit alpha" canvas and clear it*/
@@ -38,6 +39,7 @@ static void generate_mask(lv_draw_buf_t * mask)
 /**
  * Add a fade mask to roller.
  */
+LV_FUNC_SECTION
 void lv_example_roller_3(void)
 {
     lv_obj_set_style_bg_color(lv_screen_active(), lv_palette_main(LV_PALETTE_BLUE_GREY), 0);

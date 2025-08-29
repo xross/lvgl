@@ -46,6 +46,7 @@ LV_IMAGE_DECLARE(img_transform_avatar_15);
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_transform(void)
 {
     static const int32_t grid_cols[] = {LV_GRID_CONTENT, 4, LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
@@ -108,6 +109,7 @@ void lv_demo_transform(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_obj_t * card_create(void)
 {
     lv_obj_t * card = lv_obj_create(lv_screen_active());
@@ -143,6 +145,7 @@ static lv_obj_t * card_create(void)
     return card;
 }
 
+LV_FUNC_SECTION
 static void arc_event_cb(lv_event_t * e)
 {
     lv_obj_t * arc = lv_event_get_target(e);
@@ -151,6 +154,7 @@ static void arc_event_cb(lv_event_t * e)
     lv_obj_set_style_transform_rotation(card_to_transform, v * 10, 0);
 }
 
+LV_FUNC_SECTION
 static void slider_event_cb(lv_event_t * e)
 {
     lv_obj_t * slider = lv_event_get_target(e);

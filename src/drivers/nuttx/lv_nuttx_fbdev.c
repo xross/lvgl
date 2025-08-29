@@ -50,6 +50,7 @@ typedef struct {
  *  STATIC PROTOTYPES
  **********************/
 
+ __attribute__(( fptrgroup("lv_display_flush_cb") ))
 static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * color_p);
 static lv_color_format_t fb_fmt_to_color_format(int fmt);
 static int fbdev_get_pinfo(int fd, struct fb_planeinfo_s * pinfo);
@@ -72,6 +73,7 @@ static void display_release_cb(lv_event_t * e);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_nuttx_fbdev_create(void)
 {
     lv_nuttx_fb_t * dsc = lv_malloc_zeroed(sizeof(lv_nuttx_fb_t));
@@ -90,6 +92,7 @@ lv_display_t * lv_nuttx_fbdev_create(void)
     return disp;
 }
 
+LV_FUNC_SECTION
 int lv_nuttx_fbdev_set_file(lv_display_t * disp, const char * file)
 {
     int ret;
@@ -186,6 +189,7 @@ errout:
  **********************/
 
 #if defined(CONFIG_FB_UPDATE)
+LV_FUNC_SECTION
 static void fbdev_join_inv_areas(lv_display_t * disp, lv_area_t * final_inv_area)
 {
     uint16_t inv_index;
@@ -213,6 +217,7 @@ static void fbdev_join_inv_areas(lv_display_t * disp, lv_area_t * final_inv_area
 }
 #endif
 
+LV_FUNC_SECTION
 static void display_refr_timer_cb(lv_timer_t * tmr)
 {
     lv_display_t * disp = lv_timer_get_user_data(tmr);
@@ -234,6 +239,7 @@ static void display_refr_timer_cb(lv_timer_t * tmr)
     }
 }
 
+LV_FUNC_SECTION
 static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * color_p)
 {
     LV_UNUSED(color_p);
@@ -289,6 +295,7 @@ static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * colo
     lv_display_flush_ready(disp);
 }
 
+LV_FUNC_SECTION
 static lv_color_format_t fb_fmt_to_color_format(int fmt)
 {
     switch(fmt) {
@@ -309,6 +316,7 @@ static lv_color_format_t fb_fmt_to_color_format(int fmt)
     return LV_COLOR_FORMAT_UNKNOWN;
 }
 
+LV_FUNC_SECTION
 static int fbdev_get_pinfo(int fd, FAR struct fb_planeinfo_s * pinfo)
 {
     if(ioctl(fd, FBIOGET_PLANEINFO, (unsigned long)((uintptr_t)pinfo)) < 0) {
@@ -326,6 +334,7 @@ static int fbdev_get_pinfo(int fd, FAR struct fb_planeinfo_s * pinfo)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int fbdev_init_mem2(lv_nuttx_fb_t * dsc)
 {
     uintptr_t buf_offset;
@@ -380,6 +389,7 @@ static int fbdev_init_mem2(lv_nuttx_fb_t * dsc)
     return 0;
 }
 
+LV_FUNC_SECTION
 static void display_release_cb(lv_event_t * e)
 {
     lv_display_t * disp = (lv_display_t *) lv_event_get_user_data(e);

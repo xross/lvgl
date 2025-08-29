@@ -6,11 +6,13 @@ LV_IMAGE_DECLARE(img_hand);
 lv_obj_t * needle_line;
 lv_obj_t * needle_img;
 
+LV_FUNC_SECTION
 static void set_needle_line_value(void * obj, int32_t v)
 {
     lv_scale_set_line_needle_value(obj, needle_line, 60, v);
 }
 
+LV_FUNC_SECTION
 static void set_needle_img_value(void * obj, int32_t v)
 {
     lv_scale_set_image_needle_value(obj, needle_img, v);
@@ -19,6 +21,7 @@ static void set_needle_img_value(void * obj, int32_t v)
 /**
  * A simple round scale
  */
+LV_FUNC_SECTION
 void lv_example_scale_3(void)
 {
     lv_obj_t * scale_line = lv_scale_create(lv_screen_active());

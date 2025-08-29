@@ -25,6 +25,7 @@ typedef struct {
 /**********************
  *  STATIC PROTOTYPES
  **********************/
+__attribute__(( fptrgroup("lv_display_flush_cb") ))
 static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map);
 static void resolution_changed_event_cb(lv_event_t * e);
 
@@ -82,6 +83,7 @@ static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_m
 
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void resolution_changed_event_cb(lv_event_t * e)
 {
     lv_display_t * disp = (lv_display_t *)lv_event_get_target(e);

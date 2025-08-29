@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_MSGBOX && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void event_cb(lv_event_t * e)
 {
     lv_obj_t * btn = lv_event_get_target(e);
@@ -9,6 +10,7 @@ static void event_cb(lv_event_t * e)
     LV_LOG_USER("Button %s clicked", lv_label_get_text(label));
 }
 
+LV_FUNC_SECTION
 void lv_example_msgbox_1(void)
 {
     lv_obj_t * mbox1 = lv_msgbox_create(NULL);

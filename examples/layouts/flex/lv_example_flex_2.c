@@ -4,6 +4,7 @@
 /**
  * Arrange items in rows with wrap and place the items to get even space around them.
  */
+LV_FUNC_SECTION
 void lv_example_flex_2(void)
 {
     static lv_style_t style;

@@ -68,6 +68,7 @@ const lv_obj_class_t lv_chart_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_chart_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -76,6 +77,7 @@ lv_obj_t * lv_chart_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_type(lv_obj_t * obj, lv_chart_type_t type)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -105,6 +107,7 @@ void lv_chart_set_type(lv_obj_t * obj, lv_chart_type_t type)
     lv_chart_refresh(obj);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_point_count(lv_obj_t * obj, uint32_t cnt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -129,6 +132,7 @@ void lv_chart_set_point_count(lv_obj_t * obj, uint32_t cnt)
     lv_chart_refresh(obj);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_range(lv_obj_t * obj, lv_chart_axis_t axis, int32_t min, int32_t max)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -161,6 +165,7 @@ void lv_chart_set_range(lv_obj_t * obj, lv_chart_axis_t axis, int32_t min, int32
     lv_chart_refresh(obj);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_update_mode(lv_obj_t * obj, lv_chart_update_mode_t update_mode)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -172,6 +177,7 @@ void lv_chart_set_update_mode(lv_obj_t * obj, lv_chart_update_mode_t update_mode
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_div_line_count(lv_obj_t * obj, uint8_t hdiv, uint8_t vdiv)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -185,6 +191,7 @@ void lv_chart_set_div_line_count(lv_obj_t * obj, uint8_t hdiv, uint8_t vdiv)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 lv_chart_type_t lv_chart_get_type(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -193,6 +200,7 @@ lv_chart_type_t lv_chart_get_type(const lv_obj_t * obj)
     return chart->type;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_chart_get_point_count(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -201,6 +209,7 @@ uint32_t lv_chart_get_point_count(const lv_obj_t * obj)
     return chart->point_cnt;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_chart_get_x_start_point(const lv_obj_t * obj, lv_chart_series_t * ser)
 {
     LV_ASSERT_NULL(ser);
@@ -209,6 +218,7 @@ uint32_t lv_chart_get_x_start_point(const lv_obj_t * obj, lv_chart_series_t * se
     return ser->start_point;
 }
 
+LV_FUNC_SECTION
 void lv_chart_get_point_pos_by_id(lv_obj_t * obj, lv_chart_series_t * ser, uint32_t id, lv_point_t * p_out)
 {
     LV_ASSERT_NULL(obj);
@@ -270,6 +280,7 @@ void lv_chart_get_point_pos_by_id(lv_obj_t * obj, lv_chart_series_t * ser, uint3
     p_out->y -= lv_obj_get_scroll_top(obj);
 }
 
+LV_FUNC_SECTION
 void lv_chart_refresh(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -281,6 +292,7 @@ void lv_chart_refresh(lv_obj_t * obj)
  * Series
  *=====================*/
 
+LV_FUNC_SECTION
 lv_chart_series_t * lv_chart_add_series(lv_obj_t * obj, lv_color_t color, lv_chart_axis_t axis)
 {
     LV_LOG_INFO("begin");
@@ -343,6 +355,7 @@ lv_chart_series_t * lv_chart_add_series(lv_obj_t * obj, lv_color_t color, lv_cha
     return ser;
 }
 
+LV_FUNC_SECTION
 void lv_chart_remove_series(lv_obj_t * obj, lv_chart_series_t * series)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -358,6 +371,7 @@ void lv_chart_remove_series(lv_obj_t * obj, lv_chart_series_t * series)
     return;
 }
 
+LV_FUNC_SECTION
 void lv_chart_hide_series(lv_obj_t * chart, lv_chart_series_t * series, bool hide)
 {
     LV_ASSERT_OBJ(chart, MY_CLASS);
@@ -367,6 +381,7 @@ void lv_chart_hide_series(lv_obj_t * chart, lv_chart_series_t * series, bool hid
     lv_chart_refresh(chart);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_series_color(lv_obj_t * chart, lv_chart_series_t * series, lv_color_t color)
 {
     LV_ASSERT_OBJ(chart, MY_CLASS);
@@ -376,6 +391,7 @@ void lv_chart_set_series_color(lv_obj_t * chart, lv_chart_series_t * series, lv_
     lv_chart_refresh(chart);
 }
 
+LV_FUNC_SECTION
 lv_color_t lv_chart_get_series_color(lv_obj_t * chart, const lv_chart_series_t * series)
 {
     LV_ASSERT_OBJ(chart, MY_CLASS);
@@ -385,6 +401,7 @@ lv_color_t lv_chart_get_series_color(lv_obj_t * chart, const lv_chart_series_t *
     return series->color;
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_x_start_point(lv_obj_t * obj, lv_chart_series_t * ser, uint32_t id)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -395,6 +412,7 @@ void lv_chart_set_x_start_point(lv_obj_t * obj, lv_chart_series_t * ser, uint32_
     ser->start_point = id;
 }
 
+LV_FUNC_SECTION
 lv_chart_series_t * lv_chart_get_series_next(const lv_obj_t * obj, const lv_chart_series_t * ser)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -408,6 +426,7 @@ lv_chart_series_t * lv_chart_get_series_next(const lv_obj_t * obj, const lv_char
  * Cursor
  *====================*/
 
+LV_FUNC_SECTION
 lv_chart_cursor_t  * lv_chart_add_cursor(lv_obj_t * obj, lv_color_t color, lv_dir_t dir)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -426,6 +445,7 @@ lv_chart_cursor_t  * lv_chart_add_cursor(lv_obj_t * obj, lv_color_t color, lv_di
     return cursor;
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_cursor_pos(lv_obj_t * chart, lv_chart_cursor_t * cursor, lv_point_t * pos)
 {
     LV_ASSERT_NULL(cursor);
@@ -436,6 +456,7 @@ void lv_chart_set_cursor_pos(lv_obj_t * chart, lv_chart_cursor_t * cursor, lv_po
     lv_chart_refresh(chart);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_cursor_point(lv_obj_t * chart, lv_chart_cursor_t * cursor, lv_chart_series_t * ser, uint32_t point_id)
 {
     LV_ASSERT_NULL(cursor);
@@ -448,6 +469,7 @@ void lv_chart_set_cursor_point(lv_obj_t * chart, lv_chart_cursor_t * cursor, lv_
     lv_chart_refresh(chart);
 }
 
+LV_FUNC_SECTION
 lv_point_t lv_chart_get_cursor_point(lv_obj_t * chart, lv_chart_cursor_t * cursor)
 {
     LV_ASSERT_NULL(cursor);
@@ -460,6 +482,7 @@ lv_point_t lv_chart_get_cursor_point(lv_obj_t * chart, lv_chart_cursor_t * curso
  * Set/Get value(s)
  *====================*/
 
+LV_FUNC_SECTION
 void lv_chart_set_all_value(lv_obj_t * obj, lv_chart_series_t * ser, int32_t value)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -474,6 +497,7 @@ void lv_chart_set_all_value(lv_obj_t * obj, lv_chart_series_t * ser, int32_t val
     lv_chart_refresh(obj);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_next_value(lv_obj_t * obj, lv_chart_series_t * ser, int32_t value)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -486,6 +510,7 @@ void lv_chart_set_next_value(lv_obj_t * obj, lv_chart_series_t * ser, int32_t va
     invalidate_point(obj, ser->start_point);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_next_value2(lv_obj_t * obj, lv_chart_series_t * ser, int32_t x_value, int32_t y_value)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -504,6 +529,7 @@ void lv_chart_set_next_value2(lv_obj_t * obj, lv_chart_series_t * ser, int32_t x
     invalidate_point(obj, ser->start_point);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_value_by_id(lv_obj_t * obj, lv_chart_series_t * ser, uint32_t id, int32_t value)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -515,6 +541,7 @@ void lv_chart_set_value_by_id(lv_obj_t * obj, lv_chart_series_t * ser, uint32_t 
     invalidate_point(obj, id);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_value_by_id2(lv_obj_t * obj, lv_chart_series_t * ser, uint32_t id, int32_t x_value,
                                int32_t y_value)
 {
@@ -533,6 +560,7 @@ void lv_chart_set_value_by_id2(lv_obj_t * obj, lv_chart_series_t * ser, uint32_t
     invalidate_point(obj, id);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_ext_y_array(lv_obj_t * obj, lv_chart_series_t * ser, int32_t array[])
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -544,6 +572,7 @@ void lv_chart_set_ext_y_array(lv_obj_t * obj, lv_chart_series_t * ser, int32_t a
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_chart_set_ext_x_array(lv_obj_t * obj, lv_chart_series_t * ser, int32_t array[])
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -555,6 +584,7 @@ void lv_chart_set_ext_x_array(lv_obj_t * obj, lv_chart_series_t * ser, int32_t a
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 int32_t * lv_chart_get_y_array(const lv_obj_t * obj, lv_chart_series_t * ser)
 {
     LV_UNUSED(obj);
@@ -563,6 +593,7 @@ int32_t * lv_chart_get_y_array(const lv_obj_t * obj, lv_chart_series_t * ser)
     return ser->y_points;
 }
 
+LV_FUNC_SECTION
 int32_t * lv_chart_get_x_array(const lv_obj_t * obj, lv_chart_series_t * ser)
 {
     LV_UNUSED(obj);
@@ -571,12 +602,14 @@ int32_t * lv_chart_get_x_array(const lv_obj_t * obj, lv_chart_series_t * ser)
     return ser->x_points;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_chart_get_pressed_point(const lv_obj_t * obj)
 {
     lv_chart_t * chart = (lv_chart_t *)obj;
     return chart->pressed_point_id;
 }
 
+LV_FUNC_SECTION
 int32_t lv_chart_get_first_point_center_offset(lv_obj_t * obj)
 {
     lv_chart_t * chart = (lv_chart_t *)obj;
@@ -599,6 +632,7 @@ int32_t lv_chart_get_first_point_center_offset(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_chart_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -628,6 +662,7 @@ static void lv_chart_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_chart_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -658,6 +693,7 @@ static void lv_chart_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_chart_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -704,6 +740,7 @@ static void lv_chart_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_div_lines(lv_obj_t * obj, lv_layer_t * layer)
 {
     lv_chart_t * chart  = (lv_chart_t *)obj;
@@ -780,6 +817,7 @@ static void draw_div_lines(lv_obj_t * obj, lv_layer_t * layer)
     layer->_clip_area = clip_area_ori;
 }
 
+LV_FUNC_SECTION
 static void draw_series_line(lv_obj_t * obj, lv_layer_t * layer)
 {
     lv_area_t clip_area;
@@ -933,6 +971,7 @@ static void draw_series_line(lv_obj_t * obj, lv_layer_t * layer)
     layer->_clip_area = clip_area_ori;
 }
 
+LV_FUNC_SECTION
 static void draw_series_scatter(lv_obj_t * obj, lv_layer_t * layer)
 {
 
@@ -1054,6 +1093,7 @@ static void draw_series_scatter(lv_obj_t * obj, lv_layer_t * layer)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_series_bar(lv_obj_t * obj, lv_layer_t * layer)
 {
     lv_area_t clip_area;
@@ -1130,6 +1170,7 @@ static void draw_series_bar(lv_obj_t * obj, lv_layer_t * layer)
     layer->_clip_area = clip_area_ori;
 }
 
+LV_FUNC_SECTION
 static void draw_cursors(lv_obj_t * obj, lv_layer_t * layer)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -1234,6 +1275,7 @@ static void draw_cursors(lv_obj_t * obj, lv_layer_t * layer)
  * @param coord the coordination of the point relative to the series area.
  * @return the found index
  */
+LV_FUNC_SECTION
 static uint32_t get_index_from_x(lv_obj_t * obj, int32_t x)
 {
     lv_chart_t * chart  = (lv_chart_t *)obj;
@@ -1249,6 +1291,7 @@ static uint32_t get_index_from_x(lv_obj_t * obj, int32_t x)
     return 0;
 }
 
+LV_FUNC_SECTION
 static void invalidate_point(lv_obj_t * obj, uint32_t i)
 {
     lv_chart_t * chart  = (lv_chart_t *)obj;
@@ -1311,6 +1354,7 @@ static void invalidate_point(lv_obj_t * obj, uint32_t i)
     }
 }
 
+LV_FUNC_SECTION
 static void new_points_alloc(lv_obj_t * obj, lv_chart_series_t * ser, uint32_t cnt, int32_t ** a)
 {
     if((*a) == NULL) return;

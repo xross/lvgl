@@ -4,6 +4,7 @@
 /**
  * Bar with stripe pattern and ranged value
  */
+LV_FUNC_SECTION
 void lv_example_bar_4(void)
 {
     LV_IMAGE_DECLARE(img_skew_strip);

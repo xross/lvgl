@@ -4,6 +4,7 @@
 /**
  * Demonstrate RTL direction on grid
  */
+LV_FUNC_SECTION
 void lv_example_grid_6(void)
 {
 

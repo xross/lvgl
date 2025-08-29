@@ -9,6 +9,7 @@
 /**
  * Draw a path to the canvas
  */
+LV_FUNC_SECTION
 void lv_example_canvas_8(void)
 {
     /*Create a buffer for the canvas*/
@@ -44,6 +45,7 @@ void lv_example_canvas_8(void)
 }
 #else
 
+LV_FUNC_SECTION
 void lv_example_canvas_8(void)
 {
     /*fallback for online examples*/

@@ -36,11 +36,13 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void GLClearError()
 {
     while(glGetError() != GL_NO_ERROR);
 }
 
+LV_FUNC_SECTION
 bool GLLogCall(const char * function, const char * file, int line)
 {
     GLenum error;

@@ -348,6 +348,7 @@ typedef enum {
 typedef struct {
     const lv_style_prop_t * props; /**< An array with the properties to animate.*/
     void * user_data;              /**< A custom user data that will be passed to the animation's user_data */
+    __attribute__(( fptrgroup("lv_anim_path_cb") ))
     lv_anim_path_cb_t path_xcb;    /**< A path for the animation.*/
     uint32_t time;                 /**< Duration of the transition in [ms]*/
     uint32_t delay;                /**< Delay before the transition in [ms]*/

@@ -4,16 +4,19 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 void test_tiny_ttf_rendering_test(void)
 {
 #if LV_USE_TINY_TTF
@@ -49,6 +52,7 @@ void test_tiny_ttf_rendering_test(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void test_tiny_ttf_kerning(void)
 {
 #if LV_USE_TINY_TTF

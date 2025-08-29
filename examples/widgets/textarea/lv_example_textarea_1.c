@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_TEXTAREA && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void textarea_event_handler(lv_event_t * e)
 {
     lv_obj_t * ta = lv_event_get_target(e);
@@ -8,6 +9,7 @@ static void textarea_event_handler(lv_event_t * e)
     LV_LOG_USER("Enter was pressed. The current text is: %s", lv_textarea_get_text(ta));
 }
 
+LV_FUNC_SECTION
 static void btnm_event_handler(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -20,6 +22,7 @@ static void btnm_event_handler(lv_event_t * e)
 
 }
 
+LV_FUNC_SECTION
 void lv_example_textarea_1(void)
 {
     lv_obj_t * ta = lv_textarea_create(lv_screen_active());

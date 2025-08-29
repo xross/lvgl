@@ -1,11 +1,13 @@
 #include "../../lv_examples.h"
 #if LV_USE_GRID && LV_BUILD_EXAMPLES
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void row_gap_anim(void * obj, int32_t v)
 {
     lv_obj_set_style_pad_row(obj, v, 0);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void column_gap_anim(void * obj, int32_t v)
 {
     lv_obj_set_style_pad_column(obj, v, 0);
@@ -14,6 +16,7 @@ static void column_gap_anim(void * obj, int32_t v)
 /**
  * Demonstrate column and row gap
  */
+LV_FUNC_SECTION
 void lv_example_grid_5(void)
 {
 

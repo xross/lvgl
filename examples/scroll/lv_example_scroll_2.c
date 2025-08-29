@@ -1,6 +1,7 @@
 #include "../lv_examples.h"
 #if LV_BUILD_EXAMPLES && LV_USE_FLEX
 
+LV_FUNC_SECTION
 static void sw_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -17,6 +18,7 @@ static void sw_event_cb(lv_event_t * e)
 /**
  * Show an example to scroll snap
  */
+LV_FUNC_SECTION
 void lv_example_scroll_2(void)
 {
     lv_obj_t * panel = lv_obj_create(lv_screen_active());

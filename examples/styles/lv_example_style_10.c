@@ -4,6 +4,7 @@
 /**
  * Creating a transition
  */
+LV_FUNC_SECTION
 void lv_example_style_10(void)
 {
     static const lv_style_prop_t props[] = {LV_STYLE_BG_COLOR, LV_STYLE_BORDER_COLOR, LV_STYLE_BORDER_WIDTH, 0};

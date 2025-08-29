@@ -43,7 +43,7 @@ static lv_obj_t * t2;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_keypad_encoder(void)
 {
     g = lv_group_create();
@@ -81,6 +81,7 @@ void lv_demo_keypad_encoder(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void selectors_create(lv_obj_t * parent)
 {
     lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_COLUMN);
@@ -139,6 +140,7 @@ static void selectors_create(lv_obj_t * parent)
     lv_list_add_button(list, LV_SYMBOL_PASTE, "Paste");
 }
 
+LV_FUNC_SECTION
 static void text_input_create(lv_obj_t * parent)
 {
     lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_COLUMN);
@@ -160,6 +162,7 @@ static void text_input_create(lv_obj_t * parent)
     lv_obj_add_event_cb(ta2, ta_event_cb, LV_EVENT_ALL, kb);
 }
 
+LV_FUNC_SECTION
 static void msgbox_create(void)
 {
     lv_obj_t * mbox = lv_msgbox_create(NULL);
@@ -179,6 +182,7 @@ static void msgbox_create(void)
     lv_obj_set_style_bg_color(bg, lv_palette_main(LV_PALETTE_GREY), 0);
 }
 
+LV_FUNC_SECTION
 static void msgbox_event_cb(lv_event_t * e)
 {
     lv_obj_t * msgbox = lv_event_get_user_data(e);
@@ -189,6 +193,7 @@ static void msgbox_event_cb(lv_event_t * e)
     lv_obj_scroll_to(t1, 0, 0, LV_ANIM_OFF);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void ta_event_cb(lv_event_t * e)
 {
     lv_indev_t * indev = lv_indev_active();

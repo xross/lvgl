@@ -5,6 +5,7 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
@@ -13,11 +14,13 @@ void setUp(void)
 
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 static void canvas_basic_render(uint8_t * canvas_buf, lv_color_format_t render_cf, const char * name_main,
                                 const char * name_sub)
 {
@@ -88,6 +91,7 @@ static void canvas_basic_render(uint8_t * canvas_buf, lv_color_format_t render_c
     lv_obj_delete(canvas);
 }
 
+LV_FUNC_SECTION
 void canvas_blend_test(lv_obj_t  * canvas_large, lv_draw_image_dsc_t * img_dsc, const char * name_main,
                        const char * name_sub, lv_color_format_t small_render_cf, uint32_t idx)
 {
@@ -119,6 +123,7 @@ void canvas_blend_test(lv_obj_t  * canvas_large, lv_draw_image_dsc_t * img_dsc, 
     lv_image_cache_drop(img);
 }
 
+LV_FUNC_SECTION
 static void canvas_draw(const char * name, lv_color_format_t large_render_cf)
 {
     lv_obj_clean(lv_screen_active());
@@ -147,21 +152,25 @@ static void canvas_draw(const char * name, lv_color_format_t large_render_cf)
     TEST_ASSERT_EQUAL_SCREENSHOT(fn_buf);
 }
 
+LV_FUNC_SECTION
 void test_xrgb8888(void)
 {
     canvas_draw("xrgb8888", LV_COLOR_FORMAT_XRGB8888);
 }
 
+LV_FUNC_SECTION
 void test_argb8888(void)
 {
     canvas_draw("argb8888", LV_COLOR_FORMAT_ARGB8888);
 }
 
+LV_FUNC_SECTION
 void test_rgb888(void)
 {
     canvas_draw("rgb888", LV_COLOR_FORMAT_RGB888);
 }
 
+LV_FUNC_SECTION
 void test_rgb565(void)
 {
     canvas_draw("rgb565", LV_COLOR_FORMAT_RGB565);

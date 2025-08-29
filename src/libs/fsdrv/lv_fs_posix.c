@@ -73,6 +73,7 @@ static lv_fs_res_t fs_dir_close(lv_fs_drv_t * drv, void * dir_p);
 /**
  * Register a driver for the File system interface
  */
+LV_FUNC_SECTION
 void lv_fs_posix_init(void)
 {
     /*---------------------------------------------------
@@ -111,6 +112,7 @@ void lv_fs_posix_init(void)
  * @param mode  read: FS_MODE_RD, write: FS_MODE_WR, both: FS_MODE_RD | FS_MODE_WR
  * @return a file handle or -1 in case of fail
  */
+LV_FUNC_SECTION
 static void * fs_open(lv_fs_drv_t * drv, const char * path, lv_fs_mode_t mode)
 {
     LV_UNUSED(drv);
@@ -140,6 +142,7 @@ static void * fs_open(lv_fs_drv_t * drv, const char * path, lv_fs_mode_t mode)
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_close(lv_fs_drv_t * drv, void * file_p)
 {
     LV_UNUSED(drv);
@@ -164,6 +167,7 @@ static lv_fs_res_t fs_close(lv_fs_drv_t * drv, void * file_p)
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_read(lv_fs_drv_t * drv, void * file_p, void * buf, uint32_t btr, uint32_t * br)
 {
     LV_UNUSED(drv);
@@ -188,6 +192,7 @@ static lv_fs_res_t fs_read(lv_fs_drv_t * drv, void * file_p, void * buf, uint32_
  * @param bw        the number of real written bytes (Bytes Written). NULL if unused.
  * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_write(lv_fs_drv_t * drv, void * file_p, const void * buf, uint32_t btw, uint32_t * bw)
 {
     LV_UNUSED(drv);
@@ -211,6 +216,7 @@ static lv_fs_res_t fs_write(lv_fs_drv_t * drv, void * file_p, const void * buf, 
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_seek(lv_fs_drv_t * drv, void * file_p, uint32_t pos, lv_fs_whence_t whence)
 {
     LV_UNUSED(drv);
@@ -247,6 +253,7 @@ static lv_fs_res_t fs_seek(lv_fs_drv_t * drv, void * file_p, uint32_t pos, lv_fs
  * @return LV_FS_RES_OK: no error, the file is read
  *         any error from lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_tell(lv_fs_drv_t * drv, void * file_p, uint32_t * pos_p)
 {
     LV_UNUSED(drv);
@@ -268,6 +275,7 @@ static lv_fs_res_t fs_tell(lv_fs_drv_t * drv, void * file_p, uint32_t * pos_p)
  * @param path  path to a directory
  * @return pointer to an initialized 'DIR' or 'HANDLE' variable
  */
+LV_FUNC_SECTION
 static void * fs_dir_open(lv_fs_drv_t * drv, const char * path)
 {
     LV_UNUSED(drv);
@@ -294,6 +302,7 @@ static void * fs_dir_open(lv_fs_drv_t * drv, const char * path)
  * @param fn_len    length of the buffer to store the filename
  * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_dir_read(lv_fs_drv_t * drv, void * dir_p, char * fn, uint32_t fn_len)
 {
     LV_UNUSED(drv);
@@ -320,6 +329,7 @@ static lv_fs_res_t fs_dir_read(lv_fs_drv_t * drv, void * dir_p, char * fn, uint3
  * @param dir_p pointer to an initialized 'DIR' or 'HANDLE' variable
  * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_dir_close(lv_fs_drv_t * drv, void * dir_p)
 {
     LV_UNUSED(drv);

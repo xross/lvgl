@@ -221,6 +221,7 @@ static const void * c_array_images[sizeof(stride_align)][sizeof(compressions)][s
     }
 };
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
@@ -231,11 +232,13 @@ void setUp(void)
 
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 static void img_create(const char * name, const void * img_src, bool rotate, bool recolor)
 {
     lv_obj_t * cont = lv_obj_create(lv_screen_active());
@@ -255,6 +258,7 @@ static void img_create(const char * name, const void * img_src, bool rotate, boo
     lv_label_set_text(label, name);
 }
 
+LV_FUNC_SECTION
 static void bin_image_create(bool rotate, bool recolor, int align, int compress)
 {
     char name[32];
@@ -268,6 +272,7 @@ static void bin_image_create(bool rotate, bool recolor, int align, int compress)
     }
 }
 
+LV_FUNC_SECTION
 static void c_array_image_create(bool rotate, bool recolor, int align, int compress)
 {
     char name[32];
@@ -278,6 +283,7 @@ static void c_array_image_create(bool rotate, bool recolor, int align, int compr
     }
 }
 
+LV_FUNC_SECTION
 void test_image_formats(void)
 {
     for(unsigned align = 0; align <= 1; align++) {

@@ -55,6 +55,7 @@ static void _vglite_draw_line(const lv_point_t * point1, const lv_point_t * poin
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vglite_line(lv_draw_unit_t * draw_unit, const lv_draw_line_dsc_t * dsc)
 {
     if(dsc->width == 0)
@@ -86,6 +87,7 @@ void lv_draw_vglite_line(lv_draw_unit_t * draw_unit, const lv_draw_line_dsc_t * 
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _vglite_draw_line(const lv_point_t * point1, const lv_point_t * point2,
                               const lv_area_t * clip_area, const lv_draw_line_dsc_t * dsc)
 {

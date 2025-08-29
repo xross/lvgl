@@ -37,7 +37,7 @@ static view_t view;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_flex_layout(void)
 {
     view_create(lv_screen_active(), &view);

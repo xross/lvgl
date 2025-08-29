@@ -1,6 +1,7 @@
 #include "../lv_examples.h"
 #if LV_BUILD_EXAMPLES && LV_USE_BUTTON
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void btn_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -18,6 +19,7 @@ static void btn_event_cb(lv_event_t * e)
 /**
  * Create a button with a label and react on click event.
  */
+LV_FUNC_SECTION
 void lv_example_get_started_2(void)
 {
     lv_obj_t * btn = lv_button_create(lv_screen_active());     /*Add a button the current screen*/

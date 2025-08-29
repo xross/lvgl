@@ -78,6 +78,7 @@ static const uint8_t init_cmd_list[] = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_st7735_create(uint32_t hor_res, uint32_t ver_res, lv_lcd_flag_t flags,
                                 lv_st7735_send_cmd_cb_t send_cmd_cb, lv_st7735_send_color_cb_t send_color_cb)
 {
@@ -86,21 +87,25 @@ lv_display_t * lv_st7735_create(uint32_t hor_res, uint32_t ver_res, lv_lcd_flag_
     return disp;
 }
 
+LV_FUNC_SECTION
 void lv_st7735_set_gap(lv_display_t * disp, uint16_t x, uint16_t y)
 {
     lv_lcd_generic_mipi_set_gap(disp, x, y);
 }
 
+LV_FUNC_SECTION
 void lv_st7735_set_invert(lv_display_t * disp, bool invert)
 {
     lv_lcd_generic_mipi_set_invert(disp, invert);
 }
 
+LV_FUNC_SECTION
 void lv_st7735_set_gamma_curve(lv_display_t * disp, uint8_t gamma)
 {
     lv_lcd_generic_mipi_set_gamma_curve(disp, gamma);
 }
 
+LV_FUNC_SECTION
 void lv_st7735_send_cmd_list(lv_display_t * disp, const uint8_t * cmd_list)
 {
     lv_lcd_generic_mipi_send_cmd_list(disp, cmd_list);

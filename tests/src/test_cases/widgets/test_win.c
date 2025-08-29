@@ -10,16 +10,19 @@ static lv_obj_t * content = NULL;
 
 const char * dummy_text = "Hello LVGL!";
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_win_should_have_valid_documented_default_values(void)
 {
     // Create the win object and update layout
@@ -46,6 +49,7 @@ void test_win_should_have_valid_documented_default_values(void)
     TEST_ASSERT_EQUAL(0, lv_obj_get_child_count(content));
 }
 
+LV_FUNC_SECTION
 void test_win_add_title_single(void)
 {
     // Create the win object, get the header and update layout
@@ -67,6 +71,7 @@ void test_win_add_title_single(void)
     TEST_ASSERT_EQUAL(1, lv_label_get_long_mode(title));
 }
 
+LV_FUNC_SECTION
 void test_win_add_title_multiple(void)
 {
     // Create the win object, get the header and update layout
@@ -84,6 +89,7 @@ void test_win_add_title_multiple(void)
     TEST_ASSERT_EQUAL(2, lv_obj_get_child_count(header));
 }
 
+LV_FUNC_SECTION
 void test_win_add_button(void)
 {
     int win_button_width = 50;
@@ -111,6 +117,7 @@ void test_win_add_button(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/win_01.png");
 }
 
+LV_FUNC_SECTION
 void test_win_add_multiple_elements(void)
 {
     lv_obj_t * btn;

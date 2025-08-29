@@ -8,6 +8,7 @@ static lv_subject_t subject_font;
 /**
  * Change font size with Tiny_TTF
  */
+LV_FUNC_SECTION
 void lv_example_tiny_ttf_3(void)
 {
     extern const uint8_t ubuntu_font[];
@@ -42,6 +43,7 @@ void lv_example_tiny_ttf_3(void)
     lv_subject_add_observer(&subject_font, font_size_observer_cb, &style);
 }
 
+__attribute__(( fptrgroup("lv_observer_cb") ))
 static void font_size_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     lv_style_t * style = lv_observer_get_user_data(observer);

@@ -92,6 +92,7 @@ static lv_result_t decompress_image(lv_image_decoder_dsc_t * dsc, const lv_image
 /**
  * Initialize the lvgl binary image decoder module
  */
+LV_FUNC_SECTION
 void lv_bin_decoder_init(void)
 {
     lv_image_decoder_t * decoder;
@@ -111,6 +112,7 @@ void lv_bin_decoder_init(void)
     decoder->name = DECODER_NAME;
 }
 
+__attribute__(( fptrgroup("lv_image_deocder_info_cb") ))
 lv_result_t lv_bin_decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc, lv_image_header_t * header)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -177,6 +179,7 @@ lv_result_t lv_bin_decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_d
  * @param dsc     pointer to the decoder descriptor
  * @return LV_RESULT_OK: no error; LV_RESULT_INVALID: can't open the image
  */
+__attribute__(( fptrgroup("lv_image_deocder_open_cb") ))
 lv_result_t lv_bin_decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -362,6 +365,7 @@ lv_result_t lv_bin_decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_d
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 void lv_bin_decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -375,6 +379,7 @@ void lv_bin_decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t *
     free_decoder_data(dsc);
 }
 
+__attribute__(( fptrgroup("lv_image_deocder_get_area_cb") ))
 lv_result_t lv_bin_decoder_get_area(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc,
                                     const lv_area_t * full_area, lv_area_t * decoded_area)
 {
@@ -517,6 +522,7 @@ lv_result_t lv_bin_decoder_get_area(lv_image_decoder_t * decoder, lv_image_decod
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static decoder_data_t * get_decoder_data(lv_image_decoder_dsc_t * dsc)
 {
     decoder_data_t * data = dsc->user_data;
@@ -534,6 +540,7 @@ static decoder_data_t * get_decoder_data(lv_image_decoder_dsc_t * dsc)
     return data;
 }
 
+LV_FUNC_SECTION
 static void free_decoder_data(lv_image_decoder_dsc_t * dsc)
 {
     decoder_data_t * decoder_data = dsc->user_data;
@@ -551,6 +558,7 @@ static void free_decoder_data(lv_image_decoder_dsc_t * dsc)
     dsc->user_data = NULL;
 }
 
+LV_FUNC_SECTION
 static lv_result_t decode_indexed(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -673,6 +681,7 @@ exit_with_buf:
 #endif
 }
 
+LV_FUNC_SECTION
 static lv_result_t load_indexed(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
 #if LV_BIN_DECODER_RAM_LOAD == 0
@@ -767,6 +776,7 @@ static lv_result_t load_indexed(lv_image_decoder_t * decoder, lv_image_decoder_d
 }
 
 #if LV_BIN_DECODER_RAM_LOAD
+LV_FUNC_SECTION
 static lv_result_t decode_rgb(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -806,6 +816,7 @@ static lv_result_t decode_rgb(lv_image_decoder_t * decoder, lv_image_decoder_dsc
 /**
  * Extend A1/2/4 to A8 with interpolation to reduce rounding error.
  */
+LV_FUNC_SECTION
 static inline uint8_t bit_extend(uint8_t value, uint8_t bpp)
 {
     if(value == 0) return 0;
@@ -820,6 +831,7 @@ static inline uint8_t bit_extend(uint8_t value, uint8_t bpp)
     return res;
 }
 
+LV_FUNC_SECTION
 static lv_result_t decode_alpha_only(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -891,6 +903,7 @@ static lv_result_t decode_alpha_only(lv_image_decoder_t * decoder, lv_image_deco
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 static lv_result_t decode_compressed(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
 #if LV_BIN_DECODER_RAM_LOAD
@@ -1009,6 +1022,7 @@ static lv_result_t decode_compressed(lv_image_decoder_t * decoder, lv_image_deco
 #endif
 }
 
+LV_FUNC_SECTION
 static lv_result_t decode_indexed_line(lv_color_format_t color_format, const lv_color32_t * palette, int32_t x,
                                        int32_t w_px, const uint8_t * in, lv_color32_t * out)
 {
@@ -1057,6 +1071,7 @@ static lv_result_t decode_indexed_line(lv_color_format_t color_format, const lv_
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 static lv_fs_res_t fs_read_file_at(lv_fs_file_t * f, uint32_t pos, void * buff, uint32_t btr, uint32_t * br)
 {
     lv_fs_res_t res;
@@ -1075,6 +1090,7 @@ static lv_fs_res_t fs_read_file_at(lv_fs_file_t * f, uint32_t pos, void * buff, 
     return LV_FS_RES_OK;
 }
 
+LV_FUNC_SECTION
 static lv_result_t decompress_image(lv_image_decoder_dsc_t * dsc, const lv_image_compressed_t * compressed)
 {
     /*Need to store decompressed data to decoder to free on close*/

@@ -41,6 +41,7 @@ static lv_cache_entry_t * cache_add_internal_no_lock(lv_cache_t * cache, const v
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_cache_t * lv_cache_create(const lv_cache_class_t * cache_class,
                              size_t node_size, size_t max_size,
                              lv_cache_ops_t ops)
@@ -65,6 +66,7 @@ lv_cache_t * lv_cache_create(const lv_cache_class_t * cache_class,
     return cache;
 }
 
+LV_FUNC_SECTION
 void lv_cache_destroy(lv_cache_t * cache, void * user_data)
 {
     LV_ASSERT_NULL(cache);
@@ -76,6 +78,7 @@ void lv_cache_destroy(lv_cache_t * cache, void * user_data)
     lv_free(cache);
 }
 
+LV_FUNC_SECTION
 lv_cache_entry_t * lv_cache_acquire(lv_cache_t * cache, const void * key, void * user_data)
 {
     LV_ASSERT_NULL(cache);
@@ -101,6 +104,7 @@ lv_cache_entry_t * lv_cache_acquire(lv_cache_t * cache, const void * key, void *
     LV_PROFILER_END;
     return entry;
 }
+LV_FUNC_SECTION
 void lv_cache_release(lv_cache_t * cache, lv_cache_entry_t * entry, void * user_data)
 {
     LV_ASSERT_NULL(entry);
@@ -118,6 +122,7 @@ void lv_cache_release(lv_cache_t * cache, lv_cache_entry_t * entry, void * user_
 
     LV_PROFILER_END;
 }
+LV_FUNC_SECTION
 lv_cache_entry_t * lv_cache_add(lv_cache_t * cache, const void * key, void * user_data)
 {
     LV_ASSERT_NULL(cache);
@@ -142,6 +147,7 @@ lv_cache_entry_t * lv_cache_add(lv_cache_t * cache, const void * key, void * use
     LV_PROFILER_END;
     return entry;
 }
+LV_FUNC_SECTION
 lv_cache_entry_t * lv_cache_acquire_or_create(lv_cache_t * cache, const void * key, void * user_data)
 {
     LV_ASSERT_NULL(cache);
@@ -191,6 +197,7 @@ lv_cache_entry_t * lv_cache_acquire_or_create(lv_cache_t * cache, const void * k
     LV_PROFILER_END;
     return entry;
 }
+LV_FUNC_SECTION
 void lv_cache_reserve(lv_cache_t * cache, uint32_t reserved_size, void * user_data)
 {
     LV_ASSERT_NULL(cache);
@@ -204,6 +211,7 @@ void lv_cache_reserve(lv_cache_t * cache, uint32_t reserved_size, void * user_da
 
     LV_PROFILER_END;
 }
+LV_FUNC_SECTION
 void lv_cache_drop(lv_cache_t * cache, const void * key, void * user_data)
 {
     LV_ASSERT_NULL(cache);
@@ -217,6 +225,7 @@ void lv_cache_drop(lv_cache_t * cache, const void * key, void * user_data)
 
     LV_PROFILER_END;
 }
+LV_FUNC_SECTION
 bool lv_cache_evict_one(lv_cache_t * cache, void * user_data)
 {
     LV_ASSERT_NULL(cache);
@@ -230,6 +239,7 @@ bool lv_cache_evict_one(lv_cache_t * cache, void * user_data)
     LV_PROFILER_END;
     return res;
 }
+LV_FUNC_SECTION
 void lv_cache_drop_all(lv_cache_t * cache, void * user_data)
 {
     LV_ASSERT_NULL(cache);
@@ -243,50 +253,60 @@ void lv_cache_drop_all(lv_cache_t * cache, void * user_data)
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 void lv_cache_set_max_size(lv_cache_t * cache, size_t max_size, void * user_data)
 {
     LV_UNUSED(user_data);
     cache->max_size = max_size;
 }
+LV_FUNC_SECTION
 size_t lv_cache_get_max_size(lv_cache_t * cache, void * user_data)
 {
     LV_UNUSED(user_data);
     return cache->max_size;
 }
+LV_FUNC_SECTION
 size_t lv_cache_get_size(lv_cache_t * cache, void * user_data)
 {
     LV_UNUSED(user_data);
     return cache->size;
 }
+LV_FUNC_SECTION
 size_t lv_cache_get_free_size(lv_cache_t * cache, void * user_data)
 {
     LV_UNUSED(user_data);
     return cache->max_size - cache->size;
 }
+LV_FUNC_SECTION
 bool lv_cache_is_enabled(lv_cache_t * cache)
 {
     return cache->max_size > 0;
 }
+LV_FUNC_SECTION
 void lv_cache_set_compare_cb(lv_cache_t * cache, lv_cache_compare_cb_t compare_cb, void * user_data)
 {
     LV_UNUSED(user_data);
     cache->ops.compare_cb = compare_cb;
 }
+LV_FUNC_SECTION
 void lv_cache_set_create_cb(lv_cache_t * cache, lv_cache_create_cb_t alloc_cb, void * user_data)
 {
     LV_UNUSED(user_data);
     cache->ops.create_cb = alloc_cb;
 }
+LV_FUNC_SECTION
 void lv_cache_set_free_cb(lv_cache_t * cache, lv_cache_free_cb_t free_cb, void * user_data)
 {
     LV_UNUSED(user_data);
     cache->ops.free_cb = free_cb;
 }
+LV_FUNC_SECTION
 void lv_cache_set_name(lv_cache_t * cache, const char * name)
 {
     if(cache == NULL) return;
     cache->name = name;
 }
+LV_FUNC_SECTION
 const char * lv_cache_get_name(lv_cache_t * cache)
 {
     return cache->name;
@@ -296,6 +316,7 @@ const char * lv_cache_get_name(lv_cache_t * cache)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void cache_drop_internal_no_lock(lv_cache_t * cache, const void * key, void * user_data)
 {
     lv_cache_entry_t * entry = cache->clz->get_cb(cache, key, user_data);
@@ -314,6 +335,7 @@ static void cache_drop_internal_no_lock(lv_cache_t * cache, const void * key, vo
     }
 }
 
+LV_FUNC_SECTION
 static bool cache_evict_one_internal_no_lock(lv_cache_t * cache, void * user_data)
 {
     lv_cache_entry_t * victim = cache->clz->get_victim_cb(cache, user_data);
@@ -329,6 +351,7 @@ static bool cache_evict_one_internal_no_lock(lv_cache_t * cache, void * user_dat
     return true;
 }
 
+LV_FUNC_SECTION
 static lv_cache_entry_t * cache_add_internal_no_lock(lv_cache_t * cache, const void * key, void * user_data)
 {
     lv_cache_reserve_cond_res_t reserve_cond_res = cache->clz->reserve_cond_cb(cache, key, 0, user_data);

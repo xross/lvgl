@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_CHART && LV_DRAW_SW_COMPLEX && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void add_data(lv_timer_t * t)
 {
     lv_obj_t * chart = lv_timer_get_user_data(t);
@@ -22,6 +23,7 @@ static void add_data(lv_timer_t * t)
 /**
  * Circular line chart with gap
  */
+LV_FUNC_SECTION
 void lv_example_chart_8(void)
 {
     /*Create a stacked_area_chart.obj*/

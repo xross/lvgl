@@ -210,6 +210,7 @@ const lv_obj_class_t lv_obj_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_obj_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -228,6 +229,7 @@ lv_obj_t * lv_obj_create(lv_obj_t * parent)
  * Attribute set
  *----------------*/
 
+LV_FUNC_SECTION
 void lv_obj_add_flag(lv_obj_t * obj, lv_obj_flag_t f)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -265,6 +267,7 @@ void lv_obj_add_flag(lv_obj_t * obj, lv_obj_flag_t f)
     }
 }
 
+LV_FUNC_SECTION
 void lv_obj_remove_flag(lv_obj_t * obj, lv_obj_flag_t f)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -293,12 +296,14 @@ void lv_obj_remove_flag(lv_obj_t * obj, lv_obj_flag_t f)
 
 }
 
+LV_FUNC_SECTION
 void lv_obj_update_flag(lv_obj_t * obj, lv_obj_flag_t f, bool v)
 {
     if(v) lv_obj_add_flag(obj, f);
     else lv_obj_remove_flag(obj, f);
 }
 
+LV_FUNC_SECTION
 void lv_obj_add_state(lv_obj_t * obj, lv_state_t state)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -314,6 +319,7 @@ void lv_obj_add_state(lv_obj_t * obj, lv_state_t state)
     }
 }
 
+LV_FUNC_SECTION
 void lv_obj_remove_state(lv_obj_t * obj, lv_state_t state)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -324,6 +330,7 @@ void lv_obj_remove_state(lv_obj_t * obj, lv_state_t state)
     }
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_state(lv_obj_t * obj, lv_state_t state, bool v)
 {
     if(v) lv_obj_add_state(obj, state);
@@ -334,6 +341,7 @@ void lv_obj_set_state(lv_obj_t * obj, lv_state_t state, bool v)
  * Getter functions
  *======================*/
 
+LV_FUNC_SECTION
 bool lv_obj_has_flag(const lv_obj_t * obj, lv_obj_flag_t f)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -341,6 +349,7 @@ bool lv_obj_has_flag(const lv_obj_t * obj, lv_obj_flag_t f)
     return (obj->flags & f)  == f;
 }
 
+LV_FUNC_SECTION
 bool lv_obj_has_flag_any(const lv_obj_t * obj, lv_obj_flag_t f)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -348,6 +357,7 @@ bool lv_obj_has_flag_any(const lv_obj_t * obj, lv_obj_flag_t f)
     return !!(obj->flags & f);
 }
 
+LV_FUNC_SECTION
 lv_state_t lv_obj_get_state(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -355,6 +365,7 @@ lv_state_t lv_obj_get_state(const lv_obj_t * obj)
     return obj->state;
 }
 
+LV_FUNC_SECTION
 bool lv_obj_has_state(const lv_obj_t * obj, lv_state_t state)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -362,6 +373,7 @@ bool lv_obj_has_state(const lv_obj_t * obj, lv_state_t state)
     return !!(obj->state & state);
 }
 
+LV_FUNC_SECTION
 lv_group_t * lv_obj_get_group(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -374,6 +386,7 @@ lv_group_t * lv_obj_get_group(const lv_obj_t * obj)
  * OTHER FUNCTIONS
  *------------------*/
 
+LV_FUNC_SECTION
 void lv_obj_allocate_spec_attr(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -388,12 +401,14 @@ void lv_obj_allocate_spec_attr(lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_obj_check_type(const lv_obj_t * obj, const lv_obj_class_t * class_p)
 {
     if(obj == NULL) return false;
     return obj->class_p == class_p;
 }
 
+LV_FUNC_SECTION
 bool lv_obj_has_class(const lv_obj_t * obj, const lv_obj_class_t * class_p)
 {
     const lv_obj_class_t * obj_class = obj->class_p;
@@ -405,11 +420,13 @@ bool lv_obj_has_class(const lv_obj_t * obj, const lv_obj_class_t * class_p)
     return false;
 }
 
+LV_FUNC_SECTION
 const lv_obj_class_t * lv_obj_get_class(const lv_obj_t * obj)
 {
     return obj->class_p;
 }
 
+LV_FUNC_SECTION
 bool lv_obj_is_valid(const lv_obj_t * obj)
 {
     lv_display_t * disp = lv_display_get_next(NULL);
@@ -427,18 +444,21 @@ bool lv_obj_is_valid(const lv_obj_t * obj)
     return false;
 }
 
+LV_FUNC_SECTION
 void lv_obj_null_on_delete(lv_obj_t ** obj_ptr)
 {
     lv_obj_add_event_cb(*obj_ptr, null_on_delete_cb, LV_EVENT_DELETE, obj_ptr);
 }
 
 #if LV_USE_OBJ_ID
+LV_FUNC_SECTION
 void * lv_obj_get_id(const lv_obj_t * obj)
 {
     LV_ASSERT_NULL(obj);
     return obj->id;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_obj_get_child_by_id(const lv_obj_t * obj, const void * id)
 {
     if(obj == NULL) obj = lv_display_get_screen_active(NULL);
@@ -462,11 +482,13 @@ lv_obj_t * lv_obj_get_child_by_id(const lv_obj_t * obj, const void * id)
 }
 #endif
 
+LV_FUNC_SECTION
 void lv_obj_set_user_data(lv_obj_t * obj, void * user_data)
 {
     obj->user_data = user_data;
 }
 
+LV_FUNC_SECTION
 void * lv_obj_get_user_data(lv_obj_t * obj)
 {
     return obj->user_data;
@@ -476,6 +498,7 @@ void * lv_obj_get_user_data(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_obj_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -511,6 +534,7 @@ static void lv_obj_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_obj_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -546,6 +570,7 @@ static void lv_obj_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 #endif
 }
 
+LV_FUNC_SECTION
 static void lv_obj_draw(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -643,6 +668,7 @@ static void lv_obj_draw(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_scrollbar(lv_obj_t * obj, lv_layer_t * layer)
 {
 
@@ -672,6 +698,7 @@ static void draw_scrollbar(lv_obj_t * obj, lv_layer_t * layer)
  * @param dsc the draw descriptor to initialize
  * @return LV_RESULT_OK: the scrollbar is visible; LV_RESULT_INVALID: the scrollbar is not visible
  */
+LV_FUNC_SECTION
 static lv_result_t scrollbar_init_draw_dsc(lv_obj_t * obj, lv_draw_rect_dsc_t * dsc)
 {
     lv_draw_rect_dsc_init(dsc);
@@ -720,6 +747,7 @@ static lv_result_t scrollbar_init_draw_dsc(lv_obj_t * obj, lv_draw_rect_dsc_t * 
     }
 }
 
+LV_FUNC_SECTION
 static void lv_obj_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -889,6 +917,7 @@ static void lv_obj_event(const lv_obj_class_t * class_p, lv_event_t * e)
  * @param obj       pointer to an object
  * @param state     the new state
  */
+LV_FUNC_SECTION
 static void update_obj_state(lv_obj_t * obj, lv_state_t new_state)
 {
     if(obj->state == new_state) return;
@@ -967,6 +996,7 @@ static void update_obj_state(lv_obj_t * obj, lv_state_t new_state)
     }
 }
 
+LV_FUNC_SECTION
 static bool obj_valid_child(const lv_obj_t * parent, const lv_obj_t * obj_to_find)
 {
     /*Check all children of `parent`*/
@@ -988,6 +1018,7 @@ static bool obj_valid_child(const lv_obj_t * parent, const lv_obj_t * obj_to_fin
     return false;
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void null_on_delete_cb(lv_event_t * e)
 {
     lv_obj_t ** obj_ptr = lv_event_get_user_data(e);
@@ -995,6 +1026,7 @@ static void null_on_delete_cb(lv_event_t * e)
 }
 
 #if LV_USE_OBJ_PROPERTY
+LV_FUNC_SECTION
 static lv_result_t lv_obj_set_any(lv_obj_t * obj, lv_prop_id_t id, const lv_property_t * prop)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -1020,6 +1052,7 @@ static lv_result_t lv_obj_set_any(lv_obj_t * obj, lv_prop_id_t id, const lv_prop
     }
 }
 
+LV_FUNC_SECTION
 static lv_result_t lv_obj_get_any(const lv_obj_t * obj, lv_prop_id_t id, lv_property_t * prop)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

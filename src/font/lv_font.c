@@ -42,6 +42,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 const void * lv_font_get_glyph_bitmap(lv_font_glyph_dsc_t * g_dsc, lv_draw_buf_t * draw_buf)
 {
     const lv_font_t * font_p = g_dsc->resolved_font;
@@ -49,6 +50,7 @@ const void * lv_font_get_glyph_bitmap(lv_font_glyph_dsc_t * g_dsc, lv_draw_buf_t
     return font_p->get_glyph_bitmap(g_dsc, draw_buf);
 }
 
+LV_FUNC_SECTION
 void lv_font_glyph_release_draw_data(lv_font_glyph_dsc_t * g_dsc)
 {
     const lv_font_t * font = g_dsc->resolved_font;
@@ -58,6 +60,7 @@ void lv_font_glyph_release_draw_data(lv_font_glyph_dsc_t * g_dsc)
     }
 }
 
+LV_FUNC_SECTION
 bool lv_font_get_glyph_dsc(const lv_font_t * font_p, lv_font_glyph_dsc_t * dsc_out, uint32_t letter,
                            uint32_t letter_next)
 {
@@ -116,6 +119,7 @@ bool lv_font_get_glyph_dsc(const lv_font_t * font_p, lv_font_glyph_dsc_t * dsc_o
     return false;
 }
 
+LV_FUNC_SECTION
 uint16_t lv_font_get_glyph_width(const lv_font_t * font, uint32_t letter, uint32_t letter_next)
 {
     LV_ASSERT_NULL(font);
@@ -128,17 +132,20 @@ uint16_t lv_font_get_glyph_width(const lv_font_t * font, uint32_t letter, uint32
     return g.adv_w;
 }
 
+LV_FUNC_SECTION
 void lv_font_set_kerning(lv_font_t * font, lv_font_kerning_t kerning)
 {
     LV_ASSERT_NULL(font);
     font->kerning = kerning;
 }
 
+LV_FUNC_SECTION
 int32_t lv_font_get_line_height(const lv_font_t * font)
 {
     return font->line_height;
 }
 
+LV_FUNC_SECTION
 const lv_font_t * lv_font_default(void)
 {
     return LV_FONT_DEFAULT;

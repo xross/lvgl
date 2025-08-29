@@ -9,6 +9,7 @@ static void draw_event_cb(lv_event_t * e);
 /**
  * Add a faded area effect to the line chart and make some division lines ticker
  */
+LV_FUNC_SECTION
 void lv_example_chart_5(void)
 {
     /*Create a chart*/
@@ -32,6 +33,7 @@ void lv_example_chart_5(void)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_event_cb(lv_event_t * e)
 {
     lv_draw_task_t * draw_task = lv_event_get_draw_task(e);
@@ -47,6 +49,7 @@ static void draw_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void add_faded_area(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -103,6 +106,7 @@ static void add_faded_area(lv_event_t * e)
     lv_draw_rect(base_dsc->layer, &rect_dsc, &rect_area);
 }
 
+LV_FUNC_SECTION
 static void hook_division_lines(lv_event_t * e)
 {
     lv_draw_task_t * draw_task = lv_event_get_draw_task(e);

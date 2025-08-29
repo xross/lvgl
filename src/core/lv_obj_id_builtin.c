@@ -43,6 +43,7 @@ typedef struct _class_info_t {
 
 #if LV_USE_OBJ_ID && LV_USE_OBJ_ID_BUILTIN
 
+LV_FUNC_SECTION
 void lv_obj_assign_id(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_ASSERT(obj && class_p);
@@ -79,6 +80,7 @@ void lv_obj_assign_id(const lv_obj_class_t * class_p, lv_obj_t * obj)
     obj->id = (void *)(lv_uintptr_t)id;
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_id(lv_obj_t * obj, void * id)
 {
     LV_ASSERT_NULL(obj);
@@ -86,12 +88,14 @@ void lv_obj_set_id(lv_obj_t * obj, void * id)
     obj->id = id;
 }
 
+LV_FUNC_SECTION
 void lv_obj_free_id(lv_obj_t * obj)
 {
     LV_UNUSED(obj);
     obj->id = NULL;
 }
 
+LV_FUNC_SECTION
 const char * lv_obj_stringify_id(lv_obj_t * obj, char * buf, uint32_t len)
 {
     const char * name;
@@ -105,6 +109,7 @@ const char * lv_obj_stringify_id(lv_obj_t * obj, char * buf, uint32_t len)
     return buf;
 }
 
+LV_FUNC_SECTION
 void lv_objid_builtin_destroy(void)
 {
     lv_global_t * global = LV_GLOBAL_DEFAULT();
@@ -114,6 +119,7 @@ void lv_objid_builtin_destroy(void)
     global->objid_count = 0;
 }
 
+LV_FUNC_SECTION
 int lv_obj_id_compare(const void * id1, const void * id2)
 {
     return id1 == id2 ? 0 : 1;

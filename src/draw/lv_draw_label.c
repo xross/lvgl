@@ -55,6 +55,7 @@ static void draw_letter(lv_draw_unit_t * draw_unit, lv_draw_glyph_dsc_t * dsc,  
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_label_dsc_init(lv_draw_label_dsc_t * dsc)
 {
     lv_memzero(dsc, sizeof(lv_draw_label_dsc_t));
@@ -69,11 +70,13 @@ void lv_draw_label_dsc_init(lv_draw_label_dsc_t * dsc)
     dsc->base.dsc_size = sizeof(lv_draw_label_dsc_t);
 }
 
+LV_FUNC_SECTION
 lv_draw_label_dsc_t * lv_draw_task_get_label_dsc(lv_draw_task_t * task)
 {
     return task->type == LV_DRAW_TASK_TYPE_LABEL ? (lv_draw_label_dsc_t *)task->draw_dsc : NULL;
 }
 
+LV_FUNC_SECTION
 void lv_draw_glyph_dsc_init(lv_draw_glyph_dsc_t * dsc)
 {
     lv_memzero(dsc, sizeof(lv_draw_glyph_dsc_t));
@@ -146,6 +149,7 @@ void LV_ATTRIBUTE_FAST_MEM lv_draw_character(lv_layer_t * layer, lv_draw_label_d
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 void lv_draw_label_iterate_characters(lv_draw_unit_t * draw_unit, const lv_draw_label_dsc_t * dsc,
                                       const lv_area_t * coords,
                                       lv_draw_glyph_cb_t cb)
@@ -378,6 +382,7 @@ void lv_draw_label_iterate_characters(lv_draw_unit_t * draw_unit, const lv_draw_
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void draw_letter(lv_draw_unit_t * draw_unit, lv_draw_glyph_dsc_t * dsc,  const lv_point_t * pos,
                         const lv_font_t * font, uint32_t letter, lv_draw_glyph_cb_t cb)
 {

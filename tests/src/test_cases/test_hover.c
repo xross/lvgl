@@ -22,23 +22,27 @@ static const lv_point_t pointer2[] = {
     {0, 0}, {60, 100}, {80, 100}, {120, 120}, {0, 0},
 };
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 static void hovered_event_cb(lv_event_t * e)
 {
     test_hover_t * hover = lv_event_get_user_data(e);
     lv_log("Object(ID:%s) hovered %u/%d times.\n", hover->id, hover->counts, TEST_HOVER_COUNTS);
 }
 
+LV_FUNC_SECTION
 static void test_move_mouse(lv_point_t * point, uint8_t size)
 {
     lv_point_t * p = point;
@@ -51,6 +55,7 @@ static void test_move_mouse(lv_point_t * point, uint8_t size)
     }
 }
 
+LV_FUNC_SECTION
 void test_hover_basic(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());
@@ -79,6 +84,7 @@ void test_hover_basic(void)
     test_move_mouse((lv_point_t *)pointer2, 5);
 }
 
+LV_FUNC_SECTION
 void test_hover_delete(void)
 {
     for(int i = 0; i < 4; i++) {

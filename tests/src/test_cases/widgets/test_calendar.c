@@ -26,22 +26,26 @@ void test_calendar_get_btnmatrix(void);
 static lv_obj_t * g_active_screen = NULL;
 static lv_obj_t * g_calendar = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     g_active_screen = lv_screen_active();
     g_calendar = lv_calendar_create(g_active_screen);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(g_active_screen);
 }
 
+LV_FUNC_SECTION
 void test_calendar_creation_successful(void)
 {
     TEST_ASSERT_NOT_NULL(g_calendar);
 }
 
+LV_FUNC_SECTION
 void test_calendar_set_today_date(void)
 {
     /* Work with 2022-09-21 as today (start of spring in Southern hemisphere) */
@@ -59,6 +63,7 @@ void test_calendar_set_today_date(void)
     TEST_ASSERT_EQUAL_INT16(today.day, date_after_test->day);
 }
 
+LV_FUNC_SECTION
 void test_calendar_set_today_date_gui(void)
 {
     /* Work with 2022-09-21 as today (start of spring in Southern hemisphere) */
@@ -73,6 +78,7 @@ void test_calendar_set_today_date_gui(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/calendar_01.png");
 }
 
+LV_FUNC_SECTION
 void test_calendar_set_showed_date_gui(void)
 {
     lv_calendar_set_showed_date(g_calendar, 2022, 9);
@@ -80,6 +86,7 @@ void test_calendar_set_showed_date_gui(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/calendar_02.png");
 }
 
+LV_FUNC_SECTION
 void test_calendar_set_highlighted_dates(void)
 {
     /*Highlight a few days*/
@@ -107,6 +114,7 @@ void test_calendar_set_highlighted_dates(void)
     }
 }
 
+LV_FUNC_SECTION
 void test_calendar_set_highlighted_dates_gui(void)
 {
     /*Highlight a few days*/
@@ -130,6 +138,7 @@ void test_calendar_set_highlighted_dates_gui(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/calendar_03.png");
 }
 
+LV_FUNC_SECTION
 void test_calendar_set_day_names_gui(void)
 {
     static const char * day_names[7] = {"Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"};
@@ -141,6 +150,7 @@ void test_calendar_set_day_names_gui(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/calendar_04.png");
 }
 
+LV_FUNC_SECTION
 void test_calendar_get_highlighted_dates_num(void)
 {
     /*Highlight a few days*/
@@ -162,6 +172,7 @@ void test_calendar_get_highlighted_dates_num(void)
     TEST_ASSERT_EQUAL_INT16(3, lv_calendar_get_highlighted_dates_num(g_calendar));
 }
 
+LV_FUNC_SECTION
 void test_calendar_header_dropdown_create_gui(void)
 {
     lv_calendar_header_dropdown_create(g_calendar);
@@ -171,6 +182,7 @@ void test_calendar_header_dropdown_create_gui(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/calendar_05.png");
 }
 
+LV_FUNC_SECTION
 void test_calendar_header_arrow_create_gui(void)
 {
     lv_calendar_header_arrow_create(g_calendar);
@@ -180,6 +192,7 @@ void test_calendar_header_arrow_create_gui(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/calendar_06.png");
 }
 
+LV_FUNC_SECTION
 void test_calendar_event_key_down_gui(void)
 {
     uint32_t key = LV_KEY_DOWN;
@@ -191,6 +204,7 @@ void test_calendar_event_key_down_gui(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/calendar_07.png");
 }
 
+LV_FUNC_SECTION
 void test_calendar_get_pressed_date_null(void)
 {
     lv_calendar_set_showed_date(g_calendar, 2022, 9);
@@ -202,6 +216,7 @@ void test_calendar_get_pressed_date_null(void)
     TEST_ASSERT_EQUAL(result, LV_RESULT_INVALID);
 }
 
+LV_FUNC_SECTION
 void test_calendar_get_btnmatrix(void)
 {
     lv_obj_t * btnm = lv_calendar_get_btnmatrix(g_calendar);
@@ -209,6 +224,7 @@ void test_calendar_get_btnmatrix(void)
     TEST_ASSERT_NOT_NULL(btnm);
 }
 
+LV_FUNC_SECTION
 void test_calendar_custom_year_list(void)
 {
     lv_obj_t  * calendar = lv_calendar_create(lv_screen_active());
@@ -221,6 +237,7 @@ void test_calendar_custom_year_list(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/calendar_08.png");
 }
 
+LV_FUNC_SECTION
 void test_calendar_chinese_calendar(void)
 {
     lv_obj_set_size(g_calendar, 400, 350);

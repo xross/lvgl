@@ -25,6 +25,7 @@ static const lv_fragment_class_t sample_cls = {
     .instance_size = sizeof(struct sample_fragment_t),
     };
 
+LV_FUNC_SECTION
 void lv_example_fragment_1(void)
 {
     root = lv_obj_create(lv_screen_active());
@@ -37,11 +38,13 @@ void lv_example_fragment_1(void)
     lv_fragment_manager_replace(manager, fragment, &root);
 }
 
+__attribute__(( fptrgroup("lv_fragment_constructor_cb") ))
 static void sample_fragment_ctor(lv_fragment_t * self, void * args)
 {
     ((struct sample_fragment_t *) self)->name = args;
 }
 
+__attribute__(( fptrgroup("lv_fragment_create_obj_cb") ))
 static lv_obj_t * sample_fragment_create_obj(lv_fragment_t * self, lv_obj_t * parent)
 {
     lv_obj_t * label = lv_label_create(parent);
@@ -50,6 +53,7 @@ static lv_obj_t * sample_fragment_create_obj(lv_fragment_t * self, lv_obj_t * pa
     return label;
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void sample_container_delete(lv_event_t * e)
 {
     lv_fragment_manager_t * manager = (lv_fragment_manager_t *) lv_event_get_user_data(e);

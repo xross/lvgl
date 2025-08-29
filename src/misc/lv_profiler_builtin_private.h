@@ -32,9 +32,13 @@ extern "C" {
 struct lv_profiler_builtin_config_t {
     size_t buf_size;                    /**< The size of the buffer used for profiling data */
     uint32_t tick_per_sec;              /**< The number of ticks per second */
+    __attribute__(( fptrgroup("lv_profiler_tick_get_cb") ))
     uint32_t (*tick_get_cb)(void);      /**< Callback function to get the current tick count */
+    __attribute__(( fptrgroup("lv_profiler_flush_cb") ))
     void (*flush_cb)(const char * buf); /**< Callback function to flush the profiling data */
+    __attribute__(( fptrgroup("lv_profiler_tid_get_cb") ))
     int (*tid_get_cb)(void);            /**< Callback function to get the current thread ID */
+    __attribute__(( fptrgroup("lv_profiler_cpu_get_cb") ))
     int (*cpu_get_cb)(void);            /**< Callback function to get the current CPU */
 };
 

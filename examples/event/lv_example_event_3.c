@@ -1,6 +1,7 @@
 #include "../lv_examples.h"
 #if LV_BUILD_EXAMPLES && LV_USE_FLEX
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_cb(lv_event_t * e)
 {
     /*The original target of the event. Can be the buttons or the container*/
@@ -19,6 +20,7 @@ static void event_cb(lv_event_t * e)
 /**
  * Demonstrate event bubbling
  */
+LV_FUNC_SECTION
 void lv_example_event_3(void)
 {
 

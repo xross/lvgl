@@ -4,6 +4,7 @@
 /**
  * Bar with opposite direction
  */
+LV_FUNC_SECTION
 void lv_example_bar_7(void)
 {
     lv_obj_t * label;

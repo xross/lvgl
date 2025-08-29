@@ -5,17 +5,20 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_display_set_color_format(NULL, LV_COLOR_FORMAT_XRGB8888);
 }
 
+LV_FUNC_SECTION
 void test_render_to_rgb888(void)
 {
     lv_display_set_color_format(NULL, LV_COLOR_FORMAT_RGB888);

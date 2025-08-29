@@ -3,6 +3,7 @@
 
 #define ITEM_CNT 200
 
+LV_FUNC_SECTION
 static void draw_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -45,6 +46,7 @@ static void draw_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void change_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -59,6 +61,7 @@ static void change_event_cb(lv_event_t * e)
 /**
  * A very light-weighted list created from table
  */
+LV_FUNC_SECTION
 void lv_example_table_2(void)
 {
     /*Measure memory usage*/

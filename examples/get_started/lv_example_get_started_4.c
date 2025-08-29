@@ -3,6 +3,7 @@
 
 static lv_obj_t * label;
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void slider_event_cb(lv_event_t * e)
 {
     lv_obj_t * slider = lv_event_get_target(e);
@@ -15,6 +16,7 @@ static void slider_event_cb(lv_event_t * e)
 /**
  * Create a slider and write its value on a label.
  */
+LV_FUNC_SECTION
 void lv_example_get_started_4(void)
 {
     /*Create a slider in the center of the display*/

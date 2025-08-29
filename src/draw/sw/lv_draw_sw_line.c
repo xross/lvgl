@@ -47,6 +47,7 @@ static void /* LV_ATTRIBUTE_FAST_MEM */ draw_line_ver(lv_draw_unit_t * draw_unit
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_sw_line(lv_draw_unit_t * draw_unit, const lv_draw_line_dsc_t * dsc)
 {
     if(dsc->width == 0) return;

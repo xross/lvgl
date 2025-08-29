@@ -4,6 +4,7 @@
 /**
  * Local styles
  */
+LV_FUNC_SECTION
 void lv_example_style_12(void)
 {
     static lv_style_t style;

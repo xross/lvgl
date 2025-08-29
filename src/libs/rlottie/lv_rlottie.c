@@ -62,6 +62,7 @@ static lv_rlottie_create_info_t create_info;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_rlottie_create_from_file(lv_obj_t * parent, int32_t width, int32_t height, const char * path)
 {
     create_info.width = width;
@@ -76,6 +77,7 @@ lv_obj_t * lv_rlottie_create_from_file(lv_obj_t * parent, int32_t width, int32_t
     return obj;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_rlottie_create_from_raw(lv_obj_t * parent, int32_t width, int32_t height, const char * rlottie_desc)
 {
     create_info.width = width;
@@ -90,6 +92,7 @@ lv_obj_t * lv_rlottie_create_from_raw(lv_obj_t * parent, int32_t width, int32_t 
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_rlottie_set_play_mode(lv_obj_t * obj, const lv_rlottie_ctrl_t ctrl)
 {
     lv_rlottie_t * rlottie = (lv_rlottie_t *) obj;
@@ -101,6 +104,7 @@ void lv_rlottie_set_play_mode(lv_obj_t * obj, const lv_rlottie_ctrl_t ctrl)
     }
 }
 
+LV_FUNC_SECTION
 void lv_rlottie_set_current_frame(lv_obj_t * obj, const size_t goto_frame)
 {
     lv_rlottie_t * rlottie = (lv_rlottie_t *) obj;
@@ -111,6 +115,7 @@ void lv_rlottie_set_current_frame(lv_obj_t * obj, const size_t goto_frame)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_rlottie_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -156,6 +161,7 @@ static void lv_rlottie_constructor(const lv_obj_class_t * class_p, lv_obj_t * ob
     lv_obj_update_layout(obj);
 }
 
+LV_FUNC_SECTION
 static void lv_rlottie_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -187,6 +193,7 @@ static void lv_rlottie_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj
 
 }
 
+LV_FUNC_SECTION
 static void next_frame_task_cb(lv_timer_t * t)
 {
     lv_obj_t * obj = lv_timer_get_user_data(t);

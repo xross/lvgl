@@ -4,6 +4,7 @@
 /**
  * Show how to style a slider.
  */
+LV_FUNC_SECTION
 void lv_example_slider_2(void)
 {
     /*Create a transition*/

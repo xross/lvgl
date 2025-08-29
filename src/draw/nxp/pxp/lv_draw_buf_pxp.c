@@ -49,6 +49,7 @@ static void _invalidate_cache(const lv_draw_buf_t * draw_buf, const lv_area_t * 
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_buf_pxp_init_handlers(void)
 {
     lv_draw_buf_handlers_t * handlers = lv_draw_buf_get_handlers();
@@ -64,6 +65,7 @@ void lv_draw_buf_pxp_init_handlers(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _invalidate_cache(const lv_draw_buf_t * draw_buf, const lv_area_t * area)
 {
     const lv_image_header_t * header = &draw_buf->header;

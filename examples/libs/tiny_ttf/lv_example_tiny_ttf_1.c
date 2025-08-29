@@ -4,6 +4,7 @@
 /**
  * Load a font with Tiny_TTF
  */
+LV_FUNC_SECTION
 void lv_example_tiny_ttf_1(void)
 {
     extern const uint8_t ubuntu_font[];

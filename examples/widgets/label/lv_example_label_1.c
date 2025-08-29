@@ -4,6 +4,7 @@
 /**
  * Show line wrap, re-color, line align and text scrolling.
  */
+LV_FUNC_SECTION
 void lv_example_label_1(void)
 {
     lv_obj_t * label1 = lv_label_create(lv_screen_active());

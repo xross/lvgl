@@ -21,6 +21,7 @@ typedef void (*demo_method_cb)(void);
 
 typedef struct  {
     const char * name;
+    __attribute__(( fptrgroup("lv_demo_entry_cb") ))
     demo_method_cb entry_cb;
 } demo_entry_info_t;
 
@@ -86,6 +87,7 @@ static const demo_entry_info_t demos_entry_info[] = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 bool lv_demos_create(char * info[], int size)
 {
     const int demos_count = LV_DEMOS_COUNT;
@@ -121,6 +123,7 @@ bool lv_demos_create(char * info[], int size)
     return false;
 }
 
+LV_FUNC_SECTION
 void lv_demos_show_help(void)
 {
     int i;

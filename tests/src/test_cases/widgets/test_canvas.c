@@ -6,21 +6,25 @@
 
 static lv_obj_t * g_screen_active;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     g_screen_active = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(g_screen_active);
 }
 
+LV_FUNC_SECTION
 static void draw_event_cb(lv_event_t * e)
 {
     int * draw_counter = lv_event_get_user_data(e);
     (*draw_counter)++;
 }
+LV_FUNC_SECTION
 void test_canvas_functions_invalidate(void)
 {
     lv_obj_t * canvas = lv_canvas_create(g_screen_active);
@@ -62,6 +66,7 @@ void test_canvas_functions_invalidate(void)
     TEST_ASSERT(draw_counter == 4);
 }
 
+LV_FUNC_SECTION
 void test_canvas_fill_and_set_px(void)
 {
     lv_obj_t * canvas = lv_canvas_create(lv_screen_active());

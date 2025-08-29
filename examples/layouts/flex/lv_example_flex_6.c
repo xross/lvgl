@@ -5,6 +5,7 @@
  * RTL base direction changes order of the items.
  * Also demonstrate how horizontal scrolling works with RTL.
  */
+LV_FUNC_SECTION
 void lv_example_flex_6(void)
 {
     lv_obj_t * cont = lv_obj_create(lv_screen_active());

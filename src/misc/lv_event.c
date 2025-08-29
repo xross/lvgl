@@ -45,6 +45,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_event_push(lv_event_t * e)
 {
     /*Build a simple linked list from the objects used in the events
@@ -55,11 +56,13 @@ void lv_event_push(lv_event_t * e)
 
 }
 
+LV_FUNC_SECTION
 void lv_event_pop(lv_event_t * e)
 {
     event_head = e->prev;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_event_send(lv_event_list_t * list, lv_event_t * e, bool preprocess)
 {
     if(list == NULL) return LV_RESULT_OK;
@@ -85,6 +88,7 @@ lv_result_t lv_event_send(lv_event_list_t * list, lv_event_t * e, bool preproces
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_event_dsc_t * lv_event_add(lv_event_list_t * list, lv_event_cb_t cb, lv_event_code_t filter,
                               void * user_data)
 {
@@ -104,6 +108,7 @@ lv_event_dsc_t * lv_event_add(lv_event_list_t * list, lv_event_cb_t cb, lv_event
     return dsc;
 }
 
+LV_FUNC_SECTION
 bool lv_event_remove_dsc(lv_event_list_t * list, lv_event_dsc_t * dsc)
 {
     LV_ASSERT_NULL(list);
@@ -122,12 +127,14 @@ bool lv_event_remove_dsc(lv_event_list_t * list, lv_event_dsc_t * dsc)
     return false;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_event_get_count(lv_event_list_t * list)
 {
     LV_ASSERT_NULL(list);
     return lv_array_size(list);
 }
 
+LV_FUNC_SECTION
 lv_event_dsc_t * lv_event_get_dsc(lv_event_list_t * list, uint32_t index)
 {
     LV_ASSERT_NULL(list);
@@ -136,12 +143,14 @@ lv_event_dsc_t * lv_event_get_dsc(lv_event_list_t * list, uint32_t index)
     return dsc ? *dsc : NULL;
 }
 
+LV_FUNC_SECTION
 lv_event_cb_t lv_event_dsc_get_cb(lv_event_dsc_t * dsc)
 {
     LV_ASSERT_NULL(dsc);
     return dsc->cb;
 }
 
+LV_FUNC_SECTION
 void * lv_event_dsc_get_user_data(lv_event_dsc_t * dsc)
 {
     LV_ASSERT_NULL(dsc);
@@ -149,6 +158,7 @@ void * lv_event_dsc_get_user_data(lv_event_dsc_t * dsc)
 
 }
 
+LV_FUNC_SECTION
 bool lv_event_remove(lv_event_list_t * list, uint32_t index)
 {
     LV_ASSERT_NULL(list);
@@ -157,6 +167,7 @@ bool lv_event_remove(lv_event_list_t * list, uint32_t index)
     return lv_array_remove(list, index);
 }
 
+LV_FUNC_SECTION
 void lv_event_remove_all(lv_event_list_t * list)
 {
     LV_ASSERT_NULL(list);
@@ -168,47 +179,56 @@ void lv_event_remove_all(lv_event_list_t * list)
     lv_array_deinit(list);
 }
 
+LV_FUNC_SECTION
 void * lv_event_get_current_target(lv_event_t * e)
 {
     return e->current_target;
 }
 
+LV_FUNC_SECTION
 void * lv_event_get_target(lv_event_t * e)
 {
     return e->original_target;
 }
 
+LV_FUNC_SECTION
 lv_event_code_t lv_event_get_code(lv_event_t * e)
 {
     return e->code & ~LV_EVENT_PREPROCESS;
 }
 
+LV_FUNC_SECTION
 void * lv_event_get_param(lv_event_t * e)
 {
     return e->param;
 }
 
+LV_FUNC_SECTION
 void * lv_event_get_user_data(lv_event_t * e)
 {
     return e->user_data;
 }
 
+LV_FUNC_SECTION
 void lv_event_stop_bubbling(lv_event_t * e)
 {
     e->stop_bubbling = 1;
 }
 
+LV_FUNC_SECTION
 void lv_event_stop_processing(lv_event_t * e)
 {
     e->stop_processing = 1;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_event_register_id(void)
 {
     event_last_id ++;
     return event_last_id;
 }
 
+LV_FUNC_SECTION
 void lv_event_mark_deleted(void * target)
 {
     lv_event_t * e = event_head;

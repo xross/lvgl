@@ -72,6 +72,7 @@ static void img_draw_core(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t 
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_sw_layer(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * draw_dsc, const lv_area_t * coords)
 {
     lv_layer_t * layer_to_draw = (lv_layer_t *)draw_dsc->src;
@@ -164,6 +165,7 @@ void lv_draw_sw_layer(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * dr
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_draw_sw_image(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * draw_dsc,
                       const lv_area_t * coords)
 {
@@ -179,6 +181,7 @@ void lv_draw_sw_image(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * dr
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void img_draw_core(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * draw_dsc,
                           const lv_image_decoder_dsc_t * decoder_dsc, lv_draw_image_sup_t * sup,
                           const lv_area_t * img_coords, const lv_area_t * clipped_img_area)

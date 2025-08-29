@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_BAR && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void set_temp(void * bar, int32_t temp)
 {
     lv_bar_set_value(bar, temp, LV_ANIM_ON);
@@ -9,6 +10,7 @@ static void set_temp(void * bar, int32_t temp)
 /**
  * A temperature meter example
  */
+LV_FUNC_SECTION
 void lv_example_bar_3(void)
 {
     static lv_style_t style_indic;

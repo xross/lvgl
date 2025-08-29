@@ -113,7 +113,7 @@ static const uint32_t time_list[] = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_music(void)
 {
     lv_obj_set_style_bg_color(lv_screen_active(), lv_color_hex(0x343247), 0);
@@ -126,24 +126,28 @@ void lv_demo_music(void)
 #endif
 }
 
+LV_FUNC_SECTION
 const char * lv_demo_music_get_title(uint32_t track_id)
 {
     if(track_id >= sizeof(title_list) / sizeof(title_list[0])) return NULL;
     return title_list[track_id];
 }
 
+LV_FUNC_SECTION
 const char * lv_demo_music_get_artist(uint32_t track_id)
 {
     if(track_id >= sizeof(artist_list) / sizeof(artist_list[0])) return NULL;
     return artist_list[track_id];
 }
 
+LV_FUNC_SECTION
 const char * lv_demo_music_get_genre(uint32_t track_id)
 {
     if(track_id >= sizeof(genre_list) / sizeof(genre_list[0])) return NULL;
     return genre_list[track_id];
 }
 
+LV_FUNC_SECTION
 uint32_t lv_demo_music_get_track_length(uint32_t track_id)
 {
     if(track_id >= sizeof(time_list) / sizeof(time_list[0])) return 0;
@@ -155,6 +159,7 @@ uint32_t lv_demo_music_get_track_length(uint32_t track_id)
  **********************/
 
 #if LV_DEMO_MUSIC_AUTO_PLAY
+LV_FUNC_SECTION
 static void auto_step_cb(lv_timer_t * t)
 {
     LV_UNUSED(t);

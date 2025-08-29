@@ -30,6 +30,7 @@ extern "C" {
 struct lv_timer_t {
     uint32_t period;           /**< How often the timer should run */
     uint32_t last_run;         /**< Last time the timer ran */
+    __attribute__(( fptrgroup("lv_timer_cb") ))
     lv_timer_cb_t timer_cb;    /**< Timer function */
     void * user_data;          /**< Custom user data */
     int32_t repeat_count;      /**< 1: One time;  -1 : infinity;  n>0: residual times */
@@ -52,6 +53,7 @@ typedef struct {
     uint32_t idle_period_start;
     uint32_t run_cnt;
 
+    __attribute__(( fptrgroup("lv_timer_resume_cb") ))
     lv_timer_handler_resume_cb_t resume_cb;
     void * resume_data;
 } lv_timer_state_t;

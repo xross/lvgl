@@ -5,6 +5,7 @@
  * Show customizing the circular scrolling animation of a label with `LV_LABEL_LONG_SCROLL_CIRCULAR`
  * long mode.
  */
+LV_FUNC_SECTION
 void lv_example_label_5(void)
 {
     static lv_anim_t animation_template;

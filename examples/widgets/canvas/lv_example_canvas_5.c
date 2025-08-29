@@ -7,6 +7,7 @@
 /**
  * Draw an arc to the canvas
  */
+LV_FUNC_SECTION
 void lv_example_canvas_5(void)
 {
     /*Create a buffer for the canvas*/

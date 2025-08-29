@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_CHART && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -60,6 +61,7 @@ static void event_cb(lv_event_t * e)
 /**
  * Show the value of the pressed points
  */
+LV_FUNC_SECTION
 void lv_example_chart_3(void)
 {
     /*Create a chart*/

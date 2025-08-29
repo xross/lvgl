@@ -11,6 +11,7 @@ static void ui_init(void);
  * Simple PIN login screen to start an engine.
  * The only interface between the UI and the application is a single "subject".
  */
+LV_FUNC_SECTION
 void lv_example_observer_2(void)
 {
     lv_subject_init_int(&engine_subject, 0);
@@ -25,6 +26,7 @@ void lv_example_observer_2(void)
  * It doesn't know anything about the internals of the UI
  * and uses any the `engine_subject` as an interface.
  * -------------------------------------------------*/
+__attribute__(( fptrgroup("lv_observer_cb") ))
 static void engine_state_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     LV_UNUSED(observer);
@@ -35,6 +37,7 @@ static void engine_state_observer_cb(lv_observer_t * observer, lv_subject_t * su
     LV_LOG_USER("Engine state: %" LV_PRId32, v);
 }
 
+LV_FUNC_SECTION
 static void app_init(void)
 {
     lv_subject_add_observer(&engine_subject, engine_state_observer_cb, NULL);
@@ -56,6 +59,7 @@ typedef enum {
 
 static lv_subject_t auth_state_subject;
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void textarea_event_cb(lv_event_t * e)
 {
     lv_obj_t * ta = lv_event_get_target(e);
@@ -67,6 +71,7 @@ static void textarea_event_cb(lv_event_t * e)
     }
 }
 
+__attribute__(( fptrgroup("lv_observer_cb") ))
 static void info_label_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     lv_obj_t * label = lv_observer_get_target(observer);
@@ -83,12 +88,14 @@ static void info_label_observer_cb(lv_observer_t * observer, lv_subject_t * subj
     }
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void log_out_click_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
     lv_subject_set_int(&auth_state_subject, LOGGED_OUT);
 }
 
+LV_FUNC_SECTION
 static void ui_init(void)
 {
     lv_subject_init_int(&auth_state_subject, LOGGED_OUT);

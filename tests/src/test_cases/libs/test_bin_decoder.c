@@ -4,16 +4,19 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 static void create_image(const void * src)
 {
     lv_obj_t * img = lv_image_create(lv_screen_active());
@@ -21,6 +24,7 @@ static void create_image(const void * src)
     lv_obj_center(img);
 }
 
+LV_FUNC_SECTION
 static void bin_decoder(const void * src, const char * screenshot)
 {
     create_image(src);
@@ -40,6 +44,7 @@ static void bin_decoder(const void * src, const char * screenshot)
     TEST_ASSERT_MEM_LEAK_LESS_THAN(mem_before, 0);
 }
 
+LV_FUNC_SECTION
 static void create_image_tile(const void * src)
 {
     lv_obj_t * img = lv_image_create(lv_screen_active());
@@ -49,6 +54,7 @@ static void create_image_tile(const void * src)
     lv_image_set_inner_align(img, LV_IMAGE_ALIGN_TILE);
 }
 
+LV_FUNC_SECTION
 void bin_decoder_tile(const void * src, const char * screenshot)
 {
     create_image_tile(src);
@@ -68,21 +74,25 @@ void bin_decoder_tile(const void * src, const char * screenshot)
     TEST_ASSERT_MEM_LEAK_LESS_THAN(mem_before, 0);
 }
 
+LV_FUNC_SECTION
 void test_bin_decoder_i4(void)
 {
     LV_IMAGE_DECLARE(test_image_cogwheel_i4);
     bin_decoder(&test_image_cogwheel_i4, "libs/bin_decoder_1.png");
 }
+LV_FUNC_SECTION
 void test_bin_decoder_i4_tile(void)
 {
     LV_IMAGE_DECLARE(test_image_cogwheel_i4);
     bin_decoder_tile(&test_image_cogwheel_i4, "libs/bin_decoder_2.png");
 }
+LV_FUNC_SECTION
 void test_bin_decoder_argb8888(void)
 {
     LV_IMAGE_DECLARE(test_image_cogwheel_argb8888);
     bin_decoder(&test_image_cogwheel_argb8888, "libs/bin_decoder_3.png");
 }
+LV_FUNC_SECTION
 void test_bin_decoder_argb8888_tile(void)
 {
     LV_IMAGE_DECLARE(test_image_cogwheel_argb8888);

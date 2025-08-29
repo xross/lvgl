@@ -84,6 +84,7 @@ const lv_obj_class_t lv_buttonmatrix_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_buttonmatrix_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -96,6 +97,7 @@ lv_obj_t * lv_buttonmatrix_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_buttonmatrix_set_map(lv_obj_t * obj, const char * const map[])
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -187,6 +189,7 @@ void lv_buttonmatrix_set_map(lv_obj_t * obj, const char * const map[])
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_buttonmatrix_set_ctrl_map(lv_obj_t * obj, const lv_buttonmatrix_ctrl_t ctrl_map[])
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -197,6 +200,7 @@ void lv_buttonmatrix_set_ctrl_map(lv_obj_t * obj, const lv_buttonmatrix_ctrl_t c
     lv_buttonmatrix_set_map(obj, btnm->map_p);
 }
 
+LV_FUNC_SECTION
 void lv_buttonmatrix_set_selected_button(lv_obj_t * obj, uint32_t btn_id)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -210,6 +214,7 @@ void lv_buttonmatrix_set_selected_button(lv_obj_t * obj, uint32_t btn_id)
     invalidate_button_area(obj, btn_id);
 }
 
+LV_FUNC_SECTION
 void lv_buttonmatrix_set_button_ctrl(lv_obj_t * obj, uint32_t btn_id, lv_buttonmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -230,6 +235,7 @@ void lv_buttonmatrix_set_button_ctrl(lv_obj_t * obj, uint32_t btn_id, lv_buttonm
     }
 }
 
+LV_FUNC_SECTION
 void lv_buttonmatrix_clear_button_ctrl(lv_obj_t * obj, uint32_t btn_id, lv_buttonmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -246,6 +252,7 @@ void lv_buttonmatrix_clear_button_ctrl(lv_obj_t * obj, uint32_t btn_id, lv_butto
     }
 }
 
+LV_FUNC_SECTION
 void lv_buttonmatrix_set_button_ctrl_all(lv_obj_t * obj, lv_buttonmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -257,6 +264,7 @@ void lv_buttonmatrix_set_button_ctrl_all(lv_obj_t * obj, lv_buttonmatrix_ctrl_t 
     }
 }
 
+LV_FUNC_SECTION
 void lv_buttonmatrix_clear_button_ctrl_all(lv_obj_t * obj, lv_buttonmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -268,6 +276,7 @@ void lv_buttonmatrix_clear_button_ctrl_all(lv_obj_t * obj, lv_buttonmatrix_ctrl_
     }
 }
 
+LV_FUNC_SECTION
 void lv_buttonmatrix_set_button_width(lv_obj_t * obj, uint32_t btn_id, uint32_t width)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -280,6 +289,7 @@ void lv_buttonmatrix_set_button_width(lv_obj_t * obj, uint32_t btn_id, uint32_t 
     lv_buttonmatrix_set_map(obj, btnm->map_p);
 }
 
+LV_FUNC_SECTION
 void lv_buttonmatrix_set_one_checked(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -295,6 +305,7 @@ void lv_buttonmatrix_set_one_checked(lv_obj_t * obj, bool en)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 const char * const * lv_buttonmatrix_get_map(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -303,6 +314,7 @@ const char * const * lv_buttonmatrix_get_map(const lv_obj_t * obj)
     return btnm->map_p;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_buttonmatrix_get_selected_button(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -311,6 +323,7 @@ uint32_t lv_buttonmatrix_get_selected_button(const lv_obj_t * obj)
     return btnm->btn_id_sel;
 }
 
+LV_FUNC_SECTION
 const char * lv_buttonmatrix_get_button_text(const lv_obj_t * obj, uint32_t btn_id)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -336,6 +349,7 @@ const char * lv_buttonmatrix_get_button_text(const lv_obj_t * obj, uint32_t btn_
     return btnm->map_p[txt_i];
 }
 
+LV_FUNC_SECTION
 bool lv_buttonmatrix_has_button_ctrl(lv_obj_t * obj, uint32_t btn_id, lv_buttonmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -346,6 +360,7 @@ bool lv_buttonmatrix_has_button_ctrl(lv_obj_t * obj, uint32_t btn_id, lv_buttonm
     return (btnm->ctrl_bits[btn_id] & ctrl) == ctrl;
 }
 
+LV_FUNC_SECTION
 bool lv_buttonmatrix_get_one_checked(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -359,6 +374,7 @@ bool lv_buttonmatrix_get_one_checked(const lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_buttonmatrix_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -379,6 +395,7 @@ static void lv_buttonmatrix_constructor(const lv_obj_class_t * class_p, lv_obj_t
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_buttonmatrix_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_TRACE_OBJ_CREATE("begin");
@@ -391,6 +408,7 @@ static void lv_buttonmatrix_destructor(const lv_obj_class_t * class_p, lv_obj_t 
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_buttonmatrix_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -662,6 +680,7 @@ static void lv_buttonmatrix_event(const lv_obj_class_t * class_p, lv_event_t * e
 
 }
 
+LV_FUNC_SECTION
 static void draw_main(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -813,6 +832,7 @@ static void draw_main(lv_event_t * e)
  * @param obj pointer to button matrix object
  * @param map_p pointer to a string array
  */
+LV_FUNC_SECTION
 static void allocate_button_areas_and_controls(const lv_obj_t * obj, const char * const * map)
 {
     lv_buttonmatrix_t * btnm = (lv_buttonmatrix_t *)obj;
@@ -858,47 +878,56 @@ static void allocate_button_areas_and_controls(const lv_obj_t * obj, const char 
  * @param ctrl_bits least significant 3 bits used (1..7 valid values)
  * @return the width of the button in units
  */
+LV_FUNC_SECTION
 static uint32_t get_button_width(lv_buttonmatrix_ctrl_t ctrl_bits)
 {
     uint32_t w = ctrl_bits & LV_BUTTONMATRIX_WIDTH_MASK;
     return w != 0 ? w : 1;
 }
 
+LV_FUNC_SECTION
 static bool button_is_hidden(lv_buttonmatrix_ctrl_t ctrl_bits)
 {
     return ctrl_bits & LV_BUTTONMATRIX_CTRL_HIDDEN;
 }
 
+LV_FUNC_SECTION
 static bool button_is_checked(lv_buttonmatrix_ctrl_t ctrl_bits)
 {
     return ctrl_bits & LV_BUTTONMATRIX_CTRL_CHECKED;
 }
 
+LV_FUNC_SECTION
 static bool button_is_repeat_disabled(lv_buttonmatrix_ctrl_t ctrl_bits)
 {
     return ctrl_bits & LV_BUTTONMATRIX_CTRL_NO_REPEAT;
 }
 
+LV_FUNC_SECTION
 static bool button_is_inactive(lv_buttonmatrix_ctrl_t ctrl_bits)
 {
     return ctrl_bits & LV_BUTTONMATRIX_CTRL_DISABLED;
 }
 
+LV_FUNC_SECTION
 static bool button_is_click_trig(lv_buttonmatrix_ctrl_t ctrl_bits)
 {
     return ctrl_bits & LV_BUTTONMATRIX_CTRL_CLICK_TRIG;
 }
 
+LV_FUNC_SECTION
 static bool button_is_popover(lv_buttonmatrix_ctrl_t ctrl_bits)
 {
     return ctrl_bits & LV_BUTTONMATRIX_CTRL_POPOVER;
 }
 
+LV_FUNC_SECTION
 static bool button_is_checkable(lv_buttonmatrix_ctrl_t ctrl_bits)
 {
     return ctrl_bits & LV_BUTTONMATRIX_CTRL_CHECKABLE;
 }
 
+LV_FUNC_SECTION
 static bool button_get_checked(lv_buttonmatrix_ctrl_t ctrl_bits)
 {
     return ctrl_bits & LV_BUTTONMATRIX_CTRL_CHECKED;
@@ -910,6 +939,7 @@ static bool button_get_checked(lv_buttonmatrix_ctrl_t ctrl_bits)
  * @param p a point with absolute coordinates
  * @return the id of the button or LV_BUTTONMATRIX_BUTTON_NONE.
  */
+LV_FUNC_SECTION
 static uint32_t get_button_from_point(lv_obj_t * obj, lv_point_t * p)
 {
     lv_area_t obj_cords;
@@ -963,6 +993,7 @@ static uint32_t get_button_from_point(lv_obj_t * obj, lv_point_t * p)
     return i;
 }
 
+LV_FUNC_SECTION
 static void invalidate_button_area(const lv_obj_t * obj, uint32_t btn_idx)
 {
     if(btn_idx == LV_BUTTONMATRIX_BUTTON_NONE) return;
@@ -1006,6 +1037,7 @@ static void invalidate_button_area(const lv_obj_t * obj, uint32_t btn_idx)
  * @param obj Button matrix object
  * @param btn_idx Button that should remain toggled
  */
+LV_FUNC_SECTION
 static void make_one_button_checked(lv_obj_t * obj, uint32_t btn_idx)
 {
     /*Save whether the button was toggled*/
@@ -1021,6 +1053,7 @@ static void make_one_button_checked(lv_obj_t * obj, uint32_t btn_idx)
  * @param obj Button matrix object
  * @return true if at least one button has the flag, false otherwise
  */
+LV_FUNC_SECTION
 static bool has_popovers_in_top_row(lv_obj_t * obj)
 {
     lv_buttonmatrix_t * btnm = (lv_buttonmatrix_t *)obj;

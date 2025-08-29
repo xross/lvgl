@@ -31,6 +31,7 @@ extern "C" {
  */
 struct lv_observer_t {
     lv_subject_t * subject;             /**< The observed value */
+    __attribute__(( fptrgroup("lv_observer_cb") ))
     lv_observer_cb_t cb;                /**< Callback that should be called when the value changes*/
     void * target;                      /**< A target for the observer, e.g. a widget or style*/
     void * user_data;                   /**< Additional parameter supplied when subscribing*/

@@ -90,6 +90,7 @@ static const struct libinput_interface interface = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_libinput_capability lv_libinput_query_capability(struct libinput_device * device)
 {
     lv_libinput_capability capability = LV_LIBINPUT_CAPABILITY_NONE;
@@ -106,6 +107,7 @@ lv_libinput_capability lv_libinput_query_capability(struct libinput_device * dev
     return capability;
 }
 
+LV_FUNC_SECTION
 char * lv_libinput_find_dev(lv_libinput_capability capabilities, bool force_rescan)
 {
     char * path = NULL;
@@ -113,6 +115,7 @@ char * lv_libinput_find_dev(lv_libinput_capability capabilities, bool force_resc
     return path;
 }
 
+LV_FUNC_SECTION
 size_t lv_libinput_find_devs(lv_libinput_capability capabilities, char ** found, size_t count, bool force_rescan)
 {
     if((!devices || force_rescan) && !_rescan_devices()) {
@@ -131,6 +134,7 @@ size_t lv_libinput_find_devs(lv_libinput_capability capabilities, char ** found,
     return num_found;
 }
 
+LV_FUNC_SECTION
 lv_indev_t * lv_libinput_create(lv_indev_type_t indev_type, const char * dev_path)
 {
     lv_libinput_t * dsc = lv_malloc_zeroed(sizeof(lv_libinput_t));
@@ -185,6 +189,7 @@ lv_indev_t * lv_libinput_create(lv_indev_type_t indev_type, const char * dev_pat
     return indev;
 }
 
+LV_FUNC_SECTION
 void lv_libinput_delete(lv_indev_t * indev)
 {
     _delete(lv_indev_get_driver_data(indev));
@@ -199,6 +204,7 @@ void lv_libinput_delete(lv_indev_t * indev)
  * rescan all attached evdev devices and store capable ones into the static devices array for quick later filtering
  * @return true if the operation succeeded
  */
+LV_FUNC_SECTION
 static bool _rescan_devices(void)
 {
     _reset_scanned_devices();
@@ -266,6 +272,7 @@ static bool _rescan_devices(void)
  * @param capabilities device input capabilities
  * @return true if the operation succeeded
  */
+LV_FUNC_SECTION
 static bool _add_scanned_device(char * path, lv_libinput_capability capabilities)
 {
     /* Double array size every 2^n elements */
@@ -288,6 +295,7 @@ static bool _add_scanned_device(char * path, lv_libinput_capability capabilities
 /**
  * reset the array of scanned devices and free any dynamically allocated memory
  */
+LV_FUNC_SECTION
 static void _reset_scanned_devices(void)
 {
     if(!devices) {
@@ -303,6 +311,7 @@ static void _reset_scanned_devices(void)
     num_devices = 0;
 }
 
+LV_FUNC_SECTION
 static void * _poll_thread(void * data)
 {
     lv_libinput_t * dsc = (lv_libinput_t *)data;
@@ -340,6 +349,7 @@ static void * _poll_thread(void * data)
     return NULL;
 }
 
+LV_FUNC_SECTION
 lv_libinput_event_t * _get_event(lv_libinput_t * dsc)
 {
     if(dsc->start == dsc->end) {
@@ -354,11 +364,13 @@ lv_libinput_event_t * _get_event(lv_libinput_t * dsc)
     return evt;
 }
 
+LV_FUNC_SECTION
 bool _event_pending(lv_libinput_t * dsc)
 {
     return dsc->start != dsc->end;
 }
 
+LV_FUNC_SECTION
 lv_libinput_event_t * _create_event(lv_libinput_t * dsc)
 {
     lv_libinput_event_t * evt = &dsc->points[dsc->end];
@@ -380,6 +392,7 @@ lv_libinput_event_t * _create_event(lv_libinput_t * dsc)
     return evt;
 }
 
+LV_FUNC_SECTION
 static void _read(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_libinput_t * dsc = lv_indev_get_driver_data(indev);
@@ -406,6 +419,7 @@ static void _read(lv_indev_t * indev, lv_indev_data_t * data)
                      data->continue_reading);
 }
 
+LV_FUNC_SECTION
 static void _read_pointer(lv_libinput_t * dsc, struct libinput_event * event)
 {
     struct libinput_event_touch * touch_event = NULL;
@@ -547,6 +561,7 @@ static void _read_pointer(lv_libinput_t * dsc, struct libinput_event * event)
     }
 }
 
+LV_FUNC_SECTION
 static void _read_keypad(lv_libinput_t * dsc, struct libinput_event * event)
 {
     struct libinput_event_keyboard * keyboard_event = NULL;
@@ -623,6 +638,7 @@ static void _read_keypad(lv_libinput_t * dsc, struct libinput_event * event)
     }
 }
 
+LV_FUNC_SECTION
 static int _open_restricted(const char * path, int flags, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -630,12 +646,14 @@ static int _open_restricted(const char * path, int flags, void * user_data)
     return fd < 0 ? -errno : fd;
 }
 
+LV_FUNC_SECTION
 static void _close_restricted(int fd, void * user_data)
 {
     LV_UNUSED(user_data);
     close(fd);
 }
 
+LV_FUNC_SECTION
 static void _delete(lv_libinput_t * dsc)
 {
     if(dsc->fd)

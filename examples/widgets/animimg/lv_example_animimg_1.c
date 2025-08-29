@@ -10,6 +10,7 @@ static const lv_image_dsc_t * anim_imgs[3] = {
     & animimg003,
 };
 
+LV_FUNC_SECTION
 void lv_example_animimg_1(void)
 {
     lv_obj_t * animimg0 = lv_animimg_create(lv_screen_active());

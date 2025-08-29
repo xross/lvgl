@@ -33,6 +33,7 @@ static const lv_fragment_class_t sample_cls = {
 
 static lv_obj_t * container = NULL;
 
+LV_FUNC_SECTION
 void lv_example_fragment_2(void)
 {
     lv_obj_t * root = lv_obj_create(lv_screen_active());
@@ -66,6 +67,7 @@ void lv_example_fragment_2(void)
     lv_obj_add_event_cb(pop_btn, sample_pop_click, LV_EVENT_CLICKED, manager);
 }
 
+__attribute__(( fptrgroup("lv_fragment_constructor_cb") ))
 static void sample_fragment_ctor(lv_fragment_t * self, void * args)
 {
     LV_UNUSED(args);
@@ -73,6 +75,7 @@ static void sample_fragment_ctor(lv_fragment_t * self, void * args)
     ((sample_fragment_t *) self)->counter = 0;
 }
 
+__attribute__(( fptrgroup("lv_fragment_create_obj_cb") ))
 static lv_obj_t * sample_fragment_create_obj(lv_fragment_t * self, lv_obj_t * parent)
 {
     sample_fragment_t * fragment = (sample_fragment_t *) self;
@@ -96,6 +99,7 @@ static lv_obj_t * sample_fragment_create_obj(lv_fragment_t * self, lv_obj_t * pa
     return content;
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void sample_push_click(lv_event_t * e)
 {
     lv_fragment_manager_t * manager = (lv_fragment_manager_t *) lv_event_get_user_data(e);
@@ -104,18 +108,21 @@ static void sample_push_click(lv_event_t * e)
     lv_fragment_manager_push(manager, fragment, &container);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void sample_pop_click(lv_event_t * e)
 {
     lv_fragment_manager_t * manager = (lv_fragment_manager_t *) lv_event_get_user_data(e);
     lv_fragment_manager_pop(manager);
 }
 
+LV_FUNC_SECTION
 static void sample_container_delete(lv_event_t * e)
 {
     lv_fragment_manager_t * manager = (lv_fragment_manager_t *) lv_event_get_user_data(e);
     lv_fragment_manager_delete(manager);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void sample_fragment_inc_click(lv_event_t * e)
 {
     sample_fragment_t * fragment = (sample_fragment_t *) lv_event_get_user_data(e);

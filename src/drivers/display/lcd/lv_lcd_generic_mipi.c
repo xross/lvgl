@@ -45,6 +45,7 @@ static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_m
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_lcd_generic_mipi_create(uint32_t hor_res, uint32_t ver_res, lv_lcd_flag_t flags,
                                           lv_lcd_send_cmd_cb_t send_cmd_cb, lv_lcd_send_color_cb_t send_color_cb)
 {
@@ -77,6 +78,7 @@ lv_display_t * lv_lcd_generic_mipi_create(uint32_t hor_res, uint32_t ver_res, lv
     return disp;
 }
 
+LV_FUNC_SECTION
 void lv_lcd_generic_mipi_set_gap(lv_display_t * disp, uint16_t x, uint16_t y)
 {
     lv_lcd_generic_mipi_driver_t * drv = get_driver(disp);
@@ -84,12 +86,14 @@ void lv_lcd_generic_mipi_set_gap(lv_display_t * disp, uint16_t x, uint16_t y)
     drv->y_gap = y;
 }
 
+LV_FUNC_SECTION
 void lv_lcd_generic_mipi_set_invert(lv_display_t * disp, bool invert)
 {
     lv_lcd_generic_mipi_driver_t * drv = get_driver(disp);
     send_cmd(drv, invert ? LV_LCD_CMD_ENTER_INVERT_MODE : LV_LCD_CMD_EXIT_INVERT_MODE, NULL, 0);
 }
 
+LV_FUNC_SECTION
 void lv_lcd_generic_mipi_set_address_mode(lv_display_t * disp, bool mirror_x, bool mirror_y, bool swap_xy, bool bgr)
 {
     lv_lcd_generic_mipi_driver_t * drv = get_driver(disp);
@@ -104,6 +108,7 @@ void lv_lcd_generic_mipi_set_address_mode(lv_display_t * disp, bool mirror_x, bo
     set_rotation(drv, lv_display_get_rotation(disp));   /* update screen */
 }
 
+LV_FUNC_SECTION
 void lv_lcd_generic_mipi_set_gamma_curve(lv_display_t * disp, uint8_t gamma)
 {
     lv_lcd_generic_mipi_driver_t * drv = get_driver(disp);
@@ -112,6 +117,7 @@ void lv_lcd_generic_mipi_set_gamma_curve(lv_display_t * disp, uint8_t gamma)
     }, 1);
 }
 
+LV_FUNC_SECTION
 void lv_lcd_generic_mipi_send_cmd_list(lv_display_t * disp, const uint8_t * cmd_list)
 {
     lv_lcd_generic_mipi_driver_t * drv = get_driver(disp);
@@ -143,6 +149,7 @@ void lv_lcd_generic_mipi_send_cmd_list(lv_display_t * disp, const uint8_t * cmd_
  * @param param         parameter buffer
  * @param param_size    number of bytes of the parameters
  */
+LV_FUNC_SECTION
 static void send_cmd(lv_lcd_generic_mipi_driver_t * drv, uint8_t cmd, uint8_t * param, size_t param_size)
 {
     uint8_t cmdbuf = cmd;       /* MIPI uses 8 bit commands */
@@ -156,6 +163,7 @@ static void send_cmd(lv_lcd_generic_mipi_driver_t * drv, uint8_t cmd, uint8_t * 
  * @param param         parameter buffer
  * @param param_size    number of bytes of the parameters
  */
+LV_FUNC_SECTION
 static void send_color(lv_lcd_generic_mipi_driver_t * drv, uint8_t cmd, uint8_t * param, size_t param_size)
 {
     uint8_t cmdbuf = cmd;       /* MIPI uses 8 bit commands */
@@ -166,6 +174,7 @@ static void send_color(lv_lcd_generic_mipi_driver_t * drv, uint8_t cmd, uint8_t 
  * Initialize LCD driver after a hard reset
  * @param drv           LCD driver object
  */
+LV_FUNC_SECTION
 static void init(lv_lcd_generic_mipi_driver_t * drv, lv_lcd_flag_t flags)
 {
     drv->x_gap = 0;
@@ -212,6 +221,7 @@ static void init(lv_lcd_generic_mipi_driver_t * drv, lv_lcd_flag_t flags)
  * @param mirror_x      false: normal, true: mirrored
  * @param mirror_y      false: normal, true: mirrored
  */
+LV_FUNC_SECTION
 static void set_mirror(lv_lcd_generic_mipi_driver_t * drv, bool mirror_x, bool mirror_y)
 {
     uint8_t mad = drv->madctl_reg & ~(LV_LCD_MASK_COLUMN_ADDRESS_ORDER | LV_LCD_MASK_PAGE_ADDRESS_ORDER);
@@ -229,6 +239,7 @@ static void set_mirror(lv_lcd_generic_mipi_driver_t * drv, bool mirror_x, bool m
  * @param drv           LCD driver object
  * @param swap          false: normal, true: swapped
  */
+LV_FUNC_SECTION
 static void set_swap_xy(lv_lcd_generic_mipi_driver_t * drv, bool swap)
 {
     uint8_t mad = drv->madctl_reg & ~(LV_LCD_MASK_PAGE_COLUMN_ORDER);
@@ -247,6 +258,7 @@ static void set_swap_xy(lv_lcd_generic_mipi_driver_t * drv, bool swap)
  * @note                transfers pixel data to the LCD controller using the callbacks 'send_cmd' and 'send_color', which were
  *                      passed to the 'lv_st7789_create()' function
  */
+__attribute__(( fptrgroup("lv_display_flush_cb") ))
 static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map)
 {
     lv_lcd_generic_mipi_driver_t * drv = get_driver(disp);
@@ -286,6 +298,7 @@ static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_m
  * @param drv           LCD driver object
  * @param rot           rotation
  */
+LV_FUNC_SECTION
 static void set_rotation(lv_lcd_generic_mipi_driver_t * drv, lv_display_rotation_t rot)
 {
     switch(rot) {
@@ -315,6 +328,7 @@ static void set_rotation(lv_lcd_generic_mipi_driver_t * drv, lv_display_rotation
  * Handle LV_EVENT_RESOLUTION_CHANGED event (handles both resolution and rotation change)
  * @param e             LV_EVENT_RESOLUTION_CHANGED event
  */
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void res_chg_event_cb(lv_event_t * e)
 {
     lv_display_t * disp = lv_event_get_current_target(e);
@@ -332,6 +346,7 @@ static void res_chg_event_cb(lv_event_t * e)
     set_rotation(drv, rot);
 }
 
+LV_FUNC_SECTION
 static lv_lcd_generic_mipi_driver_t * get_driver(lv_display_t * disp)
 {
     return (lv_lcd_generic_mipi_driver_t *)lv_display_get_driver_data(disp);

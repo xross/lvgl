@@ -45,6 +45,7 @@ static pxp_cfg_t * _pxp_cfg;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_pxp_init(void)
 {
     _pxp_cfg = pxp_get_default_cfg();
@@ -59,6 +60,7 @@ void lv_pxp_init(void)
     _pxp_cfg->pxp_interrupt_init();
 }
 
+LV_FUNC_SECTION
 void lv_pxp_deinit(void)
 {
     _pxp_cfg->pxp_interrupt_deinit();
@@ -66,6 +68,7 @@ void lv_pxp_deinit(void)
     PXP_Deinit(PXP_ID);
 }
 
+LV_FUNC_SECTION
 void lv_pxp_reset(void)
 {
     PXP_ResetControl(PXP_ID);
@@ -74,12 +77,14 @@ void lv_pxp_reset(void)
     PXP_SetProcessBlockSize(PXP_ID, kPXP_BlockSize16); /*Block size 16x16 for higher performance*/
 }
 
+LV_FUNC_SECTION
 void lv_pxp_run(void)
 {
     _pxp_cfg->pxp_run();
     _pxp_cfg->pxp_wait();
 }
 
+LV_FUNC_SECTION
 void lv_pxp_wait(void)
 {
     _pxp_cfg->pxp_wait();

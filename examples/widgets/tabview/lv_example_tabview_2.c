@@ -2,6 +2,7 @@
 #if LV_USE_TABVIEW && LV_BUILD_EXAMPLES
 
 /*A vertical tab view with disabled scrolling and some styling*/
+LV_FUNC_SECTION
 void lv_example_tabview_2(void)
 {
     /*Create a Tab view object*/

@@ -68,6 +68,7 @@ static void lv_mem_walker(void * ptr, size_t size, int used, void * user);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_mem_init(void)
 {
 #if LV_USE_OS
@@ -98,6 +99,7 @@ void lv_mem_init(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_mem_deinit(void)
 {
     lv_ll_clear(&state.pool_ll);
@@ -107,6 +109,7 @@ void lv_mem_deinit(void)
 #endif
 }
 
+LV_FUNC_SECTION
 lv_mem_pool_t lv_mem_add_pool(void * mem, size_t bytes)
 {
     lv_mem_pool_t new_pool = lv_tlsf_add_pool(state.tlsf, mem, bytes);
@@ -122,6 +125,7 @@ lv_mem_pool_t lv_mem_add_pool(void * mem, size_t bytes)
     return new_pool;
 }
 
+LV_FUNC_SECTION
 void lv_mem_remove_pool(lv_mem_pool_t pool)
 {
     lv_pool_t * pool_p;
@@ -136,6 +140,7 @@ void lv_mem_remove_pool(lv_mem_pool_t pool)
     LV_LOG_WARN("invalid pool: %p", pool);
 }
 
+LV_FUNC_SECTION
 void * lv_malloc_core(size_t size)
 {
 #if LV_USE_OS
@@ -154,6 +159,7 @@ void * lv_malloc_core(size_t size)
     return p;
 }
 
+LV_FUNC_SECTION
 void * lv_realloc_core(void * p, size_t new_size)
 {
 #if LV_USE_OS
@@ -175,6 +181,7 @@ void * lv_realloc_core(void * p, size_t new_size)
     return p_new;
 }
 
+LV_FUNC_SECTION
 void lv_free_core(void * p)
 {
 #if LV_USE_OS
@@ -194,6 +201,7 @@ void lv_free_core(void * p)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_mem_monitor_core(lv_mem_monitor_t * mon_p)
 {
     /*Init the data*/
@@ -219,6 +227,7 @@ void lv_mem_monitor_core(lv_mem_monitor_t * mon_p)
     LV_TRACE_MEM("finished");
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mem_test_core(void)
 {
 #if LV_USE_OS
@@ -254,6 +263,7 @@ lv_result_t lv_mem_test_core(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_mem_walker(void * ptr, size_t size, int used, void * user)
 {
     LV_UNUSED(ptr);

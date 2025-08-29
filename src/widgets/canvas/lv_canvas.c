@@ -56,6 +56,7 @@ const lv_obj_class_t lv_canvas_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_canvas_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -68,6 +69,7 @@ lv_obj_t * lv_canvas_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_canvas_set_buffer(lv_obj_t * obj, void * buf, int32_t w, int32_t h, lv_color_format_t cf)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -87,6 +89,7 @@ void lv_canvas_set_buffer(lv_obj_t * obj, void * buf, int32_t w, int32_t h, lv_c
     lv_image_cache_drop(canvas->draw_buf);
 }
 
+LV_FUNC_SECTION
 void lv_canvas_set_draw_buf(lv_obj_t * obj, lv_draw_buf_t * draw_buf)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -104,6 +107,7 @@ void lv_canvas_set_draw_buf(lv_obj_t * obj, lv_draw_buf_t * draw_buf)
     lv_image_cache_drop(draw_buf);
 }
 
+LV_FUNC_SECTION
 void lv_canvas_set_px(lv_obj_t * obj, int32_t x, int32_t y, lv_color_t color, lv_opa_t opa)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -177,6 +181,7 @@ void lv_canvas_set_px(lv_obj_t * obj, int32_t x, int32_t y, lv_color_t color, lv
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_canvas_set_palette(lv_obj_t * obj, uint8_t index, lv_color32_t color)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -191,6 +196,7 @@ void lv_canvas_set_palette(lv_obj_t * obj, uint8_t index, lv_color32_t color)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 lv_draw_buf_t * lv_canvas_get_draw_buf(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -199,6 +205,7 @@ lv_draw_buf_t * lv_canvas_get_draw_buf(lv_obj_t * obj)
     return canvas->draw_buf;
 }
 
+LV_FUNC_SECTION
 lv_color32_t lv_canvas_get_px(lv_obj_t * obj, int32_t x, int32_t y)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -252,6 +259,7 @@ lv_color32_t lv_canvas_get_px(lv_obj_t * obj, int32_t x, int32_t y)
     return ret;
 }
 
+LV_FUNC_SECTION
 lv_image_dsc_t * lv_canvas_get_image(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -260,6 +268,7 @@ lv_image_dsc_t * lv_canvas_get_image(lv_obj_t * obj)
     return (lv_image_dsc_t *)canvas->draw_buf;
 }
 
+LV_FUNC_SECTION
 const void * lv_canvas_get_buf(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -275,6 +284,7 @@ const void * lv_canvas_get_buf(lv_obj_t * obj)
  * Other functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_canvas_copy_buf(lv_obj_t * obj, const lv_area_t * canvas_area, lv_draw_buf_t * dest_buf,
                         const lv_area_t * dest_area)
 {
@@ -289,6 +299,7 @@ void lv_canvas_copy_buf(lv_obj_t * obj, const lv_area_t * canvas_area, lv_draw_b
     lv_draw_buf_copy(canvas->draw_buf, canvas_area, dest_buf, dest_area);
 }
 
+LV_FUNC_SECTION
 void lv_canvas_fill_bg(lv_obj_t * obj, lv_color_t color, lv_opa_t opa)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -367,6 +378,7 @@ void lv_canvas_fill_bg(lv_obj_t * obj, lv_color_t color, lv_opa_t opa)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_canvas_init_layer(lv_obj_t * obj, lv_layer_t * layer)
 {
     LV_ASSERT_NULL(obj);
@@ -388,6 +400,7 @@ void lv_canvas_init_layer(lv_obj_t * obj, lv_layer_t * layer)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_canvas_finish_layer(lv_obj_t * canvas, lv_layer_t * layer)
 {
     if(layer->draw_task_head == NULL) return;
@@ -406,6 +419,7 @@ void lv_canvas_finish_layer(lv_obj_t * canvas, lv_layer_t * layer)
     lv_obj_invalidate(canvas);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_canvas_buf_size(int32_t w, int32_t h, uint8_t bpp, uint8_t stride)
 {
     return (uint32_t)LV_CANVAS_BUF_SIZE(w, h, bpp, stride);
@@ -415,12 +429,14 @@ uint32_t lv_canvas_buf_size(int32_t w, int32_t h, uint8_t bpp, uint8_t stride)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_canvas_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
     LV_UNUSED(obj);
 }
 
+LV_FUNC_SECTION
 static void lv_canvas_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);

@@ -37,6 +37,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_init(lv_thread_t * thread, lv_thread_prio_t prio, void (*callback)(void *), size_t stack_size,
                            void * user_data)
 {
@@ -58,6 +59,7 @@ lv_result_t lv_thread_init(lv_thread_t * thread, lv_thread_prio_t prio, void (*c
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_delete(lv_thread_t * thread)
 {
     _mqx_uint ret = _task_destroy(*thread);
@@ -68,6 +70,7 @@ lv_result_t lv_thread_delete(lv_thread_t * thread)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_init(lv_mutex_t * mutex)
 {
     if(MQX_OK != _mutex_init(mutex, NULL)) {
@@ -77,6 +80,7 @@ lv_result_t lv_mutex_init(lv_mutex_t * mutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_lock(lv_mutex_t * mutex)
 {
     _mqx_uint ret = _mutex_lock(mutex);
@@ -87,6 +91,7 @@ lv_result_t lv_mutex_lock(lv_mutex_t * mutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_lock_isr(lv_mutex_t * mutex)
 {
     _mqx_uint ret = _mutex_lock(mutex);
@@ -97,6 +102,7 @@ lv_result_t lv_mutex_lock_isr(lv_mutex_t * mutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_unlock(lv_mutex_t * mutex)
 {
     _mqx_uint ret = _mutex_unlock(mutex);
@@ -107,6 +113,7 @@ lv_result_t lv_mutex_unlock(lv_mutex_t * mutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_mutex_delete(lv_mutex_t * mutex)
 {
     _mqx_uint ret = _mutex_destroy(mutex);
@@ -117,6 +124,7 @@ lv_result_t lv_mutex_delete(lv_mutex_t * mutex)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_init(lv_thread_sync_t * sync)
 {
     if(MQX_OK != _lwsem_create(sync, 0)) {
@@ -126,6 +134,7 @@ lv_result_t lv_thread_sync_init(lv_thread_sync_t * sync)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_wait(lv_thread_sync_t * sync)
 {
     _mqx_uint ret = _lwsem_wait(sync);
@@ -136,6 +145,7 @@ lv_result_t lv_thread_sync_wait(lv_thread_sync_t * sync)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_signal(lv_thread_sync_t * sync)
 {
     _mqx_uint ret = _lwsem_post(sync);
@@ -146,6 +156,7 @@ lv_result_t lv_thread_sync_signal(lv_thread_sync_t * sync)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_delete(lv_thread_sync_t * sync)
 {
     _mqx_uint ret = _lwsem_destroy(sync);
@@ -156,6 +167,7 @@ lv_result_t lv_thread_sync_delete(lv_thread_sync_t * sync)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_thread_sync_signal_isr(lv_thread_sync_t * sync)
 {
     LV_UNUSED(sync);

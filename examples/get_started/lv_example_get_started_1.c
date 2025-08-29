@@ -4,6 +4,7 @@
 /**
  * Basic example to create a "Hello world" label
  */
+LV_FUNC_SECTION
 void lv_example_get_started_1(void)
 {
     /*Change the active screen's background color*/

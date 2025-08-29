@@ -6,6 +6,7 @@ static lv_subject_t temperature_subject;
 /**
  * A slider sends a message on value change and a label display's that value
  */
+LV_FUNC_SECTION
 void lv_example_observer_1(void)
 {
     lv_subject_init_int(&temperature_subject, 28);

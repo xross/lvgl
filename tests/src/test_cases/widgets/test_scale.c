@@ -5,17 +5,20 @@
 #include "unity/unity.h"
 
 /* Function run before every test */
+LV_FUNC_SECTION
 void setUp(void)
 {
 }
 
 /* Function run after every test */
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(lv_screen_active());
 }
 
 /* A simple horizontal scale */
+LV_FUNC_SECTION
 void test_scale_render_example_1(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -36,6 +39,7 @@ void test_scale_render_example_1(void)
 }
 
 /* An vertical scale with section and custom styling */
+LV_FUNC_SECTION
 void test_scale_render_example_2(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -121,6 +125,7 @@ void test_scale_render_example_2(void)
 }
 
 /* A simple round scale */
+LV_FUNC_SECTION
 void test_scale_render_example_3(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -144,6 +149,7 @@ void test_scale_render_example_3(void)
 }
 
 /* A round scale with section and custom styling */
+LV_FUNC_SECTION
 void test_scale_render_example_4(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -222,6 +228,7 @@ void test_scale_render_example_4(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/scale_4.png");
 }
 
+LV_FUNC_SECTION
 static void draw_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -265,6 +272,7 @@ static void draw_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void test_scale_render_example_7(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -287,6 +295,7 @@ void test_scale_render_example_7(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/scale_5.png");
 }
 
+LV_FUNC_SECTION
 void test_scale_set_style(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -345,6 +354,7 @@ void test_scale_set_style(void)
 }
 
 /* The scale internally counts the number of custom labels until it finds the NULL sentinel */
+LV_FUNC_SECTION
 void test_scale_custom_labels_count(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -363,6 +373,7 @@ void test_scale_custom_labels_count(void)
     TEST_ASSERT_EQUAL(2U, scale_widget->custom_label_cnt);
 }
 
+LV_FUNC_SECTION
 void test_scale_mode(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -373,6 +384,7 @@ void test_scale_mode(void)
     TEST_ASSERT_EQUAL(mode, lv_scale_get_mode(scale));
 }
 
+LV_FUNC_SECTION
 void test_scale_total_tick_count(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -383,6 +395,7 @@ void test_scale_total_tick_count(void)
     TEST_ASSERT_EQUAL(total_tick_count, lv_scale_get_total_tick_count(scale));
 }
 
+LV_FUNC_SECTION
 void test_scale_major_tick_every(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -393,6 +406,7 @@ void test_scale_major_tick_every(void)
     TEST_ASSERT_EQUAL(major_tick_every, lv_scale_get_major_tick_every(scale));
 }
 
+LV_FUNC_SECTION
 void test_scale_label_show(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -408,6 +422,7 @@ void test_scale_label_show(void)
     TEST_ASSERT_EQUAL(label_show, lv_scale_get_label_show(scale));
 }
 
+LV_FUNC_SECTION
 void test_scale_angle_range(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -418,6 +433,7 @@ void test_scale_angle_range(void)
     TEST_ASSERT_EQUAL(angle_range, lv_scale_get_angle_range(scale));
 }
 
+LV_FUNC_SECTION
 void test_scale_range(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());
@@ -430,6 +446,7 @@ void test_scale_range(void)
     TEST_ASSERT_EQUAL(max_range, lv_scale_get_range_max_value(scale));
 }
 
+LV_FUNC_SECTION
 void test_scale_set_line_needle_value(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());

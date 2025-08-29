@@ -55,24 +55,28 @@ struct lv_fragment_class_t {
      * @param self Fragment instance
      * @param args Arguments assigned by fragment manager
      */
+    __attribute__(( fptrgroup("lv_fragment_constructor_cb") ))
     void (*constructor_cb)(lv_fragment_t * self, void * args);
 
     /**
      * Destructor function for fragment class
      * @param self Fragment instance, will be freed after this call
      */
+    __attribute__(( fptrgroup("lv_fragment_destructor_cb") ))
     void (*destructor_cb)(lv_fragment_t * self);
 
     /**
      * Fragment attached to manager
      * @param self Fragment instance
      */
+    __attribute__(( fptrgroup("lv_fragment_attached_cb") ))
     void (*attached_cb)(lv_fragment_t * self);
 
     /**
      * Fragment detached from manager
      * @param self Fragment instance
      */
+    __attribute__(( fptrgroup("lv_event_cb") ))
     void (*detached_cb)(lv_fragment_t * self);
 
     /**
@@ -81,6 +85,7 @@ struct lv_fragment_class_t {
      * @param container Container of the objects should be created upon
      * @return Created object, NULL if multiple objects has been created
      */
+    __attribute__(( fptrgroup("lv_fragment_create_obj_cb") ))
     lv_obj_t * (*create_obj_cb)(lv_fragment_t * self, lv_obj_t * container);
 
     /**
@@ -88,6 +93,7 @@ struct lv_fragment_class_t {
      * @param self Fragment instance
      * @param obj lv_obj returned by create_obj_cb
      */
+    __attribute__(( fptrgroup("lv_fragment_obj_created_cb") ))
     void (*obj_created_cb)(lv_fragment_t * self, lv_obj_t * obj);
 
     /**
@@ -96,6 +102,7 @@ struct lv_fragment_class_t {
      * @param self Fragment instance
      * @param obj object with this fragment
      */
+    __attribute__(( fptrgroup("lv_fragment_obj_will_delete_cb") ))
     void (*obj_will_delete_cb)(lv_fragment_t * self, lv_obj_t * obj);
 
     /**
@@ -103,6 +110,7 @@ struct lv_fragment_class_t {
      * @param self Fragment instance
      * @param obj object with this fragment
      */
+    __attribute__(( fptrgroup("lv_fragment_obj_deleted_cb") ))
     void (*obj_deleted_cb)(lv_fragment_t * self, lv_obj_t * obj);
 
     /**
@@ -112,6 +120,7 @@ struct lv_fragment_class_t {
      * @param data1 User-defined data
      * @param data2 User-defined data
      */
+    __attribute__(( fptrgroup("lv_fragment_event_cb") ))
     bool (*event_cb)(lv_fragment_t * self, int code, void * userdata);
 
     /**

@@ -120,6 +120,7 @@ static void lv_tiny_ttf_cache_create(ttf_font_desc_t * dsc);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_tiny_ttf_set_size(lv_font_t * font, int32_t font_size)
 {
     if(font_size <= 0) {
@@ -148,6 +149,7 @@ void lv_tiny_ttf_set_size(lv_font_t * font, int32_t font_size)
     lv_tiny_ttf_cache_create(dsc);
 }
 
+LV_FUNC_SECTION
 void lv_tiny_ttf_destroy(lv_font_t * font)
 {
     LV_ASSERT_NULL(font);
@@ -173,6 +175,7 @@ void lv_tiny_ttf_destroy(lv_font_t * font)
  **********************/
 
 #if LV_TINY_TTF_FILE_SUPPORT != 0
+LV_FUNC_SECTION
 static void ttf_cb_stream_read(ttf_cb_stream_t * stream, void * data, size_t to_read)
 {
     if(stream->file != NULL) {
@@ -187,6 +190,7 @@ static void ttf_cb_stream_read(ttf_cb_stream_t * stream, void * data, size_t to_
         stream->position += to_read;
     }
 }
+LV_FUNC_SECTION
 static void ttf_cb_stream_seek(ttf_cb_stream_t * stream, size_t position)
 {
     if(stream->file != NULL) {
@@ -203,6 +207,7 @@ static void ttf_cb_stream_seek(ttf_cb_stream_t * stream, size_t position)
 }
 #endif
 
+LV_FUNC_SECTION
 static bool ttf_get_glyph_dsc_cb(const lv_font_t * font, lv_font_glyph_dsc_t * dsc_out, uint32_t unicode_letter,
                                  uint32_t unicode_letter_next)
 {
@@ -286,6 +291,7 @@ static bool ttf_get_glyph_dsc_cb(const lv_font_t * font, lv_font_glyph_dsc_t * d
     return true; /*true: glyph found; false: glyph was not found*/
 }
 
+LV_FUNC_SECTION
 static const void * ttf_get_glyph_bitmap_cb(lv_font_glyph_dsc_t * g_dsc, lv_draw_buf_t * draw_buf)
 {
     LV_UNUSED(draw_buf);
@@ -318,6 +324,7 @@ static const void * ttf_get_glyph_bitmap_cb(lv_font_glyph_dsc_t * g_dsc, lv_draw
     return cached_data->draw_buf;
 }
 
+LV_FUNC_SECTION
 static void ttf_release_glyph_cb(const lv_font_t * font, lv_font_glyph_dsc_t * g_dsc)
 {
     LV_ASSERT_NULL(font);
@@ -335,6 +342,7 @@ static void ttf_release_glyph_cb(const lv_font_t * font, lv_font_glyph_dsc_t * g
     g_dsc->entry = NULL;
 }
 
+LV_FUNC_SECTION
 static void lv_tiny_ttf_cache_create(ttf_font_desc_t * dsc)
 {
     /*Init cache*/
@@ -355,6 +363,7 @@ static void lv_tiny_ttf_cache_create(ttf_font_desc_t * dsc)
     lv_cache_set_name(dsc->draw_data_cache, "TINY_TTF_DRAW_DATA");
 }
 
+LV_FUNC_SECTION
 static lv_font_t * lv_tiny_ttf_create(const char * path, const void * data, size_t data_size, int32_t font_size,
                                       lv_font_kerning_t kerning, size_t cache_size)
 {
@@ -421,22 +430,26 @@ static lv_font_t * lv_tiny_ttf_create(const char * path, const void * data, size
     return out_font;
 }
 #if LV_TINY_TTF_FILE_SUPPORT != 0
+LV_FUNC_SECTION
 lv_font_t * lv_tiny_ttf_create_file_ex(const char * path, int32_t font_size, lv_font_kerning_t kerning,
                                        size_t cache_size)
 {
     return lv_tiny_ttf_create(path, NULL, 0, font_size, kerning, cache_size);
 }
+LV_FUNC_SECTION
 lv_font_t * lv_tiny_ttf_create_file(const char * path, int32_t font_size)
 {
     return lv_tiny_ttf_create(path, NULL, 0, font_size, LV_FONT_KERNING_NORMAL, LV_TINY_TTF_CACHE_GLYPH_CNT);
 }
 #endif
 
+LV_FUNC_SECTION
 lv_font_t * lv_tiny_ttf_create_data_ex(const void * data, size_t data_size, int32_t font_size,
                                        lv_font_kerning_t kerning, size_t cache_size)
 {
     return lv_tiny_ttf_create(NULL, data, data_size, font_size, kerning, cache_size);
 }
+LV_FUNC_SECTION
 lv_font_t * lv_tiny_ttf_create_data(const void * data, size_t data_size, int32_t font_size)
 {
     return lv_tiny_ttf_create(NULL, data, data_size, font_size, LV_FONT_KERNING_NORMAL, LV_TINY_TTF_CACHE_GLYPH_CNT);
@@ -445,7 +458,7 @@ lv_font_t * lv_tiny_ttf_create_data(const void * data, size_t data_size, int32_t
 /*-----------------
  * Cache Callbacks
  *----------------*/
-
+__attribute__(( fptrgroup("lv_cache_create_cb") ))
 static bool tiny_ttf_glyph_cache_create_cb(tiny_ttf_glyph_cache_data_t * node, void * user_data)
 {
     ttf_font_desc_t * dsc = (ttf_font_desc_t *)user_data;
@@ -486,12 +499,14 @@ static bool tiny_ttf_glyph_cache_create_cb(tiny_ttf_glyph_cache_data_t * node, v
     return true;
 }
 
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void tiny_ttf_glyph_cache_free_cb(tiny_ttf_glyph_cache_data_t * node, void * user_data)
 {
     LV_UNUSED(node);
     LV_UNUSED(user_data);
 }
 
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t tiny_ttf_glyph_cache_compare_cb(const tiny_ttf_glyph_cache_data_t * lhs,
                                                               const tiny_ttf_glyph_cache_data_t * rhs)
 {
@@ -502,6 +517,7 @@ static lv_cache_compare_res_t tiny_ttf_glyph_cache_compare_cb(const tiny_ttf_gly
     return 0;
 }
 
+__attribute__(( fptrgroup("lv_cache_create_cb") ))
 static bool tiny_ttf_draw_data_cache_create_cb(tiny_ttf_cache_data_t * node, void * user_data)
 {
     int g1 = (int)node->glyph_index;
@@ -534,6 +550,7 @@ static bool tiny_ttf_draw_data_cache_create_cb(tiny_ttf_cache_data_t * node, voi
     return true;
 }
 
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void tiny_ttf_draw_data_cache_free_cb(tiny_ttf_cache_data_t * node, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -541,6 +558,7 @@ static void tiny_ttf_draw_data_cache_free_cb(tiny_ttf_cache_data_t * node, void 
     lv_draw_buf_destroy(node->draw_buf);
 }
 
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t tiny_ttf_draw_data_cache_compare_cb(const tiny_ttf_cache_data_t * lhs,
                                                                   const tiny_ttf_cache_data_t * rhs)
 {

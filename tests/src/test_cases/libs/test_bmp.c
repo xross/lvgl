@@ -5,16 +5,19 @@
 #include "unity/unity.h"
 #include "lv_test_helpers.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 static void create_image(void)
 {
     lv_obj_t * img = lv_image_create(lv_screen_active());
@@ -22,6 +25,7 @@ static void create_image(void)
     lv_obj_center(img);
 }
 
+LV_FUNC_SECTION
 void test_bmp(void)
 {
     create_image();
@@ -41,6 +45,7 @@ void test_bmp(void)
     TEST_ASSERT_MEM_LEAK_LESS_THAN(mem_before, 0);
 }
 
+LV_FUNC_SECTION
 static void create_image_tile(void)
 {
     lv_obj_t * img = lv_image_create(lv_screen_active());
@@ -50,6 +55,7 @@ static void create_image_tile(void)
     lv_image_set_inner_align(img, LV_IMAGE_ALIGN_TILE);
 }
 
+LV_FUNC_SECTION
 void test_bmp_align_tile(void)
 {
     create_image_tile();

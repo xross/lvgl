@@ -5,28 +5,33 @@
 #include "unity/unity.h"
 #include "lv_test_indev.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 static void ext_draw_size_event_cb(lv_event_t * e)
 {
     lv_event_set_ext_draw_size(e, 100);
 }
 
+LV_FUNC_SECTION
 static void btn_clicked_event_cb(lv_event_t * e)
 {
     uint32_t * cnt = lv_event_get_user_data(e);
     (*cnt)++;
 }
 
+LV_FUNC_SECTION
 void test_obj_flag_overflow_visible_1(void)
 {
     lv_obj_t * obj_main = lv_obj_create(lv_screen_active());

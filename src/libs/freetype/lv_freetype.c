@@ -63,6 +63,7 @@ static lv_cache_compare_res_t cache_node_cache_compare_cb(const lv_freetype_cach
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_result_t lv_freetype_init(uint32_t max_glyph_cnt)
 {
     if(ft_ctx) {
@@ -102,6 +103,7 @@ lv_result_t lv_freetype_init(uint32_t max_glyph_cnt)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 void lv_freetype_uninit(void)
 {
     lv_freetype_context_t * ctx = lv_freetype_get_context();
@@ -111,6 +113,7 @@ void lv_freetype_uninit(void)
     ft_ctx = NULL;
 }
 
+LV_FUNC_SECTION
 lv_font_t * lv_freetype_font_create(const char * pathname, lv_freetype_font_render_mode_t render_mode, uint32_t size,
                                     lv_freetype_font_style_t style)
 {
@@ -177,6 +180,7 @@ lv_font_t * lv_freetype_font_create(const char * pathname, lv_freetype_font_rend
     return font;
 }
 
+LV_FUNC_SECTION
 void lv_freetype_font_delete(lv_font_t * font)
 {
     LV_ASSERT_NULL(font);
@@ -196,11 +200,13 @@ void lv_freetype_font_delete(lv_font_t * font)
     lv_free(dsc);
 }
 
+LV_FUNC_SECTION
 lv_freetype_context_t * lv_freetype_get_context(void)
 {
     return LV_GLOBAL_DEFAULT()->ft_context;
 }
 
+LV_FUNC_SECTION
 void lv_freetype_italic_transform(FT_Face face)
 {
     LV_ASSERT_NULL(face);
@@ -212,6 +218,7 @@ void lv_freetype_italic_transform(FT_Face face)
     FT_Set_Transform(face, &matrix, NULL);
 }
 
+LV_FUNC_SECTION
 int32_t lv_freetype_italic_transform_on_pos(lv_point_t point)
 {
     return point.x + FT_F16DOT16_TO_INT(point.y * LV_FREETYPE_OBLIQUE_SLANT_DEF);
@@ -221,6 +228,7 @@ int32_t lv_freetype_italic_transform_on_pos(lv_point_t point)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static bool freetype_on_font_create(lv_freetype_font_dsc_t * dsc, uint32_t max_glyph_cnt)
 {
     /*
@@ -256,6 +264,7 @@ static bool freetype_on_font_create(lv_freetype_font_dsc_t * dsc, uint32_t max_g
     return true;
 }
 
+LV_FUNC_SECTION
 static void freetype_on_font_set_cbs(lv_freetype_font_dsc_t * dsc)
 {
     lv_freetype_set_cbs_glyph(dsc);
@@ -267,6 +276,7 @@ static void freetype_on_font_set_cbs(lv_freetype_font_dsc_t * dsc)
     }
 }
 
+LV_FUNC_SECTION
 static void lv_freetype_cleanup(lv_freetype_context_t * ctx)
 {
     LV_ASSERT_NULL(ctx);
@@ -281,6 +291,7 @@ static void lv_freetype_cleanup(lv_freetype_context_t * ctx)
     }
 }
 
+LV_FUNC_SECTION
 static FTC_FaceID lv_freetype_req_face_id(lv_freetype_context_t * ctx, const char * pathname)
 {
     size_t len = lv_strlen(pathname);
@@ -324,6 +335,7 @@ static FTC_FaceID lv_freetype_req_face_id(lv_freetype_context_t * ctx, const cha
     return node->pathname;
 }
 
+LV_FUNC_SECTION
 static void lv_freetype_drop_face_id(lv_freetype_context_t * ctx, FTC_FaceID face_id)
 {
     lv_ll_t * ll_p = &ctx->face_id_ll;
@@ -348,7 +360,7 @@ static void lv_freetype_drop_face_id(lv_freetype_context_t * ctx, FTC_FaceID fac
 /*-----------------
  * Cache Node Cache Callbacks
  *----------------*/
-
+__attribute__(( fptrgroup("lv_cache_create_cb") ))
 static bool cache_node_cache_create_cb(lv_freetype_cache_node_t * node, void * user_data)
 {
     LV_UNUSED(user_data);
@@ -373,6 +385,7 @@ static bool cache_node_cache_create_cb(lv_freetype_cache_node_t * node, void * u
 
     return true;
 }
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void cache_node_cache_free_cb(lv_freetype_cache_node_t * node, void * user_data)
 {
     FT_Done_Face(node->face);
@@ -387,6 +400,7 @@ static void cache_node_cache_free_cb(lv_freetype_cache_node_t * node, void * use
         node->draw_data_cache = NULL;
     }
 }
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t cache_node_cache_compare_cb(const lv_freetype_cache_node_t * lhs,
                                                           const lv_freetype_cache_node_t * rhs)
 {

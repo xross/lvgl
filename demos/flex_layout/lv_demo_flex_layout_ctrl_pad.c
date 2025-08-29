@@ -49,6 +49,7 @@ static void ctrl_pad_btn_event_attach(view_t * ui);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void ctrl_pad_attach(view_t * ui)
 {
     ctrl_pad_btn_event_attach(ui);
@@ -76,6 +77,7 @@ void ctrl_pad_attach(view_t * ui)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void ctrl_pad_btn_remove_event_handler(lv_event_t * e)
 {
     view_t * ui = lv_event_get_user_data(e);
@@ -90,6 +92,7 @@ static void ctrl_pad_btn_remove_event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void ctrl_pad_obj_update(lv_obj_t * obj, view_t * ui)
 {
     lv_obj_t * spinbox = ui->ctrl_pad.tab.layout.spinbox_width;
@@ -117,6 +120,7 @@ void ctrl_pad_obj_update(lv_obj_t * obj, view_t * ui)
     }
 }
 
+LV_FUNC_SECTION
 static void ctrl_pad_spinbox_event_handler(lv_event_t * e)
 {
     view_t * ui = lv_event_get_user_data(e);
@@ -132,12 +136,14 @@ static void ctrl_pad_spinbox_event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void ctrl_pad_btn_add_event_handler(lv_event_t * e)
 {
     view_t * ui = lv_event_get_user_data(e);
     obj_child_node_create(ui->obj_cur, ui);
 }
 
+LV_FUNC_SECTION
 static void ctrl_pad_checkbox_event_handler(lv_event_t * e)
 {
     view_t * ui = lv_event_get_user_data(e);
@@ -148,6 +154,7 @@ static void ctrl_pad_checkbox_event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void ctrl_pad_btn_event_attach(view_t * ui)
 {
     lv_obj_add_event_cb(

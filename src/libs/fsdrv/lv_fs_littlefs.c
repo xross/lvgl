@@ -38,6 +38,7 @@ static void * fs_dir_open(lv_fs_drv_t * drv, const char * path);
 static lv_fs_res_t fs_dir_close(lv_fs_drv_t * drv, void * dir_p);
 static lv_fs_res_t fs_dir_read(lv_fs_drv_t * drv, void * dir_p, char * fn, uint32_t fn_len);
 
+LV_FUNC_SECTION
 void lv_littlefs_set_handler(lfs_t * lfs)
 {
     lv_fs_drv_t * drv = lv_fs_get_drv(LV_FS_LITTLEFS_LETTER);
@@ -47,6 +48,7 @@ void lv_littlefs_set_handler(lfs_t * lfs)
 /**
  * Register a driver for the LittleFS File System interface
  */
+LV_FUNC_SECTION
 void lv_fs_littlefs_init(void)
 {
     lv_fs_drv_t * fs_drv = &(LV_GLOBAL_DEFAULT()->littlefs_fs_drv);
@@ -78,6 +80,7 @@ void lv_fs_littlefs_init(void)
  * @param mode      read: FS_MODE_RD, write: FS_MODE_WR, both: FS_MODE_RD | FS_MODE_WR
  * @return          a file descriptor or NULL on error
  */
+LV_FUNC_SECTION
 static void * fs_open(lv_fs_drv_t * drv, const char * path, lv_fs_mode_t mode)
 {
     int flags = 0;
@@ -106,6 +109,7 @@ static void * fs_open(lv_fs_drv_t * drv, const char * path, lv_fs_mode_t mode)
  * @param file_p    pointer to a file_t variable. (opened with fs_open)
  * @return          LV_FS_RES_OK: no error or  any error from @lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_close(lv_fs_drv_t * drv, void * file_p)
 {
     LittleFile * lf = file_p;
@@ -126,6 +130,7 @@ static lv_fs_res_t fs_close(lv_fs_drv_t * drv, void * file_p)
  * @param br        the real number of read bytes (Byte Read)
  * @return          LV_FS_RES_OK: no error or any error from @lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_read(lv_fs_drv_t * drv, void * file_p, void * buf, uint32_t btr, uint32_t * br)
 {
     LittleFile * lf = file_p;
@@ -145,6 +150,7 @@ static lv_fs_res_t fs_read(lv_fs_drv_t * drv, void * file_p, void * buf, uint32_
  * @param bw        the number of real written bytes (Bytes Written)
  * @return          LV_FS_RES_OK: no error or  any error from @lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_write(lv_fs_drv_t * drv, void * file_p, const void * buf, uint32_t btw, uint32_t * bw)
 {
     LittleFile * lf = file_p;
@@ -163,6 +169,7 @@ static lv_fs_res_t fs_write(lv_fs_drv_t * drv, void * file_p, const void * buf, 
  * @param whence    tells from where to interpret the `pos`. See @lv_fs_whence_t
  * @return          LV_FS_RES_OK: no error or any error from @lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_seek(lv_fs_drv_t * drv, void * file_p, uint32_t pos, lv_fs_whence_t whence)
 {
     int mode = 0;
@@ -188,6 +195,7 @@ static lv_fs_res_t fs_seek(lv_fs_drv_t * drv, void * file_p, uint32_t pos, lv_fs
  * @param pos_p     pointer to store the result
  * @return          LV_FS_RES_OK: no error or any error from @lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_tell(lv_fs_drv_t * drv, void * file_p, uint32_t * pos_p)
 {
     LittleFile * lf = file_p;
@@ -204,6 +212,7 @@ static lv_fs_res_t fs_tell(lv_fs_drv_t * drv, void * file_p, uint32_t * pos_p)
  * @param path      path to the directory beginning with the driver letter (e.g. S:/folder)
  * @return          a directory descriptor or NULL on error
  */
+LV_FUNC_SECTION
 static void * fs_dir_open(lv_fs_drv_t * drv, const char * path)
 {
     LittleDirectory * ld = lv_malloc(sizeof(LittleDirectory));
@@ -225,6 +234,7 @@ static void * fs_dir_open(lv_fs_drv_t * drv, const char * path)
  * @param dir_p    pointer to a dir_p variable. (opened with fs_dir_open)
  * @return         LV_FS_RES_OK: no error or any error from @lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_dir_close(lv_fs_drv_t * drv, void * dir_p)
 {
     LittleDirectory * ld = dir_p;
@@ -246,6 +256,7 @@ static lv_fs_res_t fs_dir_close(lv_fs_drv_t * drv, void * dir_p)
  * @param fn_len   length of the buffer to store the filename
  * @return         LV_FS_RES_OK: no error or any error from @lv_fs_res_t enum
  */
+LV_FUNC_SECTION
 static lv_fs_res_t fs_dir_read(lv_fs_drv_t * drv, void * dir_p, char * fn, uint32_t fn_len)
 {
     if(fn_len == 0) return LV_FS_RES_INV_PARAM;

@@ -51,6 +51,7 @@ LV_IMAGE_DECLARE(img_lv_demo_music_btn_list_pause);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_demo_music_list_create(lv_obj_t * parent)
 {
     font_small = LV_FONT_DEFAULT;
@@ -151,6 +152,7 @@ lv_obj_t * lv_demo_music_list_create(lv_obj_t * parent)
     return list;
 }
 
+LV_FUNC_SECTION
 void lv_demo_music_list_button_check(uint32_t track_id, bool state)
 {
     lv_obj_t * btn = lv_obj_get_child(list, track_id);
@@ -171,6 +173,7 @@ void lv_demo_music_list_button_check(uint32_t track_id, bool state)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_obj_t * add_list_button(lv_obj_t * parent, uint32_t track_id)
 {
     uint32_t t = lv_demo_music_get_track_length(track_id);
@@ -227,6 +230,7 @@ static lv_obj_t * add_list_button(lv_obj_t * parent, uint32_t track_id)
     return btn;
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void btn_click_event_cb(lv_event_t * e)
 {
     lv_obj_t * btn = lv_event_get_target(e);
@@ -236,6 +240,7 @@ static void btn_click_event_cb(lv_event_t * e)
     lv_demo_music_play(idx);
 }
 
+LV_FUNC_SECTION
 static void list_delete_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);

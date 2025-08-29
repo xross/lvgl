@@ -49,6 +49,7 @@ static uint32_t _width_to_stride(uint32_t w, lv_color_format_t cf);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_buf_vglite_init_handlers(void)
 {
     lv_draw_buf_handlers_t * handlers = lv_draw_buf_get_handlers();
@@ -69,6 +70,7 @@ void lv_draw_buf_vglite_init_handlers(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void _invalidate_cache(const lv_draw_buf_t * draw_buf, const lv_area_t * area)
 {
     const lv_image_header_t * header = &draw_buf->header;
@@ -118,6 +120,7 @@ static void _invalidate_cache(const lv_draw_buf_t * draw_buf, const lv_area_t * 
     }
 }
 
+LV_FUNC_SECTION
 static uint32_t _width_to_stride(uint32_t w, lv_color_format_t cf)
 {
     uint8_t bits_per_pixel = lv_color_format_get_bpp(cf);

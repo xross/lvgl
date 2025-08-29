@@ -10,6 +10,7 @@ static lv_obj_t * img1;
 /**
  * Demonstrate runtime image re-coloring
  */
+LV_FUNC_SECTION
 void lv_example_image_2(void)
 {
     /*Create 4 sliders to adjust RGB color and re-color intensity*/
@@ -37,6 +38,7 @@ void lv_example_image_2(void)
     lv_obj_send_event(intense_slider, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
+LV_FUNC_SECTION
 static void slider_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
@@ -49,6 +51,7 @@ static void slider_event_cb(lv_event_t * e)
     lv_obj_set_style_image_recolor(img1, color, 0);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_slider(lv_color_t color)
 {
     lv_obj_t * slider = lv_slider_create(lv_screen_active());

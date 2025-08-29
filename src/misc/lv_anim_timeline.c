@@ -56,6 +56,7 @@ static int32_t anim_timeline_path_cb(const lv_anim_t * a);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_anim_timeline_t * lv_anim_timeline_create(void)
 {
     lv_anim_timeline_t * at = lv_malloc_zeroed(sizeof(lv_anim_timeline_t));
@@ -63,6 +64,7 @@ lv_anim_timeline_t * lv_anim_timeline_create(void)
     return at;
 }
 
+LV_FUNC_SECTION
 void lv_anim_timeline_delete(lv_anim_timeline_t * at)
 {
     LV_ASSERT_NULL(at);
@@ -73,6 +75,7 @@ void lv_anim_timeline_delete(lv_anim_timeline_t * at)
     lv_free(at);
 }
 
+LV_FUNC_SECTION
 void lv_anim_timeline_add(lv_anim_timeline_t * at, uint32_t start_time, const lv_anim_t * a)
 {
     LV_ASSERT_NULL(at);
@@ -86,6 +89,7 @@ void lv_anim_timeline_add(lv_anim_timeline_t * at, uint32_t start_time, const lv
     at->anim_dsc[at->anim_dsc_cnt - 1].start_time = start_time;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_timeline_start(lv_anim_timeline_t * at)
 {
     LV_ASSERT_NULL(at);
@@ -117,6 +121,7 @@ uint32_t lv_anim_timeline_start(lv_anim_timeline_t * at)
     return playtime;
 }
 
+LV_FUNC_SECTION
 void lv_anim_timeline_pause(lv_anim_timeline_t * at)
 {
     LV_ASSERT_NULL(at);
@@ -124,24 +129,28 @@ void lv_anim_timeline_pause(lv_anim_timeline_t * at)
     lv_anim_delete(at, anim_timeline_exec_cb);
 }
 
+LV_FUNC_SECTION
 void lv_anim_timeline_set_reverse(lv_anim_timeline_t * at, bool reverse)
 {
     LV_ASSERT_NULL(at);
     at->reverse = reverse;
 }
 
+LV_FUNC_SECTION
 void lv_anim_timeline_set_repeat_count(lv_anim_timeline_t * at, uint32_t cnt)
 {
     LV_ASSERT_NULL(at);
     at->repeat_count = cnt;
 }
 
+LV_FUNC_SECTION
 void lv_anim_timeline_set_repeat_delay(lv_anim_timeline_t * at, uint32_t delay)
 {
     LV_ASSERT_NULL(at);
     at->repeat_delay = delay;
 }
 
+LV_FUNC_SECTION
 void lv_anim_timeline_set_progress(lv_anim_timeline_t * at, uint16_t progress)
 {
     LV_ASSERT_NULL(at);
@@ -151,6 +160,7 @@ void lv_anim_timeline_set_progress(lv_anim_timeline_t * at, uint16_t progress)
     anim_timeline_set_act_time(at, act_time);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_timeline_get_playtime(lv_anim_timeline_t * at)
 {
     LV_ASSERT_NULL(at);
@@ -169,12 +179,14 @@ uint32_t lv_anim_timeline_get_playtime(lv_anim_timeline_t * at)
     return playtime;
 }
 
+LV_FUNC_SECTION
 bool lv_anim_timeline_get_reverse(lv_anim_timeline_t * at)
 {
     LV_ASSERT_NULL(at);
     return at->reverse;
 }
 
+LV_FUNC_SECTION
 uint16_t lv_anim_timeline_get_progress(lv_anim_timeline_t * at)
 {
     LV_ASSERT_NULL(at);
@@ -182,12 +194,14 @@ uint16_t lv_anim_timeline_get_progress(lv_anim_timeline_t * at)
     return lv_map(at->act_time, 0, playtime, 0, LV_ANIM_TIMELINE_PROGRESS_MAX);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_timeline_get_repeat_count(lv_anim_timeline_t * at)
 {
     LV_ASSERT_NULL(at);
     return  at->repeat_count;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_anim_timeline_get_repeat_delay(lv_anim_timeline_t * at)
 {
     LV_ASSERT_NULL(at);
@@ -198,6 +212,7 @@ uint32_t lv_anim_timeline_get_repeat_delay(lv_anim_timeline_t * at)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void anim_timeline_set_act_time(lv_anim_timeline_t * at, uint32_t act_time)
 {
     at->act_time = act_time;
@@ -298,12 +313,14 @@ static void anim_timeline_set_act_time(lv_anim_timeline_t * at, uint32_t act_tim
     }
 }
 
+__attribute__(( fptrgroup("lv_anim_path_cb") ))
 static int32_t anim_timeline_path_cb(const lv_anim_t * a)
 {
     /* Directly map original timestamps to avoid loss of accuracy */
     return lv_map(a->act_time, 0, a->duration, a->start_value, a->end_value);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void anim_timeline_exec_cb(void * var, int32_t v)
 {
     lv_anim_timeline_t * at = var;

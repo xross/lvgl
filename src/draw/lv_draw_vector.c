@@ -58,6 +58,7 @@ typedef struct {
  *  STATIC PROTOTYPES
  **********************/
 
+LV_FUNC_SECTION
 static void _copy_draw_dsc(lv_vector_draw_dsc_t * dst, const lv_vector_draw_dsc_t * src)
 {
     lv_memcpy(&(dst->fill_dsc), &(src->fill_dsc), sizeof(lv_vector_fill_dsc_t));
@@ -86,6 +87,7 @@ static void _copy_draw_dsc(lv_vector_draw_dsc_t * dst, const lv_vector_draw_dsc_
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_matrix_transform_point(const lv_matrix_t * matrix, lv_fpoint_t * point)
 {
     float x = point->x;
@@ -95,6 +97,7 @@ void lv_matrix_transform_point(const lv_matrix_t * matrix, lv_fpoint_t * point)
     point->y = x * matrix->m[0][1] + y * matrix->m[1][1] + matrix->m[1][2];
 }
 
+LV_FUNC_SECTION
 void lv_matrix_transform_path(const lv_matrix_t * matrix, lv_vector_path_t * path)
 {
     lv_fpoint_t * pt = lv_array_front(&path->points);
@@ -105,6 +108,7 @@ void lv_matrix_transform_path(const lv_matrix_t * matrix, lv_vector_path_t * pat
 }
 
 /* path functions */
+LV_FUNC_SECTION
 lv_vector_path_t * lv_vector_path_create(lv_vector_path_quality_t quality)
 {
     lv_vector_path_t * path = lv_malloc(sizeof(lv_vector_path_t));
@@ -116,6 +120,7 @@ lv_vector_path_t * lv_vector_path_create(lv_vector_path_quality_t quality)
     return path;
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_copy(lv_vector_path_t * target_path, const lv_vector_path_t * path)
 {
     target_path->quality = path->quality;
@@ -123,12 +128,14 @@ void lv_vector_path_copy(lv_vector_path_t * target_path, const lv_vector_path_t 
     lv_array_copy(&target_path->points, &path->points);
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_clear(lv_vector_path_t * path)
 {
     lv_array_clear(&path->ops);
     lv_array_clear(&path->points);
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_delete(lv_vector_path_t * path)
 {
     lv_array_deinit(&path->ops);
@@ -136,6 +143,7 @@ void lv_vector_path_delete(lv_vector_path_t * path)
     lv_free(path);
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_move_to(lv_vector_path_t * path, const lv_fpoint_t * p)
 {
     CHECK_AND_RESIZE_PATH_CONTAINER(path, 1);
@@ -145,6 +153,7 @@ void lv_vector_path_move_to(lv_vector_path_t * path, const lv_fpoint_t * p)
     lv_array_push_back(&path->points, p);
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_line_to(lv_vector_path_t * path, const lv_fpoint_t * p)
 {
     if(lv_array_is_empty(&path->ops)) {
@@ -159,6 +168,7 @@ void lv_vector_path_line_to(lv_vector_path_t * path, const lv_fpoint_t * p)
     lv_array_push_back(&path->points, p);
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_quad_to(lv_vector_path_t * path, const lv_fpoint_t * p1, const lv_fpoint_t * p2)
 {
     if(lv_array_is_empty(&path->ops)) {
@@ -174,6 +184,7 @@ void lv_vector_path_quad_to(lv_vector_path_t * path, const lv_fpoint_t * p1, con
     lv_array_push_back(&path->points, p2);
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_cubic_to(lv_vector_path_t * path, const lv_fpoint_t * p1, const lv_fpoint_t * p2,
                              const lv_fpoint_t * p3)
 {
@@ -191,6 +202,7 @@ void lv_vector_path_cubic_to(lv_vector_path_t * path, const lv_fpoint_t * p1, co
     lv_array_push_back(&path->points, p3);
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_close(lv_vector_path_t * path)
 {
     if(lv_array_is_empty(&path->ops)) {
@@ -204,6 +216,7 @@ void lv_vector_path_close(lv_vector_path_t * path)
     lv_array_push_back(&path->ops, &op);
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_get_bounding(const lv_vector_path_t * path, lv_area_t * area)
 {
     LV_ASSERT_NULL(path);
@@ -234,6 +247,7 @@ void lv_vector_path_get_bounding(const lv_vector_path_t * path, lv_area_t * area
     area->y2 = (int32_t)y2;
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_append_rect(lv_vector_path_t * path, const lv_area_t * rect, float rx, float ry)
 {
     float x = rect->x1;
@@ -322,6 +336,7 @@ void lv_vector_path_append_rect(lv_vector_path_t * path, const lv_area_t * rect,
     }
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_append_circle(lv_vector_path_t * path, const lv_fpoint_t * c, float rx, float ry)
 {
     float krx = rx * 0.552284f;
@@ -378,6 +393,7 @@ void lv_vector_path_append_circle(lv_vector_path_t * path, const lv_fpoint_t * c
  * @param sweep             the sweep angle for arc, could be negative
  * @param pie               true: draw a pie, false: draw a arc
  */
+LV_FUNC_SECTION
 void lv_vector_path_append_arc(lv_vector_path_t * path, const lv_fpoint_t * c, float radius, float start_angle,
                                float sweep, bool pie)
 {
@@ -450,6 +466,7 @@ void lv_vector_path_append_arc(lv_vector_path_t * path, const lv_fpoint_t * c, f
     }
 }
 
+LV_FUNC_SECTION
 void lv_vector_path_append_path(lv_vector_path_t * path, const lv_vector_path_t * subpath)
 {
     uint32_t ops_size = lv_array_size(&path->ops);
@@ -466,6 +483,7 @@ void lv_vector_path_append_path(lv_vector_path_t * path, const lv_vector_path_t 
 
 /* draw dsc functions */
 
+LV_FUNC_SECTION
 lv_vector_dsc_t * lv_vector_dsc_create(lv_layer_t * layer)
 {
     lv_vector_dsc_t * dsc = lv_malloc(sizeof(lv_vector_dsc_t));
@@ -498,6 +516,7 @@ lv_vector_dsc_t * lv_vector_dsc_create(lv_layer_t * layer)
     return dsc;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_delete(lv_vector_dsc_t * dsc)
 {
     if(dsc->tasks.task_list) {
@@ -509,44 +528,52 @@ void lv_vector_dsc_delete(lv_vector_dsc_t * dsc)
     lv_free(dsc);
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_blend_mode(lv_vector_dsc_t * dsc, lv_vector_blend_t blend)
 {
     dsc->current_dsc.blend_mode = blend;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_transform(lv_vector_dsc_t * dsc, const lv_matrix_t * matrix)
 {
     lv_memcpy(&(dsc->current_dsc.matrix), matrix, sizeof(lv_matrix_t));
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_color(lv_vector_dsc_t * dsc, lv_color_t color)
 {
     dsc->current_dsc.fill_dsc.style = LV_VECTOR_DRAW_STYLE_SOLID;
     dsc->current_dsc.fill_dsc.color = lv_color_to_32(color, 0xFF);
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_color32(lv_vector_dsc_t * dsc, lv_color32_t color)
 {
     dsc->current_dsc.fill_dsc.style = LV_VECTOR_DRAW_STYLE_SOLID;
     dsc->current_dsc.fill_dsc.color = color;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_opa(lv_vector_dsc_t * dsc, lv_opa_t opa)
 {
     dsc->current_dsc.fill_dsc.opa = opa;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_rule(lv_vector_dsc_t * dsc, lv_vector_fill_t rule)
 {
     dsc->current_dsc.fill_dsc.fill_rule = rule;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_image(lv_vector_dsc_t * dsc, const lv_draw_image_dsc_t * img_dsc)
 {
     dsc->current_dsc.fill_dsc.style = LV_VECTOR_DRAW_STYLE_PATTERN;
     lv_memcpy(&(dsc->current_dsc.fill_dsc.img_dsc), img_dsc, sizeof(lv_draw_image_dsc_t));
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_linear_gradient(lv_vector_dsc_t * dsc, float x1, float y1, float x2, float y2)
 {
     dsc->current_dsc.fill_dsc.style = LV_VECTOR_DRAW_STYLE_GRADIENT;
@@ -557,6 +584,7 @@ void lv_vector_dsc_set_fill_linear_gradient(lv_vector_dsc_t * dsc, float x1, flo
     dsc->current_dsc.fill_dsc.gradient.y2 = y2;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_radial_gradient(lv_vector_dsc_t * dsc, float cx, float cy, float radius)
 {
     dsc->current_dsc.fill_dsc.style = LV_VECTOR_DRAW_STYLE_GRADIENT;
@@ -566,11 +594,13 @@ void lv_vector_dsc_set_fill_radial_gradient(lv_vector_dsc_t * dsc, float cx, flo
     dsc->current_dsc.fill_dsc.gradient.cr = radius;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_gradient_spread(lv_vector_dsc_t * dsc, lv_vector_gradient_spread_t spread)
 {
     dsc->current_dsc.fill_dsc.gradient.spread = spread;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_gradient_color_stops(lv_vector_dsc_t * dsc, const lv_gradient_stop_t * stops,
                                                  uint16_t count)
 {
@@ -583,38 +613,45 @@ void lv_vector_dsc_set_fill_gradient_color_stops(lv_vector_dsc_t * dsc, const lv
     dsc->current_dsc.fill_dsc.gradient.stops_count = count;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_fill_transform(lv_vector_dsc_t * dsc, const lv_matrix_t * matrix)
 {
     lv_memcpy(&(dsc->current_dsc.fill_dsc.matrix), matrix, sizeof(lv_matrix_t));
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_transform(lv_vector_dsc_t * dsc, const lv_matrix_t * matrix)
 {
     lv_memcpy(&(dsc->current_dsc.stroke_dsc.matrix), matrix, sizeof(lv_matrix_t));
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_color32(lv_vector_dsc_t * dsc, lv_color32_t color)
 {
     dsc->current_dsc.stroke_dsc.style = LV_VECTOR_DRAW_STYLE_SOLID;
     dsc->current_dsc.stroke_dsc.color = color;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_color(lv_vector_dsc_t * dsc, lv_color_t color)
 {
     dsc->current_dsc.stroke_dsc.style = LV_VECTOR_DRAW_STYLE_SOLID;
     dsc->current_dsc.stroke_dsc.color = lv_color_to_32(color, 0xFF);
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_opa(lv_vector_dsc_t * dsc, lv_opa_t opa)
 {
     dsc->current_dsc.stroke_dsc.opa = opa;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_width(lv_vector_dsc_t * dsc, float width)
 {
     dsc->current_dsc.stroke_dsc.width = width;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_dash(lv_vector_dsc_t * dsc, float * dash_pattern, uint16_t dash_count)
 {
     lv_array_t * dash_array = &(dsc->current_dsc.stroke_dsc.dash_pattern);
@@ -635,21 +672,25 @@ void lv_vector_dsc_set_stroke_dash(lv_vector_dsc_t * dsc, float * dash_pattern, 
     }
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_cap(lv_vector_dsc_t * dsc, lv_vector_stroke_cap_t cap)
 {
     dsc->current_dsc.stroke_dsc.cap = cap;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_join(lv_vector_dsc_t * dsc, lv_vector_stroke_join_t join)
 {
     dsc->current_dsc.stroke_dsc.join = join;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_miter_limit(lv_vector_dsc_t * dsc, uint16_t miter_limit)
 {
     dsc->current_dsc.stroke_dsc.miter_limit = miter_limit;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_linear_gradient(lv_vector_dsc_t * dsc, float x1, float y1, float x2, float y2)
 {
     dsc->current_dsc.stroke_dsc.style = LV_VECTOR_DRAW_STYLE_GRADIENT;
@@ -660,6 +701,7 @@ void lv_vector_dsc_set_stroke_linear_gradient(lv_vector_dsc_t * dsc, float x1, f
     dsc->current_dsc.stroke_dsc.gradient.y2 = y2;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_radial_gradient(lv_vector_dsc_t * dsc, float cx, float cy, float radius)
 {
     dsc->current_dsc.stroke_dsc.style = LV_VECTOR_DRAW_STYLE_GRADIENT;
@@ -669,11 +711,13 @@ void lv_vector_dsc_set_stroke_radial_gradient(lv_vector_dsc_t * dsc, float cx, f
     dsc->current_dsc.stroke_dsc.gradient.cr = radius;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_gradient_spread(lv_vector_dsc_t * dsc, lv_vector_gradient_spread_t spread)
 {
     dsc->current_dsc.stroke_dsc.gradient.spread = spread;
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_set_stroke_gradient_color_stops(lv_vector_dsc_t * dsc, const lv_gradient_stop_t * stops,
                                                    uint16_t count)
 {
@@ -687,6 +731,7 @@ void lv_vector_dsc_set_stroke_gradient_color_stops(lv_vector_dsc_t * dsc, const 
 }
 
 /* draw functions */
+LV_FUNC_SECTION
 void lv_vector_dsc_add_path(lv_vector_dsc_t * dsc, const lv_vector_path_t * path)
 {
     lv_area_t rect;
@@ -715,6 +760,7 @@ void lv_vector_dsc_add_path(lv_vector_dsc_t * dsc, const lv_vector_path_t * path
     new_task->dsc.scissor_area = rect;
 }
 
+LV_FUNC_SECTION
 void lv_vector_clear_area(lv_vector_dsc_t * dsc, const lv_area_t * rect)
 {
     lv_area_t r;
@@ -736,6 +782,7 @@ void lv_vector_clear_area(lv_vector_dsc_t * dsc, const lv_area_t * rect)
     lv_area_copy(&(new_task->dsc.scissor_area), rect);
 }
 
+LV_FUNC_SECTION
 void lv_draw_vector(lv_vector_dsc_t * dsc)
 {
     if(!dsc->tasks.task_list) {
@@ -753,31 +800,37 @@ void lv_draw_vector(lv_vector_dsc_t * dsc)
 }
 
 /* draw dsc transform */
+LV_FUNC_SECTION
 void lv_vector_dsc_identity(lv_vector_dsc_t * dsc)
 {
     lv_matrix_identity(&(dsc->current_dsc.matrix)); /*identity matrix*/
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_scale(lv_vector_dsc_t * dsc, float scale_x, float scale_y)
 {
     lv_matrix_scale(&(dsc->current_dsc.matrix), scale_x, scale_y);
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_rotate(lv_vector_dsc_t * dsc, float degree)
 {
     lv_matrix_rotate(&(dsc->current_dsc.matrix), degree);
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_translate(lv_vector_dsc_t * dsc, float tx, float ty)
 {
     lv_matrix_translate(&(dsc->current_dsc.matrix), tx, ty);
 }
 
+LV_FUNC_SECTION
 void lv_vector_dsc_skew(lv_vector_dsc_t * dsc, float skew_x, float skew_y)
 {
     lv_matrix_skew(&(dsc->current_dsc.matrix), skew_x, skew_y);
 }
 
+LV_FUNC_SECTION
 void lv_vector_for_each_destroy_tasks(lv_ll_t * task_list, vector_draw_task_cb cb, void * data)
 {
     lv_vector_draw_task * task = lv_ll_get_head(task_list);

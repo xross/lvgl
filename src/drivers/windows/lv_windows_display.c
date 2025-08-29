@@ -41,6 +41,7 @@ static unsigned int __stdcall lv_windows_display_thread_entrypoint(
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_windows_create_display(
     const wchar_t * title,
     int32_t hor_res,
@@ -86,26 +87,31 @@ lv_display_t * lv_windows_create_display(
     return data.display;
 }
 
+LV_FUNC_SECTION
 HWND lv_windows_get_display_window_handle(lv_display_t * display)
 {
     return (HWND)lv_display_get_driver_data(display);
 }
 
+LV_FUNC_SECTION
 int32_t lv_windows_zoom_to_logical(int32_t physical, int32_t zoom_level)
 {
     return MulDiv(physical, LV_WINDOWS_ZOOM_BASE_LEVEL, zoom_level);
 }
 
+LV_FUNC_SECTION
 int32_t lv_windows_zoom_to_physical(int32_t logical, int32_t zoom_level)
 {
     return MulDiv(logical, zoom_level, LV_WINDOWS_ZOOM_BASE_LEVEL);
 }
 
+LV_FUNC_SECTION
 int32_t lv_windows_dpi_to_logical(int32_t physical, int32_t dpi)
 {
     return MulDiv(physical, USER_DEFAULT_SCREEN_DPI, dpi);
 }
 
+LV_FUNC_SECTION
 int32_t lv_windows_dpi_to_physical(int32_t logical, int32_t dpi)
 {
     return MulDiv(logical, dpi, USER_DEFAULT_SCREEN_DPI);
@@ -115,6 +121,7 @@ int32_t lv_windows_dpi_to_physical(int32_t logical, int32_t dpi)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static unsigned int __stdcall lv_windows_display_thread_entrypoint(
     void * parameter)
 {

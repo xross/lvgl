@@ -4,6 +4,7 @@
 /**
  * Create a fake text shadow
  */
+LV_FUNC_SECTION
 void lv_example_label_2(void)
 {
     /*Create a style for the shadow*/

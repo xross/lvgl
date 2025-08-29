@@ -8,6 +8,7 @@
 #include "lv_test_helpers.h"
 #include "lv_test_indev.h"
 
+LV_FUNC_SECTION
 static void loop_through_stress_test(void)
 {
 #if LV_USE_DEMO_STRESS
@@ -20,6 +21,7 @@ static void loop_through_stress_test(void)
     }
 #endif
 }
+LV_FUNC_SECTION
 void test_demo_stress(void)
 {
 #if LV_USE_DEMO_STRESS

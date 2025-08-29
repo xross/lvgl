@@ -37,6 +37,7 @@ typedef struct  {
 } lv_draw_sw_mask_radius_circle_dsc_t;
 
 struct lv_draw_sw_mask_common_dsc_t {
+    __attribute__(( fptrgroup("lv_draw_sw_mask_cb") ))
     lv_draw_sw_mask_xcb_t cb;
     lv_draw_sw_mask_type_t type;
 };

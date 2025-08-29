@@ -4,6 +4,7 @@
 /**
  * Styling the scrollbars
  */
+LV_FUNC_SECTION
 void lv_example_scroll_4(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());

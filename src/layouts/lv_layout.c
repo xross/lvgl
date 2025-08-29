@@ -36,6 +36,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_layout_init(void)
 {
     /*Malloc a list for the built in layouts*/
@@ -50,11 +51,13 @@ void lv_layout_init(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_layout_deinit(void)
 {
     lv_free(layout_list_def);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_layout_register(lv_layout_update_cb_t cb, void * user_data)
 {
     layout_list_def = lv_realloc(layout_list_def, (layout_cnt + 1) * sizeof(lv_layout_dsc_t));
@@ -65,6 +68,8 @@ uint32_t lv_layout_register(lv_layout_update_cb_t cb, void * user_data)
     return layout_cnt++;
 }
 
+#pragma stackfunction 1024
+LV_FUNC_SECTION
 void lv_layout_apply(lv_obj_t * obj)
 {
     lv_layout_t layout_id = lv_obj_get_style_layout(obj, LV_PART_MAIN);

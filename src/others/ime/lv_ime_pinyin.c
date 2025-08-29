@@ -410,6 +410,7 @@ static const lv_pinyin_dict_t lv_ime_pinyin_def_dict[] = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 lv_obj_t * lv_ime_pinyin_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -422,6 +423,7 @@ lv_obj_t * lv_ime_pinyin_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_ime_pinyin_set_keyboard(lv_obj_t * obj, lv_obj_t * kb)
 {
     if(kb) {
@@ -438,6 +440,7 @@ void lv_ime_pinyin_set_keyboard(lv_obj_t * obj, lv_obj_t * kb)
     lv_obj_align_to(pinyin_ime->cand_panel, pinyin_ime->kb, LV_ALIGN_OUT_TOP_MID, 0, 0);
 }
 
+LV_FUNC_SECTION
 void lv_ime_pinyin_set_dict(lv_obj_t * obj, lv_pinyin_dict_t * dict)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -445,6 +448,7 @@ void lv_ime_pinyin_set_dict(lv_obj_t * obj, lv_pinyin_dict_t * dict)
     init_pinyin_dict(obj, dict);
 }
 
+LV_FUNC_SECTION
 void lv_ime_pinyin_set_mode(lv_obj_t * obj, lv_ime_pinyin_mode_t mode)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -468,6 +472,7 @@ void lv_ime_pinyin_set_mode(lv_obj_t * obj, lv_ime_pinyin_mode_t mode)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_ime_pinyin_get_kb(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -477,6 +482,7 @@ lv_obj_t * lv_ime_pinyin_get_kb(lv_obj_t * obj)
     return pinyin_ime->kb;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_ime_pinyin_get_cand_panel(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -486,6 +492,7 @@ lv_obj_t * lv_ime_pinyin_get_cand_panel(lv_obj_t * obj)
     return pinyin_ime->cand_panel;
 }
 
+LV_FUNC_SECTION
 const lv_pinyin_dict_t * lv_ime_pinyin_get_dict(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -503,6 +510,7 @@ const lv_pinyin_dict_t * lv_ime_pinyin_get_dict(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_ime_pinyin_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -588,6 +596,7 @@ static void lv_ime_pinyin_constructor(const lv_obj_class_t * class_p, lv_obj_t *
 #endif
 }
 
+LV_FUNC_SECTION
 static void lv_ime_pinyin_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -601,6 +610,7 @@ static void lv_ime_pinyin_destructor(const lv_obj_class_t * class_p, lv_obj_t * 
         lv_obj_delete(pinyin_ime->cand_panel);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void lv_ime_pinyin_kb_event(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -738,6 +748,7 @@ static void lv_ime_pinyin_kb_event(lv_event_t * e)
     }
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void lv_ime_pinyin_cand_panel_event(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -774,6 +785,7 @@ static void lv_ime_pinyin_cand_panel_event(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void pinyin_input_proc(lv_obj_t * obj)
 {
     lv_ime_pinyin_t * pinyin_ime = (lv_ime_pinyin_t *)obj;
@@ -800,6 +812,7 @@ static void pinyin_input_proc(lv_obj_t * obj)
     lv_obj_remove_flag(pinyin_ime->cand_panel, LV_OBJ_FLAG_HIDDEN);
 }
 
+LV_FUNC_SECTION
 static void pinyin_page_proc(lv_obj_t * obj, uint16_t dir)
 {
     lv_ime_pinyin_t * pinyin_ime = (lv_ime_pinyin_t *)obj;
@@ -841,6 +854,7 @@ static void pinyin_page_proc(lv_obj_t * obj, uint16_t dir)
     }
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void lv_ime_pinyin_style_change_event(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -854,6 +868,7 @@ static void lv_ime_pinyin_style_change_event(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void init_pinyin_dict(lv_obj_t * obj, const lv_pinyin_dict_t * dict)
 {
     lv_ime_pinyin_t * pinyin_ime = (lv_ime_pinyin_t *)obj;
@@ -888,6 +903,7 @@ static void init_pinyin_dict(lv_obj_t * obj, const lv_pinyin_dict_t * dict)
     }
 }
 
+LV_FUNC_SECTION
 static char * pinyin_search_matching(lv_obj_t * obj, char * py_str, uint16_t * cand_num)
 {
     lv_ime_pinyin_t * pinyin_ime = (lv_ime_pinyin_t *)obj;
@@ -926,6 +942,7 @@ static char * pinyin_search_matching(lv_obj_t * obj, char * py_str, uint16_t * c
     return NULL;
 }
 
+LV_FUNC_SECTION
 static void pinyin_ime_clear_data(lv_obj_t * obj)
 {
     lv_ime_pinyin_t * pinyin_ime = (lv_ime_pinyin_t *)obj;
@@ -957,6 +974,7 @@ static void pinyin_ime_clear_data(lv_obj_t * obj)
 }
 
 #if LV_IME_PINYIN_USE_K9_MODE
+LV_FUNC_SECTION
 static void pinyin_k9_init_data(lv_obj_t * obj)
 {
     LV_UNUSED(obj);
@@ -989,6 +1007,7 @@ static void pinyin_k9_init_data(lv_obj_t * obj)
     default_kb_ctrl_k9_map[LV_IME_PINYIN_K9_CAND_TEXT_NUM + 16] = LV_BUTTONMATRIX_CTRL_CHECKED | 1;
 }
 
+LV_FUNC_SECTION
 static void pinyin_k9_get_legal_py(lv_obj_t * obj, char * k9_input, const char * py9_map[])
 {
     lv_ime_pinyin_t * pinyin_ime = (lv_ime_pinyin_t *)obj;
@@ -1047,6 +1066,7 @@ static void pinyin_k9_get_legal_py(lv_obj_t * obj, char * k9_input, const char *
 }
 
 /*true: visible; false: not visible*/
+LV_FUNC_SECTION
 static bool pinyin_k9_is_valid_py(lv_obj_t * obj, char * py_str)
 {
     lv_ime_pinyin_t * pinyin_ime = (lv_ime_pinyin_t *)obj;
@@ -1082,6 +1102,7 @@ static bool pinyin_k9_is_valid_py(lv_obj_t * obj, char * py_str)
     return false;
 }
 
+LV_FUNC_SECTION
 static void pinyin_k9_fill_cand(lv_obj_t * obj)
 {
     uint16_t index = 0, tmp_len = 0;
@@ -1126,6 +1147,7 @@ static void pinyin_k9_fill_cand(lv_obj_t * obj)
     lv_textarea_add_text(ta, pinyin_ime->input_char);
 }
 
+LV_FUNC_SECTION
 static void pinyin_k9_cand_page_proc(lv_obj_t * obj, uint16_t dir)
 {
     lv_ime_pinyin_t * pinyin_ime = (lv_ime_pinyin_t *)obj;

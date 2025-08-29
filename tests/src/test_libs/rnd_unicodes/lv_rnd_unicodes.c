@@ -51,11 +51,13 @@ const uint32_t LV_RND_UNICODE_ALPHANUM_AND_CJK_TABLE_LEN = sizeof(LV_RND_UNICODE
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 uint32_t RANDOM_CALL_PROCESS(void)
 {
     return lv_rand(0, UNICODE_MAX_VALUE);
 }
 
+LV_FUNC_SECTION
 int lv_random_utf8_chars(uint8_t * buf, int buf_len, const uint32_t * ranges, uint32_t range_num, int char_num)
 {
     return random_utf8_chars(buf, buf_len, ranges, range_num, char_num);

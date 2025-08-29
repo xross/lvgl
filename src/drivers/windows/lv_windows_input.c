@@ -67,11 +67,13 @@ static void lv_windows_release_encoder_device_event_callback(lv_event_t * e);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 HWND lv_windows_get_indev_window_handle(lv_indev_t * indev)
 {
     return lv_windows_get_display_window_handle(lv_indev_get_display(indev));
 }
 
+LV_FUNC_SECTION
 lv_indev_t * lv_windows_acquire_pointer_indev(lv_display_t * display)
 {
     HWND window_handle = lv_windows_get_display_window_handle(display);
@@ -115,6 +117,7 @@ lv_indev_t * lv_windows_acquire_pointer_indev(lv_display_t * display)
     return context->pointer.indev;
 }
 
+LV_FUNC_SECTION
 lv_indev_t * lv_windows_acquire_keypad_indev(lv_display_t * display)
 {
     HWND window_handle = lv_windows_get_display_window_handle(display);
@@ -160,6 +163,7 @@ lv_indev_t * lv_windows_acquire_keypad_indev(lv_display_t * display)
     return context->keypad.indev;
 }
 
+LV_FUNC_SECTION
 lv_indev_t * lv_windows_acquire_encoder_indev(lv_display_t * display)
 {
     HWND window_handle = lv_windows_get_display_window_handle(display);
@@ -206,6 +210,7 @@ lv_indev_t * lv_windows_acquire_encoder_indev(lv_display_t * display)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_windows_pointer_driver_read_callback(
     lv_indev_t * indev,
     lv_indev_data_t * data)
@@ -220,6 +225,7 @@ static void lv_windows_pointer_driver_read_callback(
     data->point = context->pointer.point;
 }
 
+LV_FUNC_SECTION
 static void lv_windows_release_pointer_device_event_callback(lv_event_t * e)
 {
     lv_indev_t * indev = (lv_indev_t *)lv_event_get_user_data(e);
@@ -245,6 +251,7 @@ static void lv_windows_release_pointer_device_event_callback(lv_event_t * e)
     context->pointer.indev = NULL;
 }
 
+LV_FUNC_SECTION
 static BOOL lv_windows_get_touch_input_info(
     HTOUCHINPUT touch_input_handle,
     UINT input_count,
@@ -267,6 +274,7 @@ static BOOL lv_windows_get_touch_input_info(
     return function(touch_input_handle, input_count, inputs, item_size);
 }
 
+LV_FUNC_SECTION
 static BOOL lv_windows_close_touch_input_handle(
     HTOUCHINPUT touch_input_handle)
 {
@@ -286,6 +294,7 @@ static BOOL lv_windows_close_touch_input_handle(
     return function(touch_input_handle);
 }
 
+LV_FUNC_SECTION
 bool lv_windows_pointer_device_window_message_handler(
     HWND hWnd,
     UINT uMsg,
@@ -411,6 +420,7 @@ bool lv_windows_pointer_device_window_message_handler(
     return true;
 }
 
+LV_FUNC_SECTION
 static void lv_windows_keypad_driver_read_callback(
     lv_indev_t * indev,
     lv_indev_data_t * data)
@@ -434,6 +444,7 @@ static void lv_windows_keypad_driver_read_callback(
     }
 }
 
+LV_FUNC_SECTION
 static void lv_windows_release_keypad_device_event_callback(lv_event_t * e)
 {
     lv_indev_t * indev = (lv_indev_t *)lv_event_get_user_data(e);
@@ -459,6 +470,7 @@ static void lv_windows_release_keypad_device_event_callback(lv_event_t * e)
     context->keypad.indev = NULL;
 }
 
+LV_FUNC_SECTION
 static void lv_windows_push_key_to_keyboard_queue(
     lv_windows_window_context_t * context,
     uint32_t key,
@@ -472,6 +484,7 @@ static void lv_windows_push_key_to_keyboard_queue(
     }
 }
 
+LV_FUNC_SECTION
 static HIMC lv_windows_imm_get_context(
     HWND window_handle)
 {
@@ -491,6 +504,7 @@ static HIMC lv_windows_imm_get_context(
     return function(window_handle);
 }
 
+LV_FUNC_SECTION
 static BOOL lv_windows_imm_release_context(
     HWND window_handle,
     HIMC imm_context_handle)
@@ -511,6 +525,7 @@ static BOOL lv_windows_imm_release_context(
     return function(window_handle, imm_context_handle);
 }
 
+LV_FUNC_SECTION
 static HIMC lv_windows_imm_associate_context(
     HWND window_handle,
     HIMC imm_context_handle)
@@ -531,6 +546,7 @@ static HIMC lv_windows_imm_associate_context(
     return function(window_handle, imm_context_handle);
 }
 
+LV_FUNC_SECTION
 static BOOL lv_windows_imm_set_composition_window(
     HIMC imm_context_handle,
     LPCOMPOSITIONFORM composition_form)
@@ -551,6 +567,7 @@ static BOOL lv_windows_imm_set_composition_window(
     return function(imm_context_handle, composition_form);
 }
 
+LV_FUNC_SECTION
 bool lv_windows_keypad_device_window_message_handler(
     HWND hWnd,
     UINT uMsg,
@@ -740,6 +757,7 @@ bool lv_windows_keypad_device_window_message_handler(
     return true;
 }
 
+LV_FUNC_SECTION
 static void lv_windows_encoder_driver_read_callback(
     lv_indev_t * indev,
     lv_indev_data_t * data)
@@ -755,6 +773,7 @@ static void lv_windows_encoder_driver_read_callback(
     context->encoder.enc_diff = 0;
 }
 
+LV_FUNC_SECTION
 static void lv_windows_release_encoder_device_event_callback(lv_event_t * e)
 {
     lv_indev_t * indev = (lv_indev_t *)lv_event_get_user_data(e);
@@ -779,6 +798,7 @@ static void lv_windows_release_encoder_device_event_callback(lv_event_t * e)
     context->encoder.indev = NULL;
 }
 
+LV_FUNC_SECTION
 bool lv_windows_encoder_device_window_message_handler(
     HWND hWnd,
     UINT uMsg,

@@ -22,6 +22,7 @@ static void cb_delete_assertion(lv_event_t * event);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_fragment_t * lv_fragment_create(const lv_fragment_class_t * cls, void * args)
 {
     LV_ASSERT_NULL(cls);
@@ -36,6 +37,7 @@ lv_fragment_t * lv_fragment_create(const lv_fragment_class_t * cls, void * args)
     return instance;
 }
 
+LV_FUNC_SECTION
 void lv_fragment_delete(lv_fragment_t * fragment)
 {
     LV_ASSERT_NULL(fragment);
@@ -55,6 +57,7 @@ void lv_fragment_delete(lv_fragment_t * fragment)
     lv_free(fragment);
 }
 
+LV_FUNC_SECTION
 lv_fragment_manager_t * lv_fragment_get_manager(lv_fragment_t * fragment)
 {
     LV_ASSERT_NULL(fragment);
@@ -62,6 +65,7 @@ lv_fragment_manager_t * lv_fragment_get_manager(lv_fragment_t * fragment)
     return fragment->managed->manager;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * const * lv_fragment_get_container(lv_fragment_t * fragment)
 {
     LV_ASSERT_NULL(fragment);
@@ -69,6 +73,7 @@ lv_obj_t * const * lv_fragment_get_container(lv_fragment_t * fragment)
     return fragment->managed->container;
 }
 
+LV_FUNC_SECTION
 lv_fragment_t * lv_fragment_get_parent(lv_fragment_t * fragment)
 {
     LV_ASSERT_NULL(fragment);
@@ -76,6 +81,7 @@ lv_fragment_t * lv_fragment_get_parent(lv_fragment_t * fragment)
     return lv_fragment_manager_get_parent_fragment(fragment->managed->manager);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_fragment_create_obj(lv_fragment_t * fragment, lv_obj_t * container)
 {
     lv_fragment_managed_states_t * states = fragment->managed;
@@ -97,6 +103,7 @@ lv_obj_t * lv_fragment_create_obj(lv_fragment_t * fragment, lv_obj_t * container
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_fragment_delete_obj(lv_fragment_t * fragment)
 {
     LV_ASSERT_NULL(fragment);
@@ -134,6 +141,7 @@ void lv_fragment_delete_obj(lv_fragment_t * fragment)
     fragment->obj = NULL;
 }
 
+LV_FUNC_SECTION
 void lv_fragment_recreate_obj(lv_fragment_t * fragment)
 {
     LV_ASSERT_NULL(fragment);
@@ -145,7 +153,7 @@ void lv_fragment_recreate_obj(lv_fragment_t * fragment)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void cb_delete_assertion(lv_event_t * event)
 {
     LV_UNUSED(event);

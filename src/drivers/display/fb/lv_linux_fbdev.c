@@ -94,6 +94,7 @@ static uint32_t tick_get_cb(void);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_linux_fbdev_create(void)
 {
     lv_tick_set_cb(tick_get_cb);
@@ -114,6 +115,7 @@ lv_display_t * lv_linux_fbdev_create(void)
     return disp;
 }
 
+LV_FUNC_SECTION
 void lv_linux_fbdev_set_file(lv_display_t * disp, const char * file)
 {
     char * devname = lv_malloc(lv_strlen(file) + 1);
@@ -240,6 +242,7 @@ void lv_linux_fbdev_set_file(lv_display_t * disp, const char * file)
                 hor_res, ver_res, lv_display_get_dpi(disp));
 }
 
+LV_FUNC_SECTION
 void lv_linux_fbdev_set_force_refresh(lv_display_t * disp, bool enabled)
 {
     lv_linux_fb_t * dsc = lv_display_get_driver_data(disp);
@@ -250,6 +253,7 @@ void lv_linux_fbdev_set_force_refresh(lv_display_t * disp, bool enabled)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * color_p)
 {
     lv_linux_fb_t * dsc = lv_display_get_driver_data(disp);
@@ -348,6 +352,7 @@ static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * colo
     lv_display_flush_ready(disp);
 }
 
+LV_FUNC_SECTION
 static uint32_t tick_get_cb(void)
 {
     struct timespec t;

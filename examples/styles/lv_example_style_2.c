@@ -4,6 +4,7 @@
 /**
  * Using the background style properties
  */
+LV_FUNC_SECTION
 void lv_example_style_2(void)
 {
     static lv_style_t style;

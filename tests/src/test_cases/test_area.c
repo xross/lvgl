@@ -6,17 +6,20 @@
 
 #define PCT_MAX_VALUE 268435455
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 void test_pct(void)
 {
     int32_t pct_val;

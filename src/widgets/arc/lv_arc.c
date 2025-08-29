@@ -71,6 +71,7 @@ const lv_obj_class_t lv_arc_class  = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_arc_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -91,6 +92,7 @@ lv_obj_t * lv_arc_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_arc_set_start_angle(lv_obj_t * obj, lv_value_precise_t start)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -115,6 +117,7 @@ void lv_arc_set_start_angle(lv_obj_t * obj, lv_value_precise_t start)
     inv_knob_area(obj);
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_end_angle(lv_obj_t * obj, lv_value_precise_t end)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -138,12 +141,14 @@ void lv_arc_set_end_angle(lv_obj_t * obj, lv_value_precise_t end)
     inv_knob_area(obj);
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_angles(lv_obj_t * obj, lv_value_precise_t start, lv_value_precise_t end)
 {
     lv_arc_set_end_angle(obj, end);
     lv_arc_set_start_angle(obj, start);
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_bg_start_angle(lv_obj_t * obj, lv_value_precise_t start)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -166,6 +171,7 @@ void lv_arc_set_bg_start_angle(lv_obj_t * obj, lv_value_precise_t start)
     value_update(obj);
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_bg_end_angle(lv_obj_t * obj, lv_value_precise_t end)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -188,12 +194,14 @@ void lv_arc_set_bg_end_angle(lv_obj_t * obj, lv_value_precise_t end)
     value_update(obj);
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_bg_angles(lv_obj_t * obj, lv_value_precise_t start, lv_value_precise_t end)
 {
     lv_arc_set_bg_end_angle(obj, end);
     lv_arc_set_bg_start_angle(obj, start);
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_rotation(lv_obj_t * obj, int32_t rotation)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -207,6 +215,7 @@ void lv_arc_set_rotation(lv_obj_t * obj, int32_t rotation)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_mode(lv_obj_t * obj, lv_arc_mode_t type)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -236,6 +245,7 @@ void lv_arc_set_mode(lv_obj_t * obj, lv_arc_mode_t type)
     lv_arc_set_value(obj, val);
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_value(lv_obj_t * obj, int32_t value)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -253,6 +263,7 @@ void lv_arc_set_value(lv_obj_t * obj, int32_t value)
     value_update(obj);
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_range(lv_obj_t * obj, int32_t min, int32_t max)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -273,6 +284,7 @@ void lv_arc_set_range(lv_obj_t * obj, int32_t min, int32_t max)
     value_update(obj); /*value has changed relative to the new range*/
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_change_rate(lv_obj_t * obj, uint32_t rate)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -281,6 +293,7 @@ void lv_arc_set_change_rate(lv_obj_t * obj, uint32_t rate)
     arc->chg_rate = rate;
 }
 
+LV_FUNC_SECTION
 void lv_arc_set_knob_offset(lv_obj_t * obj, int32_t offset)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -293,60 +306,70 @@ void lv_arc_set_knob_offset(lv_obj_t * obj, int32_t offset)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 lv_value_precise_t lv_arc_get_angle_start(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     return ((lv_arc_t *) obj)->indic_angle_start;
 }
 
+LV_FUNC_SECTION
 lv_value_precise_t lv_arc_get_angle_end(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     return ((lv_arc_t *) obj)->indic_angle_end;
 }
 
+LV_FUNC_SECTION
 lv_value_precise_t lv_arc_get_bg_angle_start(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     return ((lv_arc_t *) obj)->bg_angle_start;
 }
 
+LV_FUNC_SECTION
 lv_value_precise_t lv_arc_get_bg_angle_end(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     return ((lv_arc_t *) obj)->bg_angle_end;
 }
 
+LV_FUNC_SECTION
 int32_t lv_arc_get_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     return ((lv_arc_t *) obj)->value;
 }
 
+LV_FUNC_SECTION
 int32_t lv_arc_get_min_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     return ((lv_arc_t *) obj)->min_value;
 }
 
+LV_FUNC_SECTION
 int32_t lv_arc_get_max_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     return ((lv_arc_t *) obj)->max_value;
 }
 
+LV_FUNC_SECTION
 lv_arc_mode_t lv_arc_get_mode(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     return ((lv_arc_t *) obj)->type;
 }
 
+LV_FUNC_SECTION
 int32_t lv_arc_get_rotation(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     return ((lv_arc_t *)obj)->rotation;
 }
 
+LV_FUNC_SECTION
 int32_t lv_arc_get_knob_offset(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -357,6 +380,7 @@ int32_t lv_arc_get_knob_offset(const lv_obj_t * obj)
  * Other functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_arc_align_obj_to_angle(const lv_obj_t * obj, lv_obj_t * obj_to_align, int32_t r_offset)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -378,6 +402,7 @@ void lv_arc_align_obj_to_angle(const lv_obj_t * obj, lv_obj_t * obj_to_align, in
     lv_obj_align_to(obj_to_align, obj, LV_ALIGN_CENTER, knob_x, knob_y);
 }
 
+LV_FUNC_SECTION
 void lv_arc_rotate_obj_to_angle(const lv_obj_t * obj, lv_obj_t * obj_to_rotate, int32_t r_offset)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -409,6 +434,7 @@ void lv_arc_rotate_obj_to_angle(const lv_obj_t * obj, lv_obj_t * obj_to_rotate, 
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_arc_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -440,6 +466,7 @@ static void lv_arc_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_arc_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -706,6 +733,7 @@ static void lv_arc_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void lv_arc_draw(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -757,6 +785,7 @@ static void lv_arc_draw(lv_event_t * e)
     lv_draw_rect(layer, &knob_rect_dsc, &knob_area);
 }
 
+LV_FUNC_SECTION
 static void inv_arc_area(lv_obj_t * obj, lv_value_precise_t start_angle, lv_value_precise_t end_angle, lv_part_t part)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -790,6 +819,7 @@ static void inv_arc_area(lv_obj_t * obj, lv_value_precise_t start_angle, lv_valu
     lv_obj_invalidate_area(obj, &inv_area);
 }
 
+LV_FUNC_SECTION
 static void inv_knob_area(lv_obj_t * obj)
 {
     lv_point_t c;
@@ -808,6 +838,7 @@ static void inv_knob_area(lv_obj_t * obj)
     lv_obj_invalidate_area(obj, &a);
 }
 
+LV_FUNC_SECTION
 static void get_center(const lv_obj_t * obj, lv_point_t * center, int32_t * arc_r)
 {
     int32_t left_bg = lv_obj_get_style_pad_left(obj, LV_PART_MAIN);
@@ -824,6 +855,7 @@ static void get_center(const lv_obj_t * obj, lv_point_t * center, int32_t * arc_
     if(arc_r) *arc_r = r;
 }
 
+LV_FUNC_SECTION
 static lv_value_precise_t get_angle(const lv_obj_t * obj)
 {
     lv_arc_t * arc = (lv_arc_t *)obj;
@@ -849,6 +881,7 @@ static lv_value_precise_t get_angle(const lv_obj_t * obj)
     return angle;
 }
 
+LV_FUNC_SECTION
 static void get_knob_area(lv_obj_t * obj, const lv_point_t * center, int32_t r, lv_area_t * knob_area)
 {
     int32_t indic_width = lv_obj_get_style_arc_width(obj, LV_PART_INDICATOR);
@@ -875,6 +908,7 @@ static void get_knob_area(lv_obj_t * obj, const lv_point_t * center, int32_t r, 
  * Used internally to update arc angles after a value change
  * @param arc pointer to an arc object
  */
+LV_FUNC_SECTION
 static void value_update(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -920,6 +954,7 @@ static void value_update(lv_obj_t * obj)
     arc->last_angle = angle; /*Cache angle for slew rate limiting*/
 }
 
+LV_FUNC_SECTION
 static int32_t knob_get_extra_size(lv_obj_t * obj)
 {
     int32_t knob_shadow_size = 0;
@@ -957,6 +992,7 @@ static int32_t knob_get_extra_size(lv_obj_t * obj)
  *
  * @return true if angle is within arc background bounds, false otherwise
  */
+LV_FUNC_SECTION
 static bool lv_arc_angle_within_bg_bounds(lv_obj_t * obj, const lv_value_precise_t angle,
                                           const lv_value_precise_t tolerance_deg)
 {

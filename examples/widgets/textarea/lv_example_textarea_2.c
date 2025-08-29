@@ -5,6 +5,7 @@ static void ta_event_cb(lv_event_t * e);
 
 static lv_obj_t * kb;
 
+LV_FUNC_SECTION
 void lv_example_textarea_2(void)
 {
     /*Create the password box*/
@@ -49,6 +50,7 @@ void lv_example_textarea_2(void)
 
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void ta_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);

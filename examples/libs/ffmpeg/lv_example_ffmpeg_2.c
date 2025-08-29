@@ -5,6 +5,7 @@
 /**
  * Open a video from a file
  */
+LV_FUNC_SECTION
 void lv_example_ffmpeg_2(void)
 {
     /*birds.mp4 is downloaded from http://www.videezy.com (Free Stock Footage by Videezy!)
@@ -20,6 +21,7 @@ void lv_example_ffmpeg_2(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_ffmpeg_2(void)
 {
     /*TODO

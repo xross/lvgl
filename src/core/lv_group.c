@@ -42,16 +42,19 @@ static lv_indev_t * get_indev(const lv_group_t * g);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_group_init(void)
 {
     lv_ll_init(group_ll_p, sizeof(lv_group_t));
 }
 
+LV_FUNC_SECTION
 void lv_group_deinit(void)
 {
     lv_ll_clear(group_ll_p);
 }
 
+LV_FUNC_SECTION
 lv_group_t * lv_group_create(void)
 {
     lv_group_t * group = lv_ll_ins_head(group_ll_p);
@@ -71,6 +74,7 @@ lv_group_t * lv_group_create(void)
     return group;
 }
 
+LV_FUNC_SECTION
 void lv_group_delete(lv_group_t * group)
 {
     /*Defocus the currently focused object*/
@@ -103,16 +107,19 @@ void lv_group_delete(lv_group_t * group)
     lv_free(group);
 }
 
+LV_FUNC_SECTION
 void lv_group_set_default(lv_group_t * group)
 {
     default_group = group;
 }
 
+LV_FUNC_SECTION
 lv_group_t * lv_group_get_default(void)
 {
     return default_group;
 }
 
+LV_FUNC_SECTION
 void lv_group_add_obj(lv_group_t * group, lv_obj_t * obj)
 {
     if(group == NULL) return;
@@ -139,6 +146,7 @@ void lv_group_add_obj(lv_group_t * group, lv_obj_t * obj)
     LV_LOG_TRACE("finished");
 }
 
+LV_FUNC_SECTION
 void lv_group_swap_obj(lv_obj_t * obj1, lv_obj_t * obj2)
 {
     lv_group_t * g1 = lv_obj_get_group(obj1);
@@ -159,6 +167,7 @@ void lv_group_swap_obj(lv_obj_t * obj1, lv_obj_t * obj2)
 
 }
 
+LV_FUNC_SECTION
 void lv_group_remove_obj(lv_obj_t * obj)
 {
     lv_group_t * g = lv_obj_get_group(obj);
@@ -200,6 +209,7 @@ void lv_group_remove_obj(lv_obj_t * obj)
     LV_LOG_TRACE("finished");
 }
 
+LV_FUNC_SECTION
 void lv_group_remove_all_objs(lv_group_t * group)
 {
     LV_ASSERT_NULL(group);
@@ -220,6 +230,7 @@ void lv_group_remove_all_objs(lv_group_t * group)
     lv_ll_clear(&(group->obj_ll));
 }
 
+LV_FUNC_SECTION
 void lv_group_focus_obj(lv_obj_t * obj)
 {
     if(obj == NULL) return;
@@ -253,6 +264,7 @@ void lv_group_focus_obj(lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 void lv_group_focus_next(lv_group_t * group)
 {
     LV_ASSERT_NULL(group);
@@ -264,6 +276,7 @@ void lv_group_focus_next(lv_group_t * group)
     }
 }
 
+LV_FUNC_SECTION
 void lv_group_focus_prev(lv_group_t * group)
 {
     LV_ASSERT_NULL(group);
@@ -275,6 +288,7 @@ void lv_group_focus_prev(lv_group_t * group)
     }
 }
 
+LV_FUNC_SECTION
 void lv_group_focus_freeze(lv_group_t * group, bool en)
 {
     LV_ASSERT_NULL(group);
@@ -283,6 +297,7 @@ void lv_group_focus_freeze(lv_group_t * group, bool en)
     else group->frozen = 1;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_group_send_data(lv_group_t * group, uint32_t c)
 {
     LV_ASSERT_NULL(group);
@@ -295,6 +310,7 @@ lv_result_t lv_group_send_data(lv_group_t * group, uint32_t c)
     return lv_obj_send_event(act, LV_EVENT_KEY, &c);
 }
 
+LV_FUNC_SECTION
 void lv_group_set_focus_cb(lv_group_t * group, lv_group_focus_cb_t focus_cb)
 {
     if(group == NULL) return;
@@ -302,6 +318,7 @@ void lv_group_set_focus_cb(lv_group_t * group, lv_group_focus_cb_t focus_cb)
     group->focus_cb = focus_cb;
 }
 
+LV_FUNC_SECTION
 void lv_group_set_edge_cb(lv_group_t * group, lv_group_edge_cb_t edge_cb)
 {
     LV_ASSERT_NULL(group);
@@ -309,6 +326,7 @@ void lv_group_set_edge_cb(lv_group_t * group, lv_group_edge_cb_t edge_cb)
     group->edge_cb = edge_cb;
 }
 
+LV_FUNC_SECTION
 void lv_group_set_editing(lv_group_t * group, bool edit)
 {
     LV_ASSERT_NULL(group);
@@ -327,18 +345,21 @@ void lv_group_set_editing(lv_group_t * group, bool edit)
     }
 }
 
+LV_FUNC_SECTION
 void lv_group_set_refocus_policy(lv_group_t * group, lv_group_refocus_policy_t policy)
 {
     LV_ASSERT_NULL(group);
     group->refocus_policy = policy & 0x01;
 }
 
+LV_FUNC_SECTION
 void lv_group_set_wrap(lv_group_t * group, bool en)
 {
     LV_ASSERT_NULL(group);
     group->wrap = en ? 1 : 0;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_group_get_focused(const lv_group_t * group)
 {
     if(!group) return NULL;
@@ -347,36 +368,42 @@ lv_obj_t * lv_group_get_focused(const lv_group_t * group)
     return *group->obj_focus;
 }
 
+LV_FUNC_SECTION
 lv_group_focus_cb_t lv_group_get_focus_cb(const lv_group_t * group)
 {
     if(!group) return NULL;
     return group->focus_cb;
 }
 
+LV_FUNC_SECTION
 lv_group_edge_cb_t lv_group_get_edge_cb(const lv_group_t * group)
 {
     if(!group) return NULL;
     return group->edge_cb;
 }
 
+LV_FUNC_SECTION
 bool lv_group_get_editing(const lv_group_t * group)
 {
     if(!group) return false;
     return group->editing;
 }
 
+LV_FUNC_SECTION
 bool lv_group_get_wrap(lv_group_t * group)
 {
     if(!group) return false;
     return group->wrap;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_group_get_obj_count(lv_group_t * group)
 {
     LV_ASSERT_NULL(group);
     return lv_ll_get_len(&group->obj_ll);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_group_get_obj_by_index(lv_group_t * group, uint32_t index)
 {
     uint32_t len = 0;
@@ -391,11 +418,13 @@ lv_obj_t * lv_group_get_obj_by_index(lv_group_t * group, uint32_t index)
     return NULL;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_group_get_count(void)
 {
     return lv_ll_get_len(group_ll_p);
 }
 
+LV_FUNC_SECTION
 lv_group_t  * lv_group_by_index(uint32_t index)
 {
     uint32_t len = 0;
@@ -414,6 +443,7 @@ lv_group_t  * lv_group_by_index(uint32_t index)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_group_refocus(lv_group_t * g)
 {
     /*Refocus must temporarily allow wrapping to work correctly*/
@@ -428,8 +458,10 @@ static void lv_group_refocus(lv_group_t * g)
     g->wrap = temp_wrap;
 }
 
-static bool focus_next_core(lv_group_t * group, void * (*begin)(const lv_ll_t *),
-                            void * (*move)(const lv_ll_t *, const void *))
+LV_FUNC_SECTION
+static bool focus_next_core(lv_group_t * group,
+    __attribute__(( fptrgroup("lv_ll_get") )) void * (*begin)(const lv_ll_t *),
+    __attribute__(( fptrgroup("lv_ll_get") )) void * (*move)(const lv_ll_t *, const void *))
 {
     bool focus_changed = false;
     if(group->frozen) return focus_changed;
@@ -511,6 +543,7 @@ static bool focus_next_core(lv_group_t * group, void * (*begin)(const lv_ll_t *)
  * @param g     a group the find in the indevs
  * @return      the suggested indev
  */
+LV_FUNC_SECTION
 static lv_indev_t * get_indev(const lv_group_t * g)
 {
     lv_indev_t * indev_guess = NULL;

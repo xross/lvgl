@@ -120,6 +120,7 @@ const lv_obj_class_t lv_label_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_label_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -132,6 +133,7 @@ lv_obj_t * lv_label_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_label_set_text(lv_obj_t * obj, const char * text)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -175,6 +177,7 @@ void lv_label_set_text(lv_obj_t * obj, const char * text)
     lv_label_refr_text(obj);
 }
 
+LV_FUNC_SECTION
 void lv_label_set_text_fmt(lv_obj_t * obj, const char * fmt, ...)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -203,6 +206,7 @@ void lv_label_set_text_fmt(lv_obj_t * obj, const char * fmt, ...)
     lv_label_refr_text(obj);
 }
 
+LV_FUNC_SECTION
 void lv_label_set_text_static(lv_obj_t * obj, const char * text)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -221,6 +225,7 @@ void lv_label_set_text_static(lv_obj_t * obj, const char * text)
     lv_label_refr_text(obj);
 }
 
+LV_FUNC_SECTION
 void lv_label_set_long_mode(lv_obj_t * obj, lv_label_long_mode_t long_mode)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -246,6 +251,7 @@ void lv_label_set_long_mode(lv_obj_t * obj, lv_label_long_mode_t long_mode)
     lv_label_refr_text(obj);
 }
 
+LV_FUNC_SECTION
 void lv_label_set_text_selection_start(lv_obj_t * obj, uint32_t index)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -260,6 +266,7 @@ void lv_label_set_text_selection_start(lv_obj_t * obj, uint32_t index)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_label_set_text_selection_end(lv_obj_t * obj, uint32_t index)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -278,6 +285,7 @@ void lv_label_set_text_selection_end(lv_obj_t * obj, uint32_t index)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 char * lv_label_get_text(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -285,6 +293,7 @@ char * lv_label_get_text(const lv_obj_t * obj)
     return label->text;
 }
 
+LV_FUNC_SECTION
 lv_label_long_mode_t lv_label_get_long_mode(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -292,6 +301,7 @@ lv_label_long_mode_t lv_label_get_long_mode(const lv_obj_t * obj)
     return label->long_mode;
 }
 
+LV_FUNC_SECTION
 void lv_label_get_letter_pos(const lv_obj_t * obj, uint32_t char_id, lv_point_t * pos)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -399,6 +409,7 @@ void lv_label_get_letter_pos(const lv_obj_t * obj, uint32_t char_id, lv_point_t 
 #endif
 }
 
+LV_FUNC_SECTION
 uint32_t lv_label_get_letter_on(const lv_obj_t * obj, lv_point_t * pos_in, bool bidi)
 {
     LV_UNUSED(bidi);
@@ -519,6 +530,7 @@ uint32_t lv_label_get_letter_on(const lv_obj_t * obj, lv_point_t * pos_in, bool 
     return  logical_pos + lv_text_encoded_get_char_id(txt, line_start);
 }
 
+LV_FUNC_SECTION
 bool lv_label_is_char_under_pos(const lv_obj_t * obj, lv_point_t * pos)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -593,6 +605,7 @@ bool lv_label_is_char_under_pos(const lv_obj_t * obj, lv_point_t * pos)
     return (pos->x >= (last_x - letter_space) && pos->x <= (last_x + max_diff));
 }
 
+LV_FUNC_SECTION
 uint32_t lv_label_get_text_selection_start(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -606,6 +619,7 @@ uint32_t lv_label_get_text_selection_start(const lv_obj_t * obj)
 #endif
 }
 
+LV_FUNC_SECTION
 uint32_t lv_label_get_text_selection_end(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -623,6 +637,7 @@ uint32_t lv_label_get_text_selection_end(const lv_obj_t * obj)
  * Other functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_label_ins_text(lv_obj_t * obj, uint32_t pos, const char * txt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -651,6 +666,7 @@ void lv_label_ins_text(lv_obj_t * obj, uint32_t pos, const char * txt)
     lv_label_set_text(obj, NULL);
 }
 
+LV_FUNC_SECTION
 void lv_label_cut_text(lv_obj_t * obj, uint32_t pos, uint32_t cnt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -673,6 +689,7 @@ void lv_label_cut_text(lv_obj_t * obj, uint32_t pos, uint32_t cnt)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_label_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -706,6 +723,7 @@ static void lv_label_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_label_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -716,6 +734,7 @@ static void lv_label_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     label->text = NULL;
 }
 
+LV_FUNC_SECTION
 static void lv_label_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -769,6 +788,7 @@ static void lv_label_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void draw_main(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -864,6 +884,7 @@ static void draw_main(lv_event_t * e)
     layer->_clip_area = clip_area_ori;
 }
 
+LV_FUNC_SECTION
 static void overwrite_anim_property(lv_anim_t * dest, const lv_anim_t * src, lv_label_long_mode_t mode)
 {
     switch(mode) {
@@ -893,6 +914,8 @@ static void overwrite_anim_property(lv_anim_t * dest, const lv_anim_t * src, lv_
  * Refresh the label with its text stored in its extended data
  * @param label pointer to a label object
  */
+#pragma stackfunction 2048
+LV_FUNC_SECTION
 static void lv_label_refr_text(lv_obj_t * obj)
 {
     lv_label_t * label = (lv_label_t *)obj;
@@ -1175,6 +1198,7 @@ static void lv_label_refr_text(lv_obj_t * obj)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 static void lv_label_revert_dots(lv_obj_t * obj)
 {
     lv_label_t * label = (lv_label_t *)obj;
@@ -1206,6 +1230,7 @@ static void lv_label_revert_dots(lv_obj_t * obj)
  * @param len Number of characters to store.
  * @return true on success.
  */
+LV_FUNC_SECTION
 static bool lv_label_set_dot_tmp(lv_obj_t * obj, char * data, uint32_t len)
 {
 
@@ -1236,6 +1261,7 @@ static bool lv_label_set_dot_tmp(lv_obj_t * obj, char * data, uint32_t len)
  * @param label pointer to label object
  * @return char pointer to a stored characters. Is *not* necessarily NULL-terminated.
  */
+LV_FUNC_SECTION
 static char * lv_label_get_dot_tmp(lv_obj_t * obj)
 {
     lv_label_t * label = (lv_label_t *)obj;
@@ -1252,6 +1278,7 @@ static char * lv_label_get_dot_tmp(lv_obj_t * obj)
  * Always clears the field
  * @param label pointer to label object.
  */
+LV_FUNC_SECTION
 static void lv_label_dot_tmp_free(lv_obj_t * obj)
 {
     lv_label_t * label = (lv_label_t *)obj;
@@ -1262,6 +1289,7 @@ static void lv_label_dot_tmp_free(lv_obj_t * obj)
     label->dot.tmp_ptr   = NULL;
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void set_ofs_x_anim(void * obj, int32_t v)
 {
     lv_label_t * label = (lv_label_t *)obj;
@@ -1269,6 +1297,7 @@ static void set_ofs_x_anim(void * obj, int32_t v)
     lv_obj_invalidate(obj);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void set_ofs_y_anim(void * obj, int32_t v)
 {
     lv_label_t * label = (lv_label_t *)obj;
@@ -1276,6 +1305,7 @@ static void set_ofs_y_anim(void * obj, int32_t v)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 static size_t get_text_length(const char * text)
 {
     size_t len = 0;
@@ -1288,6 +1318,7 @@ static size_t get_text_length(const char * text)
     return len;
 }
 
+LV_FUNC_SECTION
 static void copy_text_to_label(lv_label_t * label, const char * text)
 {
 #if LV_USE_ARABIC_PERSIAN_CHARS
@@ -1297,6 +1328,7 @@ static void copy_text_to_label(lv_label_t * label, const char * text)
 #endif
 }
 
+LV_FUNC_SECTION
 static lv_text_flag_t get_label_flags(lv_label_t * label)
 {
     lv_text_flag_t flag = LV_TEXT_FLAG_NONE;
@@ -1314,6 +1346,7 @@ static lv_text_flag_t get_label_flags(lv_label_t * label)
 }
 
 /* Function created because of this pattern be used in multiple functions */
+LV_FUNC_SECTION
 static void calculate_x_coordinate(int32_t * x, const lv_text_align_t align, const char * txt, uint32_t length,
                                    const lv_font_t * font, int32_t letter_space, lv_area_t * txt_coords)
 {

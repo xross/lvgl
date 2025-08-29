@@ -92,18 +92,21 @@ static int32_t lv_obj_get_height_with_margin(const lv_obj_t * obj);
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_flex_init(void)
 {
     layout_list_def[LV_LAYOUT_FLEX].cb = flex_update;
     layout_list_def[LV_LAYOUT_FLEX].user_data = NULL;
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_flex_flow(lv_obj_t * obj, lv_flex_flow_t flow)
 {
     lv_obj_set_style_flex_flow(obj, flow, 0);
     lv_obj_set_style_layout(obj, LV_LAYOUT_FLEX, 0);
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_flex_align(lv_obj_t * obj, lv_flex_align_t main_place, lv_flex_align_t cross_place,
                            lv_flex_align_t track_place)
 {
@@ -113,6 +116,7 @@ void lv_obj_set_flex_align(lv_obj_t * obj, lv_flex_align_t main_place, lv_flex_a
     lv_obj_set_style_layout(obj, LV_LAYOUT_FLEX, 0);
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_flex_grow(lv_obj_t * obj, uint8_t grow)
 {
     lv_obj_set_style_flex_grow(obj, grow, 0);
@@ -122,7 +126,7 @@ void lv_obj_set_flex_grow(lv_obj_t * obj, uint8_t grow)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_layout_dsc_cb") ))
 static void flex_update(lv_obj_t * cont, void * user_data)
 {
     LV_LOG_INFO("update %p container", (void *)cont);
@@ -230,6 +234,7 @@ static void flex_update(lv_obj_t * cont, void * user_data)
 /**
  * Find the last item of a track
  */
+LV_FUNC_SECTION
 static int32_t find_track_end(lv_obj_t * cont, flex_t * f, int32_t item_start_id, int32_t max_main_size,
                               int32_t item_gap, track_t * t)
 {
@@ -314,6 +319,7 @@ static int32_t find_track_end(lv_obj_t * cont, flex_t * f, int32_t item_start_id
 /**
  * Position the children in the same track
  */
+LV_FUNC_SECTION
 static void children_repos(lv_obj_t * cont, flex_t * f, int32_t item_first_id, int32_t item_last_id, int32_t abs_x,
                            int32_t abs_y, int32_t max_main_size, int32_t item_gap, track_t * t)
 {
@@ -466,6 +472,7 @@ static void children_repos(lv_obj_t * cont, flex_t * f, int32_t item_first_id, i
 /**
  * Tell a start coordinate and gap for a placement type.
  */
+LV_FUNC_SECTION
 static void place_content(lv_flex_align_t place, int32_t max_size, int32_t content_size, int32_t item_cnt,
                           int32_t * start_pos, int32_t * gap)
 {
@@ -505,6 +512,7 @@ static void place_content(lv_flex_align_t place, int32_t max_size, int32_t conte
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * get_next_item(lv_obj_t * cont, bool rev, int32_t * item_id)
 {
     if(rev) {
@@ -519,6 +527,7 @@ static lv_obj_t * get_next_item(lv_obj_t * cont, bool rev, int32_t * item_id)
     }
 }
 
+LV_FUNC_SECTION
 static int32_t lv_obj_get_width_with_margin(const lv_obj_t * obj)
 {
     return lv_obj_get_style_margin_left(obj, LV_PART_MAIN)
@@ -526,6 +535,7 @@ static int32_t lv_obj_get_width_with_margin(const lv_obj_t * obj)
            + lv_obj_get_style_margin_right(obj, LV_PART_MAIN);
 }
 
+LV_FUNC_SECTION
 static int32_t lv_obj_get_height_with_margin(const lv_obj_t * obj)
 {
     return lv_obj_get_style_margin_top(obj, LV_PART_MAIN)

@@ -43,6 +43,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_rect(lv_draw_unit_t * draw_unit, const lv_draw_mask_rect_dsc_t * dsc, const lv_area_t * coords)
 {
     LV_UNUSED(coords);
@@ -121,6 +122,7 @@ void lv_draw_sw_mask_rect(lv_draw_unit_t * draw_unit, const lv_draw_mask_rect_ds
 
 #else /*LV_DRAW_SW_COMPLEX*/
 
+LV_FUNC_SECTION
 void lv_draw_sw_mask_rect(lv_draw_unit_t * draw_unit, const lv_draw_mask_rect_dsc_t * dsc, const lv_area_t * coords)
 {
     LV_UNUSED(draw_unit);

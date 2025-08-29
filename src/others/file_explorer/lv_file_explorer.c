@@ -68,6 +68,7 @@ const lv_obj_class_t lv_file_explorer_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_file_explorer_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -80,6 +81,7 @@ lv_obj_t * lv_file_explorer_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 #if LV_FILE_EXPLORER_QUICK_ACCESS
+LV_FUNC_SECTION
 void lv_file_explorer_set_quick_access_path(lv_obj_t * obj, lv_file_explorer_dir_t dir, const char * path)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -127,6 +129,7 @@ void lv_file_explorer_set_quick_access_path(lv_obj_t * obj, lv_file_explorer_dir
 
 #endif
 
+LV_FUNC_SECTION
 void lv_file_explorer_set_sort(lv_obj_t * obj, lv_file_explorer_sort_t sort)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -141,6 +144,7 @@ void lv_file_explorer_set_sort(lv_obj_t * obj, lv_file_explorer_sort_t sort)
 /*=====================
  * Getter functions
  *====================*/
+LV_FUNC_SECTION
 const char * lv_file_explorer_get_selected_file_name(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -150,6 +154,7 @@ const char * lv_file_explorer_get_selected_file_name(const lv_obj_t * obj)
     return explorer->sel_fn;
 }
 
+LV_FUNC_SECTION
 const char * lv_file_explorer_get_current_path(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -159,6 +164,7 @@ const char * lv_file_explorer_get_current_path(const lv_obj_t * obj)
     return explorer->current_path;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_file_explorer_get_file_table(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -168,6 +174,7 @@ lv_obj_t * lv_file_explorer_get_file_table(lv_obj_t * obj)
     return explorer->file_table;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_file_explorer_get_header(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -177,6 +184,7 @@ lv_obj_t * lv_file_explorer_get_header(lv_obj_t * obj)
     return explorer->head_area;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_file_explorer_get_path_label(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -187,6 +195,7 @@ lv_obj_t * lv_file_explorer_get_path_label(lv_obj_t * obj)
 }
 
 #if LV_FILE_EXPLORER_QUICK_ACCESS
+LV_FUNC_SECTION
 lv_obj_t * lv_file_explorer_get_quick_access_area(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -196,6 +205,7 @@ lv_obj_t * lv_file_explorer_get_quick_access_area(lv_obj_t * obj)
     return explorer->quick_access_area;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_file_explorer_get_places_list(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -205,6 +215,7 @@ lv_obj_t * lv_file_explorer_get_places_list(lv_obj_t * obj)
     return explorer->list_places;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_file_explorer_get_device_list(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -216,6 +227,7 @@ lv_obj_t * lv_file_explorer_get_device_list(lv_obj_t * obj)
 
 #endif
 
+LV_FUNC_SECTION
 lv_file_explorer_sort_t lv_file_explorer_get_sort(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -228,6 +240,7 @@ lv_file_explorer_sort_t lv_file_explorer_get_sort(const lv_obj_t * obj)
 /*=====================
  * Other functions
  *====================*/
+LV_FUNC_SECTION
 void lv_file_explorer_open_dir(lv_obj_t * obj, const char * dir)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -238,6 +251,7 @@ void lv_file_explorer_open_dir(lv_obj_t * obj, const char * dir)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 static void lv_file_explorer_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -337,6 +351,7 @@ static void lv_file_explorer_constructor(const lv_obj_class_t * class_p, lv_obj_
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void init_style(lv_obj_t * obj)
 {
     lv_file_explorer_t * explorer = (lv_file_explorer_t *)obj;
@@ -420,6 +435,7 @@ static void init_style(lv_obj_t * obj)
 }
 
 #if LV_FILE_EXPLORER_QUICK_ACCESS
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void quick_access_event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -457,6 +473,7 @@ static void quick_access_event_handler(lv_event_t * e)
     }
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void quick_access_area_event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -474,6 +491,7 @@ static void quick_access_area_event_handler(lv_event_t * e)
 }
 #endif
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void browser_file_event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -526,6 +544,7 @@ static void browser_file_event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void show_dir(lv_obj_t * obj, const char * path)
 {
     lv_file_explorer_t * explorer = (lv_file_explorer_t *)obj;
@@ -610,6 +629,7 @@ static void show_dir(lv_obj_t * obj, const char * path)
 }
 
 /*Remove the specified suffix*/
+LV_FUNC_SECTION
 static void strip_ext(char * dir)
 {
     char * end = dir + lv_strlen(dir);
@@ -626,6 +646,7 @@ static void strip_ext(char * dir)
     }
 }
 
+LV_FUNC_SECTION
 static void exch_table_item(lv_obj_t * tb, int16_t i, int16_t j)
 {
     const char * tmp;
@@ -640,6 +661,7 @@ static void exch_table_item(lv_obj_t * tb, int16_t i, int16_t j)
     lv_table_set_cell_value(tb, j, 1, lv_table_get_cell_value(tb, 0, 2));
 }
 
+LV_FUNC_SECTION
 static void file_explorer_sort(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -662,6 +684,7 @@ static void file_explorer_sort(lv_obj_t * obj)
 }
 
 /*Quick sort 3 way*/
+LV_FUNC_SECTION
 static void sort_by_file_kind(lv_obj_t * tb, int16_t lo, int16_t hi)
 {
     if(lo >= hi) return;
@@ -683,6 +706,7 @@ static void sort_by_file_kind(lv_obj_t * tb, int16_t lo, int16_t hi)
     sort_by_file_kind(tb, gt + 1, hi);
 }
 
+LV_FUNC_SECTION
 static bool is_end_with(const char * str1, const char * str2)
 {
     if(str1 == NULL || str2 == NULL)

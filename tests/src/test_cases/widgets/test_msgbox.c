@@ -23,17 +23,20 @@ void test_msgbox_close_async_modal(void);
 static lv_obj_t * active_screen = NULL;
 static lv_obj_t * msgbox = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
     lv_obj_clean(lv_layer_top()); /*Modal message boxes are created on the top layer*/
 }
 
+LV_FUNC_SECTION
 void test_msgbox_creation_successful_with_close_button(void)
 {
     msgbox = lv_msgbox_create(active_screen);
@@ -49,6 +52,7 @@ void test_msgbox_creation_successful_with_close_button(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/msgbox_ok_with_close_btn.png");
 }
 
+LV_FUNC_SECTION
 void test_msgbox_creation_successful_no_close_button(void)
 {
     msgbox = lv_msgbox_create(NULL);
@@ -63,6 +67,7 @@ void test_msgbox_creation_successful_no_close_button(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/msgbox_ok_no_close_btn.png");
 }
 
+LV_FUNC_SECTION
 void test_msgbox_creation_successful_modal(void)
 {
     // If parent is NULL the message box will be modal
@@ -80,6 +85,7 @@ void test_msgbox_creation_successful_modal(void)
     lv_obj_clean(msgbox);
 }
 
+LV_FUNC_SECTION
 void test_msgbox_get_title(void)
 {
     const char * txt_title = "The title";
@@ -99,6 +105,7 @@ void test_msgbox_get_title(void)
     TEST_ASSERT_EQUAL_STRING(txt_title, lv_label_get_text(lbl_title));
 }
 
+LV_FUNC_SECTION
 void test_msgbox_get_content(void)
 {
     msgbox = lv_msgbox_create(active_screen);
@@ -106,6 +113,7 @@ void test_msgbox_get_content(void)
     TEST_ASSERT_NOT_NULL(lv_msgbox_get_content(msgbox));
 }
 
+LV_FUNC_SECTION
 void test_msgbox_close(void)
 {
     msgbox = lv_msgbox_create(active_screen);
@@ -117,6 +125,7 @@ void test_msgbox_close(void)
     TEST_ASSERT_NOT_NULL(msgbox);
 }
 
+LV_FUNC_SECTION
 void test_msgbox_close_modal(void)
 {
     msgbox = lv_msgbox_create(NULL);
@@ -128,6 +137,7 @@ void test_msgbox_close_modal(void)
     TEST_ASSERT_NOT_NULL(msgbox);
 }
 
+LV_FUNC_SECTION
 void test_msgbox_close_async(void)
 {
     msgbox = lv_msgbox_create(active_screen);
@@ -137,6 +147,7 @@ void test_msgbox_close_async(void)
     TEST_ASSERT_NOT_NULL(msgbox);
 }
 
+LV_FUNC_SECTION
 void test_msgbox_close_async_modal(void)
 {
     msgbox = lv_msgbox_create(NULL);
@@ -146,6 +157,7 @@ void test_msgbox_close_async_modal(void)
     TEST_ASSERT_NOT_NULL(msgbox);
 }
 
+LV_FUNC_SECTION
 void test_msgbox_content_auto_height(void)
 {
     /* If parent is NULL the message box will be modal*/

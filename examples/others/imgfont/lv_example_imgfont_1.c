@@ -3,6 +3,7 @@
 #if LV_BUILD_EXAMPLES
 #if LV_USE_IMGFONT
 
+LV_FUNC_SECTION
 static const void * get_imgfont_path(const lv_font_t * font, uint32_t unicode, uint32_t unicode_next,
                                      int32_t * offset_y, void * user_data)
 {
@@ -32,6 +33,7 @@ static const void * get_imgfont_path(const lv_font_t * font, uint32_t unicode, u
 /**
  * draw img in label or span obj
  */
+LV_FUNC_SECTION
 void lv_example_imgfont_1(void)
 {
     lv_font_t * imgfont = lv_imgfont_create(80, get_imgfont_path, NULL);
@@ -49,6 +51,7 @@ void lv_example_imgfont_1(void)
 }
 #else
 
+LV_FUNC_SECTION
 void lv_example_imgfont_1(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());

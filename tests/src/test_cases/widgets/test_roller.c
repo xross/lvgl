@@ -20,6 +20,7 @@ static lv_group_t * mouse_g = NULL;
 static const char * default_roller_options = "One\nTwo\nThree";
 static const char * default_infinite_roller_options = "One\nTwo\nThree\nFour\nFive\nSix\nSeven\nEight\nNine\nTen";
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
@@ -45,6 +46,7 @@ void setUp(void)
     lv_group_add_obj(mouse_g, roller_mouse);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_group_remove_obj(roller);
@@ -53,11 +55,13 @@ void tearDown(void)
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_roller_get_options(void)
 {
     TEST_ASSERT_EQUAL_STRING(default_roller_options, lv_roller_get_options(roller));
 }
 
+LV_FUNC_SECTION
 void test_roller_get_selected_option(void)
 {
     char actual_str[OPTION_BUFFER_SZ] = {0x00};
@@ -78,6 +82,7 @@ void test_roller_get_selected_option(void)
     TEST_ASSERT_EQUAL_STRING(expected_index_str, actual_str);
 }
 
+LV_FUNC_SECTION
 void test_roller_get_selected_option_truncated_buffer(void)
 {
     char actual_str[OPTION_SMALL_BUFFER_SZ] = {0x00};
@@ -93,6 +98,7 @@ void test_roller_get_selected_option_truncated_buffer(void)
     TEST_ASSERT_EQUAL_STRING(expected_index_str, actual_str);
 }
 
+LV_FUNC_SECTION
 void test_roller_infinite_mode_get_selected_option(void)
 {
     char actual_str[OPTION_BUFFER_SZ] = {0x00};
@@ -125,6 +131,7 @@ void test_roller_infinite_mode_get_selected_option(void)
     TEST_ASSERT_EQUAL_STRING("Two", actual_str);
 }
 
+LV_FUNC_SECTION
 void test_roller_keypad_events(void)
 {
     int16_t expected_index = 1;
@@ -163,6 +170,7 @@ void test_roller_keypad_events(void)
     TEST_ASSERT_EQUAL(expected_index, actual_index);
 }
 
+LV_FUNC_SECTION
 void test_roller_with_overlay_and_bubble_events_enabled(void)
 {
     lv_obj_t * overlay = lv_obj_create(roller);
@@ -247,6 +255,7 @@ void test_roller_with_overlay_and_bubble_events_enabled(void)
 //    TEST_ASSERT_NOT_EQUAL(0, lv_roller_get_selected(roller_mouse));
 //}
 
+LV_FUNC_SECTION
 void test_roller_appearance(void)
 {
     /* use a number, a symbol, a high letter, a low letter */
@@ -330,6 +339,7 @@ void test_roller_appearance(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/roller_3.png");
 }
 
+LV_FUNC_SECTION
 void test_roller_properties(void)
 {
 #if LV_USE_OBJ_PROPERTY

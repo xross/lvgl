@@ -111,7 +111,7 @@ static lv_obj_t * scale3_mbps_label;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_widgets(void)
 {
     if(LV_HOR_RES <= 320) disp_size = DISP_SMALL;
@@ -220,6 +220,7 @@ void lv_demo_widgets(void)
     color_changer_create(tv);
 }
 
+LV_FUNC_SECTION
 void lv_demo_widgets_start_slideshow(void)
 {
     lv_obj_update_layout(tv);
@@ -245,6 +246,7 @@ void lv_demo_widgets_start_slideshow(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void profile_create(lv_obj_t * parent)
 {
     lv_obj_t * panel1 = lv_obj_create(parent);
@@ -566,6 +568,7 @@ static void profile_create(lv_obj_t * parent)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_chart_with_scales(lv_obj_t * parent, const char * title,  const char * hor_text[])
 {
     static const int32_t col_dsc[] = {40, LV_GRID_FR(1), LV_GRID_TEMPLATE_LAST};
@@ -617,6 +620,7 @@ static lv_obj_t * create_chart_with_scales(lv_obj_t * parent, const char * title
     return chart;
 }
 
+LV_FUNC_SECTION
 static void analytics_create(lv_obj_t * parent)
 {
     lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_ROW);
@@ -872,6 +876,7 @@ static void analytics_create(lv_obj_t * parent)
     lv_obj_add_event_cb(scale3, scale3_size_changed_event_cb, LV_EVENT_SIZE_CHANGED, NULL);
 }
 
+LV_FUNC_SECTION
 void shop_create(lv_obj_t * parent)
 {
     lv_obj_set_flex_flow(parent, LV_FLEX_FLOW_ROW_WRAP);
@@ -1044,6 +1049,7 @@ void shop_create(lv_obj_t * parent)
 
 }
 
+LV_FUNC_SECTION
 static void color_changer_create(lv_obj_t * parent)
 {
     static lv_palette_t palette[] = {
@@ -1097,6 +1103,7 @@ static void color_changer_create(lv_obj_t * parent)
     }
 }
 
+LV_FUNC_SECTION
 static void color_changer_anim_cb(void * var, int32_t v)
 {
     lv_obj_t * obj = var;
@@ -1123,6 +1130,7 @@ static void color_changer_anim_cb(void * var, int32_t v)
 
 }
 
+LV_FUNC_SECTION
 static void color_changer_event_cb(lv_event_t * e)
 {
     if(lv_event_get_code(e) == LV_EVENT_CLICKED) {
@@ -1147,6 +1155,7 @@ static void color_changer_event_cb(lv_event_t * e)
         }
     }
 }
+LV_FUNC_SECTION
 static void color_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1179,6 +1188,7 @@ static void color_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_scale_box(lv_obj_t * parent, const char * title, const char * text1, const char * text2,
                                    const char * text3)
 {
@@ -1249,6 +1259,7 @@ static lv_obj_t * create_scale_box(lv_obj_t * parent, const char * title, const 
     return scale;
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_shop_item(lv_obj_t * parent, const void * img_src, const char * name, const char * category,
                                    const char * price)
 {
@@ -1281,6 +1292,7 @@ static lv_obj_t * create_shop_item(lv_obj_t * parent, const void * img_src, cons
     return cont;
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void ta_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1311,6 +1323,7 @@ static void ta_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void birthday_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1336,6 +1349,7 @@ static void birthday_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void calendar_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1355,6 +1369,7 @@ static void calendar_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void slider_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1407,6 +1422,7 @@ static void slider_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void chart_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1544,11 +1560,13 @@ static void chart_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void shop_chart_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
 }
 
+LV_FUNC_SECTION
 static void scale1_indic1_anim_cb(void * var, int32_t v)
 {
     lv_arc_set_value(var, v);
@@ -1558,6 +1576,7 @@ static void scale1_indic1_anim_cb(void * var, int32_t v)
     lv_label_set_text_fmt(label, "Revenue: %"LV_PRId32" %%", v);
 }
 
+LV_FUNC_SECTION
 static void scale2_timer_cb(lv_timer_t * timer)
 {
     LV_UNUSED(timer);
@@ -1614,6 +1633,7 @@ static void scale2_timer_cb(lv_timer_t * timer)
     lv_label_set_text_fmt(label, "Mobile: %"LV_PRIu32, session_mobile);
 }
 
+LV_FUNC_SECTION
 static void scale3_anim_cb(void * var, int32_t v)
 {
     lv_obj_t * needle = lv_obj_get_child(var, 0);
@@ -1623,6 +1643,7 @@ static void scale3_anim_cb(void * var, int32_t v)
     lv_label_set_text_fmt(label, "%"LV_PRId32, v);
 }
 
+LV_FUNC_SECTION
 static void scale3_size_changed_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
@@ -1640,11 +1661,13 @@ static void scale3_size_changed_event_cb(lv_event_t * e)
     lv_obj_align(scale3_mbps_label, LV_ALIGN_TOP_LEFT, minor_dim_half, minor_dim * 55 / 100);
 }
 
+LV_FUNC_SECTION
 static void scroll_anim_y_cb(void * var, int32_t v)
 {
     lv_obj_scroll_to_y(var, v, LV_ANIM_OFF);
 }
 
+LV_FUNC_SECTION
 static void delete_timer_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1654,6 +1677,7 @@ static void delete_timer_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void slideshow_anim_completed_cb(lv_anim_t * a_old)
 {
     LV_UNUSED(a_old);
@@ -1682,6 +1706,7 @@ static void slideshow_anim_completed_cb(lv_anim_t * a_old)
     lv_anim_start(&a);
 }
 
+LV_FUNC_SECTION
 static void scale3_delete_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1699,6 +1724,7 @@ static void scale3_delete_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void tabview_delete_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);

@@ -25,6 +25,7 @@ extern "C" {
  **********************/
 
 struct lv_event_dsc_t {
+    __attribute__(( fptrgroup("lv_event_cb") ))
     lv_event_cb_t cb;
     void * user_data;
     uint32_t filter;

@@ -36,6 +36,7 @@ struct lv_obj_style_transition_dsc_t {
     uint16_t delay;
     lv_style_selector_t selector;
     lv_style_prop_t prop;
+    __attribute__(( fptrgroup("lv_anim_path_cb") ))
     lv_anim_path_cb_t path_cb;
     void * user_data;
 };

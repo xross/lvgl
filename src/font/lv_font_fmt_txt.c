@@ -74,7 +74,7 @@ static const uint8_t opa2_table[4] = {0, 85, 170, 255};
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_font_get_glyph_bitmap") ))
 const void * lv_font_get_bitmap_fmt_txt(lv_font_glyph_dsc_t * g_dsc, lv_draw_buf_t * draw_buf)
 {
     const lv_font_t * font = g_dsc->resolved_font;
@@ -165,6 +165,7 @@ const void * lv_font_get_bitmap_fmt_txt(lv_font_glyph_dsc_t * g_dsc, lv_draw_buf
     return NULL;
 }
 
+__attribute__(( fptrgroup("lv_font_get_glyph_dsc") ))
 bool lv_font_get_glyph_dsc_fmt_txt(const lv_font_t * font, lv_font_glyph_dsc_t * dsc_out, uint32_t unicode_letter,
                                    uint32_t unicode_letter_next)
 {
@@ -214,6 +215,7 @@ bool lv_font_get_glyph_dsc_fmt_txt(const lv_font_t * font, lv_font_glyph_dsc_t *
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static uint32_t get_glyph_dsc_id(const lv_font_t * font, uint32_t letter)
 {
     if(letter == '\0') return 0;
@@ -263,6 +265,7 @@ static uint32_t get_glyph_dsc_id(const lv_font_t * font, uint32_t letter)
 
 }
 
+LV_FUNC_SECTION
 static int8_t get_kern_value(const lv_font_t * font, uint32_t gid_left, uint32_t gid_right)
 {
     lv_font_fmt_txt_dsc_t * fdsc = (lv_font_fmt_txt_dsc_t *)font->dsc;
@@ -319,6 +322,7 @@ static int8_t get_kern_value(const lv_font_t * font, uint32_t gid_left, uint32_t
     return value;
 }
 
+__attribute__(( fptrgroup("lv_utils_cmp") ))
 static int kern_pair_8_compare(const void * ref, const void * element)
 {
     const kern_pair_ref_t * ref8_p = ref;
@@ -329,6 +333,7 @@ static int kern_pair_8_compare(const void * ref, const void * element)
     else return ref8_p->gid_right - element8_p[1];
 }
 
+__attribute__(( fptrgroup("lv_utils_cmp") ))
 static int kern_pair_16_compare(const void * ref, const void * element)
 {
     const kern_pair_ref_t * ref16_p = ref;
@@ -349,6 +354,7 @@ static int kern_pair_16_compare(const void * ref, const void * element)
  * @param bpp bit per pixel (bpp = 3 will be converted to bpp = 4)
  * @param prefilter true: the lines are XORed
  */
+LV_FUNC_SECTION
 static void decompress(const uint8_t * in, uint8_t * out, int32_t w, int32_t h, uint8_t bpp, bool prefilter)
 {
     const lv_opa_t * opa_table;
@@ -416,6 +422,7 @@ static void decompress(const uint8_t * in, uint8_t * out, int32_t w, int32_t h, 
  * @param out output buffer
  * @param w width of the line in pixel count
  */
+LV_FUNC_SECTION
 static inline void decompress_line(uint8_t * out, int32_t w)
 {
     int32_t i;
@@ -431,6 +438,7 @@ static inline void decompress_line(uint8_t * out, int32_t w)
  * @param len number of bits to read (must be <= 8).
  * @return the read bits
  */
+LV_FUNC_SECTION
 static inline uint8_t get_bits(const uint8_t * in, uint32_t bit_pos, uint8_t len)
 {
     uint8_t bit_mask;
@@ -466,6 +474,7 @@ static inline uint8_t get_bits(const uint8_t * in, uint32_t bit_pos, uint8_t len
     }
 }
 
+LV_FUNC_SECTION
 static inline void rle_init(const uint8_t * in,  uint8_t bpp)
 {
     lv_font_fmt_rle_t * rle = &font_rle;
@@ -477,6 +486,7 @@ static inline void rle_init(const uint8_t * in,  uint8_t bpp)
     rle->count = 0;
 }
 
+LV_FUNC_SECTION
 static inline uint8_t rle_next(void)
 {
     uint8_t v = 0;
@@ -549,6 +559,7 @@ static inline uint8_t rle_next(void)
  *  @retval > 0   Reference is greater than element.
  *
  */
+__attribute__(( fptrgroup("lv_utils_cmp") ))
 static int unicode_list_compare(const void * ref, const void * element)
 {
     return (*(uint16_t *)ref) - (*(uint16_t *)element);

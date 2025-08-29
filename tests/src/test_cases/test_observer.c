@@ -5,11 +5,13 @@
 #include "unity/unity.h"
 #include "lv_test_indev.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
@@ -19,6 +21,7 @@ void tearDown(void)
 static int32_t prev_v;
 static int32_t current_v;
 
+LV_FUNC_SECTION
 static void observer_int(lv_observer_t * observer, lv_subject_t * subject)
 {
     LV_UNUSED(observer);
@@ -26,6 +29,7 @@ static void observer_int(lv_observer_t * observer, lv_subject_t * subject)
     current_v = lv_subject_get_int(subject);
 }
 
+LV_FUNC_SECTION
 void test_observer_add_remove(void)
 {
     static lv_subject_t subject;
@@ -48,6 +52,7 @@ void test_observer_add_remove(void)
     TEST_ASSERT_EQUAL_PTR(NULL, observer);   /*The observer must be NULL*/
 }
 
+LV_FUNC_SECTION
 void test_observer_int(void)
 {
     static lv_subject_t subject;
@@ -77,6 +82,7 @@ void test_observer_int(void)
     TEST_ASSERT_EQUAL(10, lv_subject_get_previous_int(&subject));
 }
 
+LV_FUNC_SECTION
 void test_observer_string(void)
 {
     char buf_current[32];
@@ -118,6 +124,7 @@ void test_observer_string(void)
     TEST_ASSERT_EQUAL_STRING("text to be clipped to 32 chars.", lv_subject_get_previous_string(&subject));
 }
 
+LV_FUNC_SECTION
 void test_observer_pointer(void)
 {
     static int32_t a[3] = {0};
@@ -149,6 +156,7 @@ void test_observer_pointer(void)
     TEST_ASSERT_EQUAL_PTR(&a[1], lv_subject_get_previous_pointer(&subject));
 }
 
+LV_FUNC_SECTION
 void test_observer_color(void)
 {
     static lv_subject_t subject;
@@ -181,6 +189,7 @@ void test_observer_color(void)
 
 static int32_t group_observer_called;
 
+LV_FUNC_SECTION
 static void group_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     LV_UNUSED(observer);
@@ -188,6 +197,7 @@ static void group_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
     group_observer_called++;
 }
 
+LV_FUNC_SECTION
 void test_observer_group(void)
 {
     static lv_subject_t subject_main;
@@ -215,6 +225,7 @@ void test_observer_group(void)
     TEST_ASSERT_EQUAL(3, group_observer_called);
 }
 
+LV_FUNC_SECTION
 void test_observer_obj_flag(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -246,6 +257,7 @@ void test_observer_obj_flag(void)
     TEST_ASSERT_EQUAL(false, lv_obj_has_flag(obj, LV_OBJ_FLAG_CHECKABLE));
 }
 
+LV_FUNC_SECTION
 void test_observer_obj_state(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -277,6 +289,7 @@ void test_observer_obj_state(void)
     TEST_ASSERT_EQUAL(false, lv_obj_has_state(obj, LV_STATE_DISABLED));
 }
 
+LV_FUNC_SECTION
 void test_observer_button_checked(void)
 {
     lv_obj_t * obj = lv_button_create(lv_screen_active());
@@ -304,6 +317,7 @@ void test_observer_button_checked(void)
     TEST_ASSERT_EQUAL(1, lv_subject_get_int(&subject));
 }
 
+LV_FUNC_SECTION
 void test_observer_label_text_normal(void)
 {
     lv_obj_t * obj = lv_label_create(lv_screen_active());
@@ -352,6 +366,7 @@ void test_observer_label_text_normal(void)
     TEST_ASSERT_EQUAL_STRING("WORLD", lv_label_get_text(obj));
 }
 
+LV_FUNC_SECTION
 void test_observer_label_text_formatted(void)
 {
     lv_obj_t * obj = lv_label_create(lv_screen_active());
@@ -408,6 +423,7 @@ void test_observer_label_text_formatted(void)
     TEST_ASSERT_EQUAL_STRING("pointer: WORLD", lv_label_get_text(obj));
 }
 
+LV_FUNC_SECTION
 void test_observer_arc_value(void)
 {
     lv_obj_t * obj = lv_arc_create(lv_screen_active());
@@ -434,6 +450,7 @@ void test_observer_arc_value(void)
     TEST_ASSERT_EQUAL(50, lv_subject_get_int(&subject));
 }
 
+LV_FUNC_SECTION
 void test_observer_slider_value(void)
 {
     lv_obj_t * obj = lv_slider_create(lv_screen_active());
@@ -464,6 +481,7 @@ void test_observer_slider_value(void)
     TEST_ASSERT_EQUAL(29, lv_subject_get_int(&subject));
 }
 
+LV_FUNC_SECTION
 void test_observer_roller_value(void)
 {
     lv_obj_t * obj = lv_roller_create(lv_screen_active());
@@ -484,6 +502,7 @@ void test_observer_roller_value(void)
     TEST_ASSERT_EQUAL(1, lv_subject_get_int(&subject));
 }
 
+LV_FUNC_SECTION
 void test_observer_dropdown_value(void)
 {
     lv_obj_t * obj = lv_dropdown_create(lv_screen_active());
@@ -505,6 +524,7 @@ void test_observer_dropdown_value(void)
     TEST_ASSERT_EQUAL(0, lv_subject_get_int(&subject));
 }
 
+LV_FUNC_SECTION
 void test_observer_deinit(void)
 {
     static lv_subject_t subject;

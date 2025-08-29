@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_MONKEY && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_monkey_3(void)
 {
     static lv_point_t btn_points[3];

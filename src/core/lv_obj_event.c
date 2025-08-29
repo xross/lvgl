@@ -44,7 +44,7 @@ static bool event_is_bubbled(lv_event_t * e);
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+LV_FUNC_SECTION
 lv_result_t lv_obj_send_event(lv_obj_t * obj, lv_event_code_t event_code, void * param)
 {
     if(obj == NULL) return LV_RESULT_OK;
@@ -72,6 +72,7 @@ lv_result_t lv_obj_send_event(lv_obj_t * obj, lv_event_code_t event_code, void *
     return res;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_obj_event_base(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     const lv_obj_class_t * base;
@@ -95,6 +96,7 @@ lv_result_t lv_obj_event_base(const lv_obj_class_t * class_p, lv_event_t * e)
     return res;
 }
 
+LV_FUNC_SECTION
 lv_event_dsc_t * lv_obj_add_event_cb(lv_obj_t * obj, lv_event_cb_t event_cb, lv_event_code_t filter, void * user_data)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -103,6 +105,7 @@ lv_event_dsc_t * lv_obj_add_event_cb(lv_obj_t * obj, lv_event_cb_t event_cb, lv_
     return lv_event_add(&obj->spec_attr->event_list, event_cb, filter, user_data);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_obj_get_event_count(lv_obj_t * obj)
 {
     LV_ASSERT_NULL(obj);
@@ -110,6 +113,7 @@ uint32_t lv_obj_get_event_count(lv_obj_t * obj)
     return lv_event_get_count(&obj->spec_attr->event_list);
 }
 
+LV_FUNC_SECTION
 lv_event_dsc_t * lv_obj_get_event_dsc(lv_obj_t * obj, uint32_t index)
 {
     LV_ASSERT_NULL(obj);
@@ -117,6 +121,7 @@ lv_event_dsc_t * lv_obj_get_event_dsc(lv_obj_t * obj, uint32_t index)
     return lv_event_get_dsc(&obj->spec_attr->event_list, index);
 }
 
+LV_FUNC_SECTION
 bool lv_obj_remove_event(lv_obj_t * obj, uint32_t index)
 {
     LV_ASSERT_NULL(obj);
@@ -124,6 +129,7 @@ bool lv_obj_remove_event(lv_obj_t * obj, uint32_t index)
     return lv_event_remove(&obj->spec_attr->event_list, index);
 }
 
+LV_FUNC_SECTION
 bool lv_obj_remove_event_cb(lv_obj_t * obj, lv_event_cb_t event_cb)
 {
     LV_ASSERT_NULL(obj);
@@ -141,6 +147,7 @@ bool lv_obj_remove_event_cb(lv_obj_t * obj, lv_event_cb_t event_cb)
     return false;
 }
 
+LV_FUNC_SECTION
 bool lv_obj_remove_event_dsc(lv_obj_t * obj, lv_event_dsc_t * dsc)
 {
     LV_ASSERT_NULL(obj);
@@ -149,6 +156,7 @@ bool lv_obj_remove_event_dsc(lv_obj_t * obj, lv_event_dsc_t * dsc)
     return lv_event_remove_dsc(&obj->spec_attr->event_list, dsc);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_obj_remove_event_cb_with_user_data(lv_obj_t * obj, lv_event_cb_t event_cb, void * user_data)
 {
     LV_ASSERT_NULL(obj);
@@ -168,16 +176,19 @@ uint32_t lv_obj_remove_event_cb_with_user_data(lv_obj_t * obj, lv_event_cb_t eve
     return removed_count;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_event_get_current_target_obj(lv_event_t * e)
 {
     return lv_event_get_current_target(e);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_event_get_target_obj(lv_event_t * e)
 {
     return lv_event_get_target(e);
 }
 
+LV_FUNC_SECTION
 lv_indev_t * lv_event_get_indev(lv_event_t * e)
 {
 
@@ -207,6 +218,7 @@ lv_indev_t * lv_event_get_indev(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 lv_layer_t * lv_event_get_layer(lv_event_t * e)
 {
     if(e->code == LV_EVENT_DRAW_MAIN ||
@@ -223,6 +235,7 @@ lv_layer_t * lv_event_get_layer(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 const lv_area_t * lv_event_get_old_size(lv_event_t * e)
 {
     if(e->code == LV_EVENT_SIZE_CHANGED) {
@@ -234,6 +247,7 @@ const lv_area_t * lv_event_get_old_size(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 uint32_t lv_event_get_key(lv_event_t * e)
 {
     if(e->code == LV_EVENT_KEY) {
@@ -247,6 +261,7 @@ uint32_t lv_event_get_key(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 int32_t lv_event_get_rotary_diff(lv_event_t * e)
 {
     if(e->code == LV_EVENT_ROTARY) {
@@ -260,6 +275,7 @@ int32_t lv_event_get_rotary_diff(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 lv_anim_t * lv_event_get_scroll_anim(lv_event_t * e)
 {
     if(e->code == LV_EVENT_SCROLL_BEGIN) {
@@ -271,6 +287,7 @@ lv_anim_t * lv_event_get_scroll_anim(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_event_set_ext_draw_size(lv_event_t * e, int32_t size)
 {
     if(e->code == LV_EVENT_REFR_EXT_DRAW_SIZE) {
@@ -282,6 +299,7 @@ void lv_event_set_ext_draw_size(lv_event_t * e, int32_t size)
     }
 }
 
+LV_FUNC_SECTION
 lv_point_t * lv_event_get_self_size_info(lv_event_t * e)
 {
     if(e->code == LV_EVENT_GET_SELF_SIZE) {
@@ -293,6 +311,7 @@ lv_point_t * lv_event_get_self_size_info(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 lv_hit_test_info_t * lv_event_get_hit_test_info(lv_event_t * e)
 {
     if(e->code == LV_EVENT_HIT_TEST) {
@@ -304,6 +323,7 @@ lv_hit_test_info_t * lv_event_get_hit_test_info(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 const lv_area_t * lv_event_get_cover_area(lv_event_t * e)
 {
     if(e->code == LV_EVENT_COVER_CHECK) {
@@ -316,6 +336,7 @@ const lv_area_t * lv_event_get_cover_area(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void lv_event_set_cover_res(lv_event_t * e, lv_cover_res_t res)
 {
     if(e->code == LV_EVENT_COVER_CHECK) {
@@ -327,6 +348,7 @@ void lv_event_set_cover_res(lv_event_t * e, lv_cover_res_t res)
     }
 }
 
+LV_FUNC_SECTION
 lv_draw_task_t * lv_event_get_draw_task(lv_event_t * e)
 {
     if(e->code == LV_EVENT_DRAW_TASK_ADDED) {
@@ -342,7 +364,8 @@ lv_draw_task_t * lv_event_get_draw_task(lv_event_t * e)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+ #pragma stackfunction 1024
+LV_FUNC_SECTION
 static lv_result_t event_send_core(lv_event_t * e)
 {
     LV_TRACE_EVENT("Sending event %d to %p with %p param", e->code, (void *)e->original_target, e->param);
@@ -377,6 +400,7 @@ static lv_result_t event_send_core(lv_event_t * e)
     return res;
 }
 
+LV_FUNC_SECTION
 static bool event_is_bubbled(lv_event_t * e)
 {
     if(e->stop_bubbling) return false;

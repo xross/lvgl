@@ -6,6 +6,7 @@
 /**
  * Load a JPG image
  */
+LV_FUNC_SECTION
 void lv_example_libjpeg_turbo_1(void)
 {
     lv_obj_t * wp;
@@ -19,6 +20,7 @@ void lv_example_libjpeg_turbo_1(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_libjpeg_turbo_1(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());

@@ -11,17 +11,20 @@ static const uint16_t default_point_num = 0U;
 static const int32_t initial_extra_draw_size = 5U;
 static const int32_t final_extra_draw_size = 10U;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
     line = lv_line_create(active_screen);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_line_should_have_valid_documented_default_values(void)
 {
     TEST_ASSERT_EQUAL_UINT16(default_point_num, lv_line_get_point_count(line));
@@ -33,12 +36,14 @@ void test_line_should_have_valid_documented_default_values(void)
     TEST_ASSERT_EQUAL_UINT16(0U, lv_obj_get_self_height(line));
 }
 
+LV_FUNC_SECTION
 void test_line_should_return_valid_y_invert(void)
 {
     lv_line_set_y_invert(line, true);
     TEST_ASSERT_TRUE(lv_line_get_y_invert(line));
 }
 
+LV_FUNC_SECTION
 void test_line_size_should_be_updated_after_adding_points(void)
 {
     static lv_point_precise_t points[] = { {5, 5} };
@@ -59,6 +64,7 @@ void test_line_size_should_be_updated_after_adding_points(void)
     TEST_ASSERT_EQUAL_UINT16(calculated_height, lv_obj_get_self_height(line));
 }
 
+LV_FUNC_SECTION
 static void line_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -69,6 +75,7 @@ static void line_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 void test_line_should_update_extra_draw_size_based_on_style(void)
 {
     /* Setup an event handler for line extra draw size event */
@@ -88,6 +95,7 @@ void test_line_should_update_extra_draw_size_based_on_style(void)
     TEST_ASSERT_EQUAL(final_extra_draw_size, lv_obj_get_ext_draw_size(line));
 }
 
+LV_FUNC_SECTION
 void test_line_basic_render(void)
 {
     static lv_point_precise_t points[] = { {5, 5},
@@ -110,6 +118,7 @@ void test_line_basic_render(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/line_1.png");
 }
 
+LV_FUNC_SECTION
 void test_line_dash_gap(void)
 {
     static lv_point_precise_t line_points1[3] = { {50, 50}, {250, 50}, {250, 250} };
@@ -145,6 +154,7 @@ void test_line_dash_gap(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/line_2.png");
 }
 
+LV_FUNC_SECTION
 void test_line_point_array_getters_and_setters(void)
 {
     const lv_point_precise_t points[3] = {{10, 20}, {30, 40}, {50, 60}};

@@ -50,6 +50,7 @@ static lv_draw_buf_t * decode_png_data(const void * png_data, size_t png_data_si
 /**
  * Register the PNG decoder functions in LVGL
  */
+LV_FUNC_SECTION
 void lv_lodepng_init(void)
 {
     lv_image_decoder_t * dec = lv_image_decoder_create();
@@ -60,6 +61,7 @@ void lv_lodepng_init(void)
     dec->name = DECODER_NAME;
 }
 
+LV_FUNC_SECTION
 void lv_lodepng_deinit(void)
 {
     lv_image_decoder_t * dec = NULL;
@@ -82,6 +84,7 @@ void lv_lodepng_deinit(void)
  * @param header    image information is set in header parameter
  * @return          LV_RESULT_OK: no error; LV_RESULT_INVALID: can't get the info
  */
+__attribute__(( fptrgroup("lv_image_deocder_info_cb") ))
 static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc, lv_image_header_t * header)
 {
     LV_UNUSED(decoder); /*Unused*/
@@ -136,6 +139,7 @@ static lv_result_t decoder_info(lv_image_decoder_t * decoder, lv_image_decoder_d
  * @param dsc       decoded image descriptor
  * @return          LV_RESULT_OK: no error; LV_RESULT_INVALID: can't open the image
  */
+__attribute__(( fptrgroup("lv_image_deocder_open_cb") ))
 static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -215,6 +219,7 @@ static lv_result_t decoder_open(lv_image_decoder_t * decoder, lv_image_decoder_d
  * @param dsc       decoded image descriptor
  * @return          LV_RESULT_OK: no error; LV_RESULT_INVALID: can't open the image
  */
+__attribute__(( fptrgroup("lv_image_deocder_close_cb") ))
 static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t * dsc)
 {
     LV_UNUSED(decoder);
@@ -223,6 +228,7 @@ static void decoder_close(lv_image_decoder_t * decoder, lv_image_decoder_dsc_t *
        !lv_image_cache_is_enabled()) lv_draw_buf_destroy((lv_draw_buf_t *)dsc->decoded);
 }
 
+LV_FUNC_SECTION
 static lv_draw_buf_t * decode_png_data(const void * png_data, size_t png_data_size)
 {
     unsigned png_width;             /*Not used, just required by the decoder*/
@@ -247,6 +253,7 @@ static lv_draw_buf_t * decode_png_data(const void * png_data, size_t png_data_si
  * @param img the ARGB888 image
  * @param px_cnt number of pixels in `img`
  */
+LV_FUNC_SECTION
 static void convert_color_depth(uint8_t * img_p, uint32_t px_cnt)
 {
     lv_color32_t * img_argb = (lv_color32_t *)img_p;

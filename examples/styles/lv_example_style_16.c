@@ -7,6 +7,7 @@
  * Simulate metallic knob using conical gradient
  * For best effect set LV_GRADIENT_MAX_STOPS to 8 or at least 3
  */
+LV_FUNC_SECTION
 void lv_example_style_16(void)
 {
 #if LV_GRADIENT_MAX_STOPS >= 8
@@ -70,6 +71,7 @@ void lv_example_style_16(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_style_16(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());

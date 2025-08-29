@@ -56,6 +56,7 @@ static void freetype_image_release_cb(const lv_font_t * font, lv_font_glyph_dsc_
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_cache_t * lv_freetype_create_draw_data_image(uint32_t cache_size)
 {
     lv_cache_ops_t ops = {
@@ -71,6 +72,7 @@ lv_cache_t * lv_freetype_create_draw_data_image(uint32_t cache_size)
     return draw_data_cache;
 }
 
+LV_FUNC_SECTION
 void lv_freetype_set_cbs_image_font(lv_freetype_font_dsc_t * dsc)
 {
     LV_ASSERT_FREETYPE_FONT_DSC(dsc);
@@ -82,6 +84,7 @@ void lv_freetype_set_cbs_image_font(lv_freetype_font_dsc_t * dsc)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static const void * freetype_get_glyph_bitmap_cb(lv_font_glyph_dsc_t * g_dsc, lv_draw_buf_t * draw_buf)
 {
     LV_UNUSED(draw_buf);
@@ -106,6 +109,7 @@ static const void * freetype_get_glyph_bitmap_cb(lv_font_glyph_dsc_t * g_dsc, lv
     return cache_node->draw_buf;
 }
 
+LV_FUNC_SECTION
 static void freetype_image_release_cb(const lv_font_t * font, lv_font_glyph_dsc_t * g_dsc)
 {
     LV_ASSERT_NULL(font);
@@ -117,7 +121,7 @@ static void freetype_image_release_cb(const lv_font_t * font, lv_font_glyph_dsc_
 /*-----------------
  * Cache Callbacks
  *----------------*/
-
+__attribute__(( fptrgroup("lv_cache_create_cb") ))
 static bool freetype_image_create_cb(lv_freetype_image_cache_data_t * data, void * user_data)
 {
     lv_freetype_font_dsc_t * dsc = (lv_freetype_font_dsc_t *)user_data;
@@ -168,11 +172,13 @@ static bool freetype_image_create_cb(lv_freetype_image_cache_data_t * data, void
 
     return true;
 }
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void freetype_image_free_cb(lv_freetype_image_cache_data_t * data, void * user_data)
 {
     LV_UNUSED(user_data);
     lv_draw_buf_destroy(data->draw_buf);
 }
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t freetype_image_compare_cb(const lv_freetype_image_cache_data_t * lhs,
                                                         const lv_freetype_image_cache_data_t * rhs)
 {

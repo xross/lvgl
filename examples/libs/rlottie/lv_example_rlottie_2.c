@@ -5,6 +5,7 @@
 /**
  * Load an lottie animation from file
  */
+LV_FUNC_SECTION
 void lv_example_rlottie_2(void)
 {
     /*The rlottie library uses STDIO file API, so there is no driver letter for LVGL*/
@@ -14,6 +15,7 @@ void lv_example_rlottie_2(void)
 }
 
 #else
+LV_FUNC_SECTION
 void lv_example_rlottie_2(void)
 {
     /*TODO

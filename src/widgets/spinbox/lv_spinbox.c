@@ -53,6 +53,7 @@ const lv_obj_class_t lv_spinbox_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_spinbox_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -65,6 +66,7 @@ lv_obj_t * lv_spinbox_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_spinbox_set_value(lv_obj_t * obj, int32_t v)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -78,6 +80,7 @@ void lv_spinbox_set_value(lv_obj_t * obj, int32_t v)
     lv_spinbox_updatevalue(obj);
 }
 
+LV_FUNC_SECTION
 void lv_spinbox_set_rollover(lv_obj_t * obj, bool rollover)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -86,6 +89,7 @@ void lv_spinbox_set_rollover(lv_obj_t * obj, bool rollover)
     spinbox->rollover = rollover;
 }
 
+LV_FUNC_SECTION
 void lv_spinbox_set_digit_format(lv_obj_t * obj, uint32_t digit_count, uint32_t sep_pos)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -107,6 +111,7 @@ void lv_spinbox_set_digit_format(lv_obj_t * obj, uint32_t digit_count, uint32_t 
     lv_spinbox_updatevalue(obj);
 }
 
+LV_FUNC_SECTION
 void lv_spinbox_set_step(lv_obj_t * obj, uint32_t step)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -116,6 +121,7 @@ void lv_spinbox_set_step(lv_obj_t * obj, uint32_t step)
     lv_spinbox_updatevalue(obj);
 }
 
+LV_FUNC_SECTION
 void lv_spinbox_set_range(lv_obj_t * obj, int32_t range_min, int32_t range_max)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -130,6 +136,7 @@ void lv_spinbox_set_range(lv_obj_t * obj, int32_t range_min, int32_t range_max)
     lv_spinbox_updatevalue(obj);
 }
 
+LV_FUNC_SECTION
 void lv_spinbox_set_cursor_pos(lv_obj_t * obj, uint32_t pos)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -144,6 +151,7 @@ void lv_spinbox_set_cursor_pos(lv_obj_t * obj, uint32_t pos)
     lv_spinbox_updatevalue(obj);
 }
 
+LV_FUNC_SECTION
 void lv_spinbox_set_digit_step_direction(lv_obj_t * obj, lv_dir_t direction)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -156,6 +164,7 @@ void lv_spinbox_set_digit_step_direction(lv_obj_t * obj, lv_dir_t direction)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 int32_t lv_spinbox_get_value(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -164,6 +173,7 @@ int32_t lv_spinbox_get_value(lv_obj_t * obj)
     return spinbox->value;
 }
 
+LV_FUNC_SECTION
 int32_t lv_spinbox_get_step(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -176,6 +186,7 @@ int32_t lv_spinbox_get_step(lv_obj_t * obj)
  * Other functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_spinbox_step_next(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -187,6 +198,7 @@ void lv_spinbox_step_next(lv_obj_t * obj)
     lv_spinbox_updatevalue(obj);
 }
 
+LV_FUNC_SECTION
 void lv_spinbox_step_prev(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -199,6 +211,7 @@ void lv_spinbox_step_prev(lv_obj_t * obj)
     lv_spinbox_updatevalue(obj);
 }
 
+LV_FUNC_SECTION
 bool lv_spinbox_get_rollover(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -207,6 +220,7 @@ bool lv_spinbox_get_rollover(lv_obj_t * obj)
     return spinbox->rollover;
 }
 
+LV_FUNC_SECTION
 void lv_spinbox_increment(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -236,6 +250,7 @@ void lv_spinbox_increment(lv_obj_t * obj)
     }
 }
 
+LV_FUNC_SECTION
 void lv_spinbox_decrement(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -269,6 +284,7 @@ void lv_spinbox_decrement(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_spinbox_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -294,6 +310,7 @@ static void lv_spinbox_constructor(const lv_obj_class_t * class_p, lv_obj_t * ob
     LV_LOG_TRACE("Spinbox constructor finished");
 }
 
+LV_FUNC_SECTION
 static void lv_spinbox_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -397,6 +414,7 @@ static void lv_spinbox_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void lv_spinbox_updatevalue(lv_obj_t * obj)
 {
     lv_spinbox_t * spinbox = (lv_spinbox_t *)obj;

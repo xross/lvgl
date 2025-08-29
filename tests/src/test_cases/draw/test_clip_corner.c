@@ -4,16 +4,19 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_panel(int32_t radius, bool transform)
 {
     lv_obj_t * parent = lv_obj_create(lv_screen_active());
@@ -42,6 +45,7 @@ static lv_obj_t * create_panel(int32_t radius, bool transform)
     return parent;
 }
 
+LV_FUNC_SECTION
 void test_clip_corner_1(void)
 {
     lv_obj_set_flex_flow(lv_screen_active(), LV_FLEX_FLOW_ROW_WRAP);

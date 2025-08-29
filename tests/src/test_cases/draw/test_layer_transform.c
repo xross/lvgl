@@ -4,17 +4,20 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 void test_no_residual_border_on_scale_down(void)
 {
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
@@ -42,6 +45,7 @@ void test_no_residual_border_on_scale_down(void)
 
 }
 
+LV_FUNC_SECTION
 void test_update_layer_type_on_state_change(void)
 {
     static lv_style_t style;

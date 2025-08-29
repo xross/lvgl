@@ -4,6 +4,7 @@
 /**
  * Demonstrate grid's "free unit"
  */
+LV_FUNC_SECTION
 void lv_example_grid_3(void)
 {
     /*Column 1: fix width 60 px

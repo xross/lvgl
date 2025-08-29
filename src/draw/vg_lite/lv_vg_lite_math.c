@@ -37,6 +37,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 float math_fast_inv_sqrtf(float number)
 {
     int32_t i;

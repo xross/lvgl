@@ -25,6 +25,7 @@ extern "C" {
  **********************/
 
 typedef struct {
+    __attribute__(( fptrgroup("lv_layout_dsc_cb") ))
     lv_layout_update_cb_t cb;
     void * user_data;
 } lv_layout_dsc_t;

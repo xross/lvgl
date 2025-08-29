@@ -1,11 +1,13 @@
 #include "../../lv_examples.h"
 #if LV_USE_IMAGE && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void set_angle(void * img, int32_t v)
 {
     lv_image_set_rotation(img, v);
 }
 
+LV_FUNC_SECTION
 static void set_scale(void * img, int32_t v)
 {
     lv_image_set_scale(img, v);
@@ -14,6 +16,7 @@ static void set_scale(void * img, int32_t v)
 /**
  * Show transformations (zoom and rotation) using a pivot point.
  */
+LV_FUNC_SECTION
 void lv_example_image_3(void)
 {
     LV_IMAGE_DECLARE(img_cogwheel_argb);

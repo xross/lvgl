@@ -27,16 +27,19 @@ void test_tabview_update_on_external_scroll(void);
 static lv_obj_t * active_screen = NULL;
 static lv_obj_t * tabview = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 void test_tabview_create_successful_dir_top(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -47,6 +50,7 @@ void test_tabview_create_successful_dir_top(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_01.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_create_successful_dir_bottom(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -58,6 +62,7 @@ void test_tabview_create_successful_dir_bottom(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_02.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_create_successful_dir_left(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -69,6 +74,7 @@ void test_tabview_create_successful_dir_left(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_03.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_create_successful_dir_right(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -80,6 +86,7 @@ void test_tabview_create_successful_dir_right(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_04.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_add_one_tab_empty(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -91,6 +98,7 @@ void test_tabview_add_one_tab_empty(void)
     TEST_ASSERT_NOT_NULL(tab1);
 }
 
+LV_FUNC_SECTION
 void test_tabview_add_one_tab_empty_hor(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -102,6 +110,7 @@ void test_tabview_add_one_tab_empty_hor(void)
     TEST_ASSERT_NOT_NULL(tab1);
 }
 
+LV_FUNC_SECTION
 void test_tabview_add_one_tab_no_scroll(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -117,6 +126,7 @@ void test_tabview_add_one_tab_no_scroll(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_05.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_add_one_tab_with_scroll(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -145,6 +155,7 @@ void test_tabview_add_one_tab_with_scroll(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_06.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_add_several_tabs_no_scroll(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -165,6 +176,7 @@ void test_tabview_add_several_tabs_no_scroll(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_07.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_rename_tab(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -186,6 +198,7 @@ void test_tabview_rename_tab(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_08.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_add_several_tabs_hor(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -206,6 +219,7 @@ void test_tabview_add_several_tabs_hor(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_09.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_get_content(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -215,6 +229,7 @@ void test_tabview_get_content(void)
     TEST_ASSERT_NOT_NULL(content);
 }
 
+LV_FUNC_SECTION
 void test_tabview_get_tab_bar(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -224,6 +239,7 @@ void test_tabview_get_tab_bar(void)
     TEST_ASSERT_NOT_NULL(tab_bar);
 }
 
+LV_FUNC_SECTION
 void test_tabview_set_act_non_existent(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -233,6 +249,7 @@ void test_tabview_set_act_non_existent(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/tabview_10.png");
 }
 
+LV_FUNC_SECTION
 void test_tabview_tab2_selected_event(void)
 {
     tabview = lv_tabview_create(active_screen);
@@ -251,6 +268,7 @@ void test_tabview_tab2_selected_event(void)
     TEST_ASSERT_EQUAL_UINT16(1, lv_tabview_get_tab_active(tabview));
 }
 
+LV_FUNC_SECTION
 void test_tabview_update_on_external_scroll(void)
 {
     tabview = lv_tabview_create(active_screen);

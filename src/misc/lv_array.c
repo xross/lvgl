@@ -35,6 +35,7 @@
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 void lv_array_init(lv_array_t * array, uint32_t capacity, uint32_t element_size)
 {
     array->size = 0;
@@ -45,6 +46,7 @@ void lv_array_init(lv_array_t * array, uint32_t capacity, uint32_t element_size)
     LV_ASSERT_MALLOC(array->data);
 }
 
+LV_FUNC_SECTION
 void lv_array_deinit(lv_array_t * array)
 {
     if(array->data) {
@@ -56,6 +58,7 @@ void lv_array_deinit(lv_array_t * array)
     array->capacity = 0;
 }
 
+LV_FUNC_SECTION
 void lv_array_copy(lv_array_t * target, const lv_array_t * source)
 {
     if(lv_array_is_empty(source)) {
@@ -67,6 +70,7 @@ void lv_array_copy(lv_array_t * target, const lv_array_t * source)
     target->size = source->size;
 }
 
+LV_FUNC_SECTION
 void lv_array_shrink(lv_array_t * array)
 {
     if(array->size <= array->capacity / LV_ARRAY_DEFAULT_SHRINK_RATIO) {
@@ -74,6 +78,7 @@ void lv_array_shrink(lv_array_t * array)
     }
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_array_remove(lv_array_t * array, uint32_t index)
 {
     if(index >= array->size) {
@@ -96,6 +101,7 @@ lv_result_t lv_array_remove(lv_array_t * array, uint32_t index)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_array_erase(lv_array_t * array, uint32_t start, uint32_t end)
 {
     if(end > array->size) {
@@ -122,6 +128,7 @@ lv_result_t lv_array_erase(lv_array_t * array, uint32_t start, uint32_t end)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 void lv_array_resize(lv_array_t * array, uint32_t new_capacity)
 {
     uint8_t * data = lv_realloc(array->data, new_capacity * array->element_size);
@@ -133,6 +140,7 @@ void lv_array_resize(lv_array_t * array, uint32_t new_capacity)
     }
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_array_concat(lv_array_t * array, const lv_array_t * other)
 {
     LV_ASSERT_NULL(array->data);
@@ -148,6 +156,7 @@ lv_result_t lv_array_concat(lv_array_t * array, const lv_array_t * other)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_array_push_back(lv_array_t * array, const void * element)
 {
     LV_ASSERT_NULL(array->data);
@@ -163,6 +172,7 @@ lv_result_t lv_array_push_back(lv_array_t * array, const void * element)
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 void * lv_array_at(const lv_array_t * array, uint32_t index)
 {
     if(index >= array->size) {
@@ -173,6 +183,7 @@ void * lv_array_at(const lv_array_t * array, uint32_t index)
     return array->data + index * array->element_size;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_array_assign(lv_array_t * array, uint32_t index, const void * value)
 {
     uint8_t * data = lv_array_at(array, index);
@@ -182,36 +193,43 @@ lv_result_t lv_array_assign(lv_array_t * array, uint32_t index, const void * val
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_array_size(const lv_array_t * array)
 {
     return array->size;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_array_capacity(const lv_array_t * array)
 {
     return array->capacity;
 }
 
+LV_FUNC_SECTION
 bool lv_array_is_empty(const lv_array_t * array)
 {
     return array->size == 0;
 }
 
+LV_FUNC_SECTION
 bool lv_array_is_full(const lv_array_t * array)
 {
     return array->size == array->capacity;
 }
 
+LV_FUNC_SECTION
 void lv_array_clear(lv_array_t * array)
 {
     array->size = 0;
 }
 
+LV_FUNC_SECTION
 void * lv_array_front(const lv_array_t * array)
 {
     return lv_array_at(array, 0);
 }
 
+LV_FUNC_SECTION
 void * lv_array_back(const lv_array_t * array)
 {
     return lv_array_at(array, lv_array_size(array) - 1);

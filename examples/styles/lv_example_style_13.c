@@ -4,6 +4,7 @@
 /**
  * Add styles to parts and states
  */
+LV_FUNC_SECTION
 void lv_example_style_13(void)
 {
     static lv_style_t style_indic;

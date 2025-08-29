@@ -64,6 +64,7 @@ static void display_release_cb(lv_event_t * e);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_nuttx_lcd_create(const char * dev_path)
 {
     struct fb_videoinfo_s vinfo;
@@ -111,11 +112,13 @@ lv_display_t * lv_nuttx_lcd_create(const char * dev_path)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static int32_t align_round_up(int32_t v, uint16_t align)
 {
     return (v + align - 1) & ~(align - 1);
 }
 
+LV_FUNC_SECTION
 static void rounder_cb(lv_event_t * e)
 {
     lv_nuttx_lcd_t * lcd = lv_event_get_user_data(e);
@@ -134,6 +137,7 @@ static void rounder_cb(lv_event_t * e)
     area->y2 = area->y1 + h - 1;
 }
 
+__attribute__(( fptrgroup("lv_display_flush_cb") ))
 static void flush_cb(lv_display_t * disp, const lv_area_t * area_p,
                      uint8_t * color_p)
 {
@@ -148,6 +152,7 @@ static void flush_cb(lv_display_t * disp, const lv_area_t * area_p,
     lv_display_flush_ready(disp);
 }
 
+LV_FUNC_SECTION
 static lv_display_t * lcd_init(int fd, int hor_res, int ver_res)
 {
     uint8_t * draw_buf = NULL;
@@ -206,6 +211,7 @@ static lv_display_t * lcd_init(int fd, int hor_res, int ver_res)
     return lcd->disp;
 }
 
+LV_FUNC_SECTION
 static void display_release_cb(lv_event_t * e)
 {
     lv_display_t * disp = (lv_display_t *) lv_event_get_user_data(e);

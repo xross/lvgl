@@ -28,6 +28,7 @@ struct lv_indev_t {
     lv_indev_type_t type;
 
     /** Function pointer to read input device data.*/
+    __attribute__(( fptrgroup("lv_indev_read_cb") ))
     lv_indev_read_cb_t read_cb;
 
     lv_indev_state_t state; /**< Current state of the input device.*/

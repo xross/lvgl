@@ -56,6 +56,7 @@ static lv_result_t try_cache(lv_image_decoder_dsc_t * dsc);
 /**
  * Initialize the image decoder module
  */
+LV_FUNC_SECTION
 void lv_image_decoder_init(uint32_t image_cache_size, uint32_t image_header_count)
 {
     lv_ll_init(img_decoder_ll_p, sizeof(lv_image_decoder_t));
@@ -68,6 +69,7 @@ void lv_image_decoder_init(uint32_t image_cache_size, uint32_t image_header_coun
 /**
  * Deinitialize the image decoder module
  */
+LV_FUNC_SECTION
 void lv_image_decoder_deinit(void)
 {
     lv_cache_destroy(img_cache_p, NULL);
@@ -76,6 +78,7 @@ void lv_image_decoder_deinit(void)
     lv_ll_clear(img_decoder_ll_p);
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_image_decoder_get_info(const void * src, lv_image_header_t * header)
 {
     lv_image_decoder_dsc_t dsc;
@@ -89,6 +92,7 @@ lv_result_t lv_image_decoder_get_info(const void * src, lv_image_header_t * head
     return LV_RESULT_OK;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_image_decoder_open(lv_image_decoder_dsc_t * dsc, const void * src, const lv_image_decoder_args_t * args)
 {
     lv_memzero(dsc, sizeof(lv_image_decoder_dsc_t));
@@ -143,6 +147,7 @@ lv_result_t lv_image_decoder_open(lv_image_decoder_dsc_t * dsc, const void * src
     return res;
 }
 
+LV_FUNC_SECTION
 lv_result_t lv_image_decoder_get_area(lv_image_decoder_dsc_t * dsc, const lv_area_t * full_area,
                                       lv_area_t * decoded_area)
 {
@@ -152,6 +157,7 @@ lv_result_t lv_image_decoder_get_area(lv_image_decoder_dsc_t * dsc, const lv_are
     return res;
 }
 
+LV_FUNC_SECTION
 void lv_image_decoder_close(lv_image_decoder_dsc_t * dsc)
 {
     if(dsc->decoder) {
@@ -168,6 +174,7 @@ void lv_image_decoder_close(lv_image_decoder_dsc_t * dsc)
  * Create a new image decoder
  * @return pointer to the new image decoder
  */
+LV_FUNC_SECTION
 lv_image_decoder_t * lv_image_decoder_create(void)
 {
     lv_image_decoder_t * decoder;
@@ -180,12 +187,14 @@ lv_image_decoder_t * lv_image_decoder_create(void)
     return decoder;
 }
 
+LV_FUNC_SECTION
 void lv_image_decoder_delete(lv_image_decoder_t * decoder)
 {
     lv_ll_remove(img_decoder_ll_p, decoder);
     lv_free(decoder);
 }
 
+LV_FUNC_SECTION
 lv_image_decoder_t * lv_image_decoder_get_next(lv_image_decoder_t * decoder)
 {
     if(decoder == NULL)
@@ -194,26 +203,31 @@ lv_image_decoder_t * lv_image_decoder_get_next(lv_image_decoder_t * decoder)
         return lv_ll_get_next(img_decoder_ll_p, decoder);
 }
 
+LV_FUNC_SECTION
 void lv_image_decoder_set_info_cb(lv_image_decoder_t * decoder, lv_image_decoder_info_f_t info_cb)
 {
     decoder->info_cb = info_cb;
 }
 
+LV_FUNC_SECTION
 void lv_image_decoder_set_open_cb(lv_image_decoder_t * decoder, lv_image_decoder_open_f_t open_cb)
 {
     decoder->open_cb = open_cb;
 }
 
+LV_FUNC_SECTION
 void lv_image_decoder_set_get_area_cb(lv_image_decoder_t * decoder, lv_image_decoder_get_area_cb_t get_area_cb)
 {
     decoder->get_area_cb = get_area_cb;
 }
 
+LV_FUNC_SECTION
 void lv_image_decoder_set_close_cb(lv_image_decoder_t * decoder, lv_image_decoder_close_f_t close_cb)
 {
     decoder->close_cb = close_cb;
 }
 
+LV_FUNC_SECTION
 lv_cache_entry_t * lv_image_decoder_add_to_cache(lv_image_decoder_t * decoder,
                                                  lv_image_cache_data_t * search_key,
                                                  const lv_draw_buf_t * decoded, void * user_data)
@@ -237,6 +251,7 @@ lv_cache_entry_t * lv_image_decoder_add_to_cache(lv_image_decoder_t * decoder,
     return cache_entry;
 }
 
+LV_FUNC_SECTION
 lv_draw_buf_t * lv_image_decoder_post_process(lv_image_decoder_dsc_t * dsc, lv_draw_buf_t * decoded)
 {
     if(decoded == NULL) return NULL; /*No need to adjust*/
@@ -290,6 +305,7 @@ lv_draw_buf_t * lv_image_decoder_post_process(lv_image_decoder_dsc_t * dsc, lv_d
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_image_decoder_t * image_decoder_get_info(lv_image_decoder_dsc_t * dsc, lv_image_header_t * header)
 {
     lv_memzero(header, sizeof(lv_image_header_t));
@@ -383,6 +399,7 @@ static lv_image_decoder_t * image_decoder_get_info(lv_image_decoder_dsc_t * dsc,
     return decoder;
 }
 
+LV_FUNC_SECTION
 static uint32_t img_width_to_stride(lv_image_header_t * header)
 {
     if(header->cf == LV_COLOR_FORMAT_RGB565A8) {
@@ -393,6 +410,7 @@ static uint32_t img_width_to_stride(lv_image_header_t * header)
     }
 }
 
+LV_FUNC_SECTION
 static lv_result_t try_cache(lv_image_decoder_dsc_t * dsc)
 {
     lv_cache_t * cache = dsc->cache;

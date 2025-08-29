@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_IMAGE && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void ofs_y_anim(void * img, int32_t v)
 {
     lv_image_set_offset_y(img, v);
@@ -9,6 +10,7 @@ static void ofs_y_anim(void * img, int32_t v)
 /**
  * Image styling and offset
  */
+LV_FUNC_SECTION
 void lv_example_image_4(void)
 {
     LV_IMAGE_DECLARE(img_skew_strip);

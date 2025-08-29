@@ -51,6 +51,7 @@ static lv_cache_compare_res_t freetype_glyph_compare_cb(const lv_freetype_glyph_
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_cache_t * lv_freetype_create_glyph_cache(uint32_t cache_size)
 {
     lv_cache_ops_t ops = {
@@ -66,6 +67,7 @@ lv_cache_t * lv_freetype_create_glyph_cache(uint32_t cache_size)
     return glyph_cache;
 }
 
+LV_FUNC_SECTION
 void lv_freetype_set_cbs_glyph(lv_freetype_font_dsc_t * dsc)
 {
     LV_ASSERT_FREETYPE_FONT_DSC(dsc);
@@ -75,7 +77,7 @@ void lv_freetype_set_cbs_glyph(lv_freetype_font_dsc_t * dsc)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_font_get_glyph_dsc") ))
 static bool freetype_get_glyph_dsc_cb(const lv_font_t * font, lv_font_glyph_dsc_t * g_dsc, uint32_t unicode_letter,
                                       uint32_t unicode_letter_next)
 {
@@ -123,7 +125,7 @@ static bool freetype_get_glyph_dsc_cb(const lv_font_t * font, lv_font_glyph_dsc_
 /*-----------------
  * Cache Callbacks
  *----------------*/
-
+__attribute__(( fptrgroup("lv_cache_create_cb") ))
 static bool freetype_glyph_create_cb(lv_freetype_glyph_cache_data_t * data, void * user_data)
 {
     lv_freetype_font_dsc_t * dsc = (lv_freetype_font_dsc_t *)user_data;
@@ -181,11 +183,13 @@ static bool freetype_glyph_create_cb(lv_freetype_glyph_cache_data_t * data, void
 
     return true;
 }
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void freetype_glyph_free_cb(lv_freetype_glyph_cache_data_t * data, void * user_data)
 {
     LV_UNUSED(data);
     LV_UNUSED(user_data);
 }
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t freetype_glyph_compare_cb(const lv_freetype_glyph_cache_data_t * lhs,
                                                         const lv_freetype_glyph_cache_data_t * rhs)
 {

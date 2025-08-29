@@ -49,6 +49,7 @@ const lv_obj_class_t lv_gif_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_gif_create(lv_obj_t * parent)
 {
 
@@ -58,6 +59,7 @@ lv_obj_t * lv_gif_create(lv_obj_t * parent)
     return obj;
 }
 
+LV_FUNC_SECTION
 void lv_gif_set_src(lv_obj_t * obj, const void * src)
 {
     lv_gif_t * gifobj = (lv_gif_t *) obj;
@@ -105,6 +107,7 @@ void lv_gif_set_src(lv_obj_t * obj, const void * src)
 
 }
 
+LV_FUNC_SECTION
 void lv_gif_restart(lv_obj_t * obj)
 {
     lv_gif_t * gifobj = (lv_gif_t *) obj;
@@ -119,12 +122,14 @@ void lv_gif_restart(lv_obj_t * obj)
     lv_timer_reset(gifobj->timer);
 }
 
+LV_FUNC_SECTION
 void lv_gif_pause(lv_obj_t * obj)
 {
     lv_gif_t * gifobj = (lv_gif_t *) obj;
     lv_timer_pause(gifobj->timer);
 }
 
+LV_FUNC_SECTION
 void lv_gif_resume(lv_obj_t * obj)
 {
     lv_gif_t * gifobj = (lv_gif_t *) obj;
@@ -137,6 +142,7 @@ void lv_gif_resume(lv_obj_t * obj)
     lv_timer_resume(gifobj->timer);
 }
 
+LV_FUNC_SECTION
 bool lv_gif_is_loaded(lv_obj_t * obj)
 {
     lv_gif_t * gifobj = (lv_gif_t *) obj;
@@ -144,6 +150,7 @@ bool lv_gif_is_loaded(lv_obj_t * obj)
     return (gifobj->gif != NULL);
 }
 
+LV_FUNC_SECTION
 int32_t lv_gif_get_loop_count(lv_obj_t * obj)
 {
     lv_gif_t * gifobj = (lv_gif_t *) obj;
@@ -155,6 +162,7 @@ int32_t lv_gif_get_loop_count(lv_obj_t * obj)
     return gifobj->gif->loop_count;
 }
 
+LV_FUNC_SECTION
 void lv_gif_set_loop_count(lv_obj_t * obj, int32_t count)
 {
     lv_gif_t * gifobj = (lv_gif_t *) obj;
@@ -171,6 +179,7 @@ void lv_gif_set_loop_count(lv_obj_t * obj, int32_t count)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_gif_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -182,6 +191,7 @@ static void lv_gif_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     lv_timer_pause(gifobj->timer);
 }
 
+LV_FUNC_SECTION
 static void lv_gif_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -194,6 +204,7 @@ static void lv_gif_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     lv_timer_delete(gifobj->timer);
 }
 
+LV_FUNC_SECTION
 static void next_frame_task_cb(lv_timer_t * t)
 {
     lv_obj_t * obj = t->user_data;

@@ -197,12 +197,14 @@ static void style_init_reset(lv_style_t * style);
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_color_t dark_color_filter_cb(const lv_color_filter_dsc_t * f, lv_color_t c, lv_opa_t opa)
 {
     LV_UNUSED(f);
     return lv_color_darken(c, opa);
 }
 
+LV_FUNC_SECTION
 static lv_color_t grey_filter_cb(const lv_color_filter_dsc_t * f, lv_color_t color, lv_opa_t opa)
 {
     LV_UNUSED(f);
@@ -210,6 +212,7 @@ static lv_color_t grey_filter_cb(const lv_color_filter_dsc_t * f, lv_color_t col
     else return lv_color_mix(lv_palette_lighten(LV_PALETTE_GREY, 2), color, opa);
 }
 
+LV_FUNC_SECTION
 static void style_init(my_theme_t * theme)
 {
 #if TRANSITION_TIME
@@ -637,6 +640,7 @@ static void style_init(my_theme_t * theme)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_theme_t * lv_theme_default_init(lv_display_t * disp, lv_color_t color_primary, lv_color_t color_secondary, bool dark,
                                    const lv_font_t * font)
 {
@@ -690,6 +694,7 @@ lv_theme_t * lv_theme_default_init(lv_display_t * disp, lv_color_t color_primary
     return (lv_theme_t *) theme;
 }
 
+LV_FUNC_SECTION
 void lv_theme_default_deinit(void)
 {
     my_theme_t * theme = theme_def;
@@ -707,6 +712,7 @@ void lv_theme_default_deinit(void)
     }
 }
 
+LV_FUNC_SECTION
 lv_theme_t * lv_theme_default_get(void)
 {
     if(!lv_theme_default_is_inited()) {
@@ -716,6 +722,7 @@ lv_theme_t * lv_theme_default_get(void)
     return (lv_theme_t *)theme_def;
 }
 
+LV_FUNC_SECTION
 bool lv_theme_default_is_inited(void)
 {
     my_theme_t * theme = theme_def;
@@ -723,6 +730,7 @@ bool lv_theme_default_is_inited(void)
     return theme->inited;
 }
 
+LV_FUNC_SECTION
 static void theme_apply(lv_theme_t * th, lv_obj_t * obj)
 {
     LV_UNUSED(th);
@@ -1215,6 +1223,7 @@ static void theme_apply(lv_theme_t * th, lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void style_init_reset(lv_style_t * style)
 {
     if(theme_def->inited) {

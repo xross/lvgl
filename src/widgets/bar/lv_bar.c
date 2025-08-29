@@ -80,6 +80,7 @@ const lv_obj_class_t lv_bar_class = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_bar_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin");
@@ -92,6 +93,7 @@ lv_obj_t * lv_bar_create(lv_obj_t * parent)
  * Setter functions
  *====================*/
 
+LV_FUNC_SECTION
 void lv_bar_set_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -107,6 +109,7 @@ void lv_bar_set_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim)
     lv_bar_set_value_with_anim(obj, value, &bar->cur_value, &bar->cur_value_anim, anim);
 }
 
+LV_FUNC_SECTION
 void lv_bar_set_start_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -125,6 +128,7 @@ void lv_bar_set_start_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim
     lv_bar_set_value_with_anim(obj, value, &bar->start_value, &bar->start_value_anim, anim);
 }
 
+LV_FUNC_SECTION
 void lv_bar_set_range(lv_obj_t * obj, int32_t min, int32_t max)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -155,6 +159,7 @@ void lv_bar_set_range(lv_obj_t * obj, int32_t min, int32_t max)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_bar_set_mode(lv_obj_t * obj, lv_bar_mode_t mode)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -168,6 +173,7 @@ void lv_bar_set_mode(lv_obj_t * obj, lv_bar_mode_t mode)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_bar_set_orientation(lv_obj_t * obj, lv_bar_orientation_t orientation)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -181,6 +187,7 @@ void lv_bar_set_orientation(lv_obj_t * obj, lv_bar_orientation_t orientation)
  * Getter functions
  *====================*/
 
+LV_FUNC_SECTION
 int32_t lv_bar_get_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -189,6 +196,7 @@ int32_t lv_bar_get_value(const lv_obj_t * obj)
     return LV_BAR_GET_ANIM_VALUE(bar->cur_value, bar->cur_value_anim);
 }
 
+LV_FUNC_SECTION
 int32_t lv_bar_get_start_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -199,6 +207,7 @@ int32_t lv_bar_get_start_value(const lv_obj_t * obj)
     return LV_BAR_GET_ANIM_VALUE(bar->start_value, bar->start_value_anim);
 }
 
+LV_FUNC_SECTION
 int32_t lv_bar_get_min_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -206,6 +215,7 @@ int32_t lv_bar_get_min_value(const lv_obj_t * obj)
     return bar->val_reversed ? bar->max_value : bar->min_value;
 }
 
+LV_FUNC_SECTION
 int32_t lv_bar_get_max_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -214,6 +224,7 @@ int32_t lv_bar_get_max_value(const lv_obj_t * obj)
     return bar->val_reversed ? bar->min_value : bar->max_value;
 }
 
+LV_FUNC_SECTION
 lv_bar_mode_t lv_bar_get_mode(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -222,6 +233,7 @@ lv_bar_mode_t lv_bar_get_mode(lv_obj_t * obj)
     return bar->mode;
 }
 
+LV_FUNC_SECTION
 lv_bar_orientation_t lv_bar_get_orientation(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -230,6 +242,7 @@ lv_bar_orientation_t lv_bar_get_orientation(lv_obj_t * obj)
     return bar->orientation;
 }
 
+LV_FUNC_SECTION
 bool lv_bar_is_symmetrical(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -243,6 +256,7 @@ bool lv_bar_is_symmetrical(lv_obj_t * obj)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void lv_bar_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -271,6 +285,7 @@ static void lv_bar_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     LV_TRACE_OBJ_CREATE("finished");
 }
 
+LV_FUNC_SECTION
 static void lv_bar_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_UNUSED(class_p);
@@ -280,6 +295,7 @@ static void lv_bar_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     lv_anim_delete(&bar->start_value_anim, NULL);
 }
 
+LV_FUNC_SECTION
 static void draw_indic(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -585,6 +601,7 @@ static void draw_indic(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void lv_bar_event(const lv_obj_class_t * class_p, lv_event_t * e)
 {
     LV_UNUSED(class_p);
@@ -626,6 +643,7 @@ static void lv_bar_event(const lv_obj_class_t * class_p, lv_event_t * e)
     }
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void lv_bar_anim(void * var, int32_t value)
 {
     lv_bar_anim_t * bar_anim = var;
@@ -633,6 +651,7 @@ static void lv_bar_anim(void * var, int32_t value)
     lv_obj_invalidate(bar_anim->bar);
 }
 
+__attribute__(( fptrgroup("lv_anim_completed_cb") ))
 static void lv_bar_anim_completed(lv_anim_t * a)
 {
     lv_bar_anim_t * var = a->var;
@@ -647,6 +666,7 @@ static void lv_bar_anim_completed(lv_anim_t * a)
     lv_obj_invalidate(var->bar);
 }
 
+LV_FUNC_SECTION
 static void lv_bar_set_value_with_anim(lv_obj_t * obj, int32_t new_value, int32_t * value_ptr,
                                        lv_bar_anim_t * anim_info, lv_anim_enable_t en)
 {
@@ -687,6 +707,7 @@ static void lv_bar_set_value_with_anim(lv_obj_t * obj, int32_t new_value, int32_
     }
 }
 
+LV_FUNC_SECTION
 static void lv_bar_init_anim(lv_obj_t * obj, lv_bar_anim_t * bar_anim)
 {
     bar_anim->bar = obj;

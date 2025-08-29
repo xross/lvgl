@@ -38,6 +38,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 pxp_output_pixel_format_t pxp_get_out_px_format(lv_color_format_t cf)
 {
     pxp_output_pixel_format_t out_px_format = kPXP_OutputPixelFormatRGB565;
@@ -64,6 +65,7 @@ pxp_output_pixel_format_t pxp_get_out_px_format(lv_color_format_t cf)
     return out_px_format;
 }
 
+LV_FUNC_SECTION
 pxp_as_pixel_format_t pxp_get_as_px_format(lv_color_format_t cf)
 {
     pxp_as_pixel_format_t as_px_format = kPXP_AsPixelFormatRGB565;
@@ -91,6 +93,7 @@ pxp_as_pixel_format_t pxp_get_as_px_format(lv_color_format_t cf)
 }
 
 #if LV_USE_DRAW_PXP
+LV_FUNC_SECTION
 pxp_ps_pixel_format_t pxp_get_ps_px_format(lv_color_format_t cf)
 {
     pxp_ps_pixel_format_t ps_px_format = kPXP_PsPixelFormatRGB565;
@@ -127,6 +130,7 @@ pxp_ps_pixel_format_t pxp_get_ps_px_format(lv_color_format_t cf)
     return ps_px_format;
 }
 
+LV_FUNC_SECTION
 bool pxp_buf_aligned(const void * buf, uint32_t stride)
 {
     /* Test for pointer alignment */

@@ -5,16 +5,19 @@
 #include "unity/unity.h"
 #include "lv_test_helpers.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 static void create_images(void)
 {
     lv_obj_clean(lv_screen_active());
@@ -40,6 +43,7 @@ static void create_images(void)
     lv_obj_align(label, LV_ALIGN_CENTER, 100, 20);
 }
 
+LV_FUNC_SECTION
 void test_tjpgd_1(void)
 {
     /* Temporarily remove libjpeg_turbo decoder */
@@ -65,6 +69,7 @@ void test_tjpgd_1(void)
     lv_libjpeg_turbo_init();
 }
 
+LV_FUNC_SECTION
 static void create_image_2(void)
 {
     LV_IMG_DECLARE(test_img_lvgl_logo_jpg);
@@ -75,6 +80,7 @@ static void create_image_2(void)
     lv_image_set_inner_align(img, LV_IMAGE_ALIGN_TILE);
 }
 
+LV_FUNC_SECTION
 void test_jdpgd_align_tile(void)
 {
     /* Temporarily remove libjpeg_turbo decoder */

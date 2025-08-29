@@ -12,11 +12,13 @@ static void read_range(lv_fs_file_t * f, uint32_t from, uint32_t to);
 
 static void read_random_drv(char drv_letter, uint32_t cache_size);
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
@@ -25,6 +27,7 @@ void tearDown(void)
 #include <errno.h>
 #include <unistd.h>
 
+LV_FUNC_SECTION
 void test_read(void)
 {
     lv_fs_res_t res;
@@ -65,6 +68,7 @@ void test_read(void)
     lv_fs_close(&fb);
 }
 
+LV_FUNC_SECTION
 void test_read_random(void)
 {
     read_random_drv('A', 8);
@@ -84,6 +88,7 @@ void test_read_random(void)
  * Read bytes from the `from` index to the `to index`
  * Assume that file `f` has 256 byte of content 0..255
  */
+LV_FUNC_SECTION
 static void read_range(lv_fs_file_t * f, uint32_t from, uint32_t to)
 {
     lv_fs_seek(f, from, LV_FS_SEEK_SET);
@@ -101,6 +106,7 @@ static void read_range(lv_fs_file_t * f, uint32_t from, uint32_t to)
     }
 }
 
+LV_FUNC_SECTION
 static void read_next(lv_fs_file_t * f, uint32_t from, uint32_t len)
 {
     uint8_t buf_rd[256];
@@ -115,6 +121,7 @@ static void read_next(lv_fs_file_t * f, uint32_t from, uint32_t len)
     }
 }
 
+LV_FUNC_SECTION
 static void read_random_drv(char drv_letter, uint32_t cache_size)
 {
     /*Hack to force a small cache size*/
@@ -179,6 +186,7 @@ static void read_random_drv(char drv_letter, uint32_t cache_size)
     drv->cache_size = original_cache_size;
 }
 
+LV_FUNC_SECTION
 void test_write_read_random(void)
 {
     lv_fs_drv_t * drv = lv_fs_get_drv('A');

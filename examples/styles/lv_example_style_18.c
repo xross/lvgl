@@ -6,6 +6,7 @@
 /**
  * Using various gradients for button background
  */
+LV_FUNC_SECTION
 void lv_example_style_18(void)
 {
     static const lv_color_t grad_colors[2] = {
@@ -85,6 +86,7 @@ void lv_example_style_18(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_style_18(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());

@@ -2,6 +2,7 @@
 #if LV_USE_LIST && LV_BUILD_EXAMPLES
 static lv_obj_t * list1;
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -11,6 +12,7 @@ static void event_handler(lv_event_t * e)
         LV_LOG_USER("Clicked: %s", lv_list_get_button_text(list1, obj));
     }
 }
+LV_FUNC_SECTION
 void lv_example_list_1(void)
 {
     /*Create a list*/

@@ -54,6 +54,7 @@ static vg_lite_fill_t lv_fill_to_vg(lv_vector_fill_t fill_rule);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vg_lite_vector(lv_draw_unit_t * draw_unit, const lv_draw_vector_task_dsc_t * dsc)
 {
     if(dsc->task_list == NULL)
@@ -72,6 +73,7 @@ void lv_draw_vg_lite_vector(lv_draw_unit_t * draw_unit, const lv_draw_vector_tas
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static vg_lite_color_t lv_color32_to_vg(lv_color32_t color, lv_opa_t opa)
 {
     uint8_t a = LV_OPA_MIX2(color.alpha, opa);
@@ -83,6 +85,7 @@ static vg_lite_color_t lv_color32_to_vg(lv_color32_t color, lv_opa_t opa)
     return (uint32_t)a << 24 | (uint32_t)color.blue << 16 | (uint32_t)color.green << 8 | color.red;
 }
 
+LV_FUNC_SECTION
 static void task_draw_cb(void * ctx, const lv_vector_path_t * path, const lv_vector_draw_dsc_t * dsc)
 {
     LV_PROFILER_BEGIN;
@@ -291,6 +294,7 @@ static void task_draw_cb(void * ctx, const lv_vector_path_t * path, const lv_vec
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 static vg_lite_quality_t lv_quality_to_vg(lv_vector_path_quality_t quality)
 {
     switch(quality) {
@@ -305,6 +309,7 @@ static vg_lite_quality_t lv_quality_to_vg(lv_vector_path_quality_t quality)
     }
 }
 
+LV_FUNC_SECTION
 static void lv_path_to_vg(lv_vg_lite_path_t * dest, const lv_vector_path_t * src)
 {
     LV_PROFILER_BEGIN;
@@ -374,6 +379,7 @@ static void lv_path_to_vg(lv_vg_lite_path_t * dest, const lv_vector_path_t * src
     LV_PROFILER_END;
 }
 
+LV_FUNC_SECTION
 static vg_lite_path_type_t lv_path_opa_to_path_type(const lv_vector_draw_dsc_t * dsc)
 {
     lv_opa_t fill_opa = dsc->fill_dsc.opa;
@@ -394,6 +400,7 @@ static vg_lite_path_type_t lv_path_opa_to_path_type(const lv_vector_draw_dsc_t *
     return VG_LITE_DRAW_ZERO;
 }
 
+LV_FUNC_SECTION
 static vg_lite_blend_t lv_blend_to_vg(lv_vector_blend_t blend)
 {
     switch(blend) {
@@ -420,6 +427,7 @@ static vg_lite_blend_t lv_blend_to_vg(lv_vector_blend_t blend)
     }
 }
 
+LV_FUNC_SECTION
 static vg_lite_fill_t lv_fill_to_vg(lv_vector_fill_t fill_rule)
 {
     switch(fill_rule) {

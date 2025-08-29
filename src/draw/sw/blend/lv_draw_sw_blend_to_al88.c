@@ -926,6 +926,7 @@ static void LV_ATTRIBUTE_FAST_MEM argb8888_image_blend(lv_draw_sw_blend_image_ds
  * @param c2    the second color
  * @return      true: equal
  */
+LV_FUNC_SECTION
 static inline bool lv_color16a_eq(lv_color16a_t c1, lv_color16a_t c2)
 {
     return *((uint16_t *)&c1) == *((uint16_t *)&c2);
@@ -986,6 +987,7 @@ static inline void LV_ATTRIBUTE_FAST_MEM lv_color_16a_16a_mix(lv_color16a_t fg, 
     }
 }
 
+LV_FUNC_SECTION
 void lv_color_mix_with_alpha_cache_init(lv_color_mix_alpha_cache_t * cache)
 {
     lv_memzero(&cache->fg_saved, sizeof(lv_color16a_t));

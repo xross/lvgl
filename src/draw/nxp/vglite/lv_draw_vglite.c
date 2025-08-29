@@ -104,6 +104,7 @@ static void _vglite_execute_drawing(lv_draw_vglite_unit_t * u);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vglite_init(void)
 {
     lv_draw_buf_vglite_init_handlers();
@@ -121,6 +122,7 @@ void lv_draw_vglite_init(void)
 #endif
 }
 
+LV_FUNC_SECTION
 void lv_draw_vglite_deinit(void)
 {
 }
@@ -129,6 +131,7 @@ void lv_draw_vglite_deinit(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static inline bool _vglite_src_cf_supported(lv_color_format_t cf)
 {
     bool is_cf_supported = false;
@@ -159,6 +162,7 @@ static inline bool _vglite_src_cf_supported(lv_color_format_t cf)
     return is_cf_supported;
 }
 
+LV_FUNC_SECTION
 static inline bool _vglite_dest_cf_supported(lv_color_format_t cf)
 {
     bool is_cf_supported = false;
@@ -184,6 +188,7 @@ static inline bool _vglite_dest_cf_supported(lv_color_format_t cf)
     return is_cf_supported;
 }
 
+LV_FUNC_SECTION
 static int32_t _vglite_evaluate(lv_draw_unit_t * u, lv_draw_task_t * t)
 {
     LV_UNUSED(u);
@@ -277,6 +282,7 @@ static int32_t _vglite_evaluate(lv_draw_unit_t * u, lv_draw_task_t * t)
     return 0;
 }
 
+LV_FUNC_SECTION
 static int32_t _vglite_dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
 {
     lv_draw_vglite_unit_t * draw_vglite_unit = (lv_draw_vglite_unit_t *) draw_unit;
@@ -332,6 +338,7 @@ static int32_t _vglite_dispatch(lv_draw_unit_t * draw_unit, lv_layer_t * layer)
 }
 
 #if LV_USE_VGLITE_DRAW_ASYNC
+LV_FUNC_SECTION
 static int32_t _vglite_wait_for_finish(lv_draw_unit_t * draw_unit)
 {
     lv_draw_vglite_unit_t * draw_vglite_unit = (lv_draw_vglite_unit_t *) draw_unit;
@@ -348,6 +355,7 @@ static int32_t _vglite_wait_for_finish(lv_draw_unit_t * draw_unit)
 }
 #endif
 
+LV_FUNC_SECTION
 static int32_t _vglite_delete(lv_draw_unit_t * draw_unit)
 {
 #if LV_USE_VGLITE_DRAW_THREAD
@@ -369,6 +377,7 @@ static int32_t _vglite_delete(lv_draw_unit_t * draw_unit)
 #endif
 }
 
+LV_FUNC_SECTION
 static void _vglite_execute_drawing(lv_draw_vglite_unit_t * u)
 {
     lv_draw_task_t * t = u->task_act;
@@ -479,6 +488,7 @@ static void _vglite_execute_drawing(lv_draw_vglite_unit_t * u)
 }
 
 #if LV_USE_VGLITE_DRAW_ASYNC
+LV_FUNC_SECTION
 static inline void _vglite_queue_task(lv_draw_task_t * task)
 {
     VGLITE_ASSERT_MSG(((_tail + 1) % VGLITE_TASK_BUF_SIZE) != _head, "VGLite task buffer full.");
@@ -488,6 +498,7 @@ static inline void _vglite_queue_task(lv_draw_task_t * task)
     _tail = (_tail + 1) % VGLITE_TASK_BUF_SIZE;
 }
 
+LV_FUNC_SECTION
 static inline void _vglite_signal_task_ready(lv_draw_task_t * task)
 {
     /* Signal the ready state to dispatcher. */
@@ -497,6 +508,7 @@ static inline void _vglite_signal_task_ready(lv_draw_task_t * task)
     /* No need to cleanup the tasks in buffer as we advance with the _head. */
 }
 
+LV_FUNC_SECTION
 static inline void _vglite_signal_all_task_ready(void)
 {
     int end = (_head <= _tail) ? _tail : _tail + VGLITE_TASK_BUF_SIZE;
@@ -508,6 +520,7 @@ static inline void _vglite_signal_all_task_ready(void)
     }
 }
 
+LV_FUNC_SECTION
 static inline void _vglite_signal_flushed_task_ready(void)
 {
     if(vglite_cmd_buf_is_flushed()) {
@@ -530,6 +543,7 @@ static inline void _vglite_signal_flushed_task_ready(void)
 #endif
 
 #if LV_USE_VGLITE_DRAW_THREAD
+LV_FUNC_SECTION
 static void _vglite_render_thread_cb(void * ptr)
 {
     lv_draw_vglite_unit_t * u = ptr;

@@ -4,6 +4,7 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void test_screen_load_no_crash(void)
 {
     /*Delete active screen and load new screen should not crash*/
@@ -19,6 +20,7 @@ void test_screen_load_no_crash(void)
     lv_screen_load_anim(screen_with_anim_2, LV_SCR_LOAD_ANIM_OVER_RIGHT, 1000, 500, false);
 }
 
+LV_FUNC_SECTION
 void test_screen_load_with_delete_no_crash(void)
 {
     /*Delete active screen and load new screen should not crash*/
@@ -51,6 +53,7 @@ void test_screen_load_with_delete_no_crash(void)
     TEST_ASSERT_EQUAL(lv_obj_is_valid(screen_with_anim_3), true);
 }
 
+LV_FUNC_SECTION
 void test_screen_load_with_delete_no_crash2(void)
 {
     /*Delete active screen and load new screen should not crash*/
@@ -88,12 +91,14 @@ void test_screen_load_with_delete_no_crash2(void)
 
 static bool screen_1_unloaded_called = false;
 
+LV_FUNC_SECTION
 static void screen_with_anim_1_unloaded_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
     screen_1_unloaded_called = true;
 }
 
+LV_FUNC_SECTION
 void test_screen_load_with_delete_event(void)
 {
     /*Delete active screen and load new screen should not crash*/

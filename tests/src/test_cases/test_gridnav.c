@@ -12,6 +12,7 @@ static struct {
     lv_obj_t * obj;
 } g_key_data;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     g_screen = lv_screen_active();
@@ -19,12 +20,14 @@ void setUp(void)
     g_key_data.press_happened = false;
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(g_screen);
     lv_group_delete(g_group); /* also removes all indevs set to the group */
 }
 
+LV_FUNC_SECTION
 static void key_event_cb(lv_event_t * e)
 {
     TEST_ASSERT_FALSE(g_key_data.press_happened);
@@ -33,6 +36,7 @@ static void key_event_cb(lv_event_t * e)
     g_key_data.obj = lv_event_get_target_obj(e);
 }
 
+LV_FUNC_SECTION
 static void gridnav_one_axis_move_only(uint32_t key_grid_axis_next,
                                        uint32_t key_grid_axis_prev,
                                        uint32_t key_obj_axis_next,
@@ -91,6 +95,7 @@ static void gridnav_one_axis_move_only(uint32_t key_grid_axis_next,
     TEST_ASSERT_FALSE(g_key_data.press_happened);
 }
 
+LV_FUNC_SECTION
 void test_gridnav_vertical_move_only(void)
 {
     gridnav_one_axis_move_only(LV_KEY_DOWN,
@@ -101,6 +106,7 @@ void test_gridnav_vertical_move_only(void)
                                LV_FLEX_FLOW_COLUMN);
 }
 
+LV_FUNC_SECTION
 void test_gridnav_horizontal_move_only(void)
 {
     gridnav_one_axis_move_only(LV_KEY_RIGHT,

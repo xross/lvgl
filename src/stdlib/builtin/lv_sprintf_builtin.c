@@ -127,6 +127,7 @@ typedef struct {
 } out_fct_wrap_type;
 
 // internal buffer output
+LV_FUNC_SECTION
 static inline void _out_buffer(char character, void * buffer, size_t idx, size_t maxlen)
 {
     if(idx < maxlen) {
@@ -135,6 +136,7 @@ static inline void _out_buffer(char character, void * buffer, size_t idx, size_t
 }
 
 // internal null output
+LV_FUNC_SECTION
 static inline void _out_null(char character, void * buffer, size_t idx, size_t maxlen)
 {
     LV_UNUSED(character);
@@ -145,6 +147,7 @@ static inline void _out_null(char character, void * buffer, size_t idx, size_t m
 
 // internal secure strlen
 // \return The length of the string (excluding the terminating 0) limited by 'maxsize'
+LV_FUNC_SECTION
 static inline unsigned int _strnlen_s(const char * str, size_t maxsize)
 {
     const char * s;
@@ -154,12 +157,14 @@ static inline unsigned int _strnlen_s(const char * str, size_t maxsize)
 
 // internal test if char is a digit (0-9)
 // \return true if char is a digit
+LV_FUNC_SECTION
 static inline bool _is_digit(char ch)
 {
     return (ch >= '0') && (ch <= '9');
 }
 
 // internal ASCII string to unsigned int conversion
+LV_FUNC_SECTION
 static unsigned int _atoi(const char ** str)
 {
     unsigned int i = 0U;
@@ -170,6 +175,7 @@ static unsigned int _atoi(const char ** str)
 }
 
 // output the specified string in reverse, taking care of any zero-padding
+LV_FUNC_SECTION
 static size_t _out_rev(out_fct_type out, char * buffer, size_t idx, size_t maxlen, const char * buf, size_t len,
                        unsigned int width, unsigned int flags)
 {
@@ -199,6 +205,7 @@ static size_t _out_rev(out_fct_type out, char * buffer, size_t idx, size_t maxle
 }
 
 // internal itoa format
+LV_FUNC_SECTION
 static size_t _ntoa_format(out_fct_type out, char * buffer, size_t idx, size_t maxlen, char * buf, size_t len,
                            bool negative, unsigned int base, unsigned int prec, unsigned int width, unsigned int flags)
 {
@@ -253,6 +260,7 @@ static size_t _ntoa_format(out_fct_type out, char * buffer, size_t idx, size_t m
 }
 
 // internal itoa for 'long' type
+LV_FUNC_SECTION
 static size_t _ntoa_long(out_fct_type out, char * buffer, size_t idx, size_t maxlen, unsigned long value, bool negative,
                          unsigned long base, unsigned int prec, unsigned int width, unsigned int flags)
 {
@@ -278,6 +286,7 @@ static size_t _ntoa_long(out_fct_type out, char * buffer, size_t idx, size_t max
 
 // internal itoa for 'long long' type
 #if defined(PRINTF_SUPPORT_LONG_LONG)
+LV_FUNC_SECTION
 static size_t _ntoa_long_long(out_fct_type out, char * buffer, size_t idx, size_t maxlen, unsigned long long value,
                               bool negative, unsigned long long base, unsigned int prec, unsigned int width, unsigned int flags)
 {
@@ -311,6 +320,7 @@ static size_t _etoa(out_fct_type out, char * buffer, size_t idx, size_t maxlen, 
 #endif
 
 // internal ftoa for fixed decimal floating point
+LV_FUNC_SECTION
 static size_t _ftoa(out_fct_type out, char * buffer, size_t idx, size_t maxlen, double value, unsigned int prec,
                     unsigned int width, unsigned int flags)
 {
@@ -440,6 +450,7 @@ static size_t _ftoa(out_fct_type out, char * buffer, size_t idx, size_t maxlen, 
 
 #if defined(PRINTF_SUPPORT_EXPONENTIAL)
 // internal ftoa variant for exponential floating-point type, contributed by Martijn Jasperse <m.jasperse@gmail.com>
+LV_FUNC_SECTION
 static size_t _etoa(out_fct_type out, char * buffer, size_t idx, size_t maxlen, double value, unsigned int prec,
                     unsigned int width, unsigned int flags)
 {
@@ -552,6 +563,8 @@ static size_t _etoa(out_fct_type out, char * buffer, size_t idx, size_t maxlen, 
 #endif  // PRINTF_SUPPORT_FLOAT
 
 // internal vsnprintf
+#pragma stackfunction 4096
+LV_FUNC_SECTION
 static int lv_vsnprintf_inner(out_fct_type out, char * buffer, const size_t maxlen, const char * format, va_list va)
 {
     unsigned int flags, width, precision, n;
@@ -869,6 +882,7 @@ static int lv_vsnprintf_inner(out_fct_type out, char * buffer, const size_t maxl
 /// GLOBAL FUNCTIONS FOR LVGL
 ///////////////////////////////////////////////////////////////////////////////
 
+LV_FUNC_SECTION
 int lv_snprintf(char * buffer, size_t count, const char * format, ...)
 {
     va_list va;
@@ -878,6 +892,7 @@ int lv_snprintf(char * buffer, size_t count, const char * format, ...)
     return ret;
 }
 
+LV_FUNC_SECTION
 int lv_vsnprintf(char * buffer, size_t count, const char * format, va_list va)
 {
     return lv_vsnprintf_inner(_out_buffer, buffer, count, format, va);

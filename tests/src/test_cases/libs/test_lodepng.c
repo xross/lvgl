@@ -5,16 +5,19 @@
 #include "unity/unity.h"
 #include "lv_test_helpers.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 static void create_images(void)
 {
     lv_obj_clean(lv_screen_active());
@@ -51,6 +54,7 @@ static void create_images(void)
     lv_obj_align(label, LV_ALIGN_CENTER, 100, 100);
 }
 
+LV_FUNC_SECTION
 void test_lodepng_1(void)
 {
     /* Temporarily remove libpng decoder */

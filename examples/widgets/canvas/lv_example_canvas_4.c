@@ -7,6 +7,7 @@
 /**
  * Draw a text to the canvas
  */
+LV_FUNC_SECTION
 void lv_example_canvas_4(void)
 {
     /*Create a buffer for the canvas*/

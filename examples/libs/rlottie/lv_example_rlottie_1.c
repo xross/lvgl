@@ -5,6 +5,7 @@
 /**
  * Load an lottie animation from flash
  */
+LV_FUNC_SECTION
 void lv_example_rlottie_1(void)
 {
     extern const uint8_t lv_example_rlottie_approve[];
@@ -13,6 +14,7 @@ void lv_example_rlottie_1(void)
 }
 
 #else
+LV_FUNC_SECTION
 void lv_example_rlottie_1(void)
 {
     /*TODO

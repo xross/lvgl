@@ -4,6 +4,7 @@
 /**
  * Style a button from scratch
  */
+LV_FUNC_SECTION
 void lv_example_button_2(void)
 {
     /*Init the style for the default state*/

@@ -99,6 +99,7 @@ static card_info_t card_info[] = {
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static const void * get_imgfont_path(const lv_font_t * font,
                                      uint32_t unicode, uint32_t unicode_next,
                                      int32_t * offset_y, void * user_data)
@@ -153,6 +154,7 @@ static const void * get_imgfont_path(const lv_font_t * font,
 
 lv_font_t * emoji_font;
 
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_multilang(void)
 {
     emoji_font = lv_imgfont_create(20, get_imgfont_path, NULL);
@@ -234,6 +236,7 @@ void lv_demo_multilang(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void inactive_timer_cb(lv_timer_t * t)
 {
     LV_UNUSED(t);
@@ -257,6 +260,7 @@ static void inactive_timer_cb(lv_timer_t * t)
     }
 }
 
+LV_FUNC_SECTION
 static void shrink_anim_cb(void * var, int32_t v)
 {
     lv_obj_t * cont = var;
@@ -264,6 +268,7 @@ static void shrink_anim_cb(void * var, int32_t v)
     lv_obj_set_style_opa(cont, v, 0);
 }
 
+LV_FUNC_SECTION
 static void scroll_event_cb(lv_event_t * e)
 {
     lv_indev_t * indev = lv_indev_active();
@@ -290,6 +295,7 @@ static void scroll_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void card_create(lv_obj_t * parent, card_info_t * info)
 {
     lv_obj_t * cont = lv_obj_create(parent);

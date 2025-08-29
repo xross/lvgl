@@ -6,16 +6,19 @@
 
 static lv_obj_t * active_screen = NULL;
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     active_screen = lv_screen_active();
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     lv_obj_clean(active_screen);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * obj_create(lv_obj_t * parent, lv_color_t color)
 {
     lv_obj_t * obj = lv_obj_create(parent);
@@ -26,6 +29,7 @@ lv_obj_t * obj_create(lv_obj_t * parent, lv_color_t color)
     return obj;
 }
 
+LV_FUNC_SECTION
 void obj_set_margin(lv_obj_t * obj, int32_t left, int32_t top, int32_t right, int32_t bottom)
 {
     lv_obj_set_style_margin_left(obj, left, LV_PART_MAIN);
@@ -35,6 +39,7 @@ void obj_set_margin(lv_obj_t * obj, int32_t left, int32_t top, int32_t right, in
 }
 
 // takes no effect on position but size.
+LV_FUNC_SECTION
 void test_align(void)
 {
     lv_obj_t * obj0 = active_screen;

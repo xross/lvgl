@@ -1,6 +1,7 @@
 #if LV_BUILD_TEST
 #include "../../lvgl.h"
 
+LV_FUNC_SECTION
 int efi_main(void * image_handle, void * system_table)
 {
     lv_init();
@@ -8,6 +9,7 @@ int efi_main(void * image_handle, void * system_table)
 }
 
 // memcpy is required as symbol for the clang compiler
+LV_FUNC_SECTION
 void * memcpy(void * s, const void * ct, size_t n)
 {
     const uint8_t * ct_8 = (const uint8_t *) ct;
@@ -21,6 +23,7 @@ void * memcpy(void * s, const void * ct, size_t n)
 }
 
 // memset is required as symbol for the clang compiler
+LV_FUNC_SECTION
 void * memset(void * s, int c, size_t n)
 {
     uint8_t * s_8 = (uint8_t *)s;

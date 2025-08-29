@@ -4,17 +4,20 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
 /* #3324 */
+LV_FUNC_SECTION
 void test_mem_buf_realloc(void)
 {
 #ifdef LVGL_CI_USING_DEF_HEAP

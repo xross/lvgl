@@ -5,6 +5,7 @@ static uint32_t btn_cnt = 1;
 static lv_obj_t * main_page;
 static lv_obj_t * menu;
 
+LV_FUNC_SECTION
 static void float_button_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
@@ -28,6 +29,7 @@ static void float_button_event_cb(lv_event_t * e)
     lv_obj_scroll_to_view_recursive(cont, LV_ANIM_ON);
 }
 
+LV_FUNC_SECTION
 void lv_example_menu_4(void)
 {
     /*Create a menu object*/

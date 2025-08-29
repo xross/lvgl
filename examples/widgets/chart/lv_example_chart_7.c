@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_CHART && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 static void draw_event_cb(lv_event_t * e)
 {
     lv_draw_task_t * draw_task = lv_event_get_draw_task(e);
@@ -29,6 +30,7 @@ static void draw_event_cb(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void add_data(lv_timer_t * timer)
 {
     lv_obj_t * chart = lv_timer_get_user_data(timer);
@@ -38,6 +40,7 @@ static void add_data(lv_timer_t * timer)
 /**
  * A scatter chart
  */
+LV_FUNC_SECTION
 void lv_example_chart_7(void)
 {
     lv_obj_t * chart = lv_chart_create(lv_screen_active());

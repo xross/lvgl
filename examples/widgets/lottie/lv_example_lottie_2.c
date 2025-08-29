@@ -5,6 +5,7 @@
 /**
  * Load an lottie animation from file
  */
+LV_FUNC_SECTION
 void lv_example_lottie_2(void)
 {
 
@@ -27,6 +28,7 @@ void lv_example_lottie_2(void)
 
 #else
 
+LV_FUNC_SECTION
 void lv_example_lottie_2(void)
 {
     /*fallback for online examples*/

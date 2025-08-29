@@ -125,6 +125,7 @@ static vg_lite_color_t _vglite_recolor(const lv_draw_image_dsc_t * dsc);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_draw_vglite_img(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * dsc,
                         const lv_area_t * coords)
 {
@@ -184,6 +185,7 @@ void lv_draw_vglite_img(lv_draw_unit_t * draw_unit, const lv_draw_image_dsc_t * 
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+LV_FUNC_SECTION
 static void _vglite_blit(const lv_area_t * src_area, const lv_draw_image_dsc_t * dsc)
 {
     vg_lite_buffer_t * dst_vgbuf = vglite_get_dest_buf();
@@ -210,6 +212,7 @@ static void _vglite_blit(const lv_area_t * src_area, const lv_draw_image_dsc_t *
 }
 
 #if LV_USE_VGLITE_BLIT_SPLIT
+LV_FUNC_SECTION
 static void _move_buf_close_to_area(void ** buf, lv_area_t * area, uint32_t stride, lv_color_format_t cf)
 {
     uint8_t ** buf_u8 = (uint8_t **)buf;
@@ -235,6 +238,7 @@ static void _move_buf_close_to_area(void ** buf, lv_area_t * area, uint32_t stri
     }
 }
 
+LV_FUNC_SECTION
 static void _vglite_blit_split(void * dest_buf, lv_area_t * dest_area, uint32_t dest_stride, lv_color_format_t dest_cf,
                                const void * src_buf, lv_area_t * src_area, uint32_t src_stride, lv_color_format_t src_cf,
                                const lv_draw_image_dsc_t * dsc)
@@ -372,6 +376,7 @@ static void _vglite_blit_split(void * dest_buf, lv_area_t * dest_area, uint32_t 
 }
 #endif /*LV_USE_VGLITE_BLIT_SPLIT*/
 
+LV_FUNC_SECTION
 static void _vglite_draw_pattern(const lv_area_t * clip_area, const lv_area_t * coords,
                                  const lv_draw_image_dsc_t * dsc)
 {
@@ -418,6 +423,7 @@ static void _vglite_draw_pattern(const lv_area_t * clip_area, const lv_area_t * 
                                             0, vgcol, filter));
 }
 
+LV_FUNC_SECTION
 static vg_lite_color_t _vglite_recolor(const lv_draw_image_dsc_t * dsc)
 {
     lv_color_t color;

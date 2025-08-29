@@ -12,6 +12,7 @@ static lv_subject_t slider_subject[4];
 static lv_subject_t dropdown_subject[3];
 static lv_subject_t roller_subject[2];
 
+LV_FUNC_SECTION
 void lv_example_observer_4(void)
 {
     lv_subject_init_int(&current_tab_subject, 0);
@@ -64,16 +65,19 @@ void lv_example_observer_4(void)
     lv_subject_notify(&current_tab_subject);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static int32_t anim_get_x_cb(lv_anim_t * a)
 {
     return lv_obj_get_x_aligned(a->var);
 }
 
+__attribute__(( fptrgroup("lv_anim_exec_cb") ))
 static void anim_set_x_cb(void * obj, int32_t v)
 {
     lv_obj_set_x(obj, v);
 }
 
+__attribute__(( fptrgroup("lv_observer_cb") ))
 static void cont_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     int32_t prev_v = lv_subject_get_previous_int(subject);
@@ -149,6 +153,7 @@ static void cont_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 
 }
 
+LV_FUNC_SECTION
 static void btn_create(lv_obj_t * parent, const char * text)
 {
     lv_obj_t * btn = lv_button_create(parent);
@@ -163,6 +168,7 @@ static void btn_create(lv_obj_t * parent, const char * text)
     lv_obj_center(label);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void btn_click_event_cb(lv_event_t * e)
 {
     lv_obj_t * btn = lv_event_get_target(e);
@@ -170,6 +176,7 @@ static void btn_click_event_cb(lv_event_t * e)
     lv_subject_set_int(&current_tab_subject, idx);
 }
 
+__attribute__(( fptrgroup("lv_observer_cb") ))
 static void btn_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     int32_t prev_v = lv_subject_get_previous_int(subject);
@@ -182,6 +189,7 @@ static void btn_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
     if(idx == cur_v) lv_obj_add_state(btn, LV_STATE_CHECKED);
 }
 
+__attribute__(( fptrgroup("lv_observer_cb") ))
 static void indicator_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
 {
     int32_t cur_v = lv_subject_get_int(subject);

@@ -45,6 +45,7 @@ void LV_ATTRIBUTE_FAST_MEM lv_draw_line_dsc_init(lv_draw_line_dsc_t * dsc)
     dsc->base.dsc_size = sizeof(lv_draw_line_dsc_t);
 }
 
+LV_FUNC_SECTION
 lv_draw_line_dsc_t * lv_draw_task_get_line_dsc(lv_draw_task_t * task)
 {
     return task->type == LV_DRAW_TASK_TYPE_LINE ? (lv_draw_line_dsc_t *)task->draw_dsc : NULL;

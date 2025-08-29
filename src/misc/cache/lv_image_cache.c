@@ -51,6 +51,7 @@ static void image_cache_free_cb(lv_image_cache_data_t * entry, void * user_data)
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_result_t lv_image_cache_init(uint32_t size)
 {
     if(img_cache_p != NULL) {
@@ -68,6 +69,7 @@ lv_result_t lv_image_cache_init(uint32_t size)
     return img_cache_p != NULL ? LV_RESULT_OK : LV_RESULT_INVALID;
 }
 
+LV_FUNC_SECTION
 void lv_image_cache_resize(uint32_t new_size, bool evict_now)
 {
     lv_cache_set_max_size(img_cache_p, new_size, NULL);
@@ -76,6 +78,7 @@ void lv_image_cache_resize(uint32_t new_size, bool evict_now)
     }
 }
 
+LV_FUNC_SECTION
 void lv_image_cache_drop(const void * src)
 {
     /*If user invalidate image, the header cache should be invalidated too.*/
@@ -94,6 +97,7 @@ void lv_image_cache_drop(const void * src)
     lv_cache_drop(img_cache_p, &search_key, NULL);
 }
 
+LV_FUNC_SECTION
 bool lv_image_cache_is_enabled(void)
 {
     return lv_cache_is_enabled(img_cache_p);
@@ -103,6 +107,7 @@ bool lv_image_cache_is_enabled(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 inline static lv_cache_compare_res_t image_cache_common_compare(const void * lhs_src, lv_image_src_t lhs_src_type,
                                                                 const void * rhs_src, lv_image_src_t rhs_src_type)
 {
@@ -123,6 +128,7 @@ inline static lv_cache_compare_res_t image_cache_common_compare(const void * lhs
     return lhs_src_type > rhs_src_type ? 1 : -1;
 }
 
+__attribute__(( fptrgroup("lv_cache_compare_cb") ))
 static lv_cache_compare_res_t image_cache_compare_cb(
     const lv_image_cache_data_t * lhs,
     const lv_image_cache_data_t * rhs)
@@ -130,6 +136,7 @@ static lv_cache_compare_res_t image_cache_compare_cb(
     return image_cache_common_compare(lhs->src, lhs->src_type, rhs->src, rhs->src_type);
 }
 
+__attribute__(( fptrgroup("lv_cache_free_cb") ))
 static void image_cache_free_cb(lv_image_cache_data_t * entry, void * user_data)
 {
     LV_UNUSED(user_data);

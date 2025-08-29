@@ -49,6 +49,7 @@ static lv_obj_t * lv_obj_get_first_not_deleting_child(lv_obj_t * obj);
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 void lv_obj_delete(lv_obj_t * obj)
 {
     if(obj->is_deleting)
@@ -87,6 +88,7 @@ void lv_obj_delete(lv_obj_t * obj)
     LV_LOG_TRACE("finished (delete %p)", (void *)obj);
 }
 
+LV_FUNC_SECTION
 void lv_obj_clean(lv_obj_t * obj)
 {
     LV_LOG_TRACE("begin (clean %p)", (void *)obj);
@@ -117,6 +119,7 @@ void lv_obj_clean(lv_obj_t * obj)
     LV_LOG_TRACE("finished (clean %p)", (void *)obj);
 }
 
+LV_FUNC_SECTION
 void lv_obj_delete_delayed(lv_obj_t * obj, uint32_t delay_ms)
 {
     lv_anim_t a;
@@ -129,17 +132,20 @@ void lv_obj_delete_delayed(lv_obj_t * obj, uint32_t delay_ms)
     lv_anim_start(&a);
 }
 
+__attribute__(( fptrgroup("lv_anim_completed_cb") ))
 void lv_obj_delete_anim_completed_cb(lv_anim_t * a)
 {
     lv_obj_delete(a->var);
 }
 
+LV_FUNC_SECTION
 void lv_obj_delete_async(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     lv_async_call(lv_obj_delete_async_cb, obj);
 }
 
+LV_FUNC_SECTION
 void lv_obj_set_parent(lv_obj_t * obj, lv_obj_t * parent)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -201,6 +207,7 @@ void lv_obj_set_parent(lv_obj_t * obj, lv_obj_t * parent)
     lv_obj_invalidate(obj);
 }
 
+LV_FUNC_SECTION
 void lv_obj_move_to_index(lv_obj_t * obj, int32_t index)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -250,6 +257,7 @@ void lv_obj_move_to_index(lv_obj_t * obj, int32_t index)
     lv_obj_invalidate(parent);
 }
 
+LV_FUNC_SECTION
 void lv_obj_swap(lv_obj_t * obj1, lv_obj_t * obj2)
 {
     LV_ASSERT_OBJ(obj1, MY_CLASS);
@@ -283,6 +291,7 @@ void lv_obj_swap(lv_obj_t * obj1, lv_obj_t * obj2)
     lv_group_swap_obj(obj1, obj2);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_obj_get_screen(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -298,6 +307,7 @@ lv_obj_t * lv_obj_get_screen(const lv_obj_t * obj)
     return (lv_obj_t *)act_par;
 }
 
+LV_FUNC_SECTION
 lv_display_t * lv_obj_get_display(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -320,6 +330,7 @@ lv_display_t * lv_obj_get_display(const lv_obj_t * obj)
     return NULL;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_obj_get_parent(const lv_obj_t * obj)
 {
     if(obj == NULL) return NULL;
@@ -328,6 +339,7 @@ lv_obj_t * lv_obj_get_parent(const lv_obj_t * obj)
     return obj->parent;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_obj_get_child(const lv_obj_t * obj, int32_t idx)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -348,6 +360,7 @@ lv_obj_t * lv_obj_get_child(const lv_obj_t * obj, int32_t idx)
     else return obj->spec_attr->children[idx];
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_obj_get_child_by_type(const lv_obj_t * obj, int32_t idx, const lv_obj_class_t * class_p)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -376,6 +389,7 @@ lv_obj_t * lv_obj_get_child_by_type(const lv_obj_t * obj, int32_t idx, const lv_
     return NULL;
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_obj_get_sibling(const lv_obj_t * obj, int32_t idx)
 {
     lv_obj_t * parent = lv_obj_get_parent(obj);
@@ -385,6 +399,7 @@ lv_obj_t * lv_obj_get_sibling(const lv_obj_t * obj, int32_t idx)
     return lv_obj_get_child(parent, sibling_idx);
 }
 
+LV_FUNC_SECTION
 lv_obj_t * lv_obj_get_sibling_by_type(const lv_obj_t * obj, int32_t idx, const lv_obj_class_t * class_p)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -396,6 +411,7 @@ lv_obj_t * lv_obj_get_sibling_by_type(const lv_obj_t * obj, int32_t idx, const l
     return lv_obj_get_child_by_type(parent, sibling_idx, class_p);
 }
 
+LV_FUNC_SECTION
 uint32_t lv_obj_get_child_count(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -403,6 +419,7 @@ uint32_t lv_obj_get_child_count(const lv_obj_t * obj)
     return obj->spec_attr->child_cnt;
 }
 
+LV_FUNC_SECTION
 uint32_t lv_obj_get_child_count_by_type(const lv_obj_t * obj, const lv_obj_class_t * class_p)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -416,6 +433,7 @@ uint32_t lv_obj_get_child_count_by_type(const lv_obj_t * obj, const lv_obj_class
     return cnt;
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_index(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -433,6 +451,7 @@ int32_t lv_obj_get_index(const lv_obj_t * obj)
     return -1;
 }
 
+LV_FUNC_SECTION
 int32_t lv_obj_get_index_by_type(const lv_obj_t * obj, const lv_obj_class_t * class_p)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -454,11 +473,13 @@ int32_t lv_obj_get_index_by_type(const lv_obj_t * obj, const lv_obj_class_t * cl
     return -1;
 }
 
+LV_FUNC_SECTION
 void lv_obj_tree_walk(lv_obj_t * start_obj, lv_obj_tree_walk_cb_t cb, void * user_data)
 {
     walk_core(start_obj, cb, user_data);
 }
 
+LV_FUNC_SECTION
 void lv_obj_dump_tree(lv_obj_t * start_obj)
 {
     if(start_obj == NULL) {
@@ -479,7 +500,7 @@ void lv_obj_dump_tree(lv_obj_t * start_obj)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
+__attribute__(( fptrgroup("lv_async_info_cb") ))
 static void lv_obj_delete_async_cb(void * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -487,6 +508,7 @@ static void lv_obj_delete_async_cb(void * obj)
     lv_obj_delete(obj);
 }
 
+LV_FUNC_SECTION
 static void obj_indev_reset(lv_indev_t * indev, lv_obj_t * obj)
 {
     /* If the input device is already in the release state,
@@ -501,6 +523,8 @@ static void obj_indev_reset(lv_indev_t * indev, lv_obj_t * obj)
     lv_indev_reset(indev, obj);
 }
 
+#pragma stackfunction 1024
+LV_FUNC_SECTION
 static void obj_delete_core(lv_obj_t * obj)
 {
     if(obj->is_deleting)
@@ -590,6 +614,8 @@ static void obj_delete_core(lv_obj_t * obj)
     lv_free(obj);
 }
 
+#pragma stackfunction 1024
+LV_FUNC_SECTION
 static lv_obj_tree_walk_res_t walk_core(lv_obj_t * obj, lv_obj_tree_walk_cb_t cb, void * user_data)
 {
     lv_obj_tree_walk_res_t res = LV_OBJ_TREE_WALK_NEXT;
@@ -620,6 +646,7 @@ static lv_obj_tree_walk_res_t walk_core(lv_obj_t * obj, lv_obj_tree_walk_cb_t cb
     return LV_OBJ_TREE_WALK_NEXT;
 }
 
+LV_FUNC_SECTION
 static void dump_tree_core(lv_obj_t * obj, int32_t depth)
 {
 #if LV_USE_LOG
@@ -644,6 +671,7 @@ static void dump_tree_core(lv_obj_t * obj, int32_t depth)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * lv_obj_get_first_not_deleting_child(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

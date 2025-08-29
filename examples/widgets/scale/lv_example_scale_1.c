@@ -4,6 +4,7 @@
 /**
  * A simple horizontal scale
  */
+LV_FUNC_SECTION
 void lv_example_scale_1(void)
 {
     lv_obj_t * scale = lv_scale_create(lv_screen_active());

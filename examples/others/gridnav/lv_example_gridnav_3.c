@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_GRIDNAV && LV_USE_FLEX && LV_BUILD_EXAMPLES
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void cont_sub_event_cb(lv_event_t * e)
 {
     uint32_t k = lv_event_get_key(e);
@@ -17,6 +18,7 @@ static void cont_sub_event_cb(lv_event_t * e)
 /**
  * Nested grid navigations
  */
+LV_FUNC_SECTION
 void lv_example_gridnav_3(void)
 {
     /*It's assumed that the default group is set and

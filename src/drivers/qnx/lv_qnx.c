@@ -77,6 +77,7 @@ static screen_context_t context;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_display_t * lv_qnx_window_create(int32_t hor_res, int32_t ver_res)
 {
     static bool inited = false;
@@ -124,6 +125,7 @@ lv_display_t * lv_qnx_window_create(int32_t hor_res, int32_t ver_res)
     return disp;
 }
 
+LV_FUNC_SECTION
 void lv_qnx_window_set_title(lv_display_t * disp, const char * title)
 {
     lv_qnx_window_t * dsc = lv_display_get_driver_data(disp);
@@ -150,6 +152,7 @@ void lv_qnx_window_set_title(lv_display_t * disp, const char * title)
     screen_inject_event(NULL, event);
 }
 
+LV_FUNC_SECTION
 bool lv_qnx_add_pointer_device(lv_display_t * disp)
 {
     lv_qnx_window_t * dsc = lv_display_get_driver_data(disp);
@@ -177,6 +180,7 @@ bool lv_qnx_add_pointer_device(lv_display_t * disp)
     return true;
 }
 
+LV_FUNC_SECTION
 bool lv_qnx_add_keyboard_device(lv_display_t * disp)
 {
     lv_qnx_window_t * dsc = lv_display_get_driver_data(disp);
@@ -204,6 +208,7 @@ bool lv_qnx_add_keyboard_device(lv_display_t * disp)
     return true;
 }
 
+LV_FUNC_SECTION
 int lv_qnx_event_loop(lv_display_t * disp)
 {
     lv_refr_now(disp);
@@ -263,12 +268,14 @@ int lv_qnx_event_loop(lv_display_t * disp)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static uint32_t get_ticks(void)
 {
     uint64_t const ns = clock_gettime_mon_ns();
     return (uint32_t)(ns / 1000000UL);
 }
 
+LV_FUNC_SECTION
 static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map)
 {
     lv_qnx_window_t * dsc = lv_display_get_driver_data(disp);
@@ -284,6 +291,7 @@ static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_m
     lv_display_flush_ready(disp);
 }
 
+LV_FUNC_SECTION
 static bool window_create(lv_display_t * disp)
 {
     /*Create a window*/
@@ -357,6 +365,7 @@ static bool window_create(lv_display_t * disp)
     return true;
 }
 
+LV_FUNC_SECTION
 static bool init_display_from_window(lv_display_t * disp)
 {
     lv_qnx_window_t * dsc = lv_display_get_driver_data(disp);
@@ -388,6 +397,7 @@ static bool init_display_from_window(lv_display_t * disp)
     return true;
 }
 
+LV_FUNC_SECTION
 static void release_disp_cb(lv_event_t * e)
 {
     lv_display_t * disp = (lv_display_t *) lv_event_get_user_data(e);
@@ -409,6 +419,7 @@ static void release_disp_cb(lv_event_t * e)
     lv_display_set_driver_data(disp, NULL);
 }
 
+LV_FUNC_SECTION
 static void get_pointer(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_qnx_pointer_t * dsc = lv_indev_get_driver_data(indev);
@@ -423,6 +434,7 @@ static void get_pointer(lv_indev_t * indev, lv_indev_data_t * data)
     }
 }
 
+LV_FUNC_SECTION
 static bool handle_pointer_event(lv_display_t * disp, screen_event_t event)
 {
     lv_qnx_window_t * dsc = lv_display_get_driver_data(disp);
@@ -448,6 +460,7 @@ static bool handle_pointer_event(lv_display_t * disp, screen_event_t event)
     return true;
 }
 
+LV_FUNC_SECTION
 static void get_key(lv_indev_t * indev, lv_indev_data_t * data)
 {
     lv_qnx_keyboard_t * dsc = lv_indev_get_driver_data(indev);
@@ -461,6 +474,7 @@ static void get_key(lv_indev_t * indev, lv_indev_data_t * data)
     }
 }
 
+LV_FUNC_SECTION
 static bool handle_keyboard_event(lv_display_t * disp, screen_event_t event)
 {
     lv_qnx_window_t * dsc = lv_display_get_driver_data(disp);
@@ -530,6 +544,7 @@ static bool handle_keyboard_event(lv_display_t * disp, screen_event_t event)
     return true;
 }
 
+LV_FUNC_SECTION
 static void refresh_cb(lv_timer_t * timer)
 {
     /*Refresh the window on timeout, but disable the timer. Any callback can

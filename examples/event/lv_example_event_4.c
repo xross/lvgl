@@ -5,6 +5,7 @@
 static uint32_t size = 0;
 static bool size_dec = false;
 
+__attribute__(( fptrgroup("lv_timer_cb") ))
 static void timer_cb(lv_timer_t * timer)
 {
     lv_obj_invalidate(lv_timer_get_user_data(timer));
@@ -15,6 +16,7 @@ static void timer_cb(lv_timer_t * timer)
     else if(size == 0) size_dec = false;
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -47,6 +49,7 @@ static void event_cb(lv_event_t * e)
 /**
  * Demonstrate the usage of draw event
  */
+LV_FUNC_SECTION
 void lv_example_event_4(void)
 {
     lv_obj_t * cont = lv_obj_create(lv_screen_active());

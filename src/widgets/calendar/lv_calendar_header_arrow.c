@@ -53,6 +53,7 @@ static const char * month_names_def[12] = LV_CALENDAR_DEFAULT_MONTH_NAMES;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 lv_obj_t * lv_calendar_header_arrow_create(lv_obj_t * parent)
 {
     lv_obj_t * obj = lv_obj_class_create_obj(&lv_calendar_header_arrow_class, parent);
@@ -64,6 +65,7 @@ lv_obj_t * lv_calendar_header_arrow_create(lv_obj_t * parent)
  *  STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static void my_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 {
     LV_TRACE_OBJ_CREATE("begin");
@@ -102,6 +104,7 @@ static void my_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
     lv_obj_send_event(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void month_event_cb(lv_event_t * e)
 {
     lv_obj_t * btn = lv_event_get_current_target(e);
@@ -142,6 +145,7 @@ static void month_event_cb(lv_event_t * e)
     lv_label_set_text_fmt(label, "%d %s", newd.year, month_names_def[newd.month - 1]);
 }
 
+__attribute__(( fptrgroup("lv_event_cb") ))
 static void value_changed_event_cb(lv_event_t * e)
 {
     lv_obj_t * header = lv_event_get_current_target(e);

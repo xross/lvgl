@@ -49,38 +49,45 @@ static vg_lite_buffer_t _src_vgbuf;
  *   GLOBAL FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 vg_lite_buffer_t * vglite_get_dest_buf(void)
 {
     return &_dest_vgbuf;
 }
 
+LV_FUNC_SECTION
 vg_lite_buffer_t * vglite_get_src_buf(void)
 {
     return &_src_vgbuf;
 }
 
+LV_FUNC_SECTION
 void vglite_set_dest_buf_ptr(void * buf)
 {
     _set_vgbuf_ptr(&_dest_vgbuf, buf);
 }
 
+LV_FUNC_SECTION
 void vglite_set_src_buf_ptr(const void * buf)
 {
     _set_vgbuf_ptr(&_src_vgbuf, (void *)buf);
 }
 
+LV_FUNC_SECTION
 void vglite_set_dest_buf(const void * buf, uint32_t width, uint32_t height, uint32_t stride,
                          lv_color_format_t cf)
 {
     vglite_set_buf(&_dest_vgbuf, (void *)buf, width, height, stride, cf);
 }
 
+LV_FUNC_SECTION
 void vglite_set_src_buf(const void * buf, uint32_t width, uint32_t height, uint32_t stride,
                         lv_color_format_t cf)
 {
     vglite_set_buf(&_src_vgbuf, (void *)buf, width, height, stride, cf);
 }
 
+LV_FUNC_SECTION
 void vglite_set_buf(vg_lite_buffer_t * vgbuf, void * buf,
                     uint32_t width, uint32_t height, uint32_t stride,
                     lv_color_format_t cf)
@@ -107,6 +114,7 @@ void vglite_set_buf(vg_lite_buffer_t * vgbuf, void * buf,
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static inline void _set_vgbuf_ptr(vg_lite_buffer_t * vgbuf, void * buf)
 {
     vgbuf->memory = buf;

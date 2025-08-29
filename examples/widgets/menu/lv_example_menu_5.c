@@ -16,6 +16,7 @@ static lv_obj_t * create_slider(lv_obj_t * parent,
 static lv_obj_t * create_switch(lv_obj_t * parent,
                                 const char * icon, const char * txt, bool chk);
 
+LV_FUNC_SECTION
 void lv_example_menu_5(void)
 {
     lv_obj_t * menu = lv_menu_create(lv_screen_active());
@@ -110,6 +111,7 @@ void lv_example_menu_5(void)
                       NULL);
 }
 
+LV_FUNC_SECTION
 static void back_event_handler(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_target(e);
@@ -123,6 +125,7 @@ static void back_event_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static void switch_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -143,6 +146,7 @@ static void switch_handler(lv_event_t * e)
     }
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_text(lv_obj_t * parent, const char * icon, const char * txt,
                               lv_menu_builder_variant_t builder_variant)
 {
@@ -171,6 +175,7 @@ static lv_obj_t * create_text(lv_obj_t * parent, const char * icon, const char *
     return obj;
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_slider(lv_obj_t * parent, const char * icon, const char * txt, int32_t min, int32_t max,
                                 int32_t val)
 {
@@ -188,6 +193,7 @@ static lv_obj_t * create_slider(lv_obj_t * parent, const char * icon, const char
     return obj;
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * create_switch(lv_obj_t * parent, const char * icon, const char * txt, bool chk)
 {
     lv_obj_t * obj = create_text(parent, icon, txt, LV_MENU_ITEM_BUILDER_VARIANT_1);

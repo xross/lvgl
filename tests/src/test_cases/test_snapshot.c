@@ -8,6 +8,7 @@
 
 #define NUM_SNAPSHOTS 10
 
+LV_FUNC_SECTION
 void test_snapshot_should_not_leak_memory(void)
 {
     uint32_t idx = 0;
@@ -35,6 +36,7 @@ void test_snapshot_should_not_leak_memory(void)
     TEST_ASSERT_EQUAL(initial_available_memory, final_available_memory);
 }
 
+LV_FUNC_SECTION
 void test_snapshot_with_transform_should_not_leak_memory(void)
 {
     uint32_t idx = 0;
@@ -68,6 +70,7 @@ void test_snapshot_with_transform_should_not_leak_memory(void)
     TEST_ASSERT_EQUAL(initial_available_memory, final_available_memory);
 }
 
+LV_FUNC_SECTION
 void test_snapshot_take_snapshot_immediately_after_obj_create(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());
@@ -92,6 +95,7 @@ void test_snapshot_take_snapshot_immediately_after_obj_create(void)
     lv_draw_buf_destroy(draw_dsc);
 }
 
+LV_FUNC_SECTION
 void test_snapshot_take_snapshot_with_transform(void)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());
@@ -114,21 +118,25 @@ void test_snapshot_take_snapshot_with_transform(void)
 
 #else /*LV_USE_SNAPSHOT*/
 
+LV_FUNC_SECTION
 void test_snapshot_should_not_leak_memory(void)
 {
 
 }
 
+LV_FUNC_SECTION
 void test_snapshot_with_transform_should_not_leak_memory(void)
 {
 
 }
 
+LV_FUNC_SECTION
 void test_snapshot_take_snapshot_immediately_after_obj_create(void)
 {
 
 }
 
+LV_FUNC_SECTION
 void test_snapshot_take_snapshot_with_transform(void)
 {
 

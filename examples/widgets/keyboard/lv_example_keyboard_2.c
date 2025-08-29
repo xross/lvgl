@@ -1,6 +1,7 @@
 #include "../../lv_examples.h"
 #if LV_USE_KEYBOARD && LV_BUILD_EXAMPLES
 
+LV_FUNC_SECTION
 void lv_example_keyboard_2(void)
 {
     /*Create an AZERTY keyboard map*/

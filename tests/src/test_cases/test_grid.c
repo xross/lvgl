@@ -4,17 +4,20 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
 }
 
+LV_FUNC_SECTION
 static void button_create(lv_obj_t * parent, const char * text, int32_t x, int32_t y)
 {
     lv_obj_t * btn = lv_button_create(parent);
@@ -26,6 +29,7 @@ static void button_create(lv_obj_t * parent, const char * text, int32_t x, int32
 
 }
 
+LV_FUNC_SECTION
 void test_subgrid_row(void)
 {
 
@@ -56,6 +60,7 @@ void test_subgrid_row(void)
     TEST_ASSERT_EQUAL_SCREENSHOT("subgrid_row.png");
 }
 
+LV_FUNC_SECTION
 void test_subgrid_col(void)
 {
 

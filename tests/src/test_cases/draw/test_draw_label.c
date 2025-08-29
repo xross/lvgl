@@ -4,6 +4,7 @@
 
 #include "unity/unity.h"
 
+LV_FUNC_SECTION
 void setUp(void)
 {
     /* Function run before every test */
@@ -11,12 +12,14 @@ void setUp(void)
     lv_obj_set_flex_align(lv_screen_active(), LV_FLEX_ALIGN_SPACE_EVENLY, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_SPACE_EVENLY);
 }
 
+LV_FUNC_SECTION
 void tearDown(void)
 {
     /* Function run after every test */
     lv_obj_clean(lv_screen_active());
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * label_create(const lv_font_t * font, lv_style_t * style, const char * text_base)
 {
     lv_obj_t * label = lv_label_create(lv_screen_active());
@@ -28,6 +31,7 @@ static lv_obj_t * label_create(const lv_font_t * font, lv_style_t * style, const
     return label;
 }
 
+LV_FUNC_SECTION
 static void all_labels_create(const char * name, lv_style_t * style)
 {
     LV_FONT_DECLARE(test_font_montserrat_ascii_1bpp);
@@ -47,11 +51,13 @@ static void all_labels_create(const char * name, lv_style_t * style)
     TEST_ASSERT_EQUAL_SCREENSHOT(buf);
 }
 
+LV_FUNC_SECTION
 void test_draw_label_normal(void)
 {
     all_labels_create("normal", NULL);
 }
 
+LV_FUNC_SECTION
 void test_draw_label_color(void)
 {
     static lv_style_t style;
@@ -61,6 +67,7 @@ void test_draw_label_color(void)
 
 }
 
+LV_FUNC_SECTION
 void test_draw_label_opa(void)
 {
     static lv_style_t style;
@@ -69,6 +76,7 @@ void test_draw_label_opa(void)
     all_labels_create("opa", &style);
 }
 
+LV_FUNC_SECTION
 void test_draw_label_color_and_opa(void)
 {
     static lv_style_t style;
@@ -78,6 +86,7 @@ void test_draw_label_color_and_opa(void)
     all_labels_create("color_and_opa", &style);
 }
 
+LV_FUNC_SECTION
 static lv_obj_t * decor_label_create(lv_text_decor_t decor, lv_text_align_t align, lv_opa_t opa)
 {
     lv_color_t color = lv_palette_main(LV_PALETTE_BLUE);
@@ -98,6 +107,7 @@ static lv_obj_t * decor_label_create(lv_text_decor_t decor, lv_text_align_t alig
     return label;
 }
 
+LV_FUNC_SECTION
 static void all_decor_labels_create(lv_text_decor_t decor)
 {
 
@@ -113,6 +123,7 @@ static void all_decor_labels_create(lv_text_decor_t decor)
     label = decor_label_create(decor, LV_TEXT_ALIGN_RIGHT, LV_OPA_50);
 }
 
+LV_FUNC_SECTION
 void test_label_decor(void)
 {
     all_decor_labels_create(LV_TEXT_DECOR_NONE);

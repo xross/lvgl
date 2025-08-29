@@ -9,6 +9,7 @@ static void lv_draw_dave2d_draw_letter_cb(lv_draw_unit_t * draw_unit, lv_draw_gl
 
 static lv_draw_dave2d_unit_t * unit = NULL;
 
+LV_FUNC_SECTION
 void lv_draw_dave2d_label(lv_draw_dave2d_unit_t * u, const lv_draw_label_dsc_t * dsc, const lv_area_t * coords)
 {
     if(dsc->opa <= LV_OPA_MIN) return;
@@ -19,6 +20,7 @@ void lv_draw_dave2d_label(lv_draw_dave2d_unit_t * u, const lv_draw_label_dsc_t *
 
 }
 
+LV_FUNC_SECTION
 static void lv_draw_dave2d_draw_letter_cb(lv_draw_unit_t * u, lv_draw_glyph_dsc_t * glyph_draw_dsc,
                                           lv_draw_fill_dsc_t * fill_draw_dsc, const lv_area_t * fill_area)
 {

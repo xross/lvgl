@@ -35,6 +35,7 @@ static lv_obj_t * list;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+__attribute__(( fptrgroup("lv_demo_entry_cb") ))
 void lv_demo_scroll(void)
 {
     lv_obj_t * panel = lv_obj_create(lv_screen_active());
@@ -74,6 +75,7 @@ void lv_demo_scroll(void)
  *   STATIC FUNCTIONS
  **********************/
 
+LV_FUNC_SECTION
 static lv_obj_t * switch_create(lv_obj_t * parent, const char * title, lv_obj_flag_t flag, bool en)
 {
     lv_obj_t * cont = lv_obj_create(parent);
@@ -100,6 +102,7 @@ static lv_obj_t * switch_create(lv_obj_t * parent, const char * title, lv_obj_fl
     return cont;
 }
 
+LV_FUNC_SECTION
 static void generic_switch_event_cb(lv_event_t * e)
 {
     lv_obj_t * sw = lv_event_get_target(e);
